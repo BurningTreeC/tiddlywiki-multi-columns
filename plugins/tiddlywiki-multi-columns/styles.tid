@@ -430,4 +430,5 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	cursor: default;
 	background-color: transparent;
 	outline: none;
+	user-select: none;
 }
