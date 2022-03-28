@@ -306,7 +306,7 @@ tags: $:/tags/Stylesheet
 .flextemplate-container .column-config {
 	flex-grow: 0;
 	flex-shrink: 0;
-	z-index: 10000;
+	z-index: 9999;
 }
 
 /* Slice the column containers into vertical columns */
@@ -368,7 +368,11 @@ tags: $:/tags/Stylesheet
 }
 
 .tc-column-active-button.tc-column-active {
-	background-color: rgba(0,255,0,.3);
+	background-color: #e0e8e0;
+}
+
+.column-config-top .column-container {
+	box-shadow: 0px 1px 1px rgb(0 0 0 / 8%);
 }
 
 <$reveal state="$:/themes/tiddlywiki/vanilla/options/stickytitles" type="match" text="yes">
@@ -408,4 +412,22 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	background: <<colour dropzone-background>>;
 	text-align: center;
 	content: "<<lingo DropMessage>>";
+}
+
+.tc-river-active {
+	background-color: #e0e8e0;
+}
+
+.tc-tiddler-frame {
+	box-shadow: 0px 0px 15px rgb(0 0 0 / 8%);
+}
+
+.tc-activate-column-btn {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	cursor: default;
+	background-color: transparent;
 }

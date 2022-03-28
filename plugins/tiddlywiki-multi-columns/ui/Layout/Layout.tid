@@ -42,27 +42,30 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 				</div>
 			</header>
 			<main class="main column-container">
-				<div class="tc-river-left">
+				<div class={{{ [{$:/state/column-right/active}!match[yes]then{$:/state/column-middle/active}!match[yes]then[tc-river-left tc-river-active]else[tc-river-left]] }}}>
 					<$navigator story="$:/StoryList" history="$:/HistoryList" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 						<$dropzone enable=<<tv-enable-drag-and-drop>> class="tc-dropzone-left">
+							<$button tag="a" class="tc-btn-invisible tc-activate-column-btn" actions="""<$action-setfield $tiddler="$:/state/column-right/active" text="no"/><$action-setfield $tiddler="$:/state/column-middle/active" text="no"/><$action-setfield $tiddler="$:/state/column-left/active" text="yes"/>"""></$button>
 							<div class="tc-river-inner">
 								<$list filter="[list[$:/StoryList]]" template="$:/core/ui/ViewTemplate" editTemplate="$:/core/ui/EditTemplate" storyview={{$:/view}} storyViewConfig="$:/config/muuri/storyview-left/"/>
 							</div>
 						</$dropzone>
 					</$navigator>
 				</div>
-				<div class="tc-river-middle">
+				<div class={{{ [{$:/state/column-middle/active}match[yes]then[tc-river-middle tc-river-active]else[tc-river-middle]] }}}>
 					<$navigator story="$:/StoryListMiddle" history="$:/HistoryListMiddle" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 						<$dropzone enable=<<tv-enable-drag-and-drop>> class="tc-dropzone-middle">
+							<$button tag="a" class="tc-btn-invisible tc-activate-column-btn" actions="""<$action-setfield $tiddler="$:/state/column-left/active" text="no"/><$action-setfield $tiddler="$:/state/column-right/active" text="no"/><$action-setfield $tiddler="$:/state/column-middle/active" text="yes"/>"""></$button>
 							<div class="tc-river-inner">
 								<$list filter="[list[$:/StoryListMiddle]]" template="$:/core/ui/ViewTemplate" editTemplate="$:/core/ui/EditTemplate" storyview={{{ [{$:/view-middle}!match[]] ~[{$:/view}] }}} storyViewConfig="$:/config/muuri/storyview-middle/"/>
 							</div>
 						</$dropzone>
 					</$navigator>
 				</div>
-				<div class="tc-river-right">
+				<div class={{{ [{$:/state/column-right/active}match[yes]then[tc-river-right tc-river-active]else[tc-river-right]] }}}>
 					<$navigator story="$:/StoryListRight" history="$:/HistoryListRight" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 						<$dropzone enable=<<tv-enable-drag-and-drop>> class="tc-dropzone-right">
+							<$button tag="a" class="tc-btn-invisible tc-activate-column-btn" actions="""<$action-setfield $tiddler="$:/state/column-left/active" text="no"/><$action-setfield $tiddler="$:/state/column-middle/active" text="no"/><$action-setfield $tiddler="$:/state/column-right/active" text="yes"/>"""></$button>
 							<div class="tc-river-inner">
 								<$list filter="[list[$:/StoryListRight]]" template="$:/core/ui/ViewTemplate" editTemplate="$:/core/ui/EditTemplate" storyview={{{ [{$:/view-right}!match[]] ~[{$:/view}] }}} storyViewConfig="$:/config/muuri/storyview-right/"/>
 							</div>
