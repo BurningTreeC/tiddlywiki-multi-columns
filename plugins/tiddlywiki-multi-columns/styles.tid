@@ -355,7 +355,6 @@ tags: $:/tags/Stylesheet
 
 .tc-river-inner {
 	padding: 15px 15px 15px 15px;
-	min-height: calc(100vh - 30px);
 }
 
 .tc-column-active-button {

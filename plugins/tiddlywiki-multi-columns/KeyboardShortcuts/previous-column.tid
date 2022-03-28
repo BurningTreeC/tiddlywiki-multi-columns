@@ -1,0 +1,15 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/previous-column
+tags: $:/tags/KeyboardShortcut
+key: ((previous-column))
+
+\define previous-column-tiddler()
+$:/state/column-$(previousColumn)$/active
+\end
+<$set name="currentColumn" value={{{ [{$:/state/column-left/active}match[yes]then[left]] :else[{$:/state/column-middle/active}match[yes]then[middle]] :else[{$:/state/column-right/active}match[yes]then[right]]  }}}>
+	<$list filter="left middle right +[before<currentColumn>] ~right" variable="previousColumn">
+		<$action-setfield $tiddler="$:/state/column-left/active" text="no"/>
+		<$action-setfield $tiddler="$:/state/column-middle/active" text="no"/>
+		<$action-setfield $tiddler="$:/state/column-right/active" text="no"/>
+		<$action-setfield $tiddler=<<previous-column-tiddler>> text="yes"/>
+	</$list>
+</$set>
