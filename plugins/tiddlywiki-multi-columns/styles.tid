@@ -441,3 +441,17 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 .tc-activate-column-btn:focus {
 	outline: none !important;
 }
+
+.tc-panel-shown-eventcatcher {
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;	
+}
+
+.tc-panel-shown-eventcatcher:focus {
+	outline: none !important;
+}
