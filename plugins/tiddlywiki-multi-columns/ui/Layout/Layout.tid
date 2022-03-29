@@ -84,6 +84,13 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 		<div class="tc-panel-container">
 			<div class="tc-panel-content">
 				<$navigator story={{{ [{$:/state/column-right/active}match[yes]then[$:/StoryListRight]] :else[{$:/state/column-middle/active}match[yes]then[$:/StoryListMiddle]] :else[[$:/StoryList]] }}} history={{{ [{$:/state/column-right/active}match[yes]then[$:/HistoryListRight] :else[{$:/state/column-middle/active}match[yes]then[$:/HistoryListMiddle]] :else[[$:/HistoryList]] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+					<div class="tc-sidebar-flexpanel">
+						<div class="tc-sidebar-flexpanel-column-container">
+							<$button tag="a" class={{{ [{$:/state/column-right/active}!match[yes]then{$:/state/column-middle/active}!match[yes]then[tc-column-active-button tc-column-active]else[tc-column-active-button]] }}} actions="""<$action-setfield $tiddler="$:/state/column-right/active" text="no"/><$action-setfield $tiddler="$:/state/column-middle/active" text="no"/><$action-setfield $tiddler="$:/state/column-left/active" text="yes"/>"""></$button>
+							<$button tag="a" class={{{ [{$:/state/column-middle/active}match[yes]then[tc-column-active-button tc-column-active]else[tc-column-active-button]] }}} actions="""<$action-setfield $tiddler="$:/state/column-left/active" text="no"/><$action-setfield $tiddler="$:/state/column-right/active" text="no"/><$action-setfield $tiddler="$:/state/column-middle/active" text="yes"/>"""></$button>
+							<$button tag="a" class={{{ [{$:/state/column-right/active}match[yes]then[tc-column-active-button tc-column-active]else[tc-column-active-button]] }}} actions="""<$action-setfield $tiddler="$:/state/column-left/active" text="no"/><$action-setfield $tiddler="$:/state/column-middle/active" text="no"/><$action-setfield $tiddler="$:/state/column-right/active" text="yes"/>"""></$button>
+						</div>
+					</div>
 					{{$:/core/ui/SideBarSegments/search}}
 					{{$:/core/ui/SideBarSegments/page-controls}}
 					{{$:/core/ui/SideBarSegments/tabs}}

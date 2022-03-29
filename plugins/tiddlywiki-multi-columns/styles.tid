@@ -455,3 +455,39 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 .tc-panel-shown-eventcatcher:focus {
 	outline: none !important;
 }
+
+.tc-sidebar-flexpanel {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: stretch;
+	height: 25px;	
+}
+
+.tc-sidebar-flexpanel .tc-sidebar-flexpanel-column-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: stretch;
+	overflow: hidden;
+}
+
+.tc-sidebar-flexpanel-column-container > *:nth-child(1) {
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+}
+.tc-sidebar-flexpanel-column-container > *:nth-child(2) {
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+}
+.tc-sidebar-flexpanel-column-container > *:nth-child(3) {
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+}
+
+.tc-sidebar-flexpanel .tc-column-active-button {
+	height: 25px;
+}
