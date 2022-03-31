@@ -508,6 +508,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	width: 100%;
 	display: none;
 	z-index: 501;
+	border: 1px solid black;
 }
 
 .tc-tiddler-view-frame:first-of-type .tc-droppable-top-half {
@@ -523,6 +524,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	width: 100%;
 	z-index: 501;
 	display: none;
+	border: 1px solid black;
 }
 
 .tc-droppable-top-half.tc-dragover {
@@ -540,7 +542,8 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 
 .tc-droppable-bottom-half.tc-dragover > .tc-droppable-placeholder-bottom-drop {
-	top: calc(100% + 29px);
+	bottom: 0;
+	margin-bottom: 29px;
 }
 
 <$reveal state="$:/state/dragging" type="match" text="yes">
