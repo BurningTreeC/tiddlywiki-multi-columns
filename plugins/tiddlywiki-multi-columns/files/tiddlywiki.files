@@ -1,0 +1,14 @@
+{
+	"tiddlers": [
+		{
+			"file": "storyviews/multi-column.js",
+			"fields": {
+				"type": "application/javascript",
+				"title": "$:/plugins/BTC/tiddlywiki-multi-columns/modules/storyviews/multi-column.js",
+				"module-type": "storyview",
+				"name": "multi-column",
+				"description": "MultiColumn StoryView"
+			}
+		}
+	]
+}
