@@ -26,14 +26,14 @@ $:/state/folded/$(currentTiddler)$
 \import [all[shadows+tiddlers]tag[$:/tags/Macro/View]!has[draft.of]]
 <$vars storyTiddler=<<currentTiddler>> tiddlerInfoState=<<qualify "$:/state/popup/tiddler-info">>>
 <div data-tiddler-title=<<currentTiddler>> data-tags={{!!tags}} class={{{ tc-tiddler-view-frame [<currentTiddler>is[tiddler]then[tc-tiddler-exists]] [<currentTiddler>is[missing]!is[shadow]then[tc-tiddler-missing]] [<currentTiddler>is[shadow]then[tc-tiddler-exists tc-tiddler-shadow]] [<currentTiddler>is[shadow]is[tiddler]then[tc-tiddler-overridden-shadow]] [<currentTiddler>is[system]then[tc-tiddler-system]] [{!!class}] [<currentTiddler>tags[]encodeuricomponent[]addprefix[tc-tagged-]] +[join[ ]] }}}>
-<$draggable enabled={{$:/state/dragging-enabled}} tiddler=<<currentTiddler>> startactions=<<drag-start-actions>> endactions=<<drag-end-actions>> class="tc-tiddler-frame">
+<$draggable enabled={{$:/dragging-enabled}} tiddler=<<currentTiddler>> startactions=<<drag-start-actions>> endactions=<<drag-end-actions>> class="tc-tiddler-frame">
 <$list filter="[all[shadows+tiddlers]tag[$:/tags/ViewTemplate]!has[draft.of]]" variable="listItem">
 <$transclude tiddler=<<listItem>>/>
 </$list>
-<$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="top"/>""">
+<$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}}/>""">
 <div class="tc-droppable-placeholder tc-droppable-placeholder-top-drop"/>
 </$droppable>
-<$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="bottom"/>""">
+<$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}}/>""">
 <div class="tc-droppable-placeholder tc-droppable-placeholder-bottom-drop"/>
 </$droppable>
 </$draggable>
