@@ -45,7 +45,7 @@ tags: $:/tags/Stylesheet
 
 \define tiddler-view-frame-transitions()
 
-.tc-river-inner > .tc-tiddler-view-frame > .tc-tiddler-frame {
+.tc-river-inner > .tc-tiddler-view-frame > .tc-tiddler-frame, .tc-river-inner > .tc-tiddler-edit-frame > .tc-tiddler-frame {
 	transition: margin-top {{$:/config/AnimationDuration}}ms cubic-bezier(0.645, 0.045, 0.355, 1), margin-bottom {{$:/config/AnimationDuration}}ms cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
@@ -526,7 +526,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	z-index: 501;
 }
 
-.tc-tiddler-view-frame:first-of-type .tc-droppable-top-half {
+.tc-tiddler-view-frame:first-of-type .tc-droppable-top-half, .tc-tiddler-edit-frame:first-of-type .tc-droppable-top-half {
 	top: -16px;
 	height: calc(50% + 16px);
 }
@@ -546,7 +546,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	top: calc(-{{$:/state/dragging!!height}}px - 58px);
 }
 
-.tc-tiddler-view-frame:first-of-type .tc-droppable-top-half.tc-dragover {
+.tc-tiddler-view-frame:first-of-type .tc-droppable-top-half.tc-dragover, .tc-tiddler-edit-frame:first-of-type .tc-droppable-top-half.tc-dragover {
 	height: calc(50% + 45px + {{$:/state/dragging!!height}}px);
 	top: calc(-{{$:/state/dragging!!height}}px - 45px);
 }
