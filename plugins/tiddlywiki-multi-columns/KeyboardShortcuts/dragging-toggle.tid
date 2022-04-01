@@ -1,0 +1,9 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/dragging-toggle
+tags: $:/tags/KeyboardShortcut
+key: ((dragging-toggle))
+
+<$list filter="[[$:/dragging-enabled]is[missing]] [{$:/dragging-enabled}match[yes]]" emptyMessage="""
+	<$action-setfield $tiddler="$:/dragging-enabled" text="yes"/>
+""">
+	<$action-setfield $tiddler="$:/dragging-enabled" text="no"/>
+</$list>
