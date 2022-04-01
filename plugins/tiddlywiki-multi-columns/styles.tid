@@ -413,7 +413,7 @@ tags: $:/tags/Stylesheet
 
 ``
 <$list filter="[range[100]]">
-`.tc-river-inner .tc-tiddler-view-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`), .tc-river-inner .tc-tiddler-edit-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) {
+`.tc-river-inner .tc-tiddler-zindex-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) {
 z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 `
@@ -648,4 +648,8 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 .tc-tiddler-view-frame, .tc-tiddler-edit-frame {
 	margin-bottom: 28px;
+}
+
+.tc-river-inner > .tc-tiddler-view-frame > .tc-draggable, .tc-river-inner > .tc-tiddler-edit-frame > .tc-draggable {
+	cursor: default;
 }
