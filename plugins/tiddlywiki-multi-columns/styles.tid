@@ -560,6 +560,10 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	margin-bottom: 29px;
 }
 
+.tc-droppable-top-half.tc-dragover .tc-droppable-placeholder, .tc-droppable-bottom-half.tc-dragover .tc-droppable-placeholder {
+	border: none;
+}
+
 <$reveal state="$:/state/dragging" type="match" text="yes">
 
 .tc-droppable-top-half, .tc-droppable-bottom-half {
