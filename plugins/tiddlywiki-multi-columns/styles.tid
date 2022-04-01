@@ -414,7 +414,7 @@ tags: $:/tags/Stylesheet
 ``
 <$list filter="[range[100]]">
 `.tc-river-inner .tc-tiddler-view-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`), .tc-river-inner .tc-tiddler-edit-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) {
-z-index: `<$text text={{{ [[501]subtract<currentTiddler>] }}}/>`;
+z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 `
 </$list>
