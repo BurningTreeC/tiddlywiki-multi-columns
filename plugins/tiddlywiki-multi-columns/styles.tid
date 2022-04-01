@@ -645,3 +645,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 
 </$reveal>
+
+.tc-tiddler-view-frame {
+	margin-bottom: 28px;
+}
