@@ -42,6 +42,7 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 	var duration = $tw.utils.getAnimationDuration();
 	if(duration) {
 		var targetElement = widget.findFirstDomNode();
+		var nextElement = targetElement.nextSibling;
 		// Abandon if the list entry isn't a DOM element (it might be a text node)
 		if(!targetElement || targetElement.nodeType === Node.TEXT_NODE) {
 			return;
@@ -67,8 +68,7 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 		$tw.utils.forceLayout(targetElement);
 		// Transition to the final position
 		$tw.utils.setStyle(targetElement,[
-			{transition: "opacity " + duration + "ms " + easing + ", " +
-						"margin-bottom " + duration + "ms " + easing + ", " +
+			{transition: "margin-bottom " + duration + "ms " + easing + ", " +
 						"margin-top " + duration + "ms " + easing},
 			{marginBottom: currMarginBottom + "px"},
 			{marginTop: currMarginTop + "px"},
@@ -84,6 +84,8 @@ MultiColumnStoryView.prototype.remove = function(widget) {
 			removeElement = function() {
 				widget.removeChildDomNodes();
 			};
+		var nextElement = targetElement.nextSibling;
+		console.log(nextElement);
 		// Abandon if the list entry isn't a DOM element (it might be a text node)
 		if(!targetElement || targetElement.nodeType === Node.TEXT_NODE) {
 			removeElement();
@@ -101,15 +103,13 @@ MultiColumnStoryView.prototype.remove = function(widget) {
 		$tw.utils.setStyle(targetElement,[
 			{transition: "none"},
 			{marginBottom:  currMarginBottom + "px"},
-			{opacity: "1.0"}
+			{opacity: "0"}
 		]);
 		$tw.utils.forceLayout(targetElement);
 		$tw.utils.setStyle(targetElement,[
 			{transition: $tw.utils.roundTripPropertyName("transform") + " " + duration + "ms " + easing + ", " +
-						"opacity " + duration + "ms " + easing + ", " +
 						"margin-bottom " + duration + "ms " + easing},
-			{marginBottom: (-currHeight) + "px"},
-			{opacity: "0.0"}
+			{marginBottom: (-currHeight) + "px"}
 		]);
 	} else {
 		widget.removeChildDomNodes();
