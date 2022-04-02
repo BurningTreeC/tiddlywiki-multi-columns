@@ -643,6 +643,10 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	height: {{$:/state/dragging!!height}}px;
 }
 
+.tc-dragover .tc-droppable-placeholder.tc-droppable-placeholder-empty-story {
+	border: none;
+}
+
 </$reveal>
 
 <$reveal state="$:/dragging-enabled" type="nomatch" text="no">
