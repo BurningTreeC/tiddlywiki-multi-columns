@@ -1,0 +1,21 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/remove-column
+tags: $:/tags/PageControls
+
+\whitespace trim
+\define remove-column-actions()
+<$set name="columnCount" value={{{ [list[$:/columns]count[]] }}}>
+<$list filter="[<columnCount>!match[1]]">
+<$action-listops $tiddler="$:/columns" $subfilter="-[<columnCount>]"/>
+</$list>
+</$set>
+\end
+<$button actions=<<remove-column-actions>> tooltip={{$:/language/Buttons/RemoveColumn/Hint}} aria-label={{$:/language/Buttons/RemoveColumn/Caption}} class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/minus-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text={{$:/language/Buttons/RemoveColumn/Caption}}/>
+</span>
+</$list>
+</$button>

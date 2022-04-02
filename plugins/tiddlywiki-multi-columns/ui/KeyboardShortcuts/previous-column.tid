@@ -1,0 +1,11 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/previous-column
+tags: $:/tags/KeyboardShortcut
+key: ((previous-column))
+
+<$set name="currentColumn" value={{{ [[$:/columns]get[active-column]] ~1 }}}>
+	<$set name="columnCount" value={{{ [list[$:/columns]count[]] ~1 }}}>
+		<$list filter="[list[$:/columns]before<currentColumn>] ~[<columnCount>]" variable="nextColumn">
+			<$action-setfield $tiddler="$:/columns" active-column=<<nextColumn>>/>
+		</$list>
+	</$set>
+</$set>

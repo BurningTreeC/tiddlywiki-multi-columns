@@ -1,0 +1,86 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout
+tags: $:/tags/Layout
+description: A multi-column Layout
+name: ~MultiColumn
+
+\whitespace trim
+\define containerClasses()
+tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(languageTitle)$
+\end
+\define sidebar-actions()
+<$action-setfield $tiddler="$:/state/panel/visibility" text="yes"/><$action-sendmessage $message="tm-focus-selector" $param=".tc-panel-container .tc-panel-content .tc-sidebar-search input"/>
+\end
+\import [[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]
+<$vars
+	tv-config-toolbar-icons={{$:/config/Toolbar/Icons}}
+	tv-config-toolbar-text={{$:/config/Toolbar/Text}}
+	tv-config-toolbar-class={{$:/config/Toolbar/ButtonClass}}
+	tv-enable-drag-and-drop={{$:/config/DragAndDrop/Enable}}
+	tv-show-missing-links={{$:/config/MissingLinks}}
+	storyviewTitle={{$:/view}}
+	languageTitle={{{ [{$:/language}get[name]] }}}>
+	<div class="tc-drag-container"/>
+	<main class=<<containerClasses>>>
+		<$reveal state="$:/state/panel/visibility" type="nomatch" text="yes">
+			<$button class="tc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/core/images/chevron-left}}</$button>
+		</$reveal>
+		<$eventcatcher selector=".tc-panel-shown" $click="""<$action-setfield $tiddler="$:/state/panel/visibility" text="no"/>""" class="tc-panel-shown-eventcatcher">
+			<div class={{{ [{$:/state/panel/visibility}match[yes]then[tc-panel-hide tc-btn-invisible tc-panel-shown]else[tc-panel-hide tc-btn-invisible tc-panel-hidden]] }}} set="$:/state/panel/visibility" setTo="no"></div>
+		</$eventcatcher>
+		<div class="flextemplate-container">
+			<header class="column-config column-config-top">
+				<div class="column-container">
+					<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
+						<div class="tc-top-active-column">
+							<$button tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>"""></$button>
+						</div>
+					</$list>
+				</div>
+			</header>
+			<main class="main column-container">
+				<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
+					<div class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[$:/columns]is[missing]then<currentColumn>match[1]then[tc-river-active ]] :else[[tc-river-]addsuffix<currentColumn>] }}}>
+						<$navigator story={{{ [[$:/StoryList-]addsuffix<currentColumn>] }}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+							<$dropzone enable=<<tv-enable-drag-and-drop>> class={{{ [[$:/columns]get[active-column]addprefix[tc-dropzone-]] ~tc-dropzone-1 }}} importTitle={{{ [[$:/Import-]addsuffix<currentColumn>] }}}>
+								<$eventcatcher selector=".tc-activate-column-btn" $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""">
+									<div tag="a" class="tc-btn-invisible tc-activate-column-btn"></div>
+								</$eventcatcher>
+								<div class="tc-river-inner">
+									<$list filter="[list<tv-story-list>]" template="$:/core/ui/ViewTemplate" editTemplate="$:/core/ui/EditTemplate" storyview={{$:/view}}/>
+									<$list filter="[list<tv-story-list>count[]match[0]]">
+										<$droppable actions="""<$action-listops $tiddler=<<tv-story-list>> $subfilter="[<actionTiddler>]"/>""" dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=""/>""">
+											<div class="tc-droppable-placeholder tc-droppable-placeholder-empty-story"/>
+										</$droppable>
+									</$list>
+								</div>
+							</$dropzone>
+						</$navigator>
+					</div>
+				</$list>
+			</main>
+		</div>
+	</main>
+	<div class={{{ [{$:/state/panel/visibility}match[yes]then[tc-panel tc-panel-from-right tc-panel-is-visible]else[tc-panel tc-panel-from-right]] }}}>
+		<header class="tc-panel-header">
+			<h1>{{$:/SiteTitle}}</h1>
+			<h4>{{$:/SiteSubtitle}}</h4>
+			<$button tag="a" class="tc-panel-close tc-btn-invisible" set="$:/state/panel/visibility" setTo="no">Close</$button>
+		</header>
+		<div class="tc-panel-container">
+			<div class="tc-panel-content">
+				<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]] ~$:/StoryList-1 }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]] ~$:/HistoryList-1 }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+					<div class="tc-sidebar-flexpanel">
+						<div class="tc-sidebar-flexpanel-column-container">
+							<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
+								<$button tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>"""></$button>
+							</$list>
+						</div>
+					</div>
+					{{$:/core/ui/SideBarSegments/search}}
+					{{$:/core/ui/SideBarSegments/page-controls}}
+					{{$:/core/ui/SideBarSegments/tabs}}
+				</$navigator>
+			</div>
+		</div>
+	</div>
+</$vars>

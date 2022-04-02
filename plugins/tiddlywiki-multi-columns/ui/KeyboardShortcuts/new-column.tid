@@ -1,0 +1,7 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/new-column
+tags: $:/tags/KeyboardShortcut
+key: ((new-column))
+
+<$let columnCount={{{ [list[$:/columns]count[]] }}} newColumn={{{ [<columnCount>add[1]] }}}>
+<$action-listops $tiddler="$:/columns" $subfilter="[<newColumn>]"/>
+</$let>

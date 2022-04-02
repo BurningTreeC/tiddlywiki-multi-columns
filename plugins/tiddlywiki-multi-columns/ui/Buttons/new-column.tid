@@ -1,0 +1,19 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/new-column
+tags: $:/tags/PageControls
+
+\whitespace trim
+\define new-column-actions()
+<$let columnCount={{{ [list[$:/columns]count[]] }}} newColumn={{{ [<columnCount>add[1]] }}}>
+<$action-listops $tiddler="$:/columns" $subfilter="[<newColumn>]"/>
+</$let>
+\end
+<$button actions=<<new-column-actions>> tooltip={{$:/language/Buttons/NewColumn/Hint}} aria-label={{$:/language/Buttons/NewColumn/Caption}} class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/plus-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text={{$:/language/Buttons/NewColumn/Caption}}/>
+</span>
+</$list>
+</$button>

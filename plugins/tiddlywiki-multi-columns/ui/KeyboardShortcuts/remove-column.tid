@@ -1,0 +1,9 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/remove-column
+tags: $:/tags/KeyboardShortcut
+key: ((remove-column))
+
+<$set name="columnCount" value={{{ [list[$:/columns]count[]] }}}>
+<$list filter="[<columnCount>!match[1]]">
+<$action-listops $tiddler="$:/columns" $subfilter="-[<columnCount>]"/>
+</$list>
+</$set>
