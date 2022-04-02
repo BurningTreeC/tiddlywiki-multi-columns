@@ -643,7 +643,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	height: {{$:/state/dragging!!height}}px;
 }
 
-.tc-dragover .tc-droppable-placeholder.tc-droppable-placeholder-empty-story {
+.tc-dragover > .tc-droppable-placeholder.tc-droppable-placeholder-empty-story {
 	border: none;
 }
 
@@ -652,12 +652,13 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 <$reveal state="$:/dragging-enabled" type="nomatch" text="no">
 
 .tc-tiddler-frame img {
-    user-drag: none;
-    -webkit-user-drag: none;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
+	user-drag: none;
+	-webkit-user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	touch-action: none;
 }
 
 </$reveal>
