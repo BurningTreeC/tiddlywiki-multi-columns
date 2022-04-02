@@ -625,13 +625,13 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 .tc-river-inner > .tc-droppable {
 	position: absolute;
-	height: 100%;
-	width: 100%;
+	height: calc(100% - 30px);
+	width: calc(100% - 30px);
 }
 
 .tc-droppable-placeholder-empty-story {
 	position: absolute;
-	width: calc(100% - 30px);
+	width: 100%;
 	height: {{$:/state/dragging!!height}}px;
 }
 

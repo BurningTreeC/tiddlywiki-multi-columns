@@ -5,10 +5,18 @@ title: $:/core/ui/ViewTemplate
 $:/state/folded/$(currentTiddler)$
 \end
 \define drag-start-actions()
-<$action-setfield $tiddler="$:/state/drag-tiddler" text=<<currentTiddler>>/><$action-setfield $tiddler="$:/state/dragging" drag-tiddler=<<currentTiddler>>/><$action-setfield $tiddler="$:/state/DisableInsertAnimation" text="yes"/><$action-setfield $tiddler="$:/state/DisableRemoveAnimation" text="yes"/><$action-setfield $tiddler="$:/state/dragging" text="yes"/><$action-setfield $tiddler="$:/state/dragging" height=<<tv-selectednode-height>> width=<<tv-selectednode-width>>/><$action-listops $tiddler=<<tv-story-list>> $subfilter="-[<currentTiddler>]"/>
+<$action-setfield $tiddler="$:/state/drag-tiddler" text=<<currentTiddler>>/><$action-setfield $tiddler="$:/state/dragging" drag-tiddler=<<currentTiddler>> original-index={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}}/><$action-setfield $tiddler="$:/state/DisableInsertAnimation" text="yes"/><$action-setfield $tiddler="$:/state/DisableRemoveAnimation" text="yes"/><$action-setfield $tiddler="$:/state/dragging" text="yes"/><$action-setfield $tiddler="$:/state/dragging" height=<<tv-selectednode-height>> width=<<tv-selectednode-width>>/><$action-listops $tiddler=<<tv-story-list>> $subfilter="-[<currentTiddler>]"/>
 \end
 \define drag-end-actions()
+<$action-log target={{$:/state/dragging!!target}}/>
+<$list filter="[{$:/state/dragging!!target}match[]]" emptyMessage="""
 <$action-deletetiddler $tiddler="$:/state/dragging"/>
+""">
+<$set name="beforeTiddler" value={{{ [list<tv-story-list>nth{$:/state/dragging!!original-index}] }}}>
+<$action-listops $tiddler=<<tv-story-list>> $subfilter="+[insertbefore{$:/state/dragging!!drag-tiddler},<beforeTiddler>]"/>
+<$action-deletetiddler $tiddler="$:/state/dragging"/>
+</$set>
+</$list>
 \end
 \define top-drop-actions()
 <$action-listops $tiddler=<<tv-story-list>> $subfilter="+[insertbefore<actionTiddler>,<currentTiddler>]"/><$action-deletetiddler $tiddler="$:/state/DisableInsertAnimation"/><$action-deletetiddler $tiddler="$:/state/DisableRemoveAnimation"/>
@@ -30,10 +38,10 @@ $:/state/folded/$(currentTiddler)$
 <$list filter="[all[shadows+tiddlers]tag[$:/tags/ViewTemplate]!has[draft.of]]" variable="listItem">
 <$transclude tiddler=<<listItem>>/>
 </$list>
-<$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}}/>""">
+<$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}}/>""" dragendactions=<<top-drop-actions>>>
 <div class="tc-droppable-placeholder tc-droppable-placeholder-top-drop"/>
 </$droppable>
-<$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}}/>""">
+<$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}}/>""" dragendactions=<<bottom-drop-actions>>>
 <div class="tc-droppable-placeholder tc-droppable-placeholder-bottom-drop"/>
 </$droppable>
 </$draggable>
