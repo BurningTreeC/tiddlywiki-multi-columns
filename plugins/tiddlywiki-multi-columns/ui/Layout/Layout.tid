@@ -31,9 +31,9 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 			<header class="column-config column-config-top">
 				<div class="column-container">
 					<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
-						<div class="tc-top-active-column">
+						<$eventcatcher tag="div" class="tc-top-active-column" $drop="""<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<currentColumn>] }}}><$set name="firstTiddler" value={{{ [list<storyList>nth[1]] }}}><$action-listops $tiddler=<<storyList>> $subfilter="+[insertbefore{$:/state/dragging!!drag-tiddler},<firstTiddler>]"/></$set></$set>""">
 							<$button tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>"""></$button>
-						</div>
+						</$eventcatcher>
 					</$list>
 				</div>
 			</header>
@@ -45,14 +45,14 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 								<$eventcatcher selector=".tc-activate-column-btn" $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""">
 									<div tag="a" class="tc-btn-invisible tc-activate-column-btn"></div>
 								</$eventcatcher>
-								<div class="tc-river-inner">
+								<$eventcatcher tag="div" class="tc-river-inner" $drop="""<$set name="firstTiddler" value={{{ [list<tv-story-list>nth[1]] }}}><$action-listops $tiddler=<<tv-story-list>> $subfilter="+[insertbefore{$:/state/dragging!!drag-tiddler},<firstTiddler>]"/></$set>""">
 									<$list filter="[list<tv-story-list>]" template="$:/core/ui/ViewTemplate" editTemplate="$:/core/ui/EditTemplate" storyview={{$:/view}}/>
 									<$list filter="[list<tv-story-list>count[]match[0]]">
 										<$droppable actions="""<$action-listops $tiddler=<<tv-story-list>> $subfilter="[<actionTiddler>]"/>""" dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=""/>""">
 											<div class="tc-droppable-placeholder tc-droppable-placeholder-empty-story"/>
 										</$droppable>
 									</$list>
-								</div>
+								</$eventcatcher>
 							</$dropzone>
 						</$navigator>
 					</div>

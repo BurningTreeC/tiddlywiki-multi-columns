@@ -525,11 +525,12 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 .tc-droppable-top-half {
 	position: absolute;
 	top: -29px;
-	left: 0;
+	left: -15px;
 	height: calc(50% + 29px);
-	width: 100%;
+	width: calc(100% + 30px);
 	display: none;
 	z-index: 501;
+	border: 1px solid blue;
 }
 
 .tc-tiddler-view-frame:first-of-type .tc-droppable-top-half, .tc-tiddler-edit-frame:first-of-type .tc-droppable-top-half {
@@ -540,11 +541,12 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 .tc-droppable-bottom-half {
 	position: absolute;
 	top: 50%;
-	left: 0;
+	left: -15px;
 	height: calc(50% + 1px);
-	width: 100%;
+	width: calc(100% + 30px);
 	z-index: 501;
 	display: none;
+	border: 1px solid black;
 }
 
 .tc-droppable-top-half.tc-dragover {
@@ -558,7 +560,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 
 .tc-droppable-bottom-half.tc-dragover {
-	height: calc(50% + 58px + {{$:/state/dragging!!height}}px);
+	height: calc(50% + 29px + {{$:/state/dragging!!height}}px);
 }
 
 .tc-droppable-bottom-half.tc-dragover > .tc-droppable-placeholder-bottom-drop {
