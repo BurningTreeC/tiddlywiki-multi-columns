@@ -525,9 +525,9 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 .tc-droppable-top-half {
 	position: absolute;
 	top: -29px;
-	left: -15px;
+	left: -16px;
 	height: calc(50% + 29px);
-	width: calc(100% + 30px);
+	width: calc(100% + 32px);
 	display: none;
 	z-index: 501;
 	border: 1px solid blue;
@@ -541,9 +541,9 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 .tc-droppable-bottom-half {
 	position: absolute;
 	top: 50%;
-	left: -15px;
+	left: -16px;
 	height: calc(50% + 1px);
-	width: calc(100% + 30px);
+	width: calc(100% + 32px);
 	z-index: 501;
 	display: none;
 	border: 1px solid black;
