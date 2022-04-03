@@ -22,13 +22,13 @@ tags: $:/tags/Stylesheet
 
 \define target-tiddler-margin()
 
-[data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
+.tc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
 	margin-$(margin)$: calc({{$:/state/dragging!!height}}px + 56px);
 }
 
 <$list filter="[{$:/state/dragging!!nth}match[0]]">
 
-[data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
+.tc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
 	margin-$(margin)$: calc({{$:/state/dragging!!height}}px + 29px);
 }
 
@@ -605,6 +605,8 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	width: 100%;
 }
 
+<$set name="currentRiver" value={{$:/state/dragging!!river}}>
+
 <$set name="targetTiddler" value={{$:/state/dragging!!target}}>
 
 <$set name="targetTiddlerCSSEscaped" value={{{ [<targetTiddler>escapecss[]] }}}>
@@ -612,6 +614,8 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 <$set name="margin" value={{$:/state/dragging!!margin}}>
 
 <<target-tiddler-margin>>
+
+</$set>
 
 </$set>
 

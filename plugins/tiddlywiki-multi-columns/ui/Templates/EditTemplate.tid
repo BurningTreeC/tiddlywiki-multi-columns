@@ -57,10 +57,10 @@ title: $:/core/ui/EditTemplate
 </$keyboard>
 </$keyboard>
 </$vars>
-<$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}}/>""">
+<$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} river=<<currentColumn>>/>""">
 <div class="tc-droppable-placeholder tc-droppable-placeholder-top-drop"/>
 </$droppable>
-<$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}}/>""">
+<$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}} river=<<currentColumn>>/>""">
 <div class="tc-droppable-placeholder tc-droppable-placeholder-bottom-drop"/>
 </$droppable>
 </$draggable>

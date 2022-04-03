@@ -44,10 +44,10 @@ $:/state/folded/$(currentTiddler)$
 <$list filter="[all[shadows+tiddlers]tag[$:/tags/ViewTemplate]!has[draft.of]]" variable="listItem">
 <$transclude tiddler=<<listItem>>/>
 </$list>
-<$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}}/>""" dragendactions=<<top-drop-actions>>>
+<$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} river=<<currentColumn>>/>""" dragendactions=<<top-drop-actions>>>
 <div class="tc-droppable-placeholder tc-droppable-placeholder-top-drop"/>
 </$droppable>
-<$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}}/>""" dragendactions=<<bottom-drop-actions>>>
+<$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}} river=<<currentColumn>>/>""" dragendactions=<<bottom-drop-actions>>>
 <div class="tc-droppable-placeholder tc-droppable-placeholder-bottom-drop"/>
 </$droppable>
 </$draggable>
