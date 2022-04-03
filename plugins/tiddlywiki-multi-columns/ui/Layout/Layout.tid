@@ -47,11 +47,11 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 								</$eventcatcher>
 								<div class="tc-river-inner">
 									<$list filter="[list<tv-story-list>]" template="$:/core/ui/ViewTemplate" editTemplate="$:/core/ui/EditTemplate" storyview={{$:/view}}/>
-									<$list filter="[list<tv-story-list>count[]match[0]]">
+									<!--<$list filter="[list<tv-story-list>count[]match[0]]">-->
 										<$droppable actions="""<$action-setfield $tiddler="$:/state/drag-handled" text="yes"/><$action-listops $tiddler=<<tv-story-list>> $subfilter="[<actionTiddler>]"/>""" dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=""/>""">
 											<div class="tc-droppable-placeholder tc-droppable-placeholder-empty-story"/>
 										</$droppable>
-									</$list>
+									<!--</$list>-->
 								</div>
 							</$dropzone>
 						</$navigator>
