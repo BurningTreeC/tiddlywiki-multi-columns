@@ -516,7 +516,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: stretch;
-	height: 25px;	
+	height: 25px;
 }
 
 .tc-sidebar-flexpanel .tc-sidebar-flexpanel-column-container {
