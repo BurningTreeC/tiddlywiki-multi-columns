@@ -578,8 +578,6 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	display: block;
 }
 
-</$reveal>
-
 <$set name="dragTiddler" value={{$:/state/dragging!!drag-tiddler}}>
 
 <$set name="dragTiddlerCSSEscaped" value={{{ [<dragTiddler>escapecss[]] }}}>
@@ -589,6 +587,8 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 </$set>
 
 </$set>
+
+</$reveal>
 
 .tc-droppable-top-half.tc-dragover > .tc-droppable-placeholder {
 	margin-top: 29px;
