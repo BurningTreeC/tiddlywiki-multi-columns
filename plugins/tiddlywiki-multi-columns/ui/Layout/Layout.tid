@@ -31,9 +31,9 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 			<header class="column-config column-config-top">
 				<div class="column-container">
 					<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
-						<$eventcatcher tag="div" class="tc-top-active-column" $drop="""<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<currentColumn>] }}}><$set name="firstTiddler" value={{{ [list<storyList>nth[1]] }}}><$action-listops $tiddler=<<storyList>> $subfilter="+[insertbefore{$:/state/dragging!!drag-tiddler},<firstTiddler>]"/></$set></$set>""">
+						<div class="tc-top-active-column">
 							<$button tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>"""></$button>
-						</$eventcatcher>
+						</div>
 					</$list>
 				</div>
 			</header>
