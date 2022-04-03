@@ -346,9 +346,9 @@ tags: $:/tags/Stylesheet
 
 	<$reveal state="$:/scroll-snap-x" type="match" text="yes">
 
-		.flextemplate-container .column-container {
+		.flextemplate-container main.column-container {
 			display: flex;
-			scroll-snap-type: x mandatory;
+			scroll-snap-type: {{$:/config/scroll-snap-type}};
 			overflow-x: scroll;
 		}
 

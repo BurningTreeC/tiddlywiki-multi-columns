@@ -19,7 +19,6 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 	tv-show-missing-links={{$:/config/MissingLinks}}
 	storyviewTitle={{$:/view}}
 	languageTitle={{{ [{$:/language}get[name]] }}}>
-	<div class="tc-drag-container"/>
 	<main class=<<containerClasses>>>
 		<$reveal state="$:/state/panel/visibility" type="nomatch" text="yes">
 			<$button class="tc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/core/images/chevron-left}}</$button>
@@ -37,8 +36,9 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 					</$list>
 				</div>
 			</header>
-			<main class="main column-container">
-				<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
+			<main class="main column-container tc-scroll-container">
+				<$navigator story="$:/columns" history="$:/ColumnHistoryList">
+				<$list filter="[list[$:/columns]] ~1" variable="currentColumn" history="$:/ColumnHistoryList">
 					<div class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-scroll-container tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[$:/columns]is[missing]then<currentColumn>match[1]then[tc-scroll-container tc-river-active ]] :else[[tc-scroll-container tc-river-]addsuffix<currentColumn>] }}}>
 						<$navigator story={{{ [[$:/StoryList-]addsuffix<currentColumn>] }}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 							<$dropzone enable=<<tv-enable-drag-and-drop>> class={{{ [[$:/columns]get[active-column]addprefix[tc-dropzone-]] ~tc-dropzone-1 }}} importTitle={{{ [[$:/Import-]addsuffix<currentColumn>] }}}>
@@ -57,6 +57,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 						</$navigator>
 					</div>
 				</$list>
+				</$navigator>
 			</main>
 		</div>
 	</main>

@@ -5,5 +5,8 @@ key: ((next-column))
 <$set name="currentColumn" value={{{ [[$:/columns]get[active-column]] ~1 }}}>
 	<$list filter="[list[$:/columns]after<currentColumn>] ~1" variable="nextColumn">
 		<$action-setfield $tiddler="$:/columns" active-column=<<nextColumn>>/>
+		<$reveal state="$:/scroll-snap-x" type="match" text="yes">
+			<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<nextColumn>] }}} duration={{$:/config/scroll-x-duration}}//>
+		</$reveal>
 	</$list>
 </$set>
