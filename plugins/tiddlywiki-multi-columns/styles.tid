@@ -559,7 +559,6 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	width: calc(100% + 32px);
 	display: none;
 	z-index: 501;
-	border: 1px solid blue;
 }
 
 .tc-tiddler-view-frame:first-of-type .tc-droppable-top-half, .tc-tiddler-edit-frame:first-of-type .tc-droppable-top-half {
@@ -575,7 +574,6 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	width: calc(100% + 32px);
 	z-index: 501;
 	display: none;
-	border: 1px solid black;
 }
 
 .tc-droppable-top-half.tc-dragover {
