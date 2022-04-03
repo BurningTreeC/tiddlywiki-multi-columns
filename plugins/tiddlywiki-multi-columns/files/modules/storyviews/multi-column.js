@@ -31,7 +31,6 @@ MultiColumnStoryView.prototype.navigateTo = function(historyInfo) {
 		return;
 	}
 	if(duration) {
-		console.log("NAVIGATING");
 		// Scroll the node into view
 		this.listWidget.dispatchEvent({type: "tm-scroll", target: targetElement, scrollContainer: targetElement.closest(".tc-scroll-container")});
 	} else {
