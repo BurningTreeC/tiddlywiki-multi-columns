@@ -1,5 +1,5 @@
 /*\
-title: $:/core/modules/storyviews/classic.js
+title: $:/plugins/BTC/tiddlywiki-multi-columns/modules/storyviews/multi-column.js
 type: application/javascript
 module-type: storyview
 
@@ -32,7 +32,7 @@ MultiColumnStoryView.prototype.navigateTo = function(historyInfo) {
 	}
 	if(duration) {
 		// Scroll the node into view
-		this.listWidget.dispatchEvent({type: "tm-scroll", target: targetElement});
+		this.listWidget.dispatchEvent({type: "tm-scroll", target: targetElement, scrollContainer: targetElement.closest(".tc-scroll-container")});
 	} else {
 		targetElement.scrollIntoView();
 	}
