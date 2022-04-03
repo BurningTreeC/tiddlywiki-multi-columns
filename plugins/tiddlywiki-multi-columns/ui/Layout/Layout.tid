@@ -66,7 +66,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 			<h4>{{$:/SiteSubtitle}}</h4>
 			<$button tag="a" class="tc-panel-close tc-btn-invisible" set="$:/state/panel/visibility" setTo="no">Close</$button>
 		</header>
-		<div class="tc-panel-container">
+		<$scrollable fallthrough="no" class="tc-panel-container">
 			<div class="tc-panel-content">
 				<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]] ~$:/StoryList-1 }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]] ~$:/HistoryList-1 }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 					<div class="tc-sidebar-flexpanel">
@@ -81,6 +81,6 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 					{{$:/core/ui/SideBarSegments/tabs}}
 				</$navigator>
 			</div>
-		</div>
+		</$scrollable>
 	</div>
 </$vars>
