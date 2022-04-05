@@ -36,7 +36,7 @@ tags: $:/tags/Stylesheet
 
 \end
 
-\define tiddler-view-frame-transitions()
+\define tiddler-frame-transitions()
 
 .tc-river-inner > .tc-tiddler-view-frame > .tc-tiddler-frame, .tc-river-inner > .tc-tiddler-edit-frame > .tc-tiddler-frame {
 	transition: margin-top {{$:/config/AnimationDuration}}ms cubic-bezier(0.645, 0.045, 0.355, 1), margin-bottom {{$:/config/AnimationDuration}}ms cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -609,7 +609,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 <$set name="dragTiddlerCSSEscaped" value={{{ [<dragTiddler>escapecss[]] }}}>
 
-<<tiddler-view-frame-transitions>>
+<<tiddler-frame-transitions>>
 
 </$set>
 
