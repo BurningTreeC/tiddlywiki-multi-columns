@@ -23,13 +23,13 @@ tags: $:/tags/Stylesheet
 \define target-tiddler-margin()
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-$(margin)$: calc({{$:/state/dragging!!height}}px + 56px);
+	margin-top: calc({{$:/state/dragging!!height}}px + 56px);
 }
 
 <$list filter="[{$:/state/dragging!!nth}match[0]]">
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-$(margin)$: calc({{$:/state/dragging!!height}}px + 29px);
+	margin-top: calc({{$:/state/dragging!!height}}px + 29px);
 }
 
 </$list>
@@ -634,13 +634,21 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 <$set name="currentRiver" value={{$:/state/dragging!!river}}>
 
+<$set name="story" value={{{ [[$:/StoryList-]addsuffix<currentRiver>] }}}>
+
 <$set name="targetTiddler" value={{$:/state/dragging!!target}}>
 
-<$set name="targetTiddlerCSSEscaped" value={{{ [<targetTiddler>escapecss[]] }}}>
+<$set name="nextTiddler" value={{{ [list<story>after<targetTiddler>] }}}>
 
 <$set name="margin" value={{$:/state/dragging!!margin}}>
 
+<$set name="targetTiddlerCSSEscaped" value={{{ [<margin>match[top]then<targetTiddler>escapecss[]] :else[<margin>match[bottom]then<nextTiddler>escapecss[]] }}}>
+
 <<target-tiddler-margin>>
+
+</$set>
+
+</$set>
 
 </$set>
 
