@@ -49,7 +49,6 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 									<$list filter="[list<tv-story-list>]" template="$:/core/ui/ViewTemplate" editTemplate="$:/core/ui/EditTemplate" storyview={{$:/view}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>] }}}/>
 									<!--<$list filter="[list<tv-story-list>count[]match[0]]">-->
 										<$droppable actions="""<$action-setfield $tiddler="$:/state/drag-handled" text="yes"/><$action-listops $tiddler=<<tv-story-list>> $subfilter="[<actionTiddler>]"/>""" dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=""/>""">
-											<div class="tc-droppable-placeholder tc-droppable-placeholder-empty-story"/>
 										</$droppable>
 									<!--</$list>-->
 								</div>

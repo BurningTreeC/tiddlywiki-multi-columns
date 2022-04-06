@@ -5,7 +5,7 @@ title: $:/core/ui/ViewTemplate
 $:/state/folded/$(currentTiddler)$
 \end
 \define drag-start-actions()
-<$action-setfield $tiddler="$:/state/dragging" drag-tiddler=<<currentTiddler>> from-index={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} from-story=<<tv-story-list>> target={{{ [list<tv-story-list>after<currentTiddler>] }}}/><$action-setfield $tiddler="$:/state/DisableInsertAnimation" text="yes"/><$action-setfield $tiddler="$:/state/DisableRemoveAnimation" text="yes"/><$action-setfield $tiddler="$:/state/dragging" text="yes"/><$action-setfield $tiddler="$:/state/dragging" height=<<tv-selectednode-height>> width=<<tv-selectednode-width>>/><$action-listops $tiddler=<<tv-story-list>> $subfilter="-[<currentTiddler>]"/>
+<$action-setfield $tiddler="$:/state/dragging" drag-tiddler=<<currentTiddler>> next-tiddler={{{ [list<tv-story-list>after<currentTiddler>] }}} from-index={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} from-story=<<tv-story-list>> target={{{ [list<tv-story-list>after<currentTiddler>] }}}/><$action-setfield $tiddler="$:/state/DisableInsertAnimation" text="yes"/><$action-setfield $tiddler="$:/state/DisableRemoveAnimation" text="yes"/><$action-setfield $tiddler="$:/state/dragging" text="yes"/><$action-setfield $tiddler="$:/state/dragging" height=<<tv-selectednode-height>> width=<<tv-selectednode-width>>/><$action-listops $tiddler=<<tv-story-list>> $subfilter="-[<currentTiddler>]"/>
 \end
 \define drag-end-actions()
 <$list filter="[[$:/state/drag-handled]is[missing]]" emptyMessage="""
@@ -44,11 +44,9 @@ $:/state/folded/$(currentTiddler)$
 <$list filter="[all[shadows+tiddlers]tag[$:/tags/ViewTemplate]!has[draft.of]]" variable="listItem">
 <$transclude tiddler=<<listItem>>/>
 </$list>
-<$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} river=<<currentColumn>>/>""" dragendactions=<<top-drop-actions>>>
-<div class="tc-droppable-placeholder tc-droppable-placeholder-top-drop"/>
+<$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} river=<<currentColumn>> next-tiddler=""/>""" dragendactions=<<top-drop-actions>>>
 </$droppable>
-<$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}} river=<<currentColumn>>/>""" dragendactions=<<bottom-drop-actions>>>
-<div class="tc-droppable-placeholder tc-droppable-placeholder-bottom-drop"/>
+<$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}} river=<<currentColumn>> next-tiddler=""/>""" dragendactions=<<bottom-drop-actions>>>
 </$droppable>
 </$draggable>
 </div>

@@ -22,6 +22,14 @@ tags: $:/tags/Stylesheet
 
 \define target-tiddler-margin()
 
+.tc-river-$(currentRiver)$ .tc-tiddler-view-frame:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame, .tc-river-$(currentRiver)$ .tc-tiddler-edit-frame:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame {
+	margin-top: 29px;
+}
+
+.tc-river-$(currentRiver)$ .tc-tiddler-view-frame:first-of-type:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame, .tc-river-$(currentRiver)$ .tc-tiddler-edit-frame:first-of-type:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame {
+	margin-top: 0;
+}
+
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
 	margin-top: calc({{$:/state/dragging!!height}}px + 56px);
 }
@@ -701,10 +709,6 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 
 </$reveal>
-
-.tc-tiddler-view-frame, .tc-tiddler-edit-frame {
-	margin-bottom: 28px;
-}
 
 .tc-river-inner > .tc-tiddler-view-frame > .tc-draggable, .tc-river-inner > .tc-tiddler-edit-frame > .tc-draggable {
 	cursor: default;
