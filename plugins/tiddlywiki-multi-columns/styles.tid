@@ -446,12 +446,17 @@ tags: $:/tags/Stylesheet
 	position: sticky;
 	top: 0px;
 	background: ``<<colour tiddler-background>>``;
-	z-index: 500;
 }
 
 ``
 <$list filter="[range[100]]">
 `.tc-river-inner .tc-tiddler-zindex-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) {
+z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
+}
+`
+</$list>
+<$list filter="[range[100]]">
+`.tc-river-inner .tc-tiddler-zindex-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) .tc-tiddler-title {
 z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 `
