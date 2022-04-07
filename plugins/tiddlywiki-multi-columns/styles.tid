@@ -46,13 +46,9 @@ tags: $:/tags/Stylesheet
 
 \define tiddler-frame-transitions()
 
-<$list filter="[{$:/state/dragging!!animate}match[yes]]">
-
 .tc-river-inner > .tc-tiddler-view-frame > .tc-tiddler-frame, .tc-river-inner > .tc-tiddler-edit-frame > .tc-tiddler-frame {
 	transition: margin-top {{$:/config/AnimationDuration}}ms cubic-bezier(0.645, 0.045, 0.355, 1), margin-bottom {{$:/config/AnimationDuration}}ms cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-
-</$list>
 
 \end
 

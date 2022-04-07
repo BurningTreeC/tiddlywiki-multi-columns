@@ -57,9 +57,9 @@ title: $:/core/ui/EditTemplate
 </$keyboard>
 </$keyboard>
 </$vars>
-<$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" animate={{{ [[$:/state/dragging]!has[animate]then[no]else[yes]] }}} target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} river=<<currentColumn>> next-tiddler=""/>""">
+<$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} river=<<currentColumn>> next-tiddler=""/>""">
 </$droppable>
-<$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" animate={{{ [[$:/state/dragging]!has[animate]then[no]else[yes]] }}} target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}} river=<<currentColumn>> next-tiddler=""/>""">
+<$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}} river=<<currentColumn>> next-tiddler=""/>""">
 </$droppable>
 </$draggable>
 </$fieldmangler>
