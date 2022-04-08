@@ -1,6 +1,14 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/styles
 tags: $:/tags/Stylesheet
 
+\define set-color-scheme()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+:root {
+	color-scheme: {{{ [{$:/palette}get[color-scheme]] }}};
+}
+
+\end
+
 \define column-layout()
 
 <$list filter="[list[$:/columns]] ~1" variable="currentColumn">
@@ -72,6 +80,8 @@ tags: $:/tags/Stylesheet
 
 \end
 
+<<set-color-scheme>>
+
 .tc-panel {
 	visibility: hidden;
 	transition: visibility 0s calc(2 * {{$:/config/AnimationDuration}}ms);
@@ -106,6 +116,14 @@ tags: $:/tags/Stylesheet
 	transition: background {{$:/config/AnimationDuration}}ms 0s;
 }
 
+<$list filter="[{$:/palette}get[color-scheme]match[dark]]">
+
+.tc-panel-hide.tc-panel-shown {
+	background: rgba(255,255,255,.6);
+}
+
+</$list>
+
 .tc-panel-header {
 	position: fixed;
 	top: 0;
@@ -116,8 +134,17 @@ tags: $:/tags/Stylesheet
 	z-index: 10002;
 	line-height: 50px;
 	box-shadow: 0 1px 1px rgb(0 0 0 / 8%);
-	background-color: rgba(255,255,255,.96);
+	background-color: <<colour panel-header-background-light>>;
 }
+
+<$list filter="[{$:/palette}get[color-scheme]match[dark]]">
+
+.tc-panel-header {
+	box-shadow: 0px 1px 1px rgb(255 255 255 / 8%);
+	background-color: <<colour panel-header-background-dark>>
+}
+
+</$list>
 
 .tc-panel-header h1 {
 	color: <<colour primary>>;
@@ -156,6 +183,14 @@ tags: $:/tags/Stylesheet
 	transition: transform {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
 	box-shadow: -1px 0px 1px rgb(0 0 0 / 8%);
 }
+
+<$list filter="[{$:/palette}get[color-scheme]match[dark]]">
+
+.tc-panel-container {
+	box-shadow: 0px 1px 1px rgb(255 255 255 / 8%);
+}
+
+</$list>
 
 @media only screen and (min-width: 768px) {
 	.tc-panel-container, .tc-panel-header {
@@ -444,8 +479,16 @@ tags: $:/tags/Stylesheet
 	top: 0;
 	left: 0;
 	height: 15px;
-	background-color: rgba(255,255,255,.96);
+	background-color: <<colour column-active-button-light>>;
 }
+
+<$list filter="[{$:/palette}get[color-scheme]match[dark]]">
+
+.tc-column-active-button {
+	background-color: <<colour column-active-button-dark>>;
+}
+
+</$list>
 
 .tc-column-active-button.tc-column-active {
 	background-color: <<colour tiddler-editor-fields-even>>;
@@ -454,6 +497,14 @@ tags: $:/tags/Stylesheet
 .column-config-top .column-container {
 	box-shadow: 0px 1px 1px rgb(0 0 0 / 8%);
 }
+
+<$list filter="[{$:/palette}get[color-scheme]match[dark]]">
+
+.column-config-top .column-container {
+	box-shadow: 0px 1px 1px rgb(255 255 255 / 8%);
+}
+
+</$list>
 
 <$reveal state="$:/themes/tiddlywiki/vanilla/options/stickytitles" type="match" text="yes">
 ``
