@@ -741,3 +741,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 <<position-start-tiddlers>>
 
 </$let>
+
+.tc-notification {
+	z-index: 10002;
+}
