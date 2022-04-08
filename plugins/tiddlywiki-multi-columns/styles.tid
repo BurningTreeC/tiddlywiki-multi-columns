@@ -249,7 +249,7 @@ tags: $:/tags/Stylesheet
 }
 
 .tc-panel-close:hover {
-	background-color: #424f5c;
+	background-color: <<colour foreground>>;
 }
 
 .tc-panel-is-visible .tc-panel-close::before {
@@ -269,7 +269,7 @@ tags: $:/tags/Stylesheet
 	left: 20px;
 	height: 3px;
 	width: 20px;
-	background-color: #424f5c;
+	background-color: <<colour foreground>>;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 }
@@ -285,7 +285,7 @@ tags: $:/tags/Stylesheet
 }
 
 .tc-panel-close:hover::before, .tc-panel-close:hover::after {
-	background-color: #fff;
+	background-color: <<colour background>>;
 	-webkit-transition: -webkit-transform {{$:/config/AnimationDuration}}ms;
 	transition: -webkit-transform {{$:/config/AnimationDuration}}ms;
 	transition: transform {{$:/config/AnimationDuration}}ms;
@@ -304,7 +304,7 @@ tags: $:/tags/Stylesheet
 	left: 20px;
 	height: 3px;
 	width: 20px;
-	background-color: #424f5c;
+	background-color: <<colour foreground>>;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 }
@@ -445,7 +445,7 @@ tags: $:/tags/Stylesheet
 }
 
 .tc-column-active-button.tc-column-active {
-	background-color: #e0e8e0;
+	background-color: <<colour tiddler-editor-fields-even>>;
 }
 
 .column-config-top .column-container {
@@ -502,7 +502,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 </$list>
 
 .tc-river-active {
-	background-color: #e0e8e0;
+	background-color: <<colour tiddler-editor-fields-even>>;
 }
 
 .tc-tiddler-frame {
