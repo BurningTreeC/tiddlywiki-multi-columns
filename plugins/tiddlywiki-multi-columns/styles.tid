@@ -1,3 +1,6 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/styles
+tags: $:/tags/Stylesheet
+
 \define column-layout()
 
 <$list filter="[list[$:/columns]] ~1" variable="currentColumn">
