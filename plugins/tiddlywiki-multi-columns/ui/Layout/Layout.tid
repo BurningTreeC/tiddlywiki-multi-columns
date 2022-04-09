@@ -94,9 +94,11 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 				<$edit-text tag="input" class="tc-search-panel-input" tiddler="$:/state/search-panel/search" default="" placeholder="Search"/>
 			</$keyboard>
 			<$button tag="a" class="tc-search-panel-close tc-btn-invisible" actions="""<$action-popup/>""">Close</$button>
-			<$reveal state="$:/state/search-panel/search" type="nomatch" text="" class="tc-search-panel-matches">
+			<$list filter="[[$:/state/search-panel]!is[missing]then[$:/state/search-panel/search]get[text]!match[]]">
+				<div class="tc-search-panel-matches">
 
-			</$reveal>
+				</div>
+			</$list>
 		</div>
 	</div>
 </$vars>

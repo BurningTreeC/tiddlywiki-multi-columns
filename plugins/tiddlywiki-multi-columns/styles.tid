@@ -172,6 +172,17 @@ tags: $:/tags/Stylesheet
 	font-size: 1.35em;
 }
 
+.tc-search-panel-matches {
+	position: absolute;
+	top: 75px;
+	left: 0;
+	width: 100%;
+	background-color: <<colour tiddler-background>>;
+	padding: 15px;
+	border-radius: 4px;
+	border: 1px solid <<colour foreground>>;
+}
+
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
 .tc-panel-header {
