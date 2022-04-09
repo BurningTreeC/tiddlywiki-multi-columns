@@ -96,7 +96,17 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 			<$button tag="a" class="tc-search-panel-close tc-btn-invisible" actions="""<$action-popup/>""">Close</$button>
 			<$list filter="[[$:/state/search-panel]!is[missing]then[$:/state/search-panel/search]get[text]!match[]]">
 				<div class="tc-search-panel-matches">
-
+					<$list filter="[!is[system]search{$:/state/search-panel/search}]" variable="searchResult">
+						<$list filter="[list[$:/columns]]" variable="column">
+							<$list filter="[[$:/StoryList-]addsuffix<column>contains<searchResult>]">
+								<$text text="Column: "/><$text text=<<column>>/><br>
+								<hr class="simple">
+								<$navigator story={{{ [[$:/StoryList-]addsuffix<column>] }}} history={{{ [[$:/HistoryList-]addsuffix<column>] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+									<$link to=<<searchResult>>><<searchResult>></$link><br>
+								</$navigator>
+							</$list>
+						</$list>
+					</$list>
 				</div>
 			</$list>
 		</div>

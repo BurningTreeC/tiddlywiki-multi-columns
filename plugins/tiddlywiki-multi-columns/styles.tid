@@ -872,3 +872,9 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 .tc-notification {
 	z-index: 10002;
 }
+
+hr.simple {
+	border: 0;
+	height: 1px;
+	background: <<colour foreground>>;
+}
