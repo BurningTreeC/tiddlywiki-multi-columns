@@ -107,7 +107,6 @@ tags: $:/tags/Stylesheet
 	cursor: pointer;
 	-webkit-transition: background {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, visibility 0s calc(2 * {{$:/config/AnimationDuration}}ms);
 	transition: background {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, visibility 0s calc(2 * {{$:/config/AnimationDuration}}ms);
-	backdrop-filter: blur(2px);
 }
 
 .tc-panel-hide.tc-panel-shown {
