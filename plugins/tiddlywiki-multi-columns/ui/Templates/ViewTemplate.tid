@@ -24,15 +24,15 @@ $:/state/folded/$(currentTiddler)$
 </$list>
 \end
 \define top-drop-actions()
-<$action-setfield $tiddler="$:/state/drag-handled" text="yes"/><$action-listops $tiddler=<<tv-story-list>> $subfilter="+[insertbefore<actionTiddler>,<currentTiddler>]"/><$action-deletetiddler $tiddler="$:/state/DisableInsertAnimation"/><$action-deletetiddler $tiddler="$:/state/DisableRemoveAnimation"/>
+<$action-setfield $tiddler="$:/state/drag-handled" text="yes"/><$action-listops $tiddler=<<tv-story-list>> $subfilter="+[insertbefore<actionTiddler>,<currentTiddler>]"/>
 \end
 \define bottom-drop-actions()
 <$action-setfield $tiddler="$:/state/drag-handled" text="yes"/>
 <$set name="nextTiddler" value={{{ [list<tv-story-list>after<currentTiddler>] }}}>
 <$list filter="[<nextTiddler>match[]]" emptyMessage="""
-<$action-listops $tiddler=<<tv-story-list>> $subfilter="+[insertbefore<actionTiddler>,<nextTiddler>]"/><$action-deletetiddler $tiddler="$:/state/DisableInsertAnimation"/><$action-deletetiddler $tiddler="$:/state/DisableRemoveAnimation"/>
+<$action-listops $tiddler=<<tv-story-list>> $subfilter="+[insertbefore<actionTiddler>,<nextTiddler>]"/>
 """>
-<$action-listops $tiddler=<<tv-story-list>> $subfilter="[<actionTiddler>]"/><$action-deletetiddler $tiddler="$:/state/DisableInsertAnimation"/><$action-deletetiddler $tiddler="$:/state/DisableRemoveAnimation"/>
+<$action-listops $tiddler=<<tv-story-list>> $subfilter="[<actionTiddler>]"/>
 </$list>
 </$set>
 \end
