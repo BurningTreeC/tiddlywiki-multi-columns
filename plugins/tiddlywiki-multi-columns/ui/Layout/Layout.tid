@@ -27,10 +27,12 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 			<div class={{{ [{$:/state/panel/visibility}match[yes]then[tc-panel-hide tc-btn-invisible tc-panel-shown]else[tc-panel-hide tc-btn-invisible tc-panel-hidden]] }}}></div>
 		</$eventcatcher>
 		<div class="flextemplate-container">
-			<header class="toolbar">
-				{{$:/plugins/tiddlywiki/menubar/menu}}
-			</header>
 			<header class="column-config column-config-top">
+				<$list filter="[all[tiddlers+shadows]tag[$:/tags/Toolbar]!is[draft]]">
+					<div class="column-container">
+						<$transclude mode="block"/>
+					</div>
+				</$list>
 				<div class="column-container">
 					<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
 						<div class="tc-top-active-column">
