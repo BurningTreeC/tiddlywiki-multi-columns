@@ -25,3 +25,9 @@ title: $:/config/StoryViewAnimations
 	animation: slide-out {{$:/config/AnimationDuration}}ms;
 	animation-timing-function: linear;
 }
+
+@keyframes blink { 50% { border-color: <<colour primary>>; } }
+
+.tc-navigating .tc-tiddler-frame {
+	animation: blink calc({{$:/config/AnimationDuration}}ms / 3) step-end infinite alternate;
+}  
