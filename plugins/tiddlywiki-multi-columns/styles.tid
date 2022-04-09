@@ -169,6 +169,7 @@ tags: $:/tags/Stylesheet
 	padding-left: 10px;
 	padding-right: 70px;
 	outline: none;
+	font-size: 1.35em;
 }
 
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
