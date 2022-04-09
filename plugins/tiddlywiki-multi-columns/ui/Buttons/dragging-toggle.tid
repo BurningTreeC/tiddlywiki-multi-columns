@@ -1,0 +1,35 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/dragging-toggle
+tags: $:/tags/PageControls
+
+\define get-button-class(class)
+$(tv-config-toolbar-class)$ tc-toolbar-icon $class$
+\end
+\define get-dragging-tooltip(onoff)
+dragging $onoff$ - [$(draggingShortcut)$]
+\end
+
+\whitespace trim
+<$vars draggingShortcut=<<displayshortcuts ((dragging-toggle))>> state="$:/dragging-enabled">
+<$reveal state=<<state>> type="nomatch" text="no">
+<$button class=<<get-button-class "tc-selected">> tooltip=<<get-dragging-tooltip "off">>>
+<$action-setfield $tiddler=<<state>> text="no"/>
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/dragging-toggle}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text"><$text text="dragging"/></span>
+</$list>
+</$button>
+</$reveal>
+<$reveal state=<<state>> type="match" text="no">
+<$button class=<<get-button-class>> tooltip=<<get-dragging-tooltip "on">>>
+<$action-deletetiddler $tiddler=<<state>>/>
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/dragging-toggle}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text"><$text text="dragging"/></span>
+</$list>
+</$button>
+</$reveal>
+</$vars>
