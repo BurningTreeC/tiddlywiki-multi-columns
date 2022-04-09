@@ -91,7 +91,10 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 	<div class={{{ [[$:/state/search-panel]!is[missing]then[tc-search-panel tc-search-panel-from-top tc-search-panel-is-visible tc-popup-handle tc-popup-keep]else[tc-search-panel tc-search-panel-from-top]] }}}>
 		<div class="tc-search-panel-inner tc-popup-keep">
 			<$edit-text tag="input" class="tc-search-panel-input" tiddler="$:/state/search-panel/search" default="" placeholder="Search"/>
-			<$button tag="a" class="tc-search-panel-close tc-btn-invisible" actions="""<$action-deletetiddler $tiddler="$:/state/search-panel"/>""">Close</$button>
+			<$button tag="a" class="tc-search-panel-close tc-btn-invisible" actions="""<$action-popup/>""">Close</$button>
+			<$reveal state="$:/state/search-panel/search" type="nomatch" text="" class="tc-search-panel-matches">
+
+			</$reveal>
 		</div>
 	</div>
 </$vars>
