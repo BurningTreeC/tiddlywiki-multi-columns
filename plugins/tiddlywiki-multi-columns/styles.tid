@@ -82,13 +82,13 @@ tags: $:/tags/Stylesheet
 
 <<set-color-scheme>>
 
-.tc-panel, .tc-search-panel {
+.tc-panel {
 	visibility: hidden;
 	transition: visibility 0s calc(2 * {{$:/config/AnimationDuration}}ms);
 	-webkit-transition: visibility 0s calc(2 * {{$:/config/AnimationDuration}}ms);
 }
 
-.tc-panel.tc-panel-is-visible, .tc-search-panel.tc-search-panel-is-visible {
+.tc-panel.tc-panel-is-visible {
 	visibility: visible;
 	transition: visibility 0s 0s;
 }
