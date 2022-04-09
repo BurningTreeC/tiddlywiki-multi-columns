@@ -4,6 +4,9 @@ tags: $:/tags/PageControls
 \whitespace trim
 \define remove-column-actions()
 <$set name="columnCount" value={{{ [list[$:/columns]count[]] }}}>
+<$list filter="[[$:/columns]get[active-column]match<columnCount>]">
+<$action-setfield $tiddler="$:/columns" active-column={{{ [<columnCount>subtract[1]] }}}/>
+</$list>
 <$list filter="[<columnCount>!match[1]]">
 <$action-listops $tiddler="$:/columns" $subfilter="-[<columnCount>]"/>
 </$list>

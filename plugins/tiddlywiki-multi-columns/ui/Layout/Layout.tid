@@ -46,7 +46,14 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 									<div tag="a" class="tc-btn-invisible tc-activate-column-btn"></div>
 								</$eventcatcher>
 								<div class="tc-river-inner">
-									<$list filter="[list<tv-story-list>]" template="$:/core/ui/ViewTemplate" editTemplate="$:/core/ui/EditTemplate" storyview="multi-column" history={{{ [[$:/HistoryList-]addsuffix<currentColumn>] }}}/>
+									<section class="story-backdrop">
+										<$set name="AboveStoryTag" value={{{ [[$:/tags/AboveStory-]addsuffix<currentColumn>] }}}>
+											<$list filter="[all[shadows+tiddlers]tag<AboveStoryTag>!has[draft.of]]">
+												<$transclude/>
+											</$list>
+										</$set>
+									</section>
+									<$list filter="[list<tv-story-list>]" template="$:/core/ui/ViewTemplate" editTemplate="$:/core/ui/EditTemplate" storyview="multi-column" history={{{ [[$:/HistoryList-]addsuffix<currentColumn>] }}} emptyMessage="""<$set name="emptyMessageTiddler" value={{{ [[$:/EmptyMessage-]addsuffix<currentColumn>] }}}><$transclude tiddler=<<emptyMessageTiddler>> mode="block"/></$set>"""/>
 									<!--<$list filter="[list<tv-story-list>count[]match[0]]">-->
 										<$droppable actions="""<$action-setfield $tiddler="$:/state/drag-handled" text="yes"/><$action-listops $tiddler=<<tv-story-list>> $subfilter="[<actionTiddler>]"/>""" dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=""/>""">
 										</$droppable>
