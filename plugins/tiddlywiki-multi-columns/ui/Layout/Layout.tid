@@ -90,10 +90,10 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 	</div>
 	<div class={{{ [[$:/state/search-panel]!is[missing]then[tc-search-panel tc-search-panel-from-top tc-search-panel-is-visible tc-popup-handle tc-popup-keep]else[tc-search-panel tc-search-panel-from-top]] }}}>
 		<div class="tc-search-panel-inner tc-popup-keep">
-			<$keyboard key="Escape" actions="""<$action-popup/>""">
+			<$keyboard key="Escape" actions="""<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>""">
 				<$edit-text tag="input" class="tc-search-panel-input" tiddler="$:/state/search-panel/search" default="" placeholder="Search"/>
 			</$keyboard>
-			<$button tag="a" class="tc-search-panel-close tc-btn-invisible" actions="""<$action-popup/>""">Close</$button>
+			<$button tag="a" class="tc-search-panel-close tc-btn-invisible" actions="""<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>""">Close</$button>
 			<$list filter="[[$:/state/search-panel]!is[missing]then[$:/state/search-panel/search]get[text]!match[]]">
 				<div class="tc-search-panel-matches">
 					<$list filter="[!is[system]search{$:/state/search-panel/search}]" variable="searchResult">

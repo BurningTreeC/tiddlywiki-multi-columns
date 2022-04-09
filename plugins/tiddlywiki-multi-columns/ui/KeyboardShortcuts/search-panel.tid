@@ -3,7 +3,7 @@ tags: $:/tags/KeyboardShortcut
 key: ((search-panel))
 
 <$list filter="[[$:/state/search-panel]is[missing]]" emptyMessage="""
-<$action-popup/>
+<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>
 """>
 <$action-popup $state="$:/state/search-panel" $coords="(0,0,0,0)"/>
 <$action-sendmessage $message="tm-focus-selector" $param=".tc-search-panel-input" delay={{$:/config/AnimationDuration}}/>
