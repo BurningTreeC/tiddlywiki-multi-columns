@@ -1,4 +1,4 @@
-title: $:/core/ui/EditTemplate
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate
 
 \define delete-edittemplate-state-tiddlers() <$action-deletetiddler $filter="[<newFieldNameTiddler>] [<newFieldValueTiddler>] [<newFieldNameInputTiddler>] [<newFieldNameSelectionTiddler>] [<newTagNameTiddler>] [<newTagNameInputTiddler>] [<newTagNameSelectionTiddler>] [<typeInputTiddler>] [<typeSelectionTiddler>]"/>
 \define save-tiddler-actions()

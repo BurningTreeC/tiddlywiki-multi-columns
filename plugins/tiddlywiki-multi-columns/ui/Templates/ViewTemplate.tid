@@ -1,4 +1,4 @@
-title: $:/core/ui/ViewTemplate
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/ViewTemplate
 
 \whitespace trim
 \define folded-state()
