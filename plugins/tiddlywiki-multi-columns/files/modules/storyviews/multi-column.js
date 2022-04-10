@@ -60,12 +60,6 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 			widget.wiki.deleteTiddler("$:/state/inserting/" + targetElement.attributes["data-tiddler-title"].value);
 		},duration);
 	}
-	if(widget.wiki.getTiddlerText("$:/state/DisableInsertAnimation") === "yes") {
-		widget.wiki.deleteTiddler("$:/state/DisableInsertAnimation");
-	}
-	if(widget.wiki.getTiddlerText("$:/state/DisableRemoveAnimation") === "yes") {
-		widget.wiki.deleteTiddler("$:/state/DisableRemoveAnimation");
-	}
 };
 
 MultiColumnStoryView.prototype.remove = function(widget) {
@@ -97,9 +91,6 @@ MultiColumnStoryView.prototype.remove = function(widget) {
 		$tw.utils.addClass(targetElement,"tc-removing");
 	} else {
 		widget.removeChildDomNodes();
-	}
-	if(widget.wiki.getTiddlerText("$:/state/DisableRemoveAnimation") === "yes") {
-		widget.wiki.deleteTiddler("$:/state/DisableRemoveAnimation");
 	}
 };
 
