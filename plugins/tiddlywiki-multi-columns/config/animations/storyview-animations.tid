@@ -1,30 +1,62 @@
 title: $:/config/StoryViewAnimations
 
-@keyframes slide-in {
+\define insert-keyframes()
+
+@keyframes slide-in-$(insertTiddlerCSSEscaped)$ {
 	from {
 		transform: translateX(-100%);
+		margin-bottom: calc(-$(insertTiddlerHeight)$px - 28px);
 	} to {
 		transform: translateX(0%);
+		margin-bottom: 0px;
 	}
 }
 
-@keyframes slide-out {
+[data-tiddler-title="$(insertTiddlerCSSEscaped)$"].tc-inserting {
+	animation: slide-in-$(insertTiddlerCSSEscaped)$ {{$:/config/AnimationDuration}}ms;
+	animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+\end
+
+\define remove-keyframes()
+
+@keyframes slide-out-$(removeTiddlerCSSEscaped)$ {
 	from {
 		transform: translateX(0%);
+		margin-bottom: 0px;
 	} to {
 		transform: translateX(-100%);
+		margin-bottom: calc(-$(insertTiddlerHeight)$px - 28px);
 	}
 }
 
-.tc-inserting {
-	animation: slide-in {{$:/config/AnimationDuration}}ms;
+[data-tiddler-title="$(removeTiddlerCSSEscaped)$"].tc-removing {
+	animation: slide-out-$(removeTiddlerCSSEscaped)$ {{$:/config/AnimationDuration}}ms;
 	animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.tc-removing {
-	animation: slide-out {{$:/config/AnimationDuration}}ms;
-	animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-}
+\end
+
+<$list filter="[all[tiddlers+shadows]prefix[$:/state/inserting/]]" variable="insertStateTiddler">
+
+<$let insertTiddler={{{ [<insertStateTiddler>removeprefix[$:/state/inserting/]] }}} insertTiddlerCSSEscaped={{{ [<insertTiddler>escapecss[]] }}} insertTiddlerHeight={{{ [<insertStateTiddler>get[height]] }}}>
+
+<<insert-keyframes>>
+
+</$let>
+
+</$list>
+
+<$list filter="[all[tiddlers+shadows]prefix[$:/state/removing/]]" variable="removeStateTiddler">
+
+<$let removeTiddler={{{ [<removeStateTiddler>removeprefix[$:/state/removing/]] }}} removeTiddlerCSSEscaped={{{ [<removeTiddler>escapecss[]] }}} removeTiddlerHeight={{{ [<removeStateTiddler>get[height]] }}}>
+
+<<remove-keyframes>>
+
+</$let>
+
+</$list>
 
 @keyframes blink { 50% { border-color: <<colour primary>>; } }
 

@@ -46,10 +46,19 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 		if(!targetElement || targetElement.nodeType === Node.TEXT_NODE) {
 			return;
 		}
+		$tw.utils.addClass(targetElement,"tc-inserting");
+		// Get the current height of the tiddler
+		var computedStyle = window.getComputedStyle(targetElement),
+			currMarginBottom = parseInt(computedStyle.marginBottom,10),
+			currMarginTop = parseInt(computedStyle.marginTop,10),
+			currHeight = targetElement.offsetHeight + currMarginTop;
+		if(targetElement.attributes["data-tiddler-title"]) {
+			widget.wiki.setText("$:/state/inserting/" + targetElement.attributes["data-tiddler-title"].value,"height",undefined,currHeight);
+		}
 		setTimeout(function() {
 			$tw.utils.removeClass(targetElement,"tc-inserting");
+			widget.wiki.deleteTiddler("$:/state/inserting/" + targetElement.attributes["data-tiddler-title"].value);
 		},duration);
-		$tw.utils.addClass(targetElement,"tc-inserting");
 	}
 	if(widget.wiki.getTiddlerText("$:/state/DisableInsertAnimation") === "yes") {
 		widget.wiki.deleteTiddler("$:/state/DisableInsertAnimation");
@@ -71,7 +80,19 @@ MultiColumnStoryView.prototype.remove = function(widget) {
 			removeElement();
 			return;
 		}
-		setTimeout(removeElement,duration);
+		// Get the current height of the tiddler
+		var currWidth = targetElement.offsetWidth,
+			computedStyle = window.getComputedStyle(targetElement),
+			currMarginBottom = parseInt(computedStyle.marginBottom,10),
+			currMarginTop = parseInt(computedStyle.marginTop,10),
+			currHeight = targetElement.offsetHeight + currMarginTop;
+		if(targetElement.attributes["data-tiddler-title"]) {
+			widget.wiki.setText("$:/state/removing/" + targetElement.attributes["data-tiddler-title"].value,"height",undefined,currHeight);
+		}
+		setTimeout(function() {
+			removeElement();
+			widget.wiki.deleteTiddler("$:/state/removing/" + targetElement.attributes["data-tiddler-title"].value);
+		},duration);
 		// Animate the closure
 		$tw.utils.addClass(targetElement,"tc-removing");
 	} else {
