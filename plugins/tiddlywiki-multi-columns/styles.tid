@@ -62,6 +62,8 @@ tags: $:/tags/Stylesheet
 
 \define position-start-tiddlers()
 
+<$list filter="[{$:/state/dragging!!copying}!match[yes]]">
+
 .tc-river-$(currentRiver)$ .tc-river-inner > [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"].tc-tiddler-view-frame > .tc-tiddler-frame, .tc-river-$(currentRiver)$ .tc-river-inner > [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"].tc-tiddler-edit-frame > .tc-tiddler-frame {
 	transition: none;
 }
@@ -75,6 +77,28 @@ tags: $:/tags/Stylesheet
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"] .tc-tiddler-frame {
 	margin-top: calc({{$:/state/dragging!!height}}px + 29px);
 }
+
+</$list>
+
+</$list>
+
+<$list filter="[{$:/state/dragging!!copying}match[yes]]">
+
+.tc-river-$(currentRiver)$ .tc-river-inner > [data-tiddler-title="$(dragTiddlerCSSEscaped)$"].tc-tiddler-view-frame > .tc-tiddler-frame, .tc-river-$(currentRiver)$ .tc-river-inner > [data-tiddler-title="$(dragTiddlerCSSEscaped)$"].tc-tiddler-edit-frame > .tc-tiddler-frame {
+	transition: none;
+}
+
+.tc-river-$(currentRiver)$ [data-tiddler-title="$(dragTiddlerCSSEscaped)$"] .tc-tiddler-frame {
+	margin-top: calc({{$:/state/dragging!!height}}px + 56px);
+}
+
+<$list filter="[{$:/state/dragging!!nth}match[0]]">
+
+.tc-river-$(currentRiver)$ [data-tiddler-title="$(dragTiddlerCSSEscaped)$"] .tc-tiddler-frame {
+	margin-top: calc({{$:/state/dragging!!height}}px + 29px);
+}
+
+</$list>
 
 </$list>
 
@@ -863,7 +887,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	cursor: default;
 }
 
-<$let currentRiver={{$:/state/dragging!!start-river}} startingNextTiddler={{$:/state/dragging!!starting-next-tiddler}} startingNextTiddlerCSSEscaped={{{ [<startingNextTiddler>escapecss[]] }}}>
+<$let currentRiver={{$:/state/dragging!!start-river}} dragTiddler={{$:/state/dragging!!drag-tiddler}} startingNextTiddler={{$:/state/dragging!!starting-next-tiddler}} startingNextTiddlerCSSEscaped={{{ [<startingNextTiddler>escapecss[]] }}} dragTiddlerCSSEscaped={{{ [<dragTiddler>escapecss[]] }}}>
 
 <<position-start-tiddlers>>
 

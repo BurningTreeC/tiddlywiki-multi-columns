@@ -12,7 +12,7 @@ title: $:/core/ui/EditTemplate
 <$action-sendmessage $message="tm-$message$-tiddler"/>
 \end
 \define drag-start-actions()
-<$action-setfield $tiddler="$:/state/dragging" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} height=<<tv-selectednode-height>> width=<<tv-selectednode-width>> start-river=<<currentColumn>> starting-next-tiddler={{{ [list<tv-story-list>after<currentTiddler>] }}}/><$action-setfield $tiddler="$:/state/dragging" drag-tiddler=<<currentTiddler>> next-tiddler={{{ [list<tv-story-list>after<currentTiddler>] }}} from-index={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} from-story=<<tv-story-list>> target={{{ [list<tv-story-list>after<currentTiddler>] }}}/><$action-setfield $tiddler="$:/state/DisableInsertAnimation" text="yes"/><$action-setfield $tiddler="$:/state/DisableRemoveAnimation" text="yes"/><$action-setfield $tiddler="$:/state/dragging" text="yes"/><$list filter="[<modifier>!match[ctrl]]" variable="ignore"><$action-listops $tiddler=<<tv-story-list>> $subfilter="-[<currentTiddler>]"/></$list>
+<$action-setfield $tiddler="$:/state/dragging" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} height=<<tv-selectednode-height>> width=<<tv-selectednode-width>> start-river=<<currentColumn>> starting-next-tiddler={{{ [list<tv-story-list>after<currentTiddler>] }}}/><$action-setfield $tiddler="$:/state/dragging" drag-tiddler=<<currentTiddler>> next-tiddler={{{ [list<tv-story-list>after<currentTiddler>] }}} from-index={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} from-story=<<tv-story-list>> target={{{ [list<tv-story-list>after<currentTiddler>] }}}/><$action-setfield $tiddler="$:/state/DisableInsertAnimation" text="yes"/><$action-setfield $tiddler="$:/state/DisableRemoveAnimation" text="yes"/><$action-setfield $tiddler="$:/state/dragging" text="yes"/><$list filter="[<modifier>!match[ctrl]]" variable="ignore" emptyMessage="""<$action-setfield $tiddler="$:/state/dragging" copying="yes"/>"""><$action-listops $tiddler=<<tv-story-list>> $subfilter="-[<currentTiddler>]"/></$list>
 \end
 \define drag-end-actions()
 <$list filter="[[$:/state/drag-handled]is[missing]]" emptyMessage="""
@@ -57,9 +57,9 @@ title: $:/core/ui/EditTemplate
 </$keyboard>
 </$keyboard>
 </$vars>
-<$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} river=<<currentColumn>> next-tiddler=""/>""">
+<$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" starting-next-tiddler="" copying="" target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} river=<<currentColumn>> next-tiddler=""/>""">
 </$droppable>
-<$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}} river=<<currentColumn>> next-tiddler=""/>""">
+<$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" starting-next-tiddler="" copying="" target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}} river=<<currentColumn>> next-tiddler=""/>""">
 </$droppable>
 </$draggable>
 </$fieldmangler>
