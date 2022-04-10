@@ -5,7 +5,7 @@ title: $:/config/StoryViewAnimations
 @keyframes slide-in-$(insertTiddlerCSSEscaped)$ {
 	from {
 		transform: translateX(-100%);
-		margin-bottom: calc(-$(insertTiddlerHeight)$px - 28px);
+		margin-bottom: calc(-$(insertTiddlerHeight)$px - {{$:/config/story-river/tiddler-margin}}px);
 	} to {
 		transform: translateX(0%);
 		margin-bottom: 0px;
@@ -27,7 +27,7 @@ title: $:/config/StoryViewAnimations
 		margin-bottom: 0px;
 	} to {
 		transform: translateX(-100%);
-		margin-bottom: calc(-$(removeTiddlerHeight)$px - 28px);
+		margin-bottom: calc(-$(removeTiddlerHeight)$px - {{$:/config/story-river/tiddler-margin}}px);
 	}
 }
 
