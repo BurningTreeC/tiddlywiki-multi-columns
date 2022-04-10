@@ -3,7 +3,7 @@ title: $:/config/StoryViewAnimations
 @keyframes slide-in {
 	from {
 		transform: translateX(-100%);
-		margin-bottom: calc(-100% + 71px);
+		margin-bottom: -100%;
 	} to {
 		transform: translateX(0%);
 		margin-bottom: 0px;
@@ -16,7 +16,7 @@ title: $:/config/StoryViewAnimations
 		margin-bottom: 0px;
 	} to {
 		transform: translateX(-100%);
-		margin-bottom: calc(-100% + 71px);
+		margin-bottom: -100%;
 	}
 }
 
