@@ -3,20 +3,16 @@ title: $:/config/StoryViewAnimations
 @keyframes slide-in {
 	from {
 		transform: translateX(-100%);
-		margin-bottom: -100%;
 	} to {
 		transform: translateX(0%);
-		margin-bottom: 0px;
 	}
 }
 
 @keyframes slide-out {
 	from {
 		transform: translateX(0%);
-		margin-bottom: 0px;
 	} to {
 		transform: translateX(-100%);
-		margin-bottom: -100%;
 	}
 }
 
