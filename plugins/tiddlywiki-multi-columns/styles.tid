@@ -31,7 +31,7 @@ tags: $:/tags/Stylesheet
 \define target-tiddler-margin()
 
 .tc-river-$(currentRiver)$ .tc-tiddler-view-frame:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame, .tc-river-$(currentRiver)$ .tc-tiddler-edit-frame:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame {
-	margin-top: 29px;
+	margin-top: calc({{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/tiddler-border}}px);
 }
 
 .tc-river-$(currentRiver)$ .tc-tiddler-view-frame:first-of-type:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame, .tc-river-$(currentRiver)$ .tc-tiddler-edit-frame:first-of-type:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame {
@@ -39,13 +39,13 @@ tags: $:/tags/Stylesheet
 }
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + 56px);
+	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px) + (2 * {{$:/config/story-river/tiddler-border}}px));
 }
 
 <$list filter="[{$:/state/dragging!!nth}match[0]]">
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + 29px);
+	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/tiddler-border}}px);
 }
 
 </$list>
@@ -69,13 +69,13 @@ tags: $:/tags/Stylesheet
 }
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + 56px);
+	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px) + (2 * {{$:/config/story-river/tiddler-border}}px));
 }
 
 <$list filter="[{$:/state/dragging!!nth}match[0]]">
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + 29px);
+	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/tiddler-border}}px);
 }
 
 </$list>
@@ -89,13 +89,13 @@ tags: $:/tags/Stylesheet
 }
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(dragTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + 56px);
+	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px) + (2 * {{$:/config/story-river/tiddler-border}}px));
 }
 
 <$list filter="[{$:/state/dragging!!nth}match[0]]">
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(dragTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + 29px);
+	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/tiddler-border}}px);
 }
 
 </$list>
@@ -105,6 +105,14 @@ tags: $:/tags/Stylesheet
 \end
 
 <<set-color-scheme>>
+
+.tc-river-inner .tc-tiddler-frame {
+	border-top-width: {{$:/config/story-river/tiddler-border}}px;
+	border-bottom-width: {{$:/config/story-river/tiddler-border}}px;
+	border-left-width: {{$:/config/story-river/tiddler-border}}px;
+	border-right-width: {{$:/config/story-river/tiddler-border}}px;
+	margin-bottom: calc({{$:/config/story-river/tiddler-margin}}px + 1px);
+}
 
 .tc-panel {
 	visibility: hidden;
@@ -734,46 +742,46 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 .tc-droppable-top-half {
 	position: absolute;
-	top: -29px;
-	left: -16px;
-	height: calc(50% + 29px);
-	width: calc(100% + 32px);
+	top: -{{$:/config/story-river/tiddler-margin}}px;
+	left: calc(-15px - {{$:/config/story-river/tiddler-border}}px);
+	height: calc(50% + {{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/tiddler-border}}px);
+	width: calc(100% + 30px + (2 * {{$:/config/story-river/tiddler-border}}px));
 	display: none;
 	z-index: 501;
 }
 
 .tc-tiddler-view-frame:first-of-type .tc-droppable-top-half, .tc-tiddler-edit-frame:first-of-type .tc-droppable-top-half {
-	top: -16px;
-	height: calc(50% + 16px);
+	top: calc(-15px - {{$:/config/story-river/tiddler-border}}px);
+	height: calc(50% + 15px + {{$:/config/story-river/tiddler-border}}px);
 }
 
 .tc-droppable-bottom-half {
 	position: absolute;
 	top: 50%;
-	left: -16px;
-	height: calc(50% + 1px);
-	width: calc(100% + 32px);
+	left: calc(-15px - {{$:/config/story-river/tiddler-border}}px);
+	height: calc(50% + {{$:/config/story-river/tiddler-border}}px);
+	width: calc(100% + 30px + (2 * {{$:/config/story-river/tiddler-border}}px));
 	z-index: 501;
 	display: none;
 }
 
 .tc-droppable-top-half.tc-dragover {
-	height: calc(50% + 58px + {{$:/state/dragging!!height}}px);
-	top: calc(-{{$:/state/dragging!!height}}px - 58px);
+	height: calc(50% + (2 * {{$:/config/story-river/tiddler-margin}}px) + (2 * {{$:/config/story-river/tiddler-border}}px) + {{$:/state/dragging!!height}}px);
+	top: calc(-{{$:/state/dragging!!height}}px - (2 * {{$:/config/story-river/tiddler-margin}}px) - (2 * {{$:/config/story-river/tiddler-border}}px));
 }
 
 .tc-tiddler-view-frame:first-of-type .tc-droppable-top-half.tc-dragover, .tc-tiddler-edit-frame:first-of-type .tc-droppable-top-half.tc-dragover {
-	height: calc(50% + 45px + {{$:/state/dragging!!height}}px);
-	top: calc(-{{$:/state/dragging!!height}}px - 45px);
+	height: calc(50% + {{$:/config/story-river/tiddler-margin}}px + (2 * {{$:/config/story-river/tiddler-border}}px) + 15px + {{$:/state/dragging!!height}}px);
+	top: calc(-{{$:/state/dragging!!height}}px - {{$:/config/story-river/tiddler-margin}}px - (2 * {{$:/config/story-river/tiddler-border}}px) - 15px);
 }
 
 .tc-droppable-bottom-half.tc-dragover {
-	height: calc(50% + 29px + {{$:/state/dragging!!height}}px);
+	height: calc(50% + {{$:/config/story-river/tiddler-margin}}px + (2 * {{$:/config/story-river/tiddler-border}}px) + 15px + {{$:/state/dragging!!height}}px);
 }
 
 .tc-droppable-bottom-half.tc-dragover > .tc-droppable-placeholder-bottom-drop {
 	bottom: 0;
-	margin-bottom: 29px;
+	margin-bottom: calc({{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/tiddler-border}}px);
 }
 
 .tc-droppable-top-half.tc-dragover .tc-droppable-placeholder, .tc-droppable-bottom-half.tc-dragover .tc-droppable-placeholder {
@@ -799,12 +807,12 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 </$reveal>
 
 .tc-droppable-top-half.tc-dragover > .tc-droppable-placeholder {
-	margin-top: 29px;
+	margin-top: calc({{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/tiddler-border}}px);
 	display: block;
 }
 
 .tc-tiddler-view-frame:first-of-type .tc-droppable-top-half.tc-dragover > .tc-droppable-placeholder {
-	margin-top: 16px;
+	margin-top: calc(15px + {{$:/config/story-river/tiddler-border}}px);
 }
 
 .tc-droppable-placeholder-top-drop, .tc-droppable-placeholder-bottom-drop {
