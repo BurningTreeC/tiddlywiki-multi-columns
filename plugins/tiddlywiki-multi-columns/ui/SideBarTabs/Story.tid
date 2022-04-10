@@ -48,7 +48,7 @@ Give your story a name:<br>
 
 !! Load Story
 
-<$list filter="[all[tiddlers+shadows]prefix[$:/Story/]]" variable="storyTiddler">
+<$list filter="[all[tiddlers+shadows]prefix[$:/Story/]]" variable="storyTiddler" storyview="pop">
 
 <$let storyName={{{ [<storyTiddler>removeprefix[$:/Story/]] }}}>
 
