@@ -60,6 +60,12 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 			widget.wiki.deleteTiddler("$:/state/inserting/" + targetElement.attributes["data-tiddler-title"].value);
 		},duration);
 	}
+	if(duration && (widget.wiki.getTiddlerText("$:/state/DisableInsertAnimation") === "yes")) {
+		setTimeout(function() {
+			widget.wiki.deleteTiddler("$:/state/DisableInsertAnimation");
+			widget.wiki.deleteTiddler("$:/state/DisableRemoveAnimation");
+		},duration);
+	}
 };
 
 MultiColumnStoryView.prototype.remove = function(widget) {
