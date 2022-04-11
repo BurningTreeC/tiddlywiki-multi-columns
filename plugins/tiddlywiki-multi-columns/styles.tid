@@ -23,10 +23,6 @@ tags: $:/tags/Stylesheet
 
 </$list>
 
-.column-container > .tc-top-active-column {
-	overflow: hidden;
-}
-
 \end
 
 \define target-tiddler-margin()
@@ -531,15 +527,11 @@ tags: $:/tags/Stylesheet
 			scroll-snap-align: start;
 		}
 
-		@media (max-width: 800px) {
-
-			.flextemplate-container .column-config-top {
-				display: none;
-			}
-
-		}
-
 	</$list>
+
+	.column-container > .tc-top-active-column {
+		overflow: hidden;
+	}
 }
 
 @media (max-width: 800px) {
