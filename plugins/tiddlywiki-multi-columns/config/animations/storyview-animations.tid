@@ -38,7 +38,7 @@ title: $:/config/StoryViewAnimations
 
 \end
 
-<$list filter="[all[tiddlers+shadows]prefix[$:/state/inserting/]]" variable="insertStateTiddler">
+<$list filter="[all[tiddlers]prefix[$:/state/inserting/]]" variable="insertStateTiddler">
 
 <$let insertTiddler={{{ [<insertStateTiddler>removeprefix[$:/state/inserting/]] }}} insertTiddlerCSSEscaped={{{ [<insertTiddler>escapecss[]] }}} insertTiddlerHeight={{{ [<insertStateTiddler>get[height]] }}}>
 
@@ -48,7 +48,7 @@ title: $:/config/StoryViewAnimations
 
 </$list>
 
-<$list filter="[all[tiddlers+shadows]prefix[$:/state/removing/]]" variable="removeStateTiddler">
+<$list filter="[all[tiddlers]prefix[$:/state/removing/]]" variable="removeStateTiddler">
 
 <$let removeTiddler={{{ [<removeStateTiddler>removeprefix[$:/state/removing/]] }}} removeTiddlerCSSEscaped={{{ [<removeTiddler>escapecss[]] }}} removeTiddlerHeight={{{ [<removeStateTiddler>get[height]] }}}>
 
