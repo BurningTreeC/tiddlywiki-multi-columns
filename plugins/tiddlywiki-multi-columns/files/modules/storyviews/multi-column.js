@@ -46,15 +46,15 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 		if(!targetElement || targetElement.nodeType === Node.TEXT_NODE) {
 			return;
 		}
-		if(targetElement.attributes["data-tiddler-title"]) {
-			widget.wiki.setText("$:/state/inserting/" + targetElement.attributes["data-tiddler-title"].value,"height",undefined,currHeight);
-		}
-		$tw.utils.addClass(targetElement,"tc-inserting");
 		// Get the current height of the tiddler
 		var computedStyle = window.getComputedStyle(targetElement),
 			currMarginBottom = parseInt(computedStyle.marginBottom,10),
 			currMarginTop = parseInt(computedStyle.marginTop,10),
 			currHeight = targetElement.offsetHeight + currMarginTop;
+		if(targetElement.attributes["data-tiddler-title"]) {
+			widget.wiki.setText("$:/state/inserting/" + targetElement.attributes["data-tiddler-title"].value,"height",undefined,currHeight);
+		}
+		$tw.utils.addClass(targetElement,"tc-inserting");
 		setTimeout(function() {
 			$tw.utils.removeClass(targetElement,"tc-inserting");
 			widget.wiki.deleteTiddler("$:/state/inserting/" + targetElement.attributes["data-tiddler-title"].value);
