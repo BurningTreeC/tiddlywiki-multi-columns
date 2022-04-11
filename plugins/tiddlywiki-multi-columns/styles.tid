@@ -671,6 +671,14 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	box-shadow: 0px 0px 15px rgb(0 0 0 / 8%);
 }
 
+<$list filter="[{$:/palette}get[color-scheme]match[dark]]">
+
+.tc-tiddler-frame {
+	box-shadow: 0px 0px 15px rgb(255 255 255 / 8%);
+}
+
+</$list>
+
 .tc-activate-column-btn {
 	position: absolute;
 	top: 0;
@@ -737,13 +745,13 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 
 .tc-sidebar-flexpanel .tc-column-active-button:first-of-type {
-	border: 1px dashed green;
+	border: 1px dashed <<colour dropzone-background>>;
 }
 
 .tc-sidebar-flexpanel .tc-column-active-button {
-	border-top: 1px dashed green;
-	border-bottom: 1px dashed green;
-	border-right: 1px dashed green;
+	border-top: 1px dashed <<colour dropzone-background>>;
+	border-bottom: 1px dashed <<colour dropzone-background>>;
+	border-right: 1px dashed <<colour dropzone-background>>;
 }
 
 .tc-droppable-top-half {
