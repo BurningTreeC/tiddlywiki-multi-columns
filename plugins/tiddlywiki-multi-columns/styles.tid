@@ -911,4 +911,8 @@ hr.simple {
 	background: <<colour foreground>>;
 }
 
+.tc-top-active-column-draggable {
+	cursor: default;
+}
+
 {{$:/config/StoryViewAnimations}}
