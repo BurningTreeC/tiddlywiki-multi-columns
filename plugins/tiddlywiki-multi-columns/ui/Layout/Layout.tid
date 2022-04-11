@@ -105,7 +105,9 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 							<$list filter="[[$:/StoryList-]addsuffix<column>contains<searchResult>]">
 								<$text text="Column "/><$text text=<<column>>/><$text text=":"/><br>
 								<$navigator story={{{ [[$:/StoryList-]addsuffix<column>] }}} history={{{ [[$:/HistoryList-]addsuffix<column>] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-									<$link to=<<searchResult>>><<searchResult>></$link><br>
+									<$linkcatcher actions="""<$action-navigate $to=<<navigateTo>>/><$list filter="[{$:/scroll-snap-x}match[yes]]"><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<column>] }}} animationDuration={{$:/config/scroll-x-duration}}/></$list>""">
+										<$link to=<<searchResult>>><<searchResult>></$link><br>
+									</$linkcatcher>
 								</$navigator>
 							</$list>
 						</$list>
