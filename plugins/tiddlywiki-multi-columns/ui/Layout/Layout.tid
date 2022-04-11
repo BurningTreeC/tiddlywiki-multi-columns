@@ -36,7 +36,11 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 				<div class="column-container">
 					<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
 						<div class="tc-top-active-column">
-							<$button tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>"""></$button>
+							<$set name="currentStory" value={{{ [[$:/StoryList-]addsuffix<currentColumn>] }}}>
+								<$draggable class="tc-top-active-column-draggable" filter="[list<currentStory>]">
+									<$button tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>"""></$button>
+								</$draggable>
+							</$set>
 						</div>
 					</$list>
 				</div>
