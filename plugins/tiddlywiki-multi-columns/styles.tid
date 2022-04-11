@@ -506,13 +506,13 @@ tags: $:/tags/Stylesheet
 
 @media (min-width: 800px) {
 
-	<$reveal state="$:/scroll-snap-x" type="nomatch" text="yes">
+	<$list filter="[{$:/scroll-snap-x}!match[yes]]" variable="ignore">
 
 		<<column-layout>>
 
-	</$reveal>
+	</$list>
 
-	<$reveal state="$:/scroll-snap-x" type="match" text="yes">
+	<$list filter="[{$:/scroll-snap-x}match[yes]]" variable="ignore">
 
 		.flextemplate-container main.column-container {
 			display: flex;
@@ -534,7 +534,7 @@ tags: $:/tags/Stylesheet
 			display: none;
 		}
 
-	</$reveal>
+	</$list>
 }
 
 @media (max-width: 800px) {
@@ -608,7 +608,7 @@ tags: $:/tags/Stylesheet
 
 </$list>
 
-<$reveal state="$:/themes/tiddlywiki/vanilla/options/stickytitles" type="match" text="yes">
+<$list filter="[{$:/themes/tiddlywiki/vanilla/options/stickytitles}match[yes]]">
 ``
 .tc-tiddler-title {
 	position: -webkit-sticky;
@@ -633,7 +633,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 `
 </$list>
-</$reveal>
+</$list>
 
 
 <$list filter="[list[$:/columns]] ~1" variable="currentColumn">
@@ -788,7 +788,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	border: none;
 }
 
-<$reveal state="$:/state/dragging" type="match" text="yes">
+<$list filter="[{$:/state/dragging}match[yes]]">
 
 .tc-droppable-top-half, .tc-droppable-bottom-half {
 	display: block;
@@ -804,7 +804,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 </$set>
 
-</$reveal>
+</$list>
 
 .tc-droppable-top-half.tc-dragover > .tc-droppable-placeholder {
 	margin-top: calc({{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/tiddler-border}}px);
@@ -847,7 +847,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 </$set>
 
-<$reveal state="$:/state/dragging" type="match" text="yes">
+<$list filter="[{$:/state/dragging}match[yes]]">
 
 .tc-activate-column-btn {
 	display: none;
@@ -875,9 +875,9 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	border: none;
 }
 
-</$reveal>
+</$list>
 
-<$reveal state="$:/dragging-enabled" type="nomatch" text="no">
+<$list filter="[{$:/dragging-enabled}!match[no]]">
 
 .tc-tiddler-frame img {
 	user-drag: none;
@@ -889,7 +889,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	touch-action: none;
 }
 
-</$reveal>
+</$list>
 
 .tc-river-inner > .tc-tiddler-view-frame > .tc-draggable, .tc-river-inner > .tc-tiddler-edit-frame > .tc-draggable {
 	cursor: default;
