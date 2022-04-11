@@ -62,4 +62,4 @@ title: $:/config/StoryViewAnimations
 
 .tc-navigating .tc-tiddler-frame {
 	animation: blink calc({{$:/config/AnimationDuration}}ms / 3) step-end infinite alternate;
-}  
+}
