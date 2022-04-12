@@ -35,7 +35,7 @@ Do you want to overwrite?""">
 \end
 \whitespace trim
 
-!! Save Story
+!! Save Ensemble
 
 Give your story a name:<br>
 <$edit-text tiddler="$:/temp/save-story/story-title" default="" placeholder="Story Title" tag="input" class="tc-story-title"/>
@@ -46,7 +46,7 @@ Give your story a name:<br>
 
 <hr class="simple">
 
-!! Load Story
+!! Load Ensemble
 
 <$list filter="[all[tiddlers+shadows]prefix[$:/Story/]]" variable="storyTiddler" storyview="pop">
 
