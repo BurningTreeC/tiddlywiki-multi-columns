@@ -172,13 +172,13 @@ tags: $:/tags/Stylesheet
 	left: 0;
 	width: 100%;
 	height: 75px;
-	transition: transform {{$:/config/AnimationDuration}}ms 0s;
+	transition: transform {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
 	transform: translateY(-75px);
 	z-index: 10003;
 }
 
 .tc-search-panel-is-visible.tc-search-panel {
-	transition: transform {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
+	transition: transform {{$:/config/AnimationDuration}}ms 0s;
 	transform: translateY(0px);
 }
 
@@ -393,9 +393,14 @@ tags: $:/tags/Stylesheet
 	background-color: <<colour foreground>>;
 }
 
-.tc-panel-is-visible .tc-panel-close::before, .tc-search-panel-is-visible .tc-search-panel-close::before {
+.tc-panel-is-visible .tc-panel-close::before {
 	-webkit-animation: cd-close-1 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
 	animation: cd-close-1 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
+}
+
+.tc-search-panel-is-visible .tc-search-panel-close::before {
+	-webkit-animation: cd-close-1 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 2);
+	animation: cd-close-1 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 2);	
 }
 
 .tc-panel-close::before, .tc-search-panel-close::before {
@@ -431,6 +436,11 @@ tags: $:/tags/Stylesheet
 .tc-panel-is-visible .tc-panel-close::after, .tc-search-panel-is-visible .tc-search-panel-close::after {
 	-webkit-animation: cd-close-2 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
 	animation: cd-close-2 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
+}
+
+.tc-search-panel-is-visible .tc-search-panel-close::after {
+	-webkit-animation: cd-close-2 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 2);
+	animation: cd-close-2 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 2);
 }
 
 .tc-panel-close:hover::after, .tc-search-panel-close:hover::after {
