@@ -733,13 +733,13 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 
 .tc-sidebar-flexpanel .tc-column-active-button:first-of-type {
-	border: 1px dashed <<colour tag-background>>;
+	border: 1px dashed <<colour tiddler-editor-fields-even>>;
 }
 
 .tc-sidebar-flexpanel .tc-column-active-button {
-	border-top: 1px dashed <<colour tag-background>>;
-	border-bottom: 1px dashed <<colour tag-background>>;
-	border-right: 1px dashed <<colour tag-background>>;
+	border-top: 1px dashed <<colour tiddler-editor-fields-even>>;
+	border-bottom: 1px dashed <<colour tiddler-editor-fields-even>>;
+	border-right: 1px dashed <<colour tiddler-editor-fields-even>>;
 }
 
 .tc-droppable-top-half {
