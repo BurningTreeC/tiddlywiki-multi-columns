@@ -415,11 +415,6 @@ tags: $:/tags/Stylesheet
 	backface-visibility: hidden;
 }
 
-.tc-panel-is-visible .tc-panel-close::before, .tc-search-panel-is-visible .tc-search-panel-close::before {
-	-webkit-animation: cd-close-1 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
-	animation: cd-close-1 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
-}
-
 .tc-panel-close:hover::before, .tc-search-panel-close:hover::before {
 	-webkit-transform: rotate(220deg);
 	transform: rotate(220deg);
@@ -431,23 +426,6 @@ tags: $:/tags/Stylesheet
 	transition: -webkit-transform {{$:/config/AnimationDuration}}ms;
 	transition: transform {{$:/config/AnimationDuration}}ms;
 	transition: transform {{$:/config/AnimationDuration}}ms,-webkit-transform {{$:/config/AnimationDuration}}ms;
-}
-
-.tc-panel-close::before, .tc-search-panel-close::before {
-	-webkit-transform: rotate(45deg);
-	transform: rotate(45deg);
-}
-
-.tc-panel-close::before, .tc-panel-close::after, .tc-search-panel-close::before, .tc-search-panel-close::after {
-	content: ' ';
-	position: absolute;
-	top: 22px;
-	left: 20px;
-	height: 3px;
-	width: 20px;
-	background-color: <<colour foreground>>;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
 }
 
 .tc-panel-is-visible .tc-panel-close::after, .tc-search-panel-is-visible .tc-search-panel-close::after {
