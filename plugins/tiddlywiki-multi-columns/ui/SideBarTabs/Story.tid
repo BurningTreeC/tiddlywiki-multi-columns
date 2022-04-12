@@ -1,6 +1,6 @@
-title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/SideBarTabs/Story
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/SideBarTabs/Ensemble
 tags: $:/tags/SideBar
-caption: Story
+caption: Ensemble
 
 \whitespace trim
 \define save-story-actions-inner()
@@ -37,8 +37,8 @@ Do you want to overwrite?""">
 
 !! Save Ensemble
 
-Give your story a name:<br>
-<$edit-text tiddler="$:/temp/save-story/story-title" default="" placeholder="Story Title" tag="input" class="tc-story-title"/>
+Give your ensemble a name:<br>
+<$edit-text tiddler="$:/temp/save-story/story-title" default="" placeholder="Title" tag="input" class="tc-story-title"/>
 
 <$let storyTitle={{$:/temp/save-story/story-title}}>
 <$button actions=<<save-story-actions>>>Save</$button>
