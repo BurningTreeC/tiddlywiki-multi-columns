@@ -399,8 +399,8 @@ tags: $:/tags/Stylesheet
 }
 
 .tc-search-panel-is-visible .tc-search-panel-close::before {
-	-webkit-animation: cd-close-1 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 2);
-	animation: cd-close-1 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 2);	
+	-webkit-animation: cd-close-1 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 4);
+	animation: cd-close-1 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 4);	
 }
 
 .tc-panel-close::before, .tc-search-panel-close::before {
@@ -439,8 +439,8 @@ tags: $:/tags/Stylesheet
 }
 
 .tc-search-panel-is-visible .tc-search-panel-close::after {
-	-webkit-animation: cd-close-2 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 2);
-	animation: cd-close-2 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 2);
+	-webkit-animation: cd-close-2 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 4);
+	animation: cd-close-2 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 4);
 }
 
 .tc-panel-close:hover::after, .tc-search-panel-close:hover::after {
