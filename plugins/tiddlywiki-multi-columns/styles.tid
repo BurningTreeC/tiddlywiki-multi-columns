@@ -172,7 +172,7 @@ tags: $:/tags/Stylesheet
 	left: 0;
 	width: 100%;
 	height: 75px;
-	transition: transform {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
+	transition: transform calc({{$:/config/AnimationDuration}}ms / 2) calc({{$:/config/AnimationDuration}}ms / 2);
 	transform: translateY(-75px);
 	z-index: 10003;
 }
@@ -549,7 +549,7 @@ tags: $:/tags/Stylesheet
 		scroll-snap-align: start;
 	}
 
-	.flextemplate-container .column-config-top {
+	.flextemplate-container .column-config-top .column-container:last-of-type {
 		display: none;
 	}
 
