@@ -1,0 +1,12 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/search-panel
+tags: $:/tags/BottomRightPanel
+
+<$button class={{{ [[$:/state/search-panel]is[missing]then[tc-btn-invisible]else[tc-btn-invisible tc-selected]] }}}>
+<$list filter="[[$:/state/search-panel]is[missing]]" emptyMessage="""
+<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>
+""">
+<$action-popup $state="$:/state/search-panel" $coords="(0,0,0,0)"/>
+<$action-sendmessage $message="tm-focus-selector" $param=".tc-search-panel-input" delay={{{ [{$:/config/AnimationDuration}divide[2]round[]] }}}/>
+</$list>
+{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/search-panel}}
+</$button>
