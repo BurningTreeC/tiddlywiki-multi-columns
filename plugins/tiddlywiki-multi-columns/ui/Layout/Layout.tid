@@ -118,9 +118,11 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 			</div>
 		</div>
 	</$set>
-	<div class="tc-bottom-right-panel">
-		<$list filter="[all[tiddlers+shadows]tag[$:/tags/BottomRightPanel]!is[draft]]" variable="listItem">
-			<$transclude tiddler=<<listItem>>/>
-		</$list>
-	</div>
+	<$list filter="[{$:/config/story-river/bottom-right-panel}match[yes]]" variable="ignore">
+		<div class="tc-bottom-right-panel">
+			<$list filter="[all[tiddlers+shadows]tag[$:/tags/BottomRightPanel]!is[draft]]" variable="listItem">
+				<$transclude tiddler=<<listItem>>/>
+			</$list>
+		</div>
+	</$list>
 </$vars>
