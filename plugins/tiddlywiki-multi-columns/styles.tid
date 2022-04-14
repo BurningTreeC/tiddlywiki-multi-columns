@@ -940,6 +940,7 @@ hr.simple {
 	margin-bottom: 25px;
 	margin-right: 25px;
 	max-width: 35px;
+	z-index: 9999;
 }
 
 .tc-bottom-right-panel svg {
