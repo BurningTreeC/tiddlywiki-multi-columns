@@ -688,7 +688,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	outline: none !important;
 }
 
-.tc-panel-shown-eventcatcher {
+.tc-panel-shown-eventcatcher, .tc-panel-close {
 	-webkit-tap-highlight-color: transparent;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
