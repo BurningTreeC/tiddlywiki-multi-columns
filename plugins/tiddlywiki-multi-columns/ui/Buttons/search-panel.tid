@@ -5,7 +5,7 @@ tags: $:/tags/BottomRightPanel
 search panel - [$(searchPanelShortcut)$]
 \end
 
-<$set name="searchPanelShortcut" value=<<displayshortcuts ((search-panel))>>
+<$set name="searchPanelShortcut" value=<<displayshortcuts ((search-panel))>>>
 <$button class={{{ [[$:/state/search-panel]is[missing]then[tc-btn-invisible]else[tc-btn-invisible tc-selected]] }}} tooltip=<<get-search-panel-tooltip>>>
 <$list filter="[[$:/state/search-panel]is[missing]]" emptyMessage="""
 <$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>
