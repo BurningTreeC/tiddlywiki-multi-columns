@@ -1,7 +1,12 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/search-panel
 tags: $:/tags/BottomRightPanel
 
-<$button class={{{ [[$:/state/search-panel]is[missing]then[tc-btn-invisible]else[tc-btn-invisible tc-selected]] }}}>
+\define get-search-panel-tooltip()
+search panel - [$(searchPanelShortcut)$]
+\end
+
+<$set name="searchPanelShortcut" value=<<displayshortcuts ((search-panel))>>
+<$button class={{{ [[$:/state/search-panel]is[missing]then[tc-btn-invisible]else[tc-btn-invisible tc-selected]] }}} tooltip=<<get-search-panel-tooltip>>>
 <$list filter="[[$:/state/search-panel]is[missing]]" emptyMessage="""
 <$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>
 """>
@@ -10,3 +15,4 @@ tags: $:/tags/BottomRightPanel
 </$list>
 {{$:/plugins/BTC/tiddlywiki-multi-columns/icons/search-panel}}
 </$button>
+</$set>
