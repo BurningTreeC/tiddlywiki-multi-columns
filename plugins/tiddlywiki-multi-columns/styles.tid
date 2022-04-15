@@ -218,6 +218,7 @@ tags: $:/tags/Stylesheet
 	padding: 15px;
 	border-radius: 4px;
 	border: 1px solid <<colour foreground>>;
+	box-shadow: 0px 0px 15px rgb(0 0 0 / 30%);
 }
 
 .tc-search-panel.tc-search-panel-from-top .tc-search-panel-matches {
