@@ -2,8 +2,8 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/scroll-snap-
 tags: $:/tags/KeyboardShortcut
 key: ((scroll-snap-x-toggle))
 
-<$list filter="[{$:/scroll-snap-x}match[yes]]" emptyMessage="""
-	<$action-setfield $tiddler="$:/scroll-snap-x" text="yes"/>
+<$list filter="[{$:/config/scroll-snap-x}match[yes]]" emptyMessage="""
+	<$action-setfield $tiddler="$:/config/scroll-snap-x" text="yes"/>
 """>
-	<$action-setfield $tiddler="$:/scroll-snap-x" text="no"/>
+	<$action-setfield $tiddler="$:/config/scroll-snap-x" text="no"/>
 </$list>

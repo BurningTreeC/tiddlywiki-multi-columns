@@ -6,9 +6,9 @@ key: ((previous-column))
 	<$set name="columnCount" value={{{ [list[$:/columns]count[]] ~1 }}}>
 		<$list filter="[list[$:/columns]before<currentColumn>] ~[<columnCount>]" variable="nextColumn">
 			<$action-setfield $tiddler="$:/columns" active-column=<<nextColumn>>/>
-			<$reveal state="$:/scroll-snap-x" type="match" text="yes">
+			<$list filter="[{$:/scroll-snap-x}match[yes]]" variable="ignore">
 				<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<nextColumn>] }}} animationDuration={{$:/config/scroll-x-duration}}/>
-			</$reveal>
+			</$list>
 		</$list>
 	</$set>
 </$set>

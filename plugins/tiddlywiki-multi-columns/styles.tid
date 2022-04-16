@@ -529,13 +529,13 @@ tags: $:/tags/Stylesheet
 
 @media (min-width: 800px) {
 
-	<$list filter="[{$:/scroll-snap-x}!match[yes]]" variable="ignore">
+	<$list filter="[{$:/config/scroll-snap-x}!match[yes]]" variable="ignore">
 
 		<<column-layout>>
 
 	</$list>
 
-	<$list filter="[{$:/scroll-snap-x}match[yes]]" variable="ignore">
+	<$list filter="[{$:/config/scroll-snap-x}match[yes]]" variable="ignore">
 
 		.flextemplate-container main.column-container {
 			display: flex;
