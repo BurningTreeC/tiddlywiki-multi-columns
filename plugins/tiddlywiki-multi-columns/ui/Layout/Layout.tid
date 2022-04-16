@@ -48,22 +48,24 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 			<main class="main column-container tc-scroll-container">
 				<$navigator story="$:/columns" history="$:/ColumnHistoryList">
 					<$list filter="[list[$:/columns]] ~1" variable="currentColumn" history="$:/ColumnHistoryList">
-						<div class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-scroll-container tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[$:/columns]is[missing]then<currentColumn>match[1]then[tc-scroll-container tc-river-active ]] :else[[tc-scroll-container tc-river-]addsuffix<currentColumn>] }}}>
-							<$navigator story={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-								<$dropzone enable=<<tv-enable-drag-and-drop>> class={{{ [<currentColumn>!is[blank]addprefix[tc-dropzone-]] ~tc-dropzone-1 }}} importTitle={{{ [[$:/Import-]addsuffix<currentColumn>] }}}>
-									<$eventcatcher selector=".tc-activate-column-btn" $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""">
-										<div tag="a" class="tc-btn-invisible tc-activate-column-btn"></div>
-									</$eventcatcher>
-									<div class="tc-river-inner">
-										<$list filter="[list<tv-story-list>search{$:/state/search-panel/search}]" template="$:/plugins/BTC/tiddlywiki-multi-columns/ui/ViewTemplate" editTemplate="$:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate" storyview={{$:/view}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} emptyMessage="""<$set name="emptyMessageTiddler" value={{{ [[$:/EmptyMessage-]addsuffix<currentColumn>] }}}><$transclude tiddler=<<emptyMessageTiddler>> mode="block"/></$set>"""/>
-										<!--<$list filter="[list<tv-story-list>count[]match[0]]">-->
-											<$droppable actions="""<$action-setfield $tiddler="$:/state/drag-handled" text="yes"/><$action-listops $tiddler=<<tv-story-list>> $subfilter="[<actionTiddler>]"/>""" dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target="" starting-next-tiddler="" copying=""/>""">
-											</$droppable>
-										<!--</$list>-->
-									</div>
-								</$dropzone>
-							</$navigator>
-						</div>
+						<$set name="transclusion" value=<<currentColumn>>>
+							<div class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-scroll-container tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[$:/columns]is[missing]then<currentColumn>match[1]then[tc-scroll-container tc-river-active ]] :else[[tc-scroll-container tc-river-]addsuffix<currentColumn>] }}}>
+								<$navigator story={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+									<$dropzone enable=<<tv-enable-drag-and-drop>> class={{{ [<currentColumn>!is[blank]addprefix[tc-dropzone-]] ~tc-dropzone-1 }}} importTitle={{{ [[$:/Import-]addsuffix<currentColumn>] }}}>
+										<$eventcatcher selector=".tc-activate-column-btn" $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""">
+											<div tag="a" class="tc-btn-invisible tc-activate-column-btn"></div>
+										</$eventcatcher>
+										<div class="tc-river-inner">
+											<$list filter="[list<tv-story-list>search{$:/state/search-panel/search}]" template="$:/plugins/BTC/tiddlywiki-multi-columns/ui/ViewTemplate" editTemplate="$:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate" storyview={{$:/view}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} emptyMessage="""<$set name="emptyMessageTiddler" value={{{ [[$:/EmptyMessage-]addsuffix<currentColumn>] }}}><$transclude tiddler=<<emptyMessageTiddler>> mode="block"/></$set>"""/>
+											<!--<$list filter="[list<tv-story-list>count[]match[0]]">-->
+												<$droppable actions="""<$action-setfield $tiddler="$:/state/drag-handled" text="yes"/><$action-listops $tiddler=<<tv-story-list>> $subfilter="[<actionTiddler>]"/>""" dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target="" starting-next-tiddler="" copying=""/>""">
+												</$droppable>
+											<!--</$list>-->
+										</div>
+									</$dropzone>
+								</$navigator>
+							</div>
+						</$set>
 					</$list>
 				</$navigator>
 			</main>

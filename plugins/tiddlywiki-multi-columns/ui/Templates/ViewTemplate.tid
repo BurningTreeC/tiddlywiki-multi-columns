@@ -35,9 +35,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/ViewTemplate
 \end
 \define cancel-delete-tiddler-actions(message) <$action-sendmessage $message="tm-$message$-tiddler"/>
 \import [all[shadows+tiddlers]tag[$:/tags/Macro/View]!has[draft.of]]
-<$qualify title={{{ [[$:/state/popup/tiddler-info/]addsuffix<currentTiddler>] }}} name="tiddlerInfoState" footprint="yes">
-<$qualify title={{{ [[$:/state/folded/]addsuffix<currentTiddler>] }}} name="folded-state" footprint="yes">
-<$vars storyTiddler=<<currentTiddler>>>
+<$vars storyTiddler=<<currentTiddler>> tiddlerInfoState=<<qualify "$:/state/popup/tiddler-info">> folded-state=<<qualify "$:/state/folded">>>
 <div data-tiddler-title=<<currentTiddler>> data-tags={{!!tags}} class={{{ tc-tiddler-view-frame tc-tiddler-zindex-frame [<currentTiddler>is[tiddler]then[tc-tiddler-exists]] [<currentTiddler>is[missing]!is[shadow]then[tc-tiddler-missing]] [<currentTiddler>is[shadow]then[tc-tiddler-exists tc-tiddler-shadow]] [<currentTiddler>is[shadow]is[tiddler]then[tc-tiddler-overridden-shadow]] [<currentTiddler>is[system]then[tc-tiddler-system]] [{!!class}] [<currentTiddler>tags[]encodeuricomponent[]addprefix[tc-tagged-]] +[join[ ]] }}}>
 <$draggable enable={{$:/config/story-river/dragging-enable}} tiddler=<<currentTiddler>> startactions=<<drag-start-actions>> endactions=<<drag-end-actions>> class="tc-tiddler-frame">
 <$list filter="[all[shadows+tiddlers]tag[$:/tags/ViewTemplate]!has[draft.of]]" variable="listItem">
@@ -50,5 +48,3 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/ViewTemplate
 </$draggable>
 </div>
 </$vars>
-</$qualify>
-</$qualify>

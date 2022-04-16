@@ -8,8 +8,26 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate
 <$action-sendmessage $message="tm-save-tiddler"/>
 \end
 \define cancel-delete-tiddler-actions(message)
+<$list filter="[[$message$]match[delete]]" variable="ignore">
+<$let deleteTiddlerViewMode={{{ [<currentTiddler>get[draft.of]] }}} deleteTiddlerEditMode=<<currentTiddler>>>
+<$list filter="[list[$:/columns]!match<currentColumn>]" variable="column">
+<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
+<$list filter="[<storyList>contains<deleteTiddlerViewMode>]" variable="ignore">
+<$action-listops $tiddler=<<storyList>> $subfilter="-[<deleteTiddlerViewMode>]"/>
+</$list>
+<$list filter="[<storyList>contains<deleteTiddlerEditMode>]" variable="ignore">
+<$action-listops $tiddler=<<storyList>> $subfilter="-[<deleteTiddlerEditMode>]"/>
+</$list>
+</$set>
+</$list>
+</$let>
 <<delete-edittemplate-state-tiddlers>>
-<$action-sendmessage $message="tm-$message$-tiddler"/>
+<$action-sendmessage $message="tm-delete-tiddler"/>
+</$list>
+<$list filter="[[$message$]match[cancel]]" variable="ignore">
+<<delete-edittemplate-state-tiddlers>>
+<$action-sendmessage $message="tm-cancel-tiddler"/>
+</$list>
 \end
 \define drag-start-actions()
 <$action-setfield $tiddler="$:/state/dragging" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} height=<<tv-selectednode-height>> width=<<tv-selectednode-width>> start-river=<<currentColumn>> starting-next-tiddler={{{ [list<tv-story-list>after<currentTiddler>] }}}/><$action-setfield $tiddler="$:/state/dragging" drag-tiddler=<<currentTiddler>> next-tiddler={{{ [list<tv-story-list>after<currentTiddler>] }}} from-index={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} from-story=<<tv-story-list>> target={{{ [list<tv-story-list>after<currentTiddler>] }}}/><$action-setfield $tiddler="$:/state/DisableInsertAnimation" text="yes"/><$action-setfield $tiddler="$:/state/DisableRemoveAnimation" text="yes"/><$action-setfield $tiddler="$:/state/dragging" text="yes"/><$list filter="[<modifier>!match[ctrl]]" variable="ignore" emptyMessage="""<$action-setfield $tiddler="$:/state/dragging" copying="yes"/>"""><$action-listops $tiddler=<<tv-story-list>> $subfilter="-[<currentTiddler>]"/></$list>
