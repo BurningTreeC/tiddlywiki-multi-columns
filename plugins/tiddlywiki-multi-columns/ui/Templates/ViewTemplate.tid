@@ -1,9 +1,6 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/ViewTemplate
 
 \whitespace trim
-\define folded-state()
-$:/state/folded/$(currentTiddler)$
-\end
 \define drag-start-actions()
 <$action-setfield $tiddler="$:/state/dragging" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} height=<<tv-selectednode-height>> width=<<tv-selectednode-width>> start-river=<<currentColumn>> starting-next-tiddler={{{ [list<tv-story-list>after<currentTiddler>] }}}/><$action-setfield $tiddler="$:/state/dragging" drag-tiddler=<<currentTiddler>> next-tiddler={{{ [list<tv-story-list>after<currentTiddler>] }}} from-index={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} from-story=<<tv-story-list>> target={{{ [list<tv-story-list>after<currentTiddler>] }}}/><$action-setfield $tiddler="$:/state/DisableInsertAnimation" text="yes"/><$action-setfield $tiddler="$:/state/DisableRemoveAnimation" text="yes"/><$action-setfield $tiddler="$:/state/dragging" text="yes"/><$list filter="[<modifier>!match[ctrl]]" variable="ignore" emptyMessage="""<$action-setfield $tiddler="$:/state/dragging" copying="yes"/>"""><$action-listops $tiddler=<<tv-story-list>> $subfilter="-[<currentTiddler>]"/></$list>
 \end
@@ -38,7 +35,9 @@ $:/state/folded/$(currentTiddler)$
 \end
 \define cancel-delete-tiddler-actions(message) <$action-sendmessage $message="tm-$message$-tiddler"/>
 \import [all[shadows+tiddlers]tag[$:/tags/Macro/View]!has[draft.of]]
-<$vars storyTiddler=<<currentTiddler>> tiddlerInfoState=<<qualify "$:/state/popup/tiddler-info">>>
+<$qualify title={{{ [[$:/state/popup/tiddler-info/]addsuffix<currentTiddler>] }}} name="tiddlerInfoState" footprint="yes">
+<$qualify title={{{ [[$:/state/folded/]addsuffix<currentTiddler>] }}} name="folded-state" footprint="yes">
+<$vars storyTiddler=<<currentTiddler>>>
 <div data-tiddler-title=<<currentTiddler>> data-tags={{!!tags}} class={{{ tc-tiddler-view-frame tc-tiddler-zindex-frame [<currentTiddler>is[tiddler]then[tc-tiddler-exists]] [<currentTiddler>is[missing]!is[shadow]then[tc-tiddler-missing]] [<currentTiddler>is[shadow]then[tc-tiddler-exists tc-tiddler-shadow]] [<currentTiddler>is[shadow]is[tiddler]then[tc-tiddler-overridden-shadow]] [<currentTiddler>is[system]then[tc-tiddler-system]] [{!!class}] [<currentTiddler>tags[]encodeuricomponent[]addprefix[tc-tagged-]] +[join[ ]] }}}>
 <$draggable enable={{$:/dragging-enabled}} tiddler=<<currentTiddler>> startactions=<<drag-start-actions>> endactions=<<drag-end-actions>> class="tc-tiddler-frame">
 <$list filter="[all[shadows+tiddlers]tag[$:/tags/ViewTemplate]!has[draft.of]]" variable="listItem">
@@ -51,3 +50,5 @@ $:/state/folded/$(currentTiddler)$
 </$draggable>
 </div>
 </$vars>
+</$qualify>
+</$qualify>
