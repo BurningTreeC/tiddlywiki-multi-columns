@@ -151,6 +151,8 @@ Error message and password prompt
 
 <li>$:/config/scroll-snap-type</li>
 
+<li>$:/config/scroll-snap-x</li>
+
 <li>$:/config/scroll-x-duration</li>
 
 <li>$:/config/story-river/search-panel</li>
@@ -253,6 +255,8 @@ Error message and password prompt
 
 {"title":"$:/config/scroll-snap-type","created":"20220403192959868","modified":"20220403193117561","type":"text/vnd.tiddlywiki","text":"none","revision":"0","bag":"default"},
 
+{"title":"$:/config/scroll-snap-x","created":"20220416071536196","modified":"20220416071548924","type":"text/vnd.tiddlywiki","text":"no","revision":"0","bag":"default"},
+
 {"title":"$:/config/scroll-x-duration","created":"20220403193008167","modified":"20220411211937170","type":"text/vnd.tiddlywiki","text":"800","revision":"0","bag":"default"},
 
 {"title":"$:/config/story-river/search-panel","created":"20220414162310338","modified":"20220414162320561","type":"text/vnd.tiddlywiki","text":"bottom","revision":"0","bag":"default"},
@@ -293,7 +297,7 @@ Error message and password prompt
 
 {"title":"$:/StoryList-1","created":"20220402075411896","list":"[[Ceci n’est pas une pipe.]] Tips [[Configuration Options]]","modified":"20220415155752809","type":"text/vnd.tiddlywiki","revision":"0","bag":"default"},
 
-{"title":"$:/StoryList-2","created":"20220409124735965","list":"[[Keyboard Shortcuts]] [[The Birth of Venus]] [[Star me on GitHub]]","modified":"20220416065635652","type":"text/vnd.tiddlywiki","revision":"0","bag":"default"},
+{"title":"$:/StoryList-2","created":"20220409124735965","list":"[[Keyboard Shortcuts]] [[The Birth of Venus]] [[Star me on GitHub]]","modified":"20220416072725143","type":"text/vnd.tiddlywiki","revision":"0","bag":"default"},
 
 {"title":"$:/StoryList-24","list":"","type":"text/vnd.tiddlywiki","revision":"0","bag":"default"},
 
@@ -317,7 +321,7 @@ Error message and password prompt
 
 {"title":"Ceci n’est pas une pipe.","created":"20201011123220797","modified":"20220409075750234","tags":"","type":"text/vnd.tiddlywiki","text":"[img [https://upload.wikimedia.org/wikipedia/en/b/b9/MagrittePipe.jpg]]","revision":"0","bag":"default"},
 
-{"title":"Configuration Options","created":"20220403175032310","modified":"20220416062055497","tags":"Info","type":"text/vnd.tiddlywiki","text":"!!! ''scroll-snap-type'' in wide view (is \"x mandatory\" in narrow view):\n\u003C$edit-text tag=\"input\" tiddler=\"$:/config/scroll-snap-type\" default=\"\" placeholder=\"scroll-snap-type\"/>\u003Cbr>\n\u003Chr>\n\n!!! ''scroll duration'' in x-direction:\n\u003C$edit-text tag=\"input\" tiddler=\"$:/config/scroll-x-duration\" default=\"\" placeholder=\"scroll-x-duration\"/>\u003Cbr>\n\u003Chr>\n\n!!! ''tiddler margin-bottom'':\n\u003C$edit-text tag=\"input\" tiddler=\"$:/config/story-river/tiddler-margin\" default=\"\" placeholder=\"tiddler margin-bottom\"/>\u003Cbr>\n\u003Chr>\n\n!!! ''tiddler border-thickness'':\n\u003C$edit-text tag=\"input\" tiddler=\"$:/config/story-river/tiddler-border\" default=\"\" placeholder=\"tiddler border-thickness\"/>\u003Cbr>\n\u003Chr>\n\n!!! ''amount of columns in horizontal view'':\n\u003C$edit-text tag=\"input\" tiddler=\"$:/config/story-river/horizontal/columns\" default=\"\" placeholder=\"amount of columns\"/>\u003Cbr>\n\u003Chr>\n\n!!! ''show the search panel on top or bottom'':\n\u003C$select tiddler=\"$:/config/story-river/search-panel\" default=\"bottom\">\n\u003Coption value=\"bottom\">bottom\u003C/option>\n\u003Coption value=\"top\">top\u003C/option>\n\u003C/$select>\n\n!!! ''show the bottom right panel'':\n\u003C$checkbox tiddler=\"$:/config/story-river/bottom-right-panel\" field=\"text\" checked=\"yes\" unchecked=\"no\" default=\"yes\"> show or hide\u003C/$checkbox>\n\n!!! show the ''side panel'' on the ''right'' or the ''left'':\n\u003C$select tiddler=\"$:/config/panel/position\" default=\"right\">\n\u003Coption value=\"right\">right\u003C/option>\n\u003Coption value=\"left\">left\u003C/option>\n\u003C/$select>","revision":"0","bag":"default"},
+{"title":"Configuration Options","created":"20220403175032310","modified":"20220416072706536","tags":"Info","type":"text/vnd.tiddlywiki","text":"!!! ''scroll-snap-type'' in wide view (is \"x mandatory\" in narrow view):\n\u003C$edit-text tag=\"input\" tiddler=\"$:/config/scroll-snap-type\" default=\"\" placeholder=\"scroll-snap-type\"/>\u003Cbr>\n\u003Chr>\n\n!!! ''scroll duration'' in x-direction:\n\u003C$edit-text tag=\"input\" tiddler=\"$:/config/scroll-x-duration\" default=\"\" placeholder=\"scroll-x-duration\"/>\u003Cbr>\n\u003Chr>\n\n!!! ''tiddler margin-bottom'':\n\u003C$edit-text tag=\"input\" tiddler=\"$:/config/story-river/tiddler-margin\" default=\"\" placeholder=\"tiddler margin-bottom\"/>\u003Cbr>\n\u003Chr>\n\n!!! ''tiddler border-thickness'':\n\u003C$edit-text tag=\"input\" tiddler=\"$:/config/story-river/tiddler-border\" default=\"\" placeholder=\"tiddler border-thickness\"/>\u003Cbr>\n\u003Chr>\n\n!!! ''amount of columns in horizontal view'':\n\u003C$edit-text tag=\"input\" tiddler=\"$:/config/story-river/horizontal/columns\" default=\"\" placeholder=\"amount of columns\"/>\u003Cbr>\n\u003Chr>\n\n!!! ''show the search panel on top or bottom'':\n\u003C$select tiddler=\"$:/config/story-river/search-panel\" default=\"bottom\">\n\u003Coption value=\"bottom\">bottom\u003C/option>\n\u003Coption value=\"top\">top\u003C/option>\n\u003C/$select>\n\u003Chr>\n\n!!! ''show the bottom right panel'':\n\u003C$checkbox tiddler=\"$:/config/story-river/bottom-right-panel\" field=\"text\" checked=\"yes\" unchecked=\"no\" default=\"yes\"> show or hide\u003C/$checkbox>\n\u003Chr>\n\n!!! show the ''side panel'' on the ''right'' or the ''left'':\n\u003C$select tiddler=\"$:/config/panel/position\" default=\"right\">\n\u003Coption value=\"right\">right\u003C/option>\n\u003Coption value=\"left\">left\u003C/option>\n\u003C/$select>","revision":"0","bag":"default"},
 
 {"title":"Keyboard Shortcuts","created":"20220328115216253","modified":"20220412165805752","tags":"Info","type":"text/vnd.tiddlywiki","text":"\u003Ckbd>Alt-Right\u003C/kbd>: next column\u003Cbr>\n\u003Ckbd>Alt-Left\u003C/kbd>: previous column\u003Cbr>\n\u003Ckbd>Alt-Shift-S\u003C/kbd>: sidebar / panel\u003Cbr>\n\u003Ckbd>Alt-D\u003C/kbd>: dragging toggle\u003Cbr>\n\u003Ckbd>Ctrl-Alt-N\u003C/kbd>: new column\u003Cbr>\n\u003Ckbd>Ctrl-Alt-M\u003C/kbd>: remove column\u003Cbr>\n\u003Ckbd>Alt-S\u003C/kbd>: scroll-snap-type x toggle\u003Cbr>\n\u003Ckbd>Alt-F\u003C/kbd>: search panel\u003Cbr>\n\u003Chr>","revision":"0","bag":"default"},
 
