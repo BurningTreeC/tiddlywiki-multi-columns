@@ -9,7 +9,7 @@ dragging $onoff$ - [$(draggingShortcut)$]
 \end
 
 \whitespace trim
-<$vars draggingShortcut=<<displayshortcuts ((dragging-toggle))>> state="$:/dragging-enabled">
+<$vars draggingShortcut=<<displayshortcuts ((dragging-toggle))>> state="$:/config/story-river/dragging-enable">
 <$reveal state=<<state>> type="nomatch" text="no">
 <$button class=<<get-button-class "tc-selected">> tooltip=<<get-dragging-tooltip "off">>>
 <$action-setfield $tiddler=<<state>> text="no"/>
