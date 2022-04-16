@@ -4,7 +4,7 @@ caption: Ensemble
 
 \whitespace trim
 \define save-story-actions-inner()
-<$action-setfield $tiddler="$:/Story/$(storyTitle)$" columns={{$:/columns!!list}}/>
+<$action-setfield $tiddler="$:/Story/$(storyTitle)$" columns={{$:/columns!!list}} view={{{ [{$:/scroll-snap-x}!match[yes]then[vertical]else[horizontal]] }}}/>
 <$list filter="[list[$:/columns]]" variable="column">
 <$action-setfield $tiddler="$:/Story/$(storyTitle)$" $field={{{ [[story-]addsuffix<column>] }}} $value={{{ [[$:/StoryList-]addsuffix<column>!match[StoryList-1]get[list]] ~[[$:/StoryList]get[list]] }}}/>
 </$list>
@@ -27,6 +27,7 @@ Do you want to overwrite?""">
 
 \define load-story-actions()
 <$action-setfield $tiddler="$:/columns" list={{{ [<storyTiddler>get[columns]] }}}/>
+<$action-setfield $tiddler="$:/scroll-snap-x" text={{{ [<storyTiddler>get[view]match[horizontal]then[yes]else[no]] }}}/>
 <$list filter="[<storyTiddler>fields[]prefix[story-]]" variable="storyField">
 <$let storyNumber={{{ [<storyField>removeprefix[story-]] }}} storyTitle={{{ [[$:/StoryList-]addsuffix<storyNumber>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
 <$action-setfield $tiddler=<<storyTitle>> list={{{ [<storyTiddler>get<storyField>] }}}/>
