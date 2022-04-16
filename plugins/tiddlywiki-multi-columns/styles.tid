@@ -405,6 +405,23 @@ tags: $:/tags/Stylesheet
 	fill: <<colour muted-foreground>>;
 }
 
+.tc-panel-show:hover svg {
+	fill: <<colour foreground>>;
+}
+
+<$list filter="[{$:/config/panel/position}match[left]]">
+
+.tc-panel-show {
+	left: 5px;
+	right: inherit;
+}
+
+.tc-panel-show svg {
+	transform: rotate(180deg);
+}
+
+</$list>
+
 .tc-panel-close:hover, .tc-search-panel-close:hover {
 	background-color: <<colour foreground>>;
 }

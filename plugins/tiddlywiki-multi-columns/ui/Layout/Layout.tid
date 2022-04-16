@@ -69,29 +69,31 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 			</main>
 		</div>
 	</main>
-	<div class={{{ [{$:/state/panel/visibility}match[yes]then[tc-panel tc-panel-from-right tc-panel-is-visible]else[tc-panel tc-panel-from-right]] }}}>
-		<header class="tc-panel-header">
-			<h1>{{$:/SiteTitle}}</h1>
-			<h4>{{$:/SiteSubtitle}}</h4>
-			<$button tag="a" class="tc-panel-close tc-btn-invisible" set="$:/state/panel/visibility" setTo="no">Close</$button>
-		</header>
-		<$scrollable fallthrough="no" class="tc-panel-container">
-			<div class="tc-panel-content">
-				<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-					<div class="tc-sidebar-flexpanel">
-						<div class="tc-sidebar-flexpanel-column-container">
-							<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
-								<$button tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/><$list filter="[{$:/scroll-snap-x}match[yes]]" variable="ignore"><$action-sendmessage $message="tm-force-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>] }}} animationDuration={{$:/config/scroll-x-duration}}/></$list>"""></$button>
-							</$list>
+	<$set name="rightOrLeft" value={{{ [{$:/config/panel/position}match[left]then[tc-panel-from-left]else[tc-panel-from-right]] }}}>
+		<div class={{{ [{$:/state/panel/visibility}match[yes]then[tc-panel tc-panel-is-visible ]else[tc-panel ]addsuffix<rightOrLeft>] }}}>
+			<header class="tc-panel-header">
+				<h1>{{$:/SiteTitle}}</h1>
+				<h4>{{$:/SiteSubtitle}}</h4>
+				<$button tag="a" class="tc-panel-close tc-btn-invisible" set="$:/state/panel/visibility" setTo="no">Close</$button>
+			</header>
+			<$scrollable fallthrough="no" class="tc-panel-container">
+				<div class="tc-panel-content">
+					<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+						<div class="tc-sidebar-flexpanel">
+							<div class="tc-sidebar-flexpanel-column-container">
+								<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
+									<$button tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/><$list filter="[{$:/scroll-snap-x}match[yes]]" variable="ignore"><$action-sendmessage $message="tm-force-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>] }}} animationDuration={{$:/config/scroll-x-duration}}/></$list>"""></$button>
+								</$list>
+							</div>
 						</div>
-					</div>
-					{{$:/core/ui/SideBarSegments/search}}
-					{{$:/core/ui/SideBarSegments/page-controls}}
-					{{$:/core/ui/SideBarSegments/tabs}}
-				</$navigator>
-			</div>
-		</$scrollable>
-	</div>
+						{{$:/core/ui/SideBarSegments/search}}
+						{{$:/core/ui/SideBarSegments/page-controls}}
+						{{$:/core/ui/SideBarSegments/tabs}}
+					</$navigator>
+				</div>
+			</$scrollable>
+		</div>
+	</$set>
 	<$set name="topOrBottom" value={{{ [{$:/config/story-river/search-panel}match[top]then[tc-search-panel-from-top]else[tc-search-panel-from-bottom]] }}}>
 		<div class={{{ [[$:/state/search-panel]!is[missing]then[tc-search-panel tc-search-panel-is-visible tc-popup-handle tc-popup-keep ]else[tc-search-panel ]] +[addsuffix<topOrBottom>] }}}>
 			<div class="tc-search-panel-inner tc-popup-keep">
