@@ -9,6 +9,13 @@
 				"name": "multi-column",
 				"description": "MultiColumn StoryView"
 			}
+		},{
+			"file": "modules/startup/rootwidget-extend.js",
+			"fields": {
+				"type": "application/javascript",
+				"title": "$:/plugins/BTC/tiddlywiki-multi-columns/modules/startup/rootwidget-extend.js",
+				"module-type": "startup"
+			}
 		}
 	]
 }

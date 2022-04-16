@@ -4,7 +4,7 @@ key: ((toggle-sidebar))
 
 <$list filter="[{$:/state/panel/visibility}match[yes]]" emptyMessage="""
 <$action-setfield $tiddler="$:/state/panel/visibility" text="yes"/>
-<$action-sendmessage $message="tm-focus-selector" $param=".tc-panel-container .tc-panel-content .tc-sidebar-search input" delay={{$:/config/AnimationDuration}}/>
+<$action-sendmessage $message="tm-focus-selector-deferred" $param=".tc-panel-container .tc-panel-content .tc-sidebar-search input" delay={{$:/config/AnimationDuration}}/>
 """>
 <$action-setfield $tiddler="$:/state/panel/visibility" text="no"/>
 </$list>
