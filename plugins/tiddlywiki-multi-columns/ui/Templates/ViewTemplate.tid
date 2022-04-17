@@ -33,14 +33,32 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/ViewTemplate
 </$list>
 </$set>
 \end
+\define navigate-actions()
+<$list filter="[<modifier>match[shift]]" variable="ignore" emptyMessage="""
+<$action-sendmessage $message="tm-navigate" navigateTo=<<navigateTo>> navigateFromTitle=<<event-navigateFromTitle>>/>
+""">
+<$set name="nextColumn" value={{{ [<currentColumn>add[1]] }}}>
+<$let storyList={{{ [[$:/StoryList-]addsuffix<nextColumn>] }}} historyList={{{ [[$:/HistoryList-]addsuffix<nextColumn>] }}}>
+<$list filter="[[$:/columns]!contains<nextColumn>]" variable="ignore">
+<$action-listops $tiddler="$:/columns" $subfilter="[<nextColumn>]"/>
+</$list>
+<$navigator story=<<storyList>> history=<<historyList>> openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+<$action-navigate $to=<<navigateTo>>/>
+</$navigator>
+</$let>
+</$set>
+</$list>
+\end
 \define cancel-delete-tiddler-actions(message) <$action-sendmessage $message="tm-$message$-tiddler"/>
 \import [all[shadows+tiddlers]tag[$:/tags/Macro/View]!has[draft.of]]
 <$vars storyTiddler=<<currentTiddler>> tiddlerInfoState=<<qualify "$:/state/popup/tiddler-info">> folded-state=<<qualify "$:/state/folded">>>
 <div data-tiddler-title=<<currentTiddler>> data-tags={{!!tags}} class={{{ tc-tiddler-view-frame tc-tiddler-zindex-frame [<currentTiddler>is[tiddler]then[tc-tiddler-exists]] [<currentTiddler>is[missing]!is[shadow]then[tc-tiddler-missing]] [<currentTiddler>is[shadow]then[tc-tiddler-exists tc-tiddler-shadow]] [<currentTiddler>is[shadow]is[tiddler]then[tc-tiddler-overridden-shadow]] [<currentTiddler>is[system]then[tc-tiddler-system]] [{!!class}] [<currentTiddler>tags[]encodeuricomponent[]addprefix[tc-tagged-]] +[join[ ]] }}}>
 <$draggable enable={{$:/config/story-river/dragging-enable}} tiddler=<<currentTiddler>> startactions=<<drag-start-actions>> endactions=<<drag-end-actions>> class="tc-tiddler-frame">
+<$messagecatcher $tm-navigate=<<navigate-actions>>>
 <$list filter="[all[shadows+tiddlers]tag[$:/tags/ViewTemplate]!has[draft.of]]" variable="listItem">
 <$transclude tiddler=<<listItem>>/>
 </$list>
+</$messagecatcher>
 <$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" starting-next-tiddler="" copying="" target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} river=<<currentColumn>> next-tiddler=""/>""" dragendactions=<<top-drop-actions>>>
 </$droppable>
 <$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" starting-next-tiddler="" copying="" target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}} river=<<currentColumn>> next-tiddler=""/>""" dragendactions=<<bottom-drop-actions>>>
