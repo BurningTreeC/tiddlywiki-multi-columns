@@ -777,13 +777,13 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 .tc-droppable-top-half {
 	position: absolute;
-	top: -{{$:/config/story-river/tiddler-margin}}px;
+	top: calc(-{{$:/config/story-river/tiddler-margin}}px - {{$:/config/story-river/tiddler-border}}px);
 	left: calc(-15px - {{$:/config/story-river/tiddler-border}}px);
 	height: calc(50% + {{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/tiddler-border}}px);
 	width: calc(100% + 30px + (2 * {{$:/config/story-river/tiddler-border}}px));
 	display: none;
 	z-index: 501;
-	border: 1px solid black;
+	border: 1px solid red;
 }
 
 .tc-tiddler-view-frame:first-of-type .tc-droppable-top-half, .tc-tiddler-edit-frame:first-of-type .tc-droppable-top-half {
@@ -799,7 +799,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	width: calc(100% + 30px + (2 * {{$:/config/story-river/tiddler-border}}px));
 	z-index: 501;
 	display: none;
-	border: 1px solid black;
+	border: 1px solid green;
 }
 
 .tc-droppable-top-half.tc-dragover {
