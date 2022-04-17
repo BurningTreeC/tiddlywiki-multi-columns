@@ -25,6 +25,15 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate
 <$action-sendmessage $message="tm-delete-tiddler"/>
 </$list>
 <$list filter="[[$message$]match[cancel]]" variable="ignore">
+<$list filter="[<currentTiddler>get[draft.of]is[missing]]" variable="ignore">
+<$list filter="[list[$:/columns]!match<currentColumn>]" variable="column">
+<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
+<$list filter="[<storyList>contains<currentTiddler>]" variable="ignore">
+<$action-listops $tiddler=<<storyList>> $subfilter="-[<currentTiddler>]"/>
+</$list>
+</$set>
+</$list>
+</$list>
 <<delete-edittemplate-state-tiddlers>>
 <$action-sendmessage $message="tm-cancel-tiddler"/>
 </$list>
