@@ -803,26 +803,17 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 
 .tc-droppable-top-half.tc-dragover {
-	height: calc(50% + (2 * {{$:/config/story-river/tiddler-margin}}px) + (2 * {{$:/config/story-river/tiddler-border}}px) + {{$:/state/dragging!!height}}px);
-	top: calc(-{{$:/state/dragging!!height}}px - (2 * {{$:/config/story-river/tiddler-margin}}px) - (2 * {{$:/config/story-river/tiddler-border}}px));
+	height: calc(50% + (2 * {{$:/config/story-river/tiddler-margin}}px) + {{$:/state/dragging!!height}}px);
+	top: calc(-{{$:/state/dragging!!height}}px - (2 * {{$:/config/story-river/tiddler-margin}}px));
 }
 
 .tc-tiddler-view-frame:first-of-type .tc-droppable-top-half.tc-dragover, .tc-tiddler-edit-frame:first-of-type .tc-droppable-top-half.tc-dragover {
-	height: calc(50% + {{$:/config/story-river/tiddler-margin}}px + (2 * {{$:/config/story-river/tiddler-border}}px) + 15px + {{$:/state/dragging!!height}}px);
-	top: calc(-{{$:/state/dragging!!height}}px - {{$:/config/story-river/tiddler-margin}}px - (2 * {{$:/config/story-river/tiddler-border}}px) - 15px);
+	height: calc(50% + {{$:/config/story-river/tiddler-margin}}px + 15px + {{$:/state/dragging!!height}}px);
+	top: calc(-{{$:/state/dragging!!height}}px - {{$:/config/story-river/tiddler-margin}}px - 15px);
 }
 
 .tc-droppable-bottom-half.tc-dragover {
-	height: calc(50% + {{$:/config/story-river/tiddler-margin}}px + (2 * {{$:/config/story-river/tiddler-border}}px) + 15px + {{$:/state/dragging!!height}}px);
-}
-
-.tc-droppable-bottom-half.tc-dragover > .tc-droppable-placeholder-bottom-drop {
-	bottom: 0;
-	margin-bottom: calc({{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/tiddler-border}}px);
-}
-
-.tc-droppable-top-half.tc-dragover .tc-droppable-placeholder, .tc-droppable-bottom-half.tc-dragover .tc-droppable-placeholder {
-	border: none;
+	height: calc(50% + {{$:/config/story-river/tiddler-margin}}px + {{$:/state/dragging!!height}}px);
 }
 
 <$list filter="[{$:/state/dragging}match[yes]]">
