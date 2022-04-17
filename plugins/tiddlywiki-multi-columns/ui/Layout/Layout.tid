@@ -30,7 +30,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 		</$list>
 		<div class="flextemplate-container">
 			<header class="column-config column-config-top">
-				<$list filter="[all[tiddlers+shadows]tag[$:/tags/Toolbar]!is[draft]]">
+				<$list filter="[all[tiddlers+shadows]tag[$:/tags/TopToolbar]!is[draft]]">
 					<div class="column-container">
 						<$transclude mode="block"/>
 					</div>
@@ -71,6 +71,13 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 					</$list>
 				</$navigator>
 			</main>
+			<header class="column-config column-config-bottom">
+				<$list filter="[all[tiddlers+shadows]tag[$:/tags/BottomToolbar]!is[draft]]">
+					<div class="column-container">
+						<$transclude mode="block"/>
+					</div>
+				</$list>
+			</header>
 		</div>
 	</main>
 	<$set name="rightOrLeft" value={{{ [{$:/config/panel/position}match[left]then[tc-panel-from-left]else[tc-panel-from-right]] }}}>
