@@ -777,6 +777,11 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	border-right: 1px dashed <<colour primary>>;
 }
 
+.tc-sidebar-flexpanel-column-counter {
+	width: 100%;
+	text-align: center;
+}
+
 .tc-droppable-top-half {
 	position: absolute;
 	top: calc(-{{$:/config/story-river/tiddler-margin}}px - {{$:/config/story-river/tiddler-border}}px);
