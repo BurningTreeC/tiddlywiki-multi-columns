@@ -28,7 +28,7 @@ tags: $:/tags/Stylesheet
 \define target-tiddler-margin()
 
 .tc-river-$(currentRiver)$ .tc-tiddler-view-frame:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame, .tc-river-$(currentRiver)$ .tc-tiddler-edit-frame:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame {
-	margin-top: calc({{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/tiddler-border}}px);
+	margin-top: calc({{$:/config/story-river/tiddler-margin}}px);
 }
 
 .tc-river-$(currentRiver)$ .tc-tiddler-view-frame:first-of-type:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame, .tc-river-$(currentRiver)$ .tc-tiddler-edit-frame:first-of-type:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame {
@@ -36,13 +36,13 @@ tags: $:/tags/Stylesheet
 }
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px) + (2 * {{$:/config/story-river/tiddler-border}}px));
+	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px));
 }
 
 <$list filter="[{$:/state/dragging!!nth}match[0]]">
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/tiddler-border}}px);
+	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px);
 }
 
 </$list>
@@ -66,13 +66,13 @@ tags: $:/tags/Stylesheet
 }
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px) + (2 * {{$:/config/story-river/tiddler-border}}px));
+	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px));
 }
 
 <$list filter="[{$:/state/dragging!!nth}match[0]]">
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/tiddler-border}}px);
+	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px);
 }
 
 </$list>
@@ -86,13 +86,13 @@ tags: $:/tags/Stylesheet
 }
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(dragTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px) + (2 * {{$:/config/story-river/tiddler-border}}px));
+	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px));
 }
 
 <$list filter="[{$:/state/dragging!!nth}match[0]]">
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(dragTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/tiddler-border}}px);
+	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px);
 }
 
 </$list>
@@ -108,7 +108,7 @@ tags: $:/tags/Stylesheet
 	border-bottom-width: {{$:/config/story-river/tiddler-border}}px;
 	border-left-width: {{$:/config/story-river/tiddler-border}}px;
 	border-right-width: {{$:/config/story-river/tiddler-border}}px;
-	margin-bottom: calc({{$:/config/story-river/tiddler-margin}}px + 1px);
+	margin-bottom: calc({{$:/config/story-river/tiddler-margin}}px);
 }
 
 .tc-panel {
