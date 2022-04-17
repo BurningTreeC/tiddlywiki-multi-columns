@@ -561,7 +561,7 @@ tags: $:/tags/Stylesheet
 
 	</$list>
 
-	.column-container > .tc-top-active-column {
+	.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > .tc-top-active-column {
 		overflow: hidden;
 	}
 }
