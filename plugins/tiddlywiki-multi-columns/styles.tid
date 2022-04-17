@@ -599,7 +599,7 @@ tags: $:/tags/Stylesheet
 </$list>
 
 .tc-river-inner {
-	padding: 15px 15px 15px 15px;
+	padding: {{$:/config/story-river/padding}}px;
 }
 
 .tc-column-active-button {
@@ -778,25 +778,25 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 .tc-droppable-top-half {
 	position: absolute;
 	top: calc(-{{$:/config/story-river/tiddler-margin}}px - {{$:/config/story-river/tiddler-border}}px);
-	left: calc(-15px - {{$:/config/story-river/tiddler-border}}px);
+	left: calc(-{{$:/config/story-river/padding}}px - {{$:/config/story-river/tiddler-border}}px);
 	height: calc(50% + {{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/tiddler-border}}px);
-	width: calc(100% + 30px + (2 * {{$:/config/story-river/tiddler-border}}px));
+	width: calc(100% + (2 * {{$:/config/story-river/padding}}px) + (2 * {{$:/config/story-river/tiddler-border}}px));
 	display: none;
 	z-index: 501;
 	border: 1px solid red;
 }
 
 .tc-tiddler-view-frame:first-of-type .tc-droppable-top-half, .tc-tiddler-edit-frame:first-of-type .tc-droppable-top-half {
-	top: calc(-15px - {{$:/config/story-river/tiddler-border}}px);
-	height: calc(50% + 15px + {{$:/config/story-river/tiddler-border}}px);
+	top: calc(-{{$:/config/story-river/padding}}px - {{$:/config/story-river/tiddler-border}}px);
+	height: calc(50% + {{$:/config/story-river/padding}}px + {{$:/config/story-river/tiddler-border}}px);
 }
 
 .tc-droppable-bottom-half {
 	position: absolute;
 	top: 50%;
-	left: calc(-15px - {{$:/config/story-river/tiddler-border}}px);
+	left: calc(-{{$:/config/story-river/padding}}px - {{$:/config/story-river/tiddler-border}}px);
 	height: calc(50% + {{$:/config/story-river/tiddler-border}}px);
-	width: calc(100% + 30px + (2 * {{$:/config/story-river/tiddler-border}}px));
+	width: calc(100% + (2 * {{$:/config/story-river/padding}}px) + (2 * {{$:/config/story-river/tiddler-border}}px));
 	z-index: 501;
 	display: none;
 	border: 1px solid green;
@@ -808,8 +808,8 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 
 .tc-tiddler-view-frame:first-of-type .tc-droppable-top-half.tc-dragover, .tc-tiddler-edit-frame:first-of-type .tc-droppable-top-half.tc-dragover {
-	height: calc(50% + {{$:/config/story-river/tiddler-margin}}px + 15px + {{$:/state/dragging!!height}}px);
-	top: calc(-{{$:/state/dragging!!height}}px - {{$:/config/story-river/tiddler-margin}}px - 15px);
+	height: calc(50% + {{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/padding}}px + {{$:/state/dragging!!height}}px);
+	top: calc(-{{$:/state/dragging!!height}}px - {{$:/config/story-river/tiddler-margin}}px - {{$:/config/story-river/padding}}px);
 }
 
 .tc-droppable-bottom-half.tc-dragover {
@@ -874,8 +874,8 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 .tc-river-inner > .tc-droppable {
 	position: absolute;
-	height: calc(100% - 30px);
-	width: calc(100% - 30px);
+	height: calc(100% - (2 * {{$:/config/story-river/padding}}px));
+	width: calc(100% - (2 * {{$:/config/story-river/padding}}px));
 }
 
 </$list>
