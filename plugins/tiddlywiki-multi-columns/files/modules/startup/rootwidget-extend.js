@@ -45,10 +45,6 @@ exports.startup = function() {
 			focusSelector(selector);
 		}
 	});
-	$tw.rootWidget.addEventListener("tm-force-scroll",function(event) {
-		event.type = "tm-scroll";
-		$tw.pageScroller.handleEvent(event);
-	});
 };
 
 })();
