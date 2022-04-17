@@ -31,7 +31,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 		<div class="flextemplate-container">
 			<header class="column-config column-config-top">
 				<$list filter="[all[tiddlers+shadows]tag[$:/tags/TopToolbar]!is[draft]]">
-					<div class="column-container">
+					<div class="column-container tc-top-toolbar">
 						<$transclude mode="block"/>
 					</div>
 				</$list>
@@ -73,7 +73,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 			</main>
 			<header class="column-config column-config-bottom">
 				<$list filter="[all[tiddlers+shadows]tag[$:/tags/BottomToolbar]!is[draft]]">
-					<div class="column-container">
+					<div class="column-container tc-bottom-toolbar">
 						<$transclude mode="block"/>
 					</div>
 				</$list>
