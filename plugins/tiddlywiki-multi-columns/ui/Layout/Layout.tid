@@ -86,7 +86,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 						<div class="tc-sidebar-flexpanel">
 							<div class="tc-sidebar-flexpanel-column-container">
 								<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
-									<$button tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/><$list filter="[{$:/config/scroll-snap-x}match[yes]]" variable="ignore"><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>] }}} animationDuration={{$:/config/scroll-x-duration}}/></$list>"""></$button>
+									<$button tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/><$list filter="[{$:/config/scroll-snap-x}match[yes]]" variable="ignore"><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>] }}} animationDuration={{$:/config/scroll-x-duration}} passThrough="yes"/></$list>"""></$button>
 								</$list>
 							</div>
 						</div>
