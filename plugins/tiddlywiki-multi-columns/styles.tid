@@ -101,6 +101,8 @@ tags: $:/tags/Stylesheet
 
 \end
 
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+
 <<set-color-scheme>>
 
 .tc-river-inner .tc-tiddler-frame {
@@ -783,7 +785,6 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	width: calc(100% + (2 * {{$:/config/story-river/padding}}px) + (2 * {{$:/config/story-river/tiddler-border}}px));
 	display: none;
 	z-index: 501;
-	border: 1px solid red;
 }
 
 .tc-tiddler-view-frame:first-of-type .tc-droppable-top-half, .tc-tiddler-edit-frame:first-of-type .tc-droppable-top-half {
@@ -799,7 +800,6 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	width: calc(100% + (2 * {{$:/config/story-river/padding}}px) + (2 * {{$:/config/story-river/tiddler-border}}px));
 	z-index: 501;
 	display: none;
-	border: 1px solid green;
 }
 
 .tc-droppable-top-half.tc-dragover {
@@ -946,3 +946,5 @@ hr.simple {
 }
 
 {{$:/config/StoryViewAnimations}}
+
+</$list>
