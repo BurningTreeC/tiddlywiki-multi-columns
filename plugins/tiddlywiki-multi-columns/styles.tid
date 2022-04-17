@@ -783,6 +783,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	width: calc(100% + 30px + (2 * {{$:/config/story-river/tiddler-border}}px));
 	display: none;
 	z-index: 501;
+	border: 1px solid black;
 }
 
 .tc-tiddler-view-frame:first-of-type .tc-droppable-top-half, .tc-tiddler-edit-frame:first-of-type .tc-droppable-top-half {
@@ -798,6 +799,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	width: calc(100% + 30px + (2 * {{$:/config/story-river/tiddler-border}}px));
 	z-index: 501;
 	display: none;
+	border: 1px solid black;
 }
 
 .tc-droppable-top-half.tc-dragover {
@@ -858,7 +860,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 <$set name="currentRiver" value={{$:/state/dragging!!river}}>
 
-<$set name="story" value={{{ [[$:/StoryList-]addsuffix<currentRiver>] }}}>
+<$set name="story" value={{{ [[$:/StoryList-]addsuffix<currentRiver>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
 
 <$set name="targetTiddler" value={{$:/state/dragging!!target}}>
 
