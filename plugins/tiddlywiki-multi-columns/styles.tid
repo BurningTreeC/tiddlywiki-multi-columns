@@ -806,6 +806,10 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 .tc-sidebar-flexpanel-column-counter {
 	width: 100%;
 	text-align: center;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 
 .tc-droppable-top-half {
