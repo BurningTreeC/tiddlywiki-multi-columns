@@ -1,0 +1,11 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/move-left
+
+\whitespace trim
+<$button actions={{$:/plugins/BTC/tiddlywiki-multi-columns/ui/Actions/move-left}} tooltip={{$:/language/Buttons/MoveLeft/Hint}} aria-label={{$:/language/Buttons/MoveLeft/Caption}} class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/left-arrow}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text"><$text text={{$:/language/Buttons/MoveLeft/Caption}}/></span>
+</$list>
+</$button>

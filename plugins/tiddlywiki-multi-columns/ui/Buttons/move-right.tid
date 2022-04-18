@@ -1,0 +1,11 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/move-right
+
+\whitespace trim
+<$button actions={{$:/plugins/BTC/tiddlywiki-multi-columns/ui/Actions/move-right}} tooltip={{$:/language/Buttons/MoveRight/Hint}} aria-label={{$:/language/Buttons/MoveRight/Caption}} class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/right-arrow}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text"><$text text={{$:/language/Buttons/MoveRight/Caption}}/></span>
+</$list>
+</$button>
