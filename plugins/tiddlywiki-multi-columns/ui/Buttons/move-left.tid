@@ -22,6 +22,7 @@ tags: $:/tags/ViewToolbar
 </$list>
 </$let>
 \end
+<$list filter="[<currentColumn>!match[1]]" variable="ignore">
 <$button actions=<<move-left-actions>> tooltip={{$:/language/Buttons/MoveLeft/Hint}} aria-label={{$:/language/Buttons/MoveLeft/Caption}} class=<<tv-config-toolbar-class>>>
 <$list filter="[<tv-config-toolbar-icons>match[yes]]">
 {{$:/core/images/left-arrow}}
@@ -30,3 +31,4 @@ tags: $:/tags/ViewToolbar
 <span class="tc-btn-text"><$text text={{$:/language/Buttons/MoveLeft/Caption}}/></span>
 </$list>
 </$button>
+</$list>
