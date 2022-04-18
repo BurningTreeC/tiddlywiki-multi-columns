@@ -1,7 +1,7 @@
-title: $:/core/ui/KeyboardShortcuts/new-tiddler
+title: $:/core/ui/KeyboardShortcuts/new-image
 tags: $:/tags/KeyboardShortcut
-key: ((new-tiddler))
+key: ((new-image))
 
 <$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-{{$:/core/ui/Actions/new-tiddler}}
+{{$:/core/ui/Actions/new-image}}
 </$navigator>
