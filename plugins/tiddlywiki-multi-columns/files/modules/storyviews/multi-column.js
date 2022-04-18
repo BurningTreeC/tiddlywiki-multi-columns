@@ -91,7 +91,7 @@ MultiColumnStoryView.prototype.remove = function(widget) {
 		}
 		setTimeout(function() {
 			removeElement();
-			widget.wiki.deleteTiddler("$:/state/removing/" + targetElement.attributes["data-tiddler-title"].value);
+			widget.wiki.deleteTiddler("$:/state/removing/from-story/" + targetElement.attributes["data-tiddler-title"].value);
 			widget.wiki.deleteTiddler("$:/state/removing/to-right/" + targetElement.attributes["data-tiddler-title"].value);
 			widget.wiki.deleteTiddler("$:/state/removing/to-left/" + targetElement.attributes["data-tiddler-title"].value);
 		},duration);
