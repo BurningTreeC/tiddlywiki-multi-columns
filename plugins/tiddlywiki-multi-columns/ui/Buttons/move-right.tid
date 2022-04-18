@@ -10,12 +10,20 @@ tags: $:/tags/ViewToolbar
 <$action-setfield $tiddler=<<historyList>> current-tiddler={{{ [list<storyList>after<currentTiddler>] ~[list<storyList>before<currentTiddler>] }}}/>
 <$action-listops $tiddler=<<storyList>> $subfilter="-[<currentTiddler>]"/>
 <$list filter="[<nextHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage="""
+<$list filter="[<nextStoryList>contains<firstNextStoryTiddler>]" variable="ignore" emptyMessage='
+<$action-listops $tiddler=<<nextStoryList>> $subfilter="[<currentTiddler>]"/>
+'>
 <$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<currentTiddler>,<firstNextStoryTiddler>]"/>
+</$list>
 <$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<currentTiddler>>/>
 """>
 <$set name="nextStoryFocusedTiddler" value={{{ [<nextHistoryList>get[current-tiddler]] }}}>
 <$list filter="[<nextStoryList>contains<nextStoryFocusedTiddler>]" variable="ignore" emptyMessage="""
+<$list filter="[<firstNextStoryTiddler>!is[blank]]" variable="ignore" emptyMessage='
+<$action-listops $tiddler=<<nextStoryList>> $subfilter="[<currentTiddler>]"/>
+'>
 <$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<currentTiddler>,<firstNextStoryTiddler>]"/>
+</$list>
 """>
 <$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<currentTiddler>,<nextStoryFocusedTiddler>]"/>
 </$list>
