@@ -6,8 +6,8 @@ key: ((previous-column))
 	<$set name="columnCount" value={{{ [list[$:/columns]count[]] ~1 }}}>
 		<$list filter="[list[$:/columns]before<currentColumn>] ~[<columnCount>]" variable="nextColumn">
 			<$action-setfield $tiddler="$:/columns" active-column=<<nextColumn>>/>
-			<$let previousStoryList={{{ [[$:/StoryList]addsuffix<nextColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} previousHistoryList={{{ [[$:/HistoryList]addsuffix<nextColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}}>
-				<$list filter="[<previousHistoryList>get[current-tiddler]match[]]" variable="ignore">
+			<$let previousStoryList={{{ [[$:/StoryList-]addsuffix<nextColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} previousHistoryList={{{ [[$:/HistoryList-]addsuffix<nextColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} currentTiddler={{{ [<previousHistoryList>get[current-tiddler]] }}}>
+				<$list filter="[<currentTiddler>is[blank]] [<previousStoryList>!contains<currentTiddler>] +[limit[1]]" variable="ignore">
 					<$action-setfield $tiddler=<<previousHistoryList>> current-tiddler={{{ [list<previousStoryList>nth[1]] }}}/>
 				</$list>
 			</$let>

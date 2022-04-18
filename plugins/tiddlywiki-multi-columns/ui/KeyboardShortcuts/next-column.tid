@@ -5,8 +5,8 @@ key: ((next-column))
 <$set name="currentColumn" value={{{ [[$:/columns]get[active-column]] ~1 }}}>
 	<$list filter="[list[$:/columns]after<currentColumn>] ~1" variable="nextColumn">
 		<$action-setfield $tiddler="$:/columns" active-column=<<nextColumn>>/>
-		<$let nextStoryList={{{ [[$:/StoryList]addsuffix<nextColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} nextHistoryList={{{ [[$:/HistoryList]addsuffix<nextColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}}>
-			<$list filter="[<nextHistoryList>get[current-tiddler]match[]]" variable="ignore">
+		<$let nextStoryList={{{ [[$:/StoryList-]addsuffix<nextColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} nextHistoryList={{{ [[$:/HistoryList-]addsuffix<nextColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} currentTiddler={{{ [<nextHistoryList>get[current-tiddler]] }}}>
+			<$list filter="[<currentTiddler>is[blank]] [<nextStoryList>!contains<currentTiddler>] +[limit[1]]" variable="ignore">
 				<$action-setfield $tiddler=<<nextHistoryList>> current-tiddler={{{ [list<nextStoryList>nth[1]] }}}/>
 			</$list>
 		</$let>
