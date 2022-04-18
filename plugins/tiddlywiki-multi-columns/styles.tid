@@ -17,6 +17,14 @@ tags: $:/tags/Stylesheet
 
 \end
 
+\define style-unfocused-tiddlers()
+
+.tc-river-$(column)$ .tc-river-inner [data-tiddler-title="$(cssEscapedTitle)$"] > .tc-tiddler-frame {
+	border: {{$:/config/story-river/tiddler-border}}px solid <<colour muted-foreground>>;
+}
+
+\end
+
 \define column-layout()
 
 <$list filter="[list[$:/columns]] ~1" variable="currentColumn">
@@ -987,6 +995,16 @@ hr.simple {
 <<style-focused-tiddler>>
 
 </$set>
+
+<$list filter="[list[$:/columns]!match<currentColumn>]" variable="column">
+
+<$let currentHistoryList={{{ [[$:/HistoryList-]addsuffix<column>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} cssEscapedTitle={{{ [<currentHistoryList>get[current-tiddler]escapecss[]] }}}>
+
+<<style-unfocused-tiddlers>>
+
+</$let>
+
+</$list>
 
 </$let>
 
