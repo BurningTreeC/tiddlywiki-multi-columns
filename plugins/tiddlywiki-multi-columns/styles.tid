@@ -629,6 +629,10 @@ tags: $:/tags/Stylesheet
 	background-color: <<colour column-active-button-light>>;
 }
 
+.tc-column-active-button:not(last-of-type) {
+	border-right: thin solid <<colour column-active-button-border>>;
+}
+
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
 .tc-column-active-button {
