@@ -59,10 +59,8 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 										</$eventcatcher>
 										<div class="tc-river-inner">
 											<$list filter="[list<tv-story-list>search{$:/state/search-panel/search}]" template="$:/plugins/BTC/tiddlywiki-multi-columns/ui/ViewTemplate" editTemplate="$:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate" storyview={{$:/view}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} emptyMessage="""<$set name="emptyMessageTiddler" value={{{ [[$:/EmptyMessage-]addsuffix<currentColumn>] }}}><$transclude tiddler=<<emptyMessageTiddler>> mode="block"/></$set>"""/>
-											<!--<$list filter="[list<tv-story-list>count[]match[0]]">-->
-												<$droppable actions="""<$action-setfield $tiddler="$:/state/drag-handled" text="yes"/><$action-listops $tiddler=<<tv-story-list>> $subfilter="[<actionTiddler>]"/>""" dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target="" starting-next-tiddler="" copying=""/>""">
-												</$droppable>
-											<!--</$list>-->
+											<$droppable actions="""<$action-setfield $tiddler="$:/state/drag-handled" text="yes"/><$action-listops $tiddler=<<tv-story-list>> $subfilter="[<actionTiddler>]"/>""" dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target="" starting-next-tiddler="" copying=""/>""">
+											</$droppable>
 										</div>
 									</$dropzone>
 								</$navigator>
