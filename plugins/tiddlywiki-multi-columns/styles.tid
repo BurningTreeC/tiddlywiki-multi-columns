@@ -576,7 +576,7 @@ tags: $:/tags/Stylesheet
 
 @media (max-width: 800px) {
 
-	.flextemplate-container .column-container {
+	.flextemplate-container .column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) {
 		display: flex;
 		scroll-snap-type: x mandatory;
 		overflow-x: scroll;
