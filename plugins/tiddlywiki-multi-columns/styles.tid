@@ -602,6 +602,10 @@ tags: $:/tags/Stylesheet
 	overflow: hidden;
 }
 
+.column-container.tc-top-toolbar > p, .column-container.tc-bottom-toolbar > p {
+	margin: 0;
+}
+
 /* Adjust width of things that were previously hardcoded */
 
 <$list filter="[list[$:/columns]] ~1" variable="currentColumn">
