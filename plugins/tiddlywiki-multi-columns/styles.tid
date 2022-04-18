@@ -444,7 +444,7 @@ tags: $:/tags/Stylesheet
 }
 
 .tc-panel-close::before, .tc-panel-close::after, .tc-search-panel-close::before, .tc-search-panel-close::after {
-	content: ' ';
+	content: " ";
 	position: absolute;
 	top: 22px;
 	left: 20px;
