@@ -4,6 +4,7 @@ tags: $:/tags/ViewToolbar
 \whitespace trim
 \define move-right-actions()
 <$let storyList=<<tv-story-list>> historyList=<<tv-history-list>> nextStoryCounter={{{ [<currentColumn>add[1]] }}} nextStoryList={{{ [<storyList>!match[$:/StoryList]removesuffix<currentColumn>addsuffix<nextStoryCounter>] ~[[$:/StoryList-2]] }}} nextHistoryList={{{ [<historyList>!match[$:/HistoryList]removesuffix<currentColumn>addsuffix<nextStoryCounter>] ~[[$:/HistoryList-2]] }}} firstNextStoryTiddler={{{ [list<nextStoryList>first[]] }}}>
+<$action-setfield $tiddler={{{ [[$:/state/removing/to-right/]addsuffix<currentTiddler>] }}} text=""/>
 <$list filter="[[$:/columns]!contains<nextStoryCounter>]" variable="ignore">
 <$action-listops $tiddler="$:/columns" $subfilter="[<nextStoryCounter>]"/>
 </$list>

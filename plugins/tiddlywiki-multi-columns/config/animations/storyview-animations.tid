@@ -4,7 +4,7 @@ title: $:/config/StoryViewAnimations
 
 @keyframes slide-in-$(insertTiddlerCSSEscaped)$ {
 	from {
-		transform: translateX(-100%);
+		transform: translateX($(percentage)$%);
 		margin-bottom: calc(-$(insertTiddlerHeight)$px - {{$:/config/story-river/tiddler-margin}}px);
 	} to {
 		transform: translateX(0%);
@@ -26,7 +26,7 @@ title: $:/config/StoryViewAnimations
 		transform: translateX(0%);
 		margin-bottom: 0px;
 	} to {
-		transform: translateX(-100%);
+		transform: translateX($(percentage)$%);
 		margin-bottom: calc(-$(removeTiddlerHeight)$px - {{$:/config/story-river/tiddler-margin}}px);
 	}
 }
@@ -38,9 +38,9 @@ title: $:/config/StoryViewAnimations
 
 \end
 
-<$list filter="[all[tiddlers]prefix[$:/state/inserting/]]" variable="insertStateTiddler">
+<$list filter="[all[tiddlers]prefix[$:/state/inserting/to-story/]]" variable="insertStateTiddler">
 
-<$let insertTiddler={{{ [<insertStateTiddler>removeprefix[$:/state/inserting/]] }}} insertTiddlerCSSEscaped={{{ [<insertTiddler>escapecss[]] }}} insertTiddlerHeight={{{ [<insertStateTiddler>get[height]] }}}>
+<$let insertTiddler={{{ [<insertStateTiddler>removeprefix[$:/state/inserting/to-story/]] }}} insertTiddlerCSSEscaped={{{ [<insertTiddler>escapecss[]] }}} insertTiddlerHeight={{{ [<insertStateTiddler>get[height]] }}} percentage={{{ [[$:/state/inserting/from-right/]addsuffix<insertTiddler>!is[missing]then[100]else[-100]] }}}>
 
 <<insert-keyframes>>
 
@@ -48,9 +48,9 @@ title: $:/config/StoryViewAnimations
 
 </$list>
 
-<$list filter="[all[tiddlers]prefix[$:/state/removing/]]" variable="removeStateTiddler">
+<$list filter="[all[tiddlers]prefix[$:/state/removing/from-story/]]" variable="removeStateTiddler">
 
-<$let removeTiddler={{{ [<removeStateTiddler>removeprefix[$:/state/removing/]] }}} removeTiddlerCSSEscaped={{{ [<removeTiddler>escapecss[]] }}} removeTiddlerHeight={{{ [<removeStateTiddler>get[height]] }}}>
+<$let removeTiddler={{{ [<removeStateTiddler>removeprefix[$:/state/removing/from-story/]] }}} removeTiddlerCSSEscaped={{{ [<removeTiddler>escapecss[]] }}} removeTiddlerHeight={{{ [<removeStateTiddler>get[height]] }}} percentage={{{ [[$:/state/removing/to-right/]addsuffix<removeTiddler>!is[missing]then[100]else[-100]] }}}>
 
 <<remove-keyframes>>
 

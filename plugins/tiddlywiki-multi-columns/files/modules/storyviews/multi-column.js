@@ -52,12 +52,12 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 			currMarginTop = parseInt(computedStyle.marginTop,10),
 			currHeight = targetElement.offsetHeight + currMarginTop;
 		if(targetElement.attributes["data-tiddler-title"]) {
-			widget.wiki.setText("$:/state/inserting/" + targetElement.attributes["data-tiddler-title"].value,"height",undefined,currHeight);
+			widget.wiki.setText("$:/state/inserting/to-story/" + targetElement.attributes["data-tiddler-title"].value,"height",undefined,currHeight);
 		}
 		$tw.utils.addClass(targetElement,"tc-inserting");
 		setTimeout(function() {
 			$tw.utils.removeClass(targetElement,"tc-inserting");
-			widget.wiki.deleteTiddler("$:/state/inserting/" + targetElement.attributes["data-tiddler-title"].value);
+			widget.wiki.deleteTiddler("$:/state/inserting/to-story/" + targetElement.attributes["data-tiddler-title"].value);
 		},duration);
 	}
 	if(duration && (widget.wiki.getTiddlerText("$:/state/DisableInsertAnimation") === "yes")) {
@@ -87,11 +87,13 @@ MultiColumnStoryView.prototype.remove = function(widget) {
 			currMarginTop = parseInt(computedStyle.marginTop,10),
 			currHeight = targetElement.offsetHeight + currMarginTop;
 		if(targetElement.attributes["data-tiddler-title"]) {
-			widget.wiki.setText("$:/state/removing/" + targetElement.attributes["data-tiddler-title"].value,"height",undefined,currHeight);
+			widget.wiki.setText("$:/state/removing/from-story/" + targetElement.attributes["data-tiddler-title"].value,"height",undefined,currHeight);
 		}
 		setTimeout(function() {
 			removeElement();
 			widget.wiki.deleteTiddler("$:/state/removing/" + targetElement.attributes["data-tiddler-title"].value);
+			widget.wiki.deleteTiddler("$:/state/removing/to-right/" + targetElement.attributes["data-tiddler-title"].value);
+			widget.wiki.deleteTiddler("$:/state/removing/to-left/" + targetElement.attributes["data-tiddler-title"].value);
 		},duration);
 		// Animate the closure
 		$tw.utils.addClass(targetElement,"tc-removing");
