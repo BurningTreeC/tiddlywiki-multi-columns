@@ -109,9 +109,9 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate
 </$keyboard>
 </$keyboard>
 </$vars>
-<$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" starting-next-tiddler="" copying="" target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} river=<<currentColumn>> next-tiddler=""/>""">
+<$droppable class="tc-droppable-top-half" actions=<<top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" starting-next-tiddler="" copying="" target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} river=<<currentColumn>> next-tiddler="" from-index={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} from-story=<<tv-story-list>>/>""">
 </$droppable>
-<$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" starting-next-tiddler="" copying="" target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}} river=<<currentColumn>> next-tiddler=""/>""">
+<$droppable class="tc-droppable-bottom-half" actions=<<bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" starting-next-tiddler="" copying="" target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}} river=<<currentColumn>> next-tiddler="" from-index={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}} from-story=<<tv-story-list>>/>""">
 </$droppable>
 </$draggable>
 </$fieldmangler>
