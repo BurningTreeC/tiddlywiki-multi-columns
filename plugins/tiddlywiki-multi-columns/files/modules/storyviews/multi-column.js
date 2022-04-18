@@ -58,6 +58,8 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 		setTimeout(function() {
 			$tw.utils.removeClass(targetElement,"tc-inserting");
 			widget.wiki.deleteTiddler("$:/state/inserting/to-story/" + targetElement.attributes["data-tiddler-title"].value);
+			widget.wiki.deleteTiddler("$:/state/inserting/from-right/" + targetElement.attributes["data-tiddler-title"].value);
+			widget.wiki.deleteTiddler("$:/state/inserting/from-left/" + targetElement.attributes["data-tiddler-title"].value);
 		},duration);
 	}
 	if(duration && (widget.wiki.getTiddlerText("$:/state/DisableInsertAnimation") === "yes")) {
