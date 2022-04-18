@@ -1,7 +1,28 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/move-left
+tags: $:/tags/ViewToolbar
 
 \whitespace trim
-<$button actions={{$:/plugins/BTC/tiddlywiki-multi-columns/ui/Actions/move-left}} tooltip={{$:/language/Buttons/MoveLeft/Hint}} aria-label={{$:/language/Buttons/MoveLeft/Caption}} class=<<tv-config-toolbar-class>>>
+\define move-left-actions()
+<$let storyList=<<tv-story-list>> historyList=<<tv-history-list>> previousStoryCounter={{{ [<currentColumn>subtract[1]] }}} previousStoryList={{{ [<storyList>!match[$:/StoryList]!match[$:/StoryList-1]removesuffix<currentColumn>addsuffix<previousStoryCounter>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} previousHistoryList={{{ [<historyList>!match[$:/HistoryList]!match[$:/HistoryList-1]removesuffix<currentColumn>addsuffix<previousStoryCounter>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} firstPreviousStoryTiddler={{{ [list<previousStoryList>first[]] }}}>
+<$list filter="[<storyList>!match[$:/StoryList]]" variable="ignore">
+<$action-setfield $tiddler=<<historyList>> current-tiddler={{{ [list<storyList>after<currentTiddler>] ~[list<storyList>before<currentTiddler>] }}}/>
+<$action-listops $tiddler=<<storyList>> $subfilter="-[<currentTiddler>]"/>
+<$list filter="[<previousHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage="""
+<$action-listops $tiddler=<<previousStoryList>> $subfilter="+[insertbefore<currentTiddler>,<firstPreviousStoryTiddler>]"/>
+<$action-setfield $tiddler=<<previousHistoryList>> current-tiddler=<<currentTiddler>>/>
+""">
+<$set name="previousStoryFocusedTiddler" value={{{ [<previousHistoryList>get[current-tiddler]] }}}>
+<$list filter="[<previousStoryList>contains<previousStoryFocusedTiddler>]" variable="ignore" emptyMessage="""
+<$action-listops $tiddler=<<previousStoryList>> $subfilter="+[insertbefore<currentTiddler>,<firstPreviousStoryTiddler>]"/>
+""">
+<$action-listops $tiddler=<<previousStoryList>> $subfilter="+[insertbefore<currentTiddler>,<previousStoryFocusedTiddler>]"/>
+</$list>
+</$set>
+</$list>
+</$list>
+</$let>
+\end
+<$button actions=<<move-left-actions>> tooltip={{$:/language/Buttons/MoveLeft/Hint}} aria-label={{$:/language/Buttons/MoveLeft/Caption}} class=<<tv-config-toolbar-class>>>
 <$list filter="[<tv-config-toolbar-icons>match[yes]]">
 {{$:/core/images/left-arrow}}
 </$list>

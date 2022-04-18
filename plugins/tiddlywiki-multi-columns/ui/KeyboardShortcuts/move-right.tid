@@ -2,4 +2,22 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/move-right
 tags: $:/tags/KeyboardShortcut
 key: ((move-right))
 
-{{$:/plugins/BTC/tiddlywiki-multi-columns/ui/Actions/move-right}}
+<$let currentColumn={{$:/columns!!active-column}} storyList={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} focusedTiddler={{{ [<historyList>get[current-tiddler]] }}} nextStoryCounter={{{ [<currentColumn>add[1]] }}} nextStoryList={{{ [<storyList>!match[$:/StoryList]removesuffix<currentColumn>addsuffix<nextStoryCounter>] ~[[$:/StoryList-2]] }}} nextHistoryList={{{ [<historyList>!match[$:/HistoryList]removesuffix<currentColumn>addsuffix<nextStoryCounter>] ~[[$:/HistoryList-2]] }}} firstNextStoryTiddler={{{ [list<nextStoryList>first[]] }}}>
+<$list filter="[[$:/columns]!contains<nextStoryCounter>]" variable="ignore">
+<$action-listops $tiddler="$:/columns" $subfilter="[<nextStoryCounter>]"/>
+</$list>
+<$action-setfield $tiddler=<<historyList>> current-tiddler={{{ [list<storyList>after<focusedTiddler>] ~[list<storyList>before<focusedTiddler>] }}}/>
+<$action-listops $tiddler=<<storyList>> $subfilter="-[<focusedTiddler>]"/>
+<$list filter="[<nextHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage="""
+<$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<firstNextStoryTiddler>]"/>
+<$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<focusedTiddler>>/>
+""">
+<$set name="nextStoryFocusedTiddler" value={{{ [<nextHistoryList>get[current-tiddler]] }}}>
+<$list filter="[<nextStoryList>contains<nextStoryFocusedTiddler>]" variable="ignore" emptyMessage="""
+<$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<firstNextStoryTiddler>]"/>
+""">
+<$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<nextStoryFocusedTiddler>]"/>
+</$list>
+</$set>
+</$list>
+</$let>
