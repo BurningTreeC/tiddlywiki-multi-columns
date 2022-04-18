@@ -6,6 +6,7 @@ key: ((move-right))
 <$list filter="[[$:/columns]!contains<nextStoryCounter>]" variable="ignore">
 <$action-listops $tiddler="$:/columns" $subfilter="[<nextStoryCounter>]"/>
 </$list>
+<$action-setfield $tiddler=<<historyList>> current-tiddler={{{ [list<storyList>after<focusedTiddler>] ~[list<storyList>before<focusedTiddler>] }}}/>
 <$action-listops $tiddler=<<storyList>> $subfilter="-[<focusedTiddler>]"/>
 <$list filter="[<nextHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage="""
 <$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<firstNextStoryTiddler>]"/>
