@@ -788,13 +788,13 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 
 .tc-sidebar-flexpanel .tc-column-active-button:first-of-type {
-	border: 1px dashed <<colour primary>>;
+	border: 1px dashed <<colour column-active-button-border>>;
 }
 
 .tc-sidebar-flexpanel .tc-column-active-button {
-	border-top: 1px dashed <<colour primary>>;
-	border-bottom: 1px dashed <<colour primary>>;
-	border-right: 1px dashed <<colour primary>>;
+	border-top: 1px dashed <<colour column-active-button-border>>;
+	border-bottom: 1px dashed <<colour column-active-button-border>>;
+	border-right: 1px dashed <<colour column-active-button-border>>;
 }
 
 .tc-sidebar-flexpanel-column-counter {
