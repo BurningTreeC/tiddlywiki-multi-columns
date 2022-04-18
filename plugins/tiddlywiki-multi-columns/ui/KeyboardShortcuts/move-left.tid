@@ -9,7 +9,7 @@ key: ((move-left))
 <$action-listops $tiddler=<<previousStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<firstPreviousStoryTiddler>]"/>
 """>
 <$set name="previousStoryFocusedTiddler" value={{{ [<previousHistoryList>get[current-tiddler]] }}}>
-<$list filter="[<previousStoryList>contains<previousStoryFocusedTiddler>" variable="ignore" emptyMessage="""
+<$list filter="[<previousStoryList>contains<previousStoryFocusedTiddler>]" variable="ignore" emptyMessage="""
 <$action-listops $tiddler=<<previousStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<firstPreviousStoryTiddler>]"/>
 """>
 <$action-listops $tiddler=<<previousStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<previousStoryFocusedTiddler>]"/>
