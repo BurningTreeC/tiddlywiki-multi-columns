@@ -29,6 +29,7 @@ tags: $:/tags/ViewToolbar
 </$set>
 </$list>
 <$action-setfield $tiddler="$:/columns" active-column=<<previousStoryCounter>>/>
+<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<previousStoryCounter>] }}} animationDuration={{$:/config/scroll-x-duration}}/>
 </$list>
 </$let>
 \end

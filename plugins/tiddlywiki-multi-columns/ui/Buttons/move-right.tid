@@ -33,6 +33,7 @@ tags: $:/tags/ViewToolbar
 </$set>
 </$list>
 <$action-setfield $tiddler="$:/columns" active-column=<<nextStoryCounter>>/>
+<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<nextStoryCounter>] }}} animationDuration={{$:/config/scroll-x-duration}}/>
 </$let>
 \end
 <$button actions=<<move-right-actions>> tooltip={{$:/language/Buttons/MoveRight/Hint}} aria-label={{$:/language/Buttons/MoveRight/Caption}} class=<<tv-config-toolbar-class>>>
