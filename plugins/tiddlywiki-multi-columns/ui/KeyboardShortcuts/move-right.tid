@@ -16,8 +16,10 @@ key: ((move-right))
 <$set name="nextStoryFocusedTiddler" value={{{ [<nextHistoryList>get[current-tiddler]] }}}>
 <$list filter="[<nextStoryList>contains<nextStoryFocusedTiddler>]" variable="ignore" emptyMessage="""
 <$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<firstNextStoryTiddler>]"/>
+<$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<focusedTiddler>>/>
 """>
 <$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<nextStoryFocusedTiddler>]"/>
+<$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<focusedTiddler>>/>
 </$list>
 </$set>
 </$list>

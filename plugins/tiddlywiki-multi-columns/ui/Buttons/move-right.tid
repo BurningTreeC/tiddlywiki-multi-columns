@@ -24,9 +24,11 @@ tags: $:/tags/ViewToolbar
 <$action-listops $tiddler=<<nextStoryList>> $subfilter="[<currentTiddler>]"/>
 '>
 <$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<currentTiddler>,<firstNextStoryTiddler>]"/>
+<$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<currentTiddler>>/>
 </$list>
 """>
 <$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<currentTiddler>,<nextStoryFocusedTiddler>]"/>
+<$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<currentTiddler>>/>
 </$list>
 </$set>
 </$list>
