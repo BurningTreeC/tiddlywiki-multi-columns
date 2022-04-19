@@ -4,6 +4,12 @@ key: ((scroll-snap-x-toggle))
 
 <$list filter="[{$:/config/scroll-snap-x}match[yes]]" emptyMessage="""
 	<$action-setfield $tiddler="$:/config/scroll-snap-x" text="yes"/>
+	<$set name="column" value={{$:/columns!!active-column}}>
+		<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<column>] }}}/>
+	</$set>
 """>
 	<$action-setfield $tiddler="$:/config/scroll-snap-x" text="no"/>
+	<$set name="column" value={{$:/columns!!active-column}}>
+		<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<column>] }}}/>
+	</$set>
 </$list>
