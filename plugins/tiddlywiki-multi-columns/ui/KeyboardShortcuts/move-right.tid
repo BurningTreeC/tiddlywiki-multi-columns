@@ -23,6 +23,8 @@ key: ((move-right))
 </$list>
 </$set>
 </$list>
+<$list filter="[{$:/config/story-river/follow-active-column}match[yes]]" variable="ignore">
 <$action-setfield $tiddler="$:/columns" active-column=<<nextStoryCounter>>/>
 <$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<nextStoryCounter>] }}} animationDuration={{$:/config/scroll-x-duration}}/>
+</$list>
 </$let>
