@@ -89,7 +89,6 @@ MultiColumnStoryView.prototype.remove = function(widget) {
 			currMarginTop = parseInt(computedStyle.marginTop,10),
 			currHeight = targetElement.offsetHeight + currMarginTop;
 		if(targetElement.attributes["data-tiddler-title"]) {
-			console.log("SETTING TEXT");
 			widget.wiki.setText("$:/state/removing/from-story/" + targetElement.attributes["data-tiddler-title"].value,"height",undefined,currHeight);
 		}
 		setTimeout(function() {
