@@ -4,10 +4,6 @@ key: ((scroll-snap-x-toggle))
 
 <$list filter="[{$:/config/scroll-snap-x}match[yes]]" emptyMessage="""
 	<$action-setfield $tiddler="$:/config/scroll-snap-x" text="yes"/>
-	<$set name="column" value={{$:/columns!!active-column}}>
-		<$action-sendmessage $message="tm-scroll-deferred" selector={{{ [[.tc-river-]addsuffix<column>] }}} animationDuration={{$:/config/scroll-x-duration}} delay={{$:/config/AnimationDuration}}/>
-	</$set>
 """>
 	<$action-setfield $tiddler="$:/config/scroll-snap-x" text="no"/>
-	</$set>
 </$list>
