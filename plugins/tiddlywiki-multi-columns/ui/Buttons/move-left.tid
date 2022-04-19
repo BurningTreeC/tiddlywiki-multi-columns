@@ -4,8 +4,8 @@ tags: $:/tags/ViewToolbar
 \whitespace trim
 \define move-left-actions()
 <$let storyList=<<tv-story-list>> historyList=<<tv-history-list>> previousStoryCounter={{{ [<currentColumn>subtract[1]] }}} previousStoryList={{{ [<storyList>!match[$:/StoryList]!match[$:/StoryList-1]removesuffix<currentColumn>addsuffix<previousStoryCounter>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} previousHistoryList={{{ [<historyList>!match[$:/HistoryList]!match[$:/HistoryList-1]removesuffix<currentColumn>addsuffix<previousStoryCounter>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} firstPreviousStoryTiddler={{{ [list<previousStoryList>first[]] }}}>
-<$action-setfield $tiddler={{{ [[$:/state/inserting/from-right/]addsuffix<currentTiddler>] }}} text=""/>
 <$list filter="[<storyList>!match[$:/StoryList]]" variable="ignore">
+<$action-setfield $tiddler={{{ [[$:/state/inserting/from-right/]addsuffix<currentTiddler>] }}} text="yes"/>
 <$action-setfield $tiddler=<<historyList>> current-tiddler={{{ [list<storyList>after<currentTiddler>] ~[list<storyList>before<currentTiddler>] }}}/>
 <$action-listops $tiddler=<<storyList>> $subfilter="-[<currentTiddler>]"/>
 <$list filter="[<previousHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage="""
@@ -28,6 +28,7 @@ tags: $:/tags/ViewToolbar
 </$list>
 </$set>
 </$list>
+<$action-setfield $tiddler="$:/columns" active-column=<<previousStoryCounter>>/>
 </$list>
 </$let>
 \end
