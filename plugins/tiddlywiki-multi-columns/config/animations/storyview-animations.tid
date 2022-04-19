@@ -15,6 +15,7 @@ title: $:/config/StoryViewAnimations
 [data-tiddler-title="$(insertTiddlerCSSEscaped)$"].tc-inserting {
 	animation: slide-in-$(insertTiddlerCSSEscaped)$ {{$:/config/AnimationDuration}}ms;
 	animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+	display: block;
 }
 
 \end
@@ -34,9 +35,26 @@ title: $:/config/StoryViewAnimations
 [data-tiddler-title="$(removeTiddlerCSSEscaped)$"].tc-removing {
 	animation: slide-out-$(removeTiddlerCSSEscaped)$ {{$:/config/AnimationDuration}}ms;
 	animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+	display: block;
 }
 
 \end
+
+.tc-removing, .tc-inserting {
+	display: none;
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	} to {
+		opacity: 1;
+	}
+}
+
+.tc-inserting + .tc-tiddler-view-frame, .tc-inserting + .tc-tiddler-edit-frame {
+	animation: fade-in calc({{$:/config/AnimationDuration}}ms / 2);
+}
 
 <$list filter="[all[tiddlers]prefix[$:/state/inserting/to-story/]]" variable="insertStateTiddler">
 
