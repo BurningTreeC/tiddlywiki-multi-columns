@@ -9,7 +9,5 @@ key: ((scroll-snap-x-toggle))
 	</$set>
 """>
 	<$action-setfield $tiddler="$:/config/scroll-snap-x" text="no"/>
-	<$set name="column" value={{$:/columns!!active-column}}>
-		<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<column>] }}} animationDuration={{$:/config/scroll-x-duration}}/>
 	</$set>
 </$list>
