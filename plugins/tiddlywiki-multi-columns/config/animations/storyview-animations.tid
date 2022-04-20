@@ -40,7 +40,7 @@ title: $:/config/StoryViewAnimations
 
 \end
 
-.tc-removing, .tc-inserting {
+[data-tiddler-title*=""].tc-removing, [data-tiddler-title*=""].tc-inserting {
 	display: none;
 }
 

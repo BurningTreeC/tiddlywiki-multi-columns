@@ -36,9 +36,15 @@ $:/state/folded/$(currentTiddler)$
 </$list>
 </$set>
 \end
+\define get-navigate-to-selector()
+.tc-river-$(currentColumn)$ [data-tiddler-title="$(navigateToCSSEscaped)$"]
+\end
 \define navigate-actions()
 <$list filter="[<modifier>match[shift]]" variable="ignore" emptyMessage="""
 <$action-sendmessage $message="tm-navigate" navigateTo=<<navigateTo>> navigateFromTitle=<<event-navigateFromTitle>>/>
+<$set name="navigateToCSSEscaped" value={{{ [<navigateTo>escapecss[]] }}}>
+<$action-sendmessage $message="tm-scroll" selector=<<get-navigate-to-selector>> animationDuration={{$:/config/AnimationDuration}}/>
+</$set>
 """>
 <$set name="nextColumn" value={{{ [<currentColumn>add[1]] }}}>
 <$let storyList={{{ [[$:/StoryList-]addsuffix<nextColumn>] }}} historyList={{{ [[$:/HistoryList-]addsuffix<nextColumn>] }}}>
