@@ -16,6 +16,34 @@
 				"title": "$:/plugins/BTC/tiddlywiki-multi-columns/modules/startup/rootwidget-extend.js",
 				"module-type": "startup"
 			}
+		},{
+			"file": "modules/utils/dom/scroller.js",
+			"fields": {
+				"type": "application/javascript",
+				"title": "$:/core/modules/utils/dom/scroller.js",
+				"module-type": "utils"
+			}
+		},{
+			"file": "modules/widgets/droppable.js",
+			"fields": {
+				"type": "application/javascript",
+				"title": "$:/core/modules/widgets/droppable.js",
+				"module-type": "widget"
+			}
+		},{
+			"file": "modules/widgets/scrollable.js",
+			"fields": {
+				"type": "application/javascript",
+				"title": "$:/core/modules/widgets/scrollable.js",
+				"module-type": "widget"
+			}
+		},{
+			"file": "modules/widgets/navigator.js",
+			"fields": {
+				"type": "application/javascript",
+				"title": "$:/core/modules/widgets/navigator.js",
+				"module-type": "widget"
+			}
 		}
 	]
 }
