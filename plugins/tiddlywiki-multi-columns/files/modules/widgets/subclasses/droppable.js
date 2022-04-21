@@ -1,9 +1,9 @@
 /*\
-title: $:/core/modules/widgets/droppable.js
+title: $:/plugins/BTC/tiddlywiki-multi-columns/modules/widget-subclasses/droppable.js
 type: application/javascript
-module-type: widget
+module-type: widget-subclass
 
-Droppable widget
+Widget base class
 
 \*/
 (function(){
@@ -12,21 +12,18 @@ Droppable widget
 /*global $tw: false */
 "use strict";
 
-var Widget = require("$:/core/modules/widgets/widget.js").widget;
+exports.baseClass = "droppable";
 
-var DroppableWidget = function(parseTreeNode,options) {
+// Specify a different name to make the subclass available as a new widget instead of overwriting the baseclass:
+// exports.name = "my-enhanced-checkbox";
+
+exports.constructor = function(parseTreeNode,options) {
 	this.initialise(parseTreeNode,options);
 };
 
-/*
-Inherit from the base widget class
-*/
-DroppableWidget.prototype = new Widget();
+exports.prototype = {};
 
-/*
-Render this widget into the DOM
-*/
-DroppableWidget.prototype.render = function(parent,nextSibling) {
+exports.prototype.render = function(parent,nextSibling) {
 	var self = this,
 		tag = this.parseTreeNode.isBlock ? "div" : "span",
 		domNode;
@@ -62,8 +59,7 @@ DroppableWidget.prototype.render = function(parent,nextSibling) {
 	this.currentlyEntered = [];
 };
 
-// Handler for transient event listeners added when the droppable zone has an active drag in progress
-DroppableWidget.prototype.handleEvent = function(event) {
+exports.prototype.handleEvent = function(event) {
 	if(event.type === "dragenter") {
 		if(event.target && event.target !== this.domNode && !$tw.utils.domContains(this.domNode,event.target)) {
 			this.resetState();
@@ -76,7 +72,7 @@ DroppableWidget.prototype.handleEvent = function(event) {
 	}
 };
 
-DroppableWidget.prototype.resetState = function(options) {
+exports.prototype.resetState = function(options) {
 	options = options || {};
 	$tw.utils.removeClass(this.domNodes[0],"tc-dragover");
 	this.currentlyEntered = [];
@@ -90,7 +86,7 @@ DroppableWidget.prototype.resetState = function(options) {
 	}
 };
 
-DroppableWidget.prototype.enterDrag = function(event) {
+exports.prototype.enterDrag = function(event) {
 	if(this.currentlyEntered.indexOf(event.target) === -1) {
 		this.currentlyEntered.push(event.target);
 	}
@@ -103,7 +99,7 @@ DroppableWidget.prototype.enterDrag = function(event) {
 	}
 };
 
-DroppableWidget.prototype.leaveDrag = function(event) {
+exports.prototype.leaveDrag = function(event) {
 	var pos = this.currentlyEntered.indexOf(event.target);
 	if(pos !== -1) {
 		this.currentlyEntered.splice(pos,1);
@@ -114,7 +110,7 @@ DroppableWidget.prototype.leaveDrag = function(event) {
 	}
 };
 
-DroppableWidget.prototype.handleDragEnterEvent  = function(event) {
+exports.prototype.handleDragEnterEvent  = function(event) {
 	this.enterDrag(event);
 	// Tell the browser that we're ready to handle the drop
 	event.preventDefault();
@@ -123,7 +119,7 @@ DroppableWidget.prototype.handleDragEnterEvent  = function(event) {
 	return false;
 };
 
-DroppableWidget.prototype.handleDragOverEvent  = function(event) {
+exports.prototype.handleDragOverEvent  = function(event) {
 	// Check for being over a TEXTAREA or INPUT
 	if(["TEXTAREA","INPUT"].indexOf(event.target.tagName) !== -1) {
 		return false;
@@ -135,16 +131,16 @@ DroppableWidget.prototype.handleDragOverEvent  = function(event) {
 	return false;
 };
 
-DroppableWidget.prototype.handleDragLeaveEvent  = function(event) {
+exports.prototype.handleDragLeaveEvent  = function(event) {
 	this.leaveDrag(event);
 	return false;
 };
 
-DroppableWidget.prototype.handleDragEndEvent = function(event) {
+exports.prototype.handleDragEndEvent = function(event) {
 	this.resetState({performDragEndActions: true});
 };
 
-DroppableWidget.prototype.handleDropEvent  = function(event) {
+exports.prototype.handleDropEvent  = function(event) {
 	var self = this;
 	this.leaveDrag(event);
 	// Check for being over a TEXTAREA or INPUT
@@ -167,7 +163,7 @@ DroppableWidget.prototype.handleDropEvent  = function(event) {
 	return false;
 };
 
-DroppableWidget.prototype.performActions = function(title,event) {
+exports.prototype.performActions = function(title,event) {
 	if(this.droppableActions) {
 		var modifierKey = $tw.keyboardManager.getEventModifierKeyDescriptor(event);
 		this.invokeActionString(this.droppableActions,this,event,{actionTiddler: title, modifier: modifierKey});
@@ -177,7 +173,7 @@ DroppableWidget.prototype.performActions = function(title,event) {
 /*
 Compute the internal state of the widget
 */
-DroppableWidget.prototype.execute = function() {
+exports.prototype.execute = function() {
 	this.droppableActions = this.getAttribute("actions");
 	this.droppableEffect = this.getAttribute("effect","copy");
 	this.droppableTag = this.getAttribute("tag");
@@ -190,16 +186,10 @@ DroppableWidget.prototype.execute = function() {
 	this.makeChildWidgets();
 };
 
-DroppableWidget.prototype.assignDomNodeClasses = function() {
-	var classes = this.getAttribute("class","").split(" ");
-	classes.push("tc-droppable");
-	this.domNode.className = classes.join(" ");
-};
-
 /*
 Selectively refreshes the widget if needed. Returns true if the widget or any of its children needed re-rendering
 */
-DroppableWidget.prototype.refresh = function(changedTiddlers) {
+exports.prototype.refresh = function(changedTiddlers) {
 	var changedAttributes = this.computeAttributes();
 	if(changedAttributes.tag || changedAttributes.enable || changedAttributes.disabledClass || changedAttributes.actions || changedAttributes.effect || changedAttributes.dragenteractions || changedAttributes.dragleaveactions || changedAttributes.dragendactions) {
 		this.refreshSelf();
@@ -209,7 +199,5 @@ DroppableWidget.prototype.refresh = function(changedTiddlers) {
 	}
 	return this.refreshChildren(changedTiddlers);
 };
-
-exports.droppable = DroppableWidget;
 
 })();

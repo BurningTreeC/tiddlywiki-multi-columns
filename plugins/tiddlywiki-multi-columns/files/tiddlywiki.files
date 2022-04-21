@@ -24,25 +24,18 @@
 				"module-type": "utils"
 			}
 		},{
-			"file": "modules/widgets/droppable.js",
+			"file": "modules/widgets/subclasses/droppable.js",
 			"fields": {
 				"type": "application/javascript",
-				"title": "$:/core/modules/widgets/droppable.js",
-				"module-type": "widget"
+				"title": "$:/plugins/BTC/tiddlywiki-multi-columns/modules/widget-subclasses/droppable.js",
+				"module-type": "widget-subclass"
 			}
 		},{
-			"file": "modules/widgets/scrollable.js",
+			"file": "modules/widgets/subclasses/scrollable.js",
 			"fields": {
 				"type": "application/javascript",
-				"title": "$:/core/modules/widgets/scrollable.js",
-				"module-type": "widget"
-			}
-		},{
-			"file": "modules/widgets/navigator.js",
-			"fields": {
-				"type": "application/javascript",
-				"title": "$:/core/modules/widgets/navigator.js",
-				"module-type": "widget"
+				"title": "$:/plugins/BTC/tiddlywiki-multi-columns/modules/widget-subclasses/scrollable.js",
+				"module-type": "widget-subclass"
 			}
 		}
 	]
