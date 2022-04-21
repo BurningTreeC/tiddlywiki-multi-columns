@@ -46,7 +46,7 @@ exports.startup = function() {
 		}
 	});
 	$tw.hooks.addHook("th-navigating",function(event) {
-		var returnEvent;
+		var returnEvent = event;
 		if(!event.navigateTo && event.event && event.event.navigateTo && event.event.navigateFromTitle) {
 			returnEvent = event.event;
 		}
