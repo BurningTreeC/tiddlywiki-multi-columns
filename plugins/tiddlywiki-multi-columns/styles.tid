@@ -563,7 +563,7 @@ tags: $:/tags/Stylesheet
 
 	<$list filter="[{$:/config/scroll-snap-x}match[yes]]" variable="ignore">
 
-		.flextemplate-container main.column-container {
+		.flextemplate-container main.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) {
 			display: flex;
 			scroll-snap-type: {{$:/config/scroll-snap-type}};
 			overflow-x: scroll;

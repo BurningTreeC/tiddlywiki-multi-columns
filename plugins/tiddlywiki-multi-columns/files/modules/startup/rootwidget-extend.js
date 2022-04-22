@@ -45,13 +45,6 @@ exports.startup = function() {
 			focusSelector(selector);
 		}
 	});
-	$tw.hooks.addHook("th-navigating",function(event) {
-		var returnEvent = event;
-		if(!event.navigateTo && event.event && event.event.navigateTo && event.event.navigateFromTitle) {
-			returnEvent = event.event;
-		}
-		return returnEvent;
-	});
 };
 
 })();

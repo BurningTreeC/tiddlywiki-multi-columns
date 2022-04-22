@@ -41,10 +41,9 @@ $:/state/folded/$(currentTiddler)$
 \end
 \define navigate-actions()
 <$list filter="[<modifier>match[shift]]" variable="ignore" emptyMessage="""
-<$action-sendmessage $message="tm-navigate" $navigateTo=<<event-navigateTo>> $navigateFromTitle=<<event-navigateFromTitle>>/>
-<$set name="navigateToCSSEscaped" value={{{ [<event-navigateTo>escapecss[]] }}}>
-<$action-sendmessage $message="tm-scroll" selector=<<get-navigate-to-selector>> animationDuration={{$:/config/AnimationDuration}}/>
-</$set>
+<$navigator story=<<tv-story-list>> history=<<tv-history-list>> openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+<$action-navigate $to=<<event-navigateTo>>/>
+</$navigator>
 """>
 <$set name="nextColumn" value={{{ [<currentColumn>add[1]] }}}>
 <$let storyList={{{ [[$:/StoryList-]addsuffix<nextColumn>] }}} historyList={{{ [[$:/HistoryList-]addsuffix<nextColumn>] }}}>
