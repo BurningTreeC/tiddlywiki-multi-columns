@@ -2,9 +2,18 @@ title: $:/core/ui/KeyboardShortcuts/toggle-sidebar
 tags: $:/tags/KeyboardShortcut
 key: ((toggle-sidebar))
 
-<$list filter="[{$:/state/panel/visibility}match[yes]]" emptyMessage="""
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+<$list filter="[{$:/state/panel/visibility}match[yes]]" variable="ignore" emptyMessage="""
 <$action-setfield $tiddler="$:/state/panel/visibility" text="yes"/>
 <$action-sendmessage $message="tm-focus-selector-deferred" $param=".tc-panel-container .tc-panel-content .tc-sidebar-search input" delay={{$:/config/AnimationDuration}}/>
 """>
 <$action-setfield $tiddler="$:/state/panel/visibility" text="no"/>
+</$list>
+</$list>
+<$list filter="[{$:/layout}!match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+<$list filter="[[$:/state/sidebar]is[missing]] [{$:/state/sidebar}removeprefix[yes]]" emptyMessage="""
+<$action-setfield $tiddler="$:/state/sidebar" text="yes"/>
+""">
+<$action-setfield $tiddler="$:/state/sidebar" text="no"/>
+</$list>
 </$list>
