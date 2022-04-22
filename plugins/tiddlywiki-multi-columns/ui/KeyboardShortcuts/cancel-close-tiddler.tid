@@ -2,37 +2,50 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/cancel-close
 tags: $:/tags/KeyboardShortcut
 key: ((cancel-close-tiddler))
 
+\define tiddler-is-draft-actions-draft-of-not-is-missing()
+<$list filter="[list[$:/columns]!match{$:/columns!!active-column}]" variable="column">
+	<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
+		<$list filter="[<storyList>contains<tiddler>]" variable="ignore">
+			<$set name="index" value={{{ [list<storyList>allbefore<tiddler>add[1]] }}}>
+				<$let nextTiddler={{{ [list<storyList>zth<index>] }}} viewTiddler={{{ [<tiddler>get[draft.of]] }}}>
+					<$action-listops $tiddler=<<storyList>> $subfilter="+[insertbefore<viewTiddler>,<nextTiddler>]"/>
+					<$action-listops $tiddler=<<storyList>> $subfilter="-[<tiddler>]"/>
+				</$let>
+			</$set>
+		</$list>
+	</$set>
+</$list>
+\end
+\define tiddler-is-draft-actions()
+<$list filter="[<tiddler>get[draft.of]is[missing]]" variable="ignore" emptyMessage=<<tiddler-is-draft-actions-draft-of-not-is-missing>>>
+	<$list filter="[list[$:/columns]!match{$:/columns!!active-column}]" variable="column">
+		<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
+			<$list filter="[<storyList>contains<tiddler>]" variable="ignore">
+				<$action-listops $tiddler=<<storyList>> $subfilter="-[<tiddler>]"/>
+			</$list>
+		</$set>
+	</$list>
+</$list>
+<$let scrollTiddler={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}} scrollTiddlerCSSEscaped={{{ [<scrollTiddler>escapecss[]] }}} openBracket="[" closeBracket="]" quotes='"' isMissing={{{ [<tiddler>get[draft.of]is[missing]then[TRUE]else[FALSE]] }}}>
+	<$list filter="[<isMissing>match[TRUE]]" variable="ignore">
+		<$action-setfield $tiddler=<<historyList>> current-tiddler=<<scrollTiddler>>/>
+	</$list>
+	<$action-sendmessage $message="tm-cancel-tiddler" $param=<<tiddler>>/>
+	<$list filter="[<isMissing>match[TRUE]]" variable="ignore">
+		<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>addsuffix[ ]addsuffix<openBracket>addsuffix[data-tiddler-title=]addsuffix<quotes>addsuffix<scrollTiddlerCSSEscaped>addsuffix<quotes>addsuffix<closeBracket>] }}}/>
+	</$list>
+</$let>
+\end
+\whitespace trim
 <$let currentColumn={{$:/columns!!active-column}} storyList={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}}>
 	<$navigator story=<<storyList>> history=<<historyList>>>
 		<$set name="tiddler" value={{{ [<historyList>get[current-tiddler]] }}}>
-			<$list filter="[<tiddler>!is[draft]]" variable="ignore" emptyMessage="""
-				<$list filter="[<tiddler>get[draft.of]is[missing]]" variable="ignore" emptyMessage='
-					<$list filter="[list[$:/columns]!match{$:/columns!!active-column}]" variable="column">
-						<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
-							<$list filter="[<storyList>contains<tiddler>]" variable="ignore">
-								<$set name="index" value={{{ [list<storyList>allbefore<tiddler>add[1]] }}}>
-									<$let nextTiddler={{{ [list<storyList>zth<index>] }}} viewTiddler={{{ [<tiddler>get[draft.of]] }}}>
-										<$action-listops $tiddler=<<storyList>> $subfilter="+[insertbefore<viewTiddler>,<nextTiddler>]"/>
-										<$action-listops $tiddler=<<storyList>> $subfilter="-[<tiddler>]"/>
-									</$let>
-								</$set>
-							</$list>
-						</$set>
-					</$list>
-				'>
-				<$list filter="[list[$:/columns]!match{$:/columns!!active-column}]" variable="column">
-					<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
-						<$list filter="[<storyList>contains<tiddler>]" variable="ignore">
-							<$action-listops $tiddler=<<storyList>> $subfilter="-[<tiddler>]"/>
-						</$list>
-					</$set>
-				</$list>
-			</$list>
-				<$action-navigate $to={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}}/>
-				<$action-sendmessage $message="tm-cancel-tiddler" $param=<<tiddler>>/>
-			""">
-				<$action-navigate $to={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}}/>
-				<$action-sendmessage $message="tm-close-tiddler" $param=<<tiddler>>/>
+			<$list filter="[<tiddler>!is[draft]]" variable="ignore" emptyMessage=<<tiddler-is-draft-actions>>>
+				<$let scrollTiddler={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}} scrollTiddlerCSSEscaped={{{ [<scrollTiddler>escapecss[]] }}} openBracket="[" closeBracket="]" quotes='"'>
+					<$action-setfield $tiddler=<<historyList>> current-tiddler=<<scrollTiddler>>/>
+					<$action-sendmessage $message="tm-close-tiddler" $param=<<tiddler>>/>
+					<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>addsuffix[ ]addsuffix<openBracket>addsuffix[data-tiddler-title=]addsuffix<quotes>addsuffix<scrollTiddlerCSSEscaped>addsuffix<quotes>addsuffix<closeBracket>] }}}/>
+				</$let>
 			</$list>
 		</$set>
 	</$navigator>
