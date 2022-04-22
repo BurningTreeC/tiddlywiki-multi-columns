@@ -290,7 +290,7 @@ tags: $:/tags/Stylesheet
 .tc-panel-container {
 	background-color: <<colour page-background>>;
 	position: fixed;
-	width: 90%;
+	width: {{$:/config/panel/panel-width-below-768px}};
 	height: 100%;
 	top: 0;
 	z-index: 10001;
@@ -308,7 +308,7 @@ tags: $:/tags/Stylesheet
 
 @media only screen and (min-width: 768px) {
 	.tc-panel-container, .tc-panel-header {
-		width: 50%;
+		width: {{$:/config/panel/panel-width-below-1170px}};
 	}
 
 	.tc-search-panel {
@@ -319,7 +319,7 @@ tags: $:/tags/Stylesheet
 
 @media only screen and (min-width: 1170px) {
 	.tc-panel-container, .tc-panel-header {
-		width: 35%;
+		width: {{$:/config/panel/panel-width-above-1170px}};
 	}
 
 	.tc-search-panel {
