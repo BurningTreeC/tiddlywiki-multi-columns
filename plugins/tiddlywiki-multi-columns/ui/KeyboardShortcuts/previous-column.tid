@@ -2,6 +2,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/previous-col
 tags: $:/tags/KeyboardShortcut
 key: ((previous-column))
 
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]" variable="ignore">
 <$set name="currentColumn" value={{{ [[$:/columns]get[active-column]] ~1 }}}>
 	<$set name="columnCount" value={{{ [list[$:/columns]count[]] ~1 }}}>
 		<$list filter="[list[$:/columns]before<currentColumn>] ~[<columnCount>]" variable="nextColumn">
@@ -17,3 +18,4 @@ key: ((previous-column))
 		</$list>
 	</$set>
 </$set>
+</$list>

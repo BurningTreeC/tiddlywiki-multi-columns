@@ -2,6 +2,15 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/navigate-up
 tags: $:/tags/KeyboardShortcut
 key: ((navigate-up))
 
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]" variable="ignore" emptyMessage="""
+<$navigator story="$:/StoryList" history="$:/HistoryList">
+<$set name="focusedTiddler" value={{{ [[$:/HistoryList]get[current-tiddler]] }}}>
+<$set name="nextTiddler" value={{{ [list[$:/StoryList]before<focusedTiddler>] ~[list[$:/StoryList]last[]] }}}>
+<$action-navigate $to=<<nextTiddler>>/>
+</$set>
+</$set>
+</$navigator>
+""">
 <$let currentColumn={{$:/columns!!active-column}} storyList={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}}>
 <$navigator story=<<storyList>> history=<<historyList>>>
 <$set name="focusedTiddler" value={{{ [<historyList>get[current-tiddler]] }}}>
@@ -11,3 +20,4 @@ key: ((navigate-up))
 </$set>
 </$navigator>
 </$let>
+</$list>

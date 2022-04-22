@@ -2,6 +2,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/move-left
 tags: $:/tags/KeyboardShortcut
 key: ((move-left))
 
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]" variable="ignore">
 <$let currentColumn={{$:/columns!!active-column}} storyList={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} focusedTiddler={{{ [<historyList>get[current-tiddler]] }}} previousStoryCounter={{{ [<currentColumn>subtract[1]] }}} previousStoryList={{{ [<storyList>!match[$:/StoryList]!match[$:/StoryList-1]removesuffix<currentColumn>addsuffix<previousStoryCounter>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} previousHistoryList={{{ [<historyList>!match[$:/HistoryList]!match[$:/HistoryList-1]removesuffix<currentColumn>addsuffix<previousStoryCounter>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} firstPreviousStoryTiddler={{{ [list<previousStoryList>first[]] }}}>
 <$list filter="[<storyList>!match[$:/StoryList]]" variable="ignore">
 <$action-setfield $tiddler={{{ [[$:/state/inserting/from-right/]addsuffix<focusedTiddler>] }}} text="yes"/>
@@ -27,3 +28,4 @@ key: ((move-left))
 </$list>
 </$list>
 </$let>
+</$list>

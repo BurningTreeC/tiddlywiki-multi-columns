@@ -2,6 +2,15 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/move-up
 tags: $:/tags/KeyboardShortcut
 key: ((move-up))
 
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]" variable="ignore" emptyMessage="""
+<$navigator story="$:/StoryList" history="$:/HistoryList">
+<$set name="currentTiddler" value={{{ [[$:/HistoryList]get[current-tiddler]] }}}>
+<$set name="previousTiddler" value={{{ [list[$:/StoryList]before<currentTiddler>] }}}>
+<$action-listops $tiddler="$:/StoryList" $subfilter="+[insertbefore:previousTiddler<currentTiddler>]"/>
+</$set>
+</$set>
+</$navigator>
+""">
 <$let currentColumn={{$:/columns!!active-column}} storyList={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}}>
 <$set name="currentTiddler" value={{{ [<historyList>get[current-tiddler]] }}}>
 <$set name="previousTiddler" value={{{ [list<storyList>before<currentTiddler>] }}}>
@@ -9,3 +18,4 @@ key: ((move-up))
 </$set>
 </$set>
 </$let>
+</$list>
