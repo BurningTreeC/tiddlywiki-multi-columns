@@ -17,6 +17,14 @@ tags: $:/tags/Stylesheet
 
 \end
 
+\define style-focused-tiddler-normal()
+
+.tc-story-river [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
+	border: 1px solid <<colour primary>>;
+}
+
+\end
+
 \define style-unfocused-tiddlers()
 
 .tc-river-$(column)$ .tc-river-inner [data-tiddler-title="$(cssEscapedTitle)$"] > .tc-tiddler-frame {
@@ -1009,5 +1017,15 @@ hr.simple {
 </$let>
 
 {{$:/config/StoryViewAnimations}}
+
+</$list>
+
+<$list filter="[{$:/layout}!match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+
+<$set name="cssEscapedTitle" value={{{ [[$:/HistoryList]get[current-tiddler]escapecss[]] }}}>
+
+	<<style-focused-tiddler-normal>>
+
+</$set>
 
 </$list>
