@@ -41,7 +41,7 @@ $:/state/folded/$(currentTiddler)$
 \end
 \define navigate-actions()
 <$list filter="[<modifier>match[shift]]" variable="ignore" emptyMessage="""
-<$action-sendmessage $message="tm-navigate" navigateTo=<<navigateTo>> navigateFromTitle=<<event-navigateFromTitle>>/>
+<$action-sendmessage $message="tm-navigate" $navigateTo=<<event-navigateTo>> $navigateFromTitle=<<event-navigateFromTitle>>/>
 <$set name="navigateToCSSEscaped" value={{{ [<navigateTo>escapecss[]] }}}>
 <$action-sendmessage $message="tm-scroll" selector=<<get-navigate-to-selector>> animationDuration={{$:/config/AnimationDuration}}/>
 </$set>
@@ -52,7 +52,7 @@ $:/state/folded/$(currentTiddler)$
 <$action-listops $tiddler="$:/columns" $subfilter="[<nextColumn>]"/>
 </$list>
 <$navigator story=<<storyList>> history=<<historyList>> openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-<$action-navigate $to=<<navigateTo>>/>
+<$action-navigate $to=<<event-navigateTo>>/>
 </$navigator>
 </$let>
 </$set>
