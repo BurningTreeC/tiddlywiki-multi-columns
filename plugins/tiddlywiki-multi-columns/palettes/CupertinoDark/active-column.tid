@@ -1,3 +1,3 @@
 title: $:/config/DefaultColourPaletteMappings/$:/palettes/CupertinoDark/active-column
 
-rgb(152,152,157)
+<<colour tiddler-info-background>>
