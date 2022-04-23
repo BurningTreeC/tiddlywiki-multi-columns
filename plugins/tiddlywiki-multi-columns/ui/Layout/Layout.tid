@@ -80,13 +80,13 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 	</main>
 	<$set name="rightOrLeft" value={{{ [{$:/config/panel/position}match[left]then[tc-panel-from-left]else[tc-panel-from-right]] }}}>
 		<div class={{{ [{$:/state/panel/visibility}match[yes]then[tc-panel tc-panel-is-visible ]else[tc-panel ]addsuffix<rightOrLeft>] }}}>
-			<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-				<header class="tc-panel-header">
+			<header class="tc-panel-header">
+				<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 					<h1>{{$:/SiteTitle}}</h1>
 					<h4>{{$:/SiteSubtitle}}</h4>
-					<$button tag="a" class="tc-panel-close tc-btn-invisible" set="$:/state/panel/visibility" setTo="no">Close</$button>
-				</header>
-			</$navigator>
+				</$navigator>
+				<$button tag="a" class="tc-panel-close tc-btn-invisible" set="$:/state/panel/visibility" setTo="no">Close</$button>
+			</header>
 			<$scrollable fallthrough="no" class="tc-panel-container">
 				<div class="tc-panel-content-header">
 					<div class="tc-sidebar-flexpanel">
@@ -96,10 +96,14 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 							</$list>
 						</div>
 					</div>
+					<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+						{{$:/core/ui/SideBarSegments/search}}
+						{{$:/core/ui/SideBarSegments/page-controls}}
+					</$navigator>
 				</div>
 				<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>		
 					<div class="tc-panel-content">
-						<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]] -[[$:/core/ui/SideBarSegments/site-title]] -[[$:/core/ui/SideBarSegments/site-subtitle]]" variable="listItem">
+						<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]] -[[$:/core/ui/SideBarSegments/site-title]] -[[$:/core/ui/SideBarSegments/site-subtitle]] -[[$:/core/ui/SideBarSegments/search]] -[[$:/core/ui/SideBarSegments/page-controls]]" variable="listItem">
 							<$transclude tiddler=<<listItem>>/>
 						</$list>
 					</div>

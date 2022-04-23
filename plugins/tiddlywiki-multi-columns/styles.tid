@@ -534,27 +534,31 @@ tags: $:/tags/Stylesheet
 	top: 78px;
 	padding-left: 5%;
 	padding-right: 5%;
-	height: 25px;
-	min-height: 25px;
+	height: 115px;
+	min-height: 115px;
 	min-width: 100%;
 }
 
 .tc-panel-content {
 	position: absolute;
-	top: calc(78px + 35px);
+	top: calc(78px + 115px);
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
 	padding-left: 5%;
 	padding-right: 5%;
-	min-height: calc(100% - 78px - 35px);
+	min-height: calc(100% - 78px - 115px);
 	min-width: 100%;
-	height: calc(100% - 78px - 35px);
+	height: calc(100% - 78px - 115px);
 	max-width: 100%;
 }
 
 .tc-panel-content .tc-sidebar-lists p {
 	margin-top: 3px;
 	margin-bottom: 3px;
+}
+
+.tc-panel-content .tc-tab-buttons.tc-sidebar-tabs-main {
+	padding-top: 0;
 }
 
 .flextemplate-container {
