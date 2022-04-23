@@ -52,7 +52,7 @@ caption: MultiColumn
 <hr>
 
 !!! show the ''numbers'' in the panel's column-buttons:
-<$select tiddler="$:/config/panel/show-numbers" default="yes">
+<$select tiddler="$:/config/panel/show-numbers" default="no">
 <option value="yes">yes</option>
 <option value="no">no</option>
 </$select>
