@@ -200,7 +200,7 @@ tags: $:/tags/Stylesheet
 	transform: translateY(-78px);
 	z-index: 10002;
 	line-height: 50px;
-	box-shadow: 0 1px 1px rgb(0 0 0 / 8%);
+	box-shadow: 0 1px 1px <<colour panel-header-box-shadow-light>>;
 	background-color: <<colour panel-header-background-light>>;
 }
 
@@ -239,7 +239,7 @@ tags: $:/tags/Stylesheet
 .tc-search-panel-input {
 	border-radius: 4px;
 	border: 1px solid <<colour foreground>>;
-	box-shadow: 0px 0px 15px rgb(0 0 0 / 30%);
+	box-shadow: 0px 0px 15px <<colour search-panel-box-shadow-light>>;
 	width: 100%;
 	height: 100%;
 	padding-left: 10px;
@@ -256,7 +256,7 @@ tags: $:/tags/Stylesheet
 	padding: 15px;
 	border-radius: 4px;
 	border: 1px solid <<colour foreground>>;
-	box-shadow: 0px 0px 15px rgb(0 0 0 / 30%);
+	box-shadow: 0px 0px 15px <<colour search-panel-box-shadow-light>>;
 }
 
 .tc-search-panel.tc-search-panel-from-top .tc-search-panel-matches {
@@ -270,12 +270,16 @@ tags: $:/tags/Stylesheet
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
 .tc-panel-header {
-	box-shadow: 0px 1px 1px rgb(255 255 255 / 8%);
+	box-shadow: 0px 1px 1px <<colour panel-header-box-shadow-dark>>;
 	background-color: <<colour panel-header-background-dark>>
 }
 
 .tc-search-panel-input {
-	box-shadow: 0px 0px 15px rgb(255 255 255 / 30%);
+	box-shadow: 0px 0px 15px <<colour search-panel-box-shadow-dark>>;
+}
+
+.tc-search-panel-matches {
+	box-shadow: 0px 0px 15px <<colour search-panel-box-shadow-dark>>;
 }
 
 </$list>
@@ -315,13 +319,13 @@ tags: $:/tags/Stylesheet
 	top: 0;
 	z-index: 10001;
 	transition: transform {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
-	box-shadow: -1px 0px 1px rgb(0 0 0 / 8%);
+	box-shadow: -1px 0px 1px <<colour panel-container-box-shadow-light>>;
 }
 
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
 .tc-panel-container {
-	box-shadow: 0px 1px 1px rgb(255 255 255 / 8%);
+	box-shadow: 0px 1px 1px <<colour panel-container-box-shadow-dark>>;
 }
 
 </$list>
@@ -719,13 +723,13 @@ tags: $:/tags/Stylesheet
 }
 
 .column-config-top .column-container {
-	box-shadow: 0px 1px 1px rgb(0 0 0 / 8%);
+	box-shadow: 0px 1px 1px <<colour column-config-top-column-container-box-shadow-light>>;
 }
 
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
 .column-config-top .column-container {
-	box-shadow: 0px 1px 1px rgb(255 255 255 / 8%);
+	box-shadow: 0px 1px 1px <<colour column-config-top-column-container-box-shadow-dark>>;
 }
 
 </$list>
@@ -784,13 +788,13 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 
 .tc-tiddler-frame {
-	box-shadow: 0px 0px 15px rgb(0 0 0 / 8%);
+	box-shadow: 0px 0px 15px <<colour tiddler-box-shadow-light>>;
 }
 
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
 .tc-tiddler-frame {
-	box-shadow: 0px 0px 15px rgb(255 255 255 / 8%);
+	box-shadow: 0px 0px 15px <<colour tiddler-box-shadow-dark>>;
 }
 
 </$list>
