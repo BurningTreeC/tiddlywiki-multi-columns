@@ -30,10 +30,6 @@ MultiColumnStoryView.prototype.navigateTo = function(historyInfo) {
 	if(!targetElement || targetElement.nodeType === Node.TEXT_NODE) {
 		return;
 	}
-	setTimeout(function() {
-		$tw.utils.removeClass(targetElement,"tc-navigating");
-	},duration);
-	$tw.utils.addClass(targetElement,"tc-navigating");
 	// Scroll the node into view
 	this.listWidget.dispatchEvent({type: "tm-scroll", target: targetElement});
 };
