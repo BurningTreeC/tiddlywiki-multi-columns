@@ -1,12 +1,15 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/panorama
 tags: $:/tags/BottomRightPanel
 
+\define get-panorama-classes()
+tc-panorama-button $(tv-config-toolbar-class)$
+\end
 \define get-panorama-tooltip()
 panorama - [$(vertHorizShortcut)$]
 \end
 \whitespace trim
 <$set name="vertHorizShortcut" value=<<displayshortcuts ((scroll-snap-x-toggle))>>>
-<$button class=<<tv-config-toolbar-class>> tooltip=<<get-panorama-tooltip>> aria-label="panorama">
+<$button class=<<get-panorama-classes>> tooltip=<<get-panorama-tooltip>> aria-label="panorama">
 <$list filter="[{$:/config/scroll-snap-x}match[yes]]" emptyMessage="""
 	<$action-setfield $tiddler="$:/config/scroll-snap-x" text="yes"/>
 	{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/panorama-vertical}}

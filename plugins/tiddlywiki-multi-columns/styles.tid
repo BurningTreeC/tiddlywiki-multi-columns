@@ -612,6 +612,10 @@ tags: $:/tags/Stylesheet
 		display: none;
 	}
 
+	.tc-panorama-button {
+		display: none;
+	}
+
 }
 
 .column-container.tc-top-toolbar, .column-container.tc-bottom-toolbar {
