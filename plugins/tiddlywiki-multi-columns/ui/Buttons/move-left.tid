@@ -1,5 +1,7 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/move-left
 tags: $:/tags/ViewToolbar
+icon: $:/core/icons/left-arrow
+description: move the tiddler to the previous column at the left
 
 \whitespace trim
 \define move-left-actions()
