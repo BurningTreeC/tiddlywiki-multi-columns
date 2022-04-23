@@ -41,7 +41,7 @@ Do you want to overwrite?""">
 Give your ensemble a name:<br>
 <$edit-text tiddler="$:/temp/save-story/story-title" default="" placeholder="Title" tag="input" class="tc-story-title"/>
 
-<$let storyTitle={{{ [[$:/temp/save-story/story-title]get[text] }}}>
+<$let storyTitle={{{ [[$:/temp/save-story/story-title]get[text]] }}}>
 <$button actions=<<save-story-actions>>>Save</$button>
 </$let>
 
