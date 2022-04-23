@@ -445,11 +445,11 @@ tags: $:/tags/Stylesheet
 }
 
 .tc-panel-show svg {
-	fill: <<colour muted-foreground>>;
+	fill: <<colour show-panel-button>>;
 }
 
 .tc-panel-show:hover svg {
-	fill: <<colour foreground>>;
+	fill: <<colour show-panel-button-foreground>>;
 }
 
 <$list filter="[{$:/config/panel/position}match[left]]">
