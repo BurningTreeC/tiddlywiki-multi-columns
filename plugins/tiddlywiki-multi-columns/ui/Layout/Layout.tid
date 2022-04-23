@@ -8,7 +8,7 @@ name: ~MultiColumn
 tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(languageTitle)$
 \end
 \define sidebar-actions()
-<$action-setfield $tiddler="$:/state/panel/visibility" text="yes"/><$action-sendmessage $message="tm-focus-selector-deferred" $param=".tc-panel-container .tc-panel-content .tc-sidebar-search input" delay={{$:/config/AnimationDuration}}/>
+<$action-setfield $tiddler="$:/state/panel/visibility" text="yes"/><$action-sendmessage $message="tm-focus-selector-deferred" $param=".tc-panel-container .tc-panel-content-header .tc-sidebar-search input" delay={{$:/config/AnimationDuration}}/>
 \end
 \import [[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]
 <$vars
