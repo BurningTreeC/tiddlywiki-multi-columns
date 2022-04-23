@@ -82,4 +82,10 @@ caption: MultiColumn
 <option value="yes">yes</option>
 <option value="no">no</option>
 </$select>
+<hr>
 
+!!! Style the ''focused'' Tiddler(s):
+<$select tiddler="$:/config/story-river/style-focused-tiddlers" default="yes">
+<option value="yes">yes</option>
+<option value="no">no</option>
+</$select>
