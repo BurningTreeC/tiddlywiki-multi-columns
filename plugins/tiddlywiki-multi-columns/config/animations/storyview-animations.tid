@@ -75,9 +75,3 @@ title: $:/config/StoryViewAnimations
 </$let>
 
 </$list>
-
-@keyframes blink { 50% { border-color: <<colour primary>>; } }
-
-.tc-navigating .tc-tiddler-frame {
-	animation: blink calc({{$:/config/AnimationDuration}}ms / 3) step-end infinite alternate;
-}
