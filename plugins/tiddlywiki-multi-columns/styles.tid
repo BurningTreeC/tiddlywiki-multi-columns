@@ -542,6 +542,11 @@ tags: $:/tags/Stylesheet
 	max-width: 100%;
 }
 
+.tc-panel-content .tc-sidebar-lists p {
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
 .flextemplate-container {
 	display: flex;
 	flex-direction: column;
