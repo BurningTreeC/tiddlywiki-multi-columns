@@ -1,7 +1,0 @@
-title: $:/palettes/GruvboxDark/extension
-type: application/x-tiddler-dictionary
-
-column-active-button-dark: <<colour tiddler-background>>
-column-active-button-light: <<colour tiddler-background>>
-panel-header-background-dark: <<colour page-background>>
-panel-header-background-light: <<colour page-background>>
