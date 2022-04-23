@@ -529,16 +529,26 @@ tags: $:/tags/Stylesheet
 	transform: rotate(-45deg);
 }
 
-.tc-panel-content {
+.tc-panel-content-header {
 	position: absolute;
 	top: 78px;
+	padding-left: 5%;
+	padding-right: 5%;
+	height: 25px;
+	min-height: 25px;
+	min-width: 100%;
+}
+
+.tc-panel-content {
+	position: absolute;
+	top: calc(78px + 35px);
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
 	padding-left: 5%;
 	padding-right: 5%;
-	min-height: calc(100% - 78px);
+	min-height: calc(100% - 78px - 35px);
 	min-width: 100%;
-	height: calc(100% - 78px);
+	height: calc(100% - 78px - 35px);
 	max-width: 100%;
 }
 

@@ -80,27 +80,30 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 	</main>
 	<$set name="rightOrLeft" value={{{ [{$:/config/panel/position}match[left]then[tc-panel-from-left]else[tc-panel-from-right]] }}}>
 		<div class={{{ [{$:/state/panel/visibility}match[yes]then[tc-panel tc-panel-is-visible ]else[tc-panel ]addsuffix<rightOrLeft>] }}}>
-			<header class="tc-panel-header">
-				<h1>{{$:/SiteTitle}}</h1>
-				<h4>{{$:/SiteSubtitle}}</h4>
-				<$button tag="a" class="tc-panel-close tc-btn-invisible" set="$:/state/panel/visibility" setTo="no">Close</$button>
-			</header>
+			<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+				<header class="tc-panel-header">
+					<h1>{{$:/SiteTitle}}</h1>
+					<h4>{{$:/SiteSubtitle}}</h4>
+					<$button tag="a" class="tc-panel-close tc-btn-invisible" set="$:/state/panel/visibility" setTo="no">Close</$button>
+				</header>
+			</$navigator>
 			<$scrollable fallthrough="no" class="tc-panel-container">
-				<div class="tc-panel-content">
-					<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-						<div class="tc-sidebar-flexpanel">
-							<div class="tc-sidebar-flexpanel-column-container">
-								<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
-									<$button tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>] }}} animationDuration={{$:/config/scroll-x-duration}} passThrough="yes"/>"""><$list filter="[{$:/config/panel/show-numbers}!match[no]]"><div class="tc-sidebar-flexpanel-column-counter"><$text text=<<currentColumn>>/></div></$list></$button>
-								</$list>
-							</div>
+				<div class="tc-panel-content-header">
+					<div class="tc-sidebar-flexpanel">
+						<div class="tc-sidebar-flexpanel-column-container">
+							<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
+								<$button tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>] }}} animationDuration={{$:/config/scroll-x-duration}} passThrough="yes"/>"""><$list filter="[{$:/config/panel/show-numbers}!match[no]]"><div class="tc-sidebar-flexpanel-column-counter"><$text text=<<currentColumn>>/></div></$list></$button>
+							</$list>
 						</div>
-						<br>
+					</div>
+				</div>
+				<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>		
+					<div class="tc-panel-content">
 						<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]] -[[$:/core/ui/SideBarSegments/site-title]] -[[$:/core/ui/SideBarSegments/site-subtitle]]" variable="listItem">
 							<$transclude tiddler=<<listItem>>/>
 						</$list>
-					</$navigator>
-				</div>
+					</div>
+				</$navigator>
 			</$scrollable>
 		</div>
 	</$set>
