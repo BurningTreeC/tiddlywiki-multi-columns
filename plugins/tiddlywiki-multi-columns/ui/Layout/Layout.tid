@@ -95,9 +95,9 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 								</$list>
 							</div>
 						</div>
-						{{$:/core/ui/SideBarSegments/search}}
-						{{$:/core/ui/SideBarSegments/page-controls}}
-						{{$:/core/ui/SideBarSegments/tabs}}
+						<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]]" variable="listItem">
+							<$transclude tiddler=<<listItem>>/>
+						</$list>
 					</$navigator>
 				</div>
 			</$scrollable>
