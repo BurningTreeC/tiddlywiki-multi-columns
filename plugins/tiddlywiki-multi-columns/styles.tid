@@ -1060,9 +1060,25 @@ hr.simple {
 	fill: <<colour tiddler-controls-foreground-selected>>;
 }
 
-.tc-bottom-right-panel .tc-btn-invisible.tc-selected {
-	<$macrocall $name="filter" filter={{{ [[drop-shadow(0px -1px 2px ]addsuffix<colour selected-dropshadow-light>addsuffix[)]] }}}/>
-}
+<$wikify name="dropshadowColour" text=<<colour selected-dropshadow-light>>>
+
+	.tc-bottom-right-panel .tc-btn-invisible.tc-selected {
+		<$macrocall $name="filter" filter={{{ [[drop-shadow(0px -1px 2px ]addsuffix<dropshadowColour>addsuffix[)]] }}}/>
+	}
+
+</$wikify>
+
+<$list filter="[{$:/palette}get[color-scheme]match[dark]]">
+
+	<$wikify name="dropshadowColour" text=<<colour selected-dropshadow-dark>>>
+
+		.tc-bottom-right-panel .tc-btn-invisible.tc-selected {
+			<$macrocall $name="filter" filter={{{ [[drop-shadow(0px -1px 2px ]addsuffix<dropshadowColour>addsuffix[)]] }}}/>
+		}
+
+	</$wikify>
+
+</$list>
 
 <$list filter="[{$:/config/story-river/style-focused-tiddlers}!match[no]]" variable="ignore">
 
