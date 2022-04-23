@@ -178,7 +178,7 @@ tags: $:/tags/Stylesheet
 
 .tc-panel-hide.tc-panel-shown {
 	visibility: visible;
-	background: rgba(0,0,0,.6);
+	background: <<colour hide-panel-button-light>>;
 	-webkit-transition: background {{$:/config/AnimationDuration}}ms 0s;
 	transition: background {{$:/config/AnimationDuration}}ms 0s;
 }
@@ -186,7 +186,7 @@ tags: $:/tags/Stylesheet
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
 .tc-panel-hide.tc-panel-shown {
-	background: rgba(255,255,255,.6);
+	background: <<colour hide-panel-button-dark>>;
 }
 
 </$list>
