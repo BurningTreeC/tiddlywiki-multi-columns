@@ -1,0 +1,77 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/ControlPanel/Configuration
+tags: $:/tags/ControlPanel/Appearance
+caption: MultiColumn
+
+!!! ''scroll-snap-type'' in wide view (is "x mandatory" in narrow view):
+<$edit-text tag="input" tiddler="$:/config/scroll-snap-type" default="" placeholder="scroll-snap-type"/><br>
+<hr>
+
+!!! ''scroll duration'' in x-direction:
+<$edit-text tag="input" tiddler="$:/config/scroll-x-duration" default="" placeholder="scroll-x-duration"/><br>
+<hr>
+
+!!! ''tiddler margin-bottom'':
+<$edit-text tag="input" tiddler="$:/config/story-river/tiddler-margin" default="" placeholder="tiddler margin-bottom"/><br>
+<hr>
+
+!!! ''story-river padding'':
+<$edit-text tag="input" tiddler="$:/config/story-river/padding" default="" placeholder="story-river padding"/><br>
+<hr>
+
+!!! ''tiddler border-thickness'':
+<$edit-text tag="input" tiddler="$:/config/story-river/tiddler-border" default="" placeholder="tiddler border-thickness"/><br>
+<hr>
+
+!!! ''amount of columns in horizontal view'':
+<$edit-text tag="input" tiddler="$:/config/story-river/horizontal/columns" default="" placeholder="amount of columns"/><br>
+<hr>
+
+!!! ''show the search panel on top or bottom'':
+<$select tiddler="$:/config/story-river/search-panel" default="bottom">
+<option value="bottom">bottom</option>
+<option value="top">top</option>
+</$select>
+<hr>
+
+!!! ''show the bottom right panel'':
+<$checkbox tiddler="$:/config/story-river/bottom-right-panel" field="text" checked="yes" unchecked="no" default="yes"> show or hide</$checkbox>
+<hr>
+
+!!! show the ''side panel'' on the ''right'' or the ''left'':
+<$select tiddler="$:/config/panel/position" default="right">
+<option value="right">right</option>
+<option value="left">left</option>
+</$select>
+<hr>
+
+!!! obscure the ''story river'' when the ''panel'' is shown:
+<$select tiddler="$:/config/panel/river-obscured" default="yes">
+<option value="yes">yes</option>
+<option value="no">no</option>
+</$select>
+<hr>
+
+!!! show the ''numbers'' in the panel's column-buttons:
+<$select tiddler="$:/config/panel/show-numbers" default="yes">
+<option value="yes">yes</option>
+<option value="no">no</option>
+</$select>
+<hr>
+
+!!! make the ''move-to'' column the active column:
+<$select tiddler="$:/config/story-river/follow-active-column" default="no">
+<option value="yes">yes</option>
+<option value="no">no</option>
+</$select>
+<hr>
+
+!!! Sidebar width below 768px:
+<$edit-text tag="input" tiddler="$:/config/panel/panel-width-below-768px" default="" placeholder="width below 768px"/><br>
+<hr>
+
+!!! Sidebar width below 1170px:
+<$edit-text tag="input" tiddler="$:/config/panel/panel-width-below-1170px" default="" placeholder="width below 1170px"/><br>
+<hr>
+
+!!! Sidebar width above 1170px:
+<$edit-text tag="input" tiddler="$:/config/panel/panel-width-above-1170px" default="" placeholder="width above 1170px"/><br>
