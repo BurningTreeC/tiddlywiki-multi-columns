@@ -3,24 +3,27 @@ tags: $:/tags/SideBar
 caption: Ensemble
 
 \whitespace trim
-\define save-story-actions-inner()
-<$action-setfield $tiddler="$:/Story/$(storyTitle)$" columns={{$:/columns!!list}} view={{{ [{$:/config/scroll-snap-x}!match[yes]then[vertical]else[horizontal]] }}}/>
+\define get-overwrite-message()
+The story "$(storyTitle)$" already exists.
+Do you want to overwrite?
+\end
+\define save-story-actions-inner(storyTitle)
+<$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} columns={{$:/columns!!list}} view={{{ [{$:/config/scroll-snap-x}!match[yes]then[vertical]else[horizontal]] }}}/>
 <$list filter="[list[$:/columns]]" variable="column">
-<$action-setfield $tiddler="$:/Story/$(storyTitle)$" $field={{{ [[story-]addsuffix<column>] }}} $value={{{ [[$:/StoryList-]addsuffix<column>!match[StoryList-1]get[list]] ~[[$:/StoryList]get[list]] }}}/>
+<$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} $field={{{ [[story-]addsuffix<column>] }}} $value={{{ [[$:/StoryList-]addsuffix<column>!match[StoryList-1]get[list]] ~[[$:/StoryList]get[list]] }}}/>
 </$list>
 \end
 
-\define save-story-actions()
-<$list filter="[[$(storyTitle)$]!match[]]" emptyMessage="""
+\define save-story-actions(storyTitle)
+<$list filter="[<__storyTitle__>!match[]]" emptyMessage="""
 <$action-sendmessage $message="tm-notify" $param="$:/plugins/BTC/tiddlywiki-multi-columns/ui/SideBarTabs/Story/EmptyNotification"/>
 """>
-<$list filter="[[$:/Story/$(storyTitle)$]is[missing]]" emptyMessage='
-<$action-confirm $message="""The story "$(storyTitle)$" already exists.
-Do you want to overwrite?""">
-<<save-story-actions-inner>>
+<$list filter="[[$:/Story/]addsuffix<__storyTitle__>is[missing]]" emptyMessage='
+<$action-confirm $message=<<get-overwrite-message>>>
+<$macrocall $name="save-story-actions-inner" storyTitle=<<__storyTitle__>>/>
 </$action-confirm>
 '>
-<<save-story-actions-inner>>
+<$macrocall $name="save-story-actions-inner" storyTitle=<<__storyTitle__>>/>
 </$list>
 </$list>
 \end
@@ -42,7 +45,7 @@ Give your ensemble a name:<br>
 <$edit-text tiddler="$:/temp/save-story/story-title" default="" placeholder="Title" tag="input" class="tc-story-title"/>
 
 <$let storyTitle={{{ [[$:/temp/save-story/story-title]get[text]] }}}>
-<$button actions=<<save-story-actions>>>Save</$button>
+<$button><$macrocall $name="save-story-actions" storyTitle=<<storyTitle>>/>Save</$button>
 </$let>
 
 <hr class="simple">
