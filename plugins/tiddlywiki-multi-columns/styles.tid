@@ -720,7 +720,7 @@ tags: $:/tags/Stylesheet
 </$list>
 
 .tc-column-active-button.tc-column-active {
-	background-color: <<colour tiddler-editor-fields-even>>;
+	background-color: <<colour active-column>>;
 }
 
 .column-config-top .column-container {
@@ -785,7 +785,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 </$list>
 
 .tc-river-active {
-	background-color: <<colour tiddler-editor-fields-even>>;
+	background-color: <<colour active-column>>;
 }
 
 .tc-tiddler-frame {
