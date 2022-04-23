@@ -2,7 +2,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/next-column
 tags: $:/tags/KeyboardShortcut
 key: ((next-column))
 
-<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]" variable="ignore">
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 <$set name="currentColumn" value={{{ [[$:/columns]get[active-column]] ~1 }}}>
 	<$list filter="[list[$:/columns]after<currentColumn>] ~1" variable="nextColumn">
 		<$action-setfield $tiddler="$:/columns" active-column=<<nextColumn>>/>

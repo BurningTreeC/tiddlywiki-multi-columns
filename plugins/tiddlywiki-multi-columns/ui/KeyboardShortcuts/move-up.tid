@@ -2,7 +2,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/move-up
 tags: $:/tags/KeyboardShortcut
 key: ((move-up))
 
-<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]" variable="ignore" emptyMessage="""
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore" emptyMessage="""
 <$navigator story="$:/StoryList" history="$:/HistoryList">
 <$set name="currentTiddler" value={{{ [[$:/HistoryList]get[current-tiddler]] }}}>
 <$set name="previousTiddler" value={{{ [list[$:/StoryList]before<currentTiddler>] }}}>

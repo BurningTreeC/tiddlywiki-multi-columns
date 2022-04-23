@@ -37,10 +37,10 @@ key: ((cancel-close-tiddler))
 </$let>
 \end
 \whitespace trim
-<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]" variable="ignore" emptyMessage="""
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore" emptyMessage="""
 <$navigator story="$:/StoryList" history="$:/HistoryList">
-	<$set name="tiddler" value={{$:/HistoryList!!current-tiddler}}>
-		<$list filter="[<tiddler>!has[draft.of]]" emptyMessage="""
+	<$set name="tiddler" value={{{ [[$:/HistoryList]get[current-tiddler]] }}}>
+		<$list filter="[<tiddler>!is[draft]]" emptyMessage="""
 			<$list filter="[<tiddler>get[draft.of]is[missing]]">
 				<$action-navigate $to={{{ [list[$:/StoryList]after<tiddler>] ~[list[$:/StoryList]before<tiddler>] }}}/>
 			</$list>

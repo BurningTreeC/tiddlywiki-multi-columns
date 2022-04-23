@@ -2,7 +2,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/dragging-tog
 tags: $:/tags/KeyboardShortcut
 key: ((dragging-toggle))
 
-<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]" variable="ignore">
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 <$list filter="[[$:/config/story-river/dragging-enabled]is[missing]] [{$:/config/story-river/dragging-enable}match[yes]]" emptyMessage="""
 	<$action-setfield $tiddler="$:/config/story-river/dragging-enable" text="yes"/>
 """>

@@ -2,7 +2,7 @@ title: $:/core/ui/KeyboardShortcuts/new-journal
 tags: $:/tags/KeyboardShortcut
 key: ((new-journal))
 
-<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]" variable="ignore" emptyMessage="""
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore" emptyMessage="""
 <$navigator story="$:/StoryList" history="$:/HistoryList">
 {{$:/core/ui/Actions/new-journal}}
 </$navigator>

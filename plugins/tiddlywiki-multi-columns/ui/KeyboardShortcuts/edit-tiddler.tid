@@ -2,7 +2,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/edit-tiddler
 tags: $:/tags/KeyboardShortcut
 key: ((edit-tiddler))
 
-<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]" variable="ignore" emptyMessage="""
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore" emptyMessage="""
 <$navigator story="$:/StoryList" history="$:/HistoryList">
 <$action-sendmessage $message="tm-edit-tiddler" $param={{{ [[$:/HistoryList]get[current-tiddler]] }}}/>
 </$navigator>

@@ -2,7 +2,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/navigate-las
 tags: $:/tags/KeyboardShortcut
 key: ((navigate-last))
 
-<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]" variable="ignore" emptyMessage="""
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore" emptyMessage="""
 <$navigator story="$:/StoryList" history="$:/HistoryList">
 <$action-navigate $to={{{ [list[$:/StoryList]last[]] }}}/>
 </$navigator>

@@ -2,7 +2,7 @@ title: $:/core/ui/KeyboardShortcuts/new-tiddler
 tags: $:/tags/KeyboardShortcut
 key: ((new-tiddler))
 
-<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]" variable="ignore" emptyMessage="""
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore" emptyMessage="""
 <$navigator story="$:/StoryList" history="$:/HistoryList">
 {{$:/core/ui/Actions/new-tiddler}}
 </$navigator>

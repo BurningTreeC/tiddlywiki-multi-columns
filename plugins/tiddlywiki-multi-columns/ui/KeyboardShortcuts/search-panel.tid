@@ -2,7 +2,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/search-panel
 tags: $:/tags/KeyboardShortcut
 key: ((search-panel))
 
-<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]" variable="ignore">
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 <$list filter="[[$:/state/search-panel]is[missing]]" emptyMessage="""
 <$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>
 """>

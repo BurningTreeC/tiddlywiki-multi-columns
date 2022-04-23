@@ -2,7 +2,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/navigate-dow
 tags: $:/tags/KeyboardShortcut
 key: ((navigate-down))
 
-<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]" variable="ignore" emptyMessage="""
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore" emptyMessage="""
 <$navigator story="$:/StoryList" history="$:/HistoryList">
 <$set name="focusedTiddler" value={{{ [[$:/HistoryList]get[current-tiddler]] }}}>
 <$set name="nextTiddler" value={{{ [list[$:/StoryList]after<focusedTiddler>] ~[list[$:/StoryList]nth[1]] }}}>
