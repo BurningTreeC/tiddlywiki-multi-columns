@@ -787,18 +787,18 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	box-shadow: 0px 0px 15px rgb(0 0 0 / 8%);
 }
 
-<$list filter="[{$:/config/story-river/no-tiddler-box-shadows}match[yes]]" variable="ignore">
-
-.tc-tiddler-frame {
-	box-shadow: none;
-}
-
-</$list>
-
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
 .tc-tiddler-frame {
 	box-shadow: 0px 0px 15px rgb(255 255 255 / 8%);
+}
+
+</$list>
+
+<$list filter="[{$:/config/story-river/no-tiddler-box-shadows}match[yes]]" variable="ignore">
+
+.tc-tiddler-frame {
+	box-shadow: none;
 }
 
 </$list>
