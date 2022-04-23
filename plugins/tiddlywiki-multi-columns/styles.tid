@@ -45,6 +45,18 @@ tags: $:/tags/Stylesheet
 	overflow-x: hidden;
 }
 
+	<$list filter="[{$:/config/story-river/hide-scrollbars}match[yes]]" variable="ignore">
+
+		.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > *:nth-child(<<currentColumn>>) {
+			-ms-overflow-style: none;
+			scrollbar-width: none;
+		}
+		.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > *:nth-child(<<currentColumn>>)::-webkit-scrollbar { 
+			display: none;
+		}
+
+	</$list>
+
 </$list>
 
 \end
@@ -579,6 +591,28 @@ tags: $:/tags/Stylesheet
 			scroll-snap-align: start;
 		}
 
+		<$list filter="[{$:/config/story-river/hide-scrollbars}match[yes]]" variable="ignore">
+
+			.flextemplate-container main.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) {
+				-ms-overflow-style: none;
+				scrollbar-width: none;				
+			}
+
+			.flextemplate-container main.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar)::-webkit-scrollbar {
+				display: none;				
+			}
+
+			.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > * {
+				-ms-overflow-style: none;
+				scrollbar-width: none;
+			}
+
+			.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > *::-webkit-scrollbar {
+				display: none;
+			}
+
+		</$list>
+
 		.column-container > .tc-top-active-column {
 			display: none;
 		}
@@ -607,6 +641,19 @@ tags: $:/tags/Stylesheet
 		overflow-y: scroll;
 		scroll-snap-align: start;
 	}
+
+	<$list filter="[{$:/config/story-river/hide-scrollbars}match[yes]]" variable="ignore">
+
+		.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > * {
+			-ms-overflow-style: none;
+			scrollbar-width: none;
+		}
+
+		.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > *::-webkit-scrollbar {
+			display: none;
+		}
+
+	</$list>
 
 	.flextemplate-container .column-config-top .column-container:last-of-type {
 		display: none;

@@ -75,3 +75,11 @@ caption: MultiColumn
 
 !!! Sidebar width above 1170px:
 <$edit-text tag="input" tiddler="$:/config/panel/panel-width-above-1170px" default="" placeholder="width above 1170px"/><br>
+<hr>
+
+!!! Hide the ''scrollbars'':
+<$select tiddler="$:/config/story-river/hide-scrollbars" default="no">
+<option value="yes">yes</option>
+<option value="no">no</option>
+</$select>
+
