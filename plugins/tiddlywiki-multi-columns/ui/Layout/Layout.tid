@@ -95,7 +95,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 								</$list>
 							</div>
 						</div>
-						<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]]" variable="listItem">
+						<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]] -[[$:/core/ui/SideBarSegments/site-title]] -[[$:/core/ui/SideBarSegments/site-subtitle]]" variable="listItem">
 							<$transclude tiddler=<<listItem>>/>
 						</$list>
 					</$navigator>

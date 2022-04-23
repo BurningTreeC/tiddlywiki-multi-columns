@@ -1,2 +1,2 @@
 title: $:/tags/SideBarSegment
-list: 
+list: $:/core/ui/SideBarSegments/search $:/core/ui/SideBarSegments/page-controls $:/core/ui/SideBarSegments/tabs
