@@ -1060,7 +1060,7 @@ hr.simple {
 	fill: <<colour tiddler-controls-foreground-selected>>;
 }
 
-<$wikify name="dropshadowColour" text=<<colour selected-dropshadow-light>>>
+<$wikify name="dropshadowColour" text="""<<colour selected-dropshadow-light>>""">
 
 	.tc-bottom-right-panel .tc-btn-invisible.tc-selected {
 		<$macrocall $name="filter" filter={{{ [[drop-shadow(0px -1px 2px ]addsuffix<dropshadowColour>addsuffix[)]] }}}/>
@@ -1070,10 +1070,10 @@ hr.simple {
 
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
-	<$wikify name="dropshadowColour" text=<<colour selected-dropshadow-dark>>>
+	<$wikify name="dropshadowColour" text="""<<colour selected-dropshadow-dark>>""">
 
 		.tc-bottom-right-panel .tc-btn-invisible.tc-selected {
-			<$macrocall $name="filter" filter={{{ [[drop-shadow(0px -1px 2px ]addsuffix<dropshadowColour>addsuffix[)]] }}}/>
+			<$macrocall $name="filter" filter={{{ [[drop-shadow(0px -1px 2px ]addsuffix[$(dropshadowColour)$]addsuffix[)]] }}}/>
 		}
 
 	</$wikify>
