@@ -13,7 +13,7 @@ tags: $:/tags/Stylesheet
 \define style-focused-tiddler()
 
 .tc-river-$(currentColumn)$ .tc-river-inner [data-tiddler-title="$(cssEscapedTitle)$"] > .tc-tiddler-frame {
-	border: {{$:/config/story-river/tiddler-border}}px solid <<colour primary>>;
+	border: {{$:/config/story-river/tiddler-border}}px solid <<colour focused-tiddler>>;
 }
 
 \end
@@ -21,7 +21,7 @@ tags: $:/tags/Stylesheet
 \define style-focused-tiddler-normal()
 
 .tc-story-river [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
-	border: 1px solid <<colour primary>>;
+	border: 1px solid <<colour focused-tiddler>>;
 }
 
 \end
