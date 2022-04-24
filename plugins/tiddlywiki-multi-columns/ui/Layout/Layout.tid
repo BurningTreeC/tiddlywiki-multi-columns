@@ -130,10 +130,10 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 				<div class="tc-user-panel-container">
 					<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 						<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment/User]!is[draft]]" variable="listItem">
-							<$transclude tiddler=<<listItem>>/>
+							<$transclude tiddler=<<listItem>> mode="block"/>
 						</$list>
 						<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]!is[draft]] -[[$:/core/ui/SideBarSegments/site-title]] -[[$:/core/ui/SideBarSegments/site-subtitle]] -[[$:/core/ui/SideBarSegments/search]] -[[$:/core/ui/SideBarSegments/page-controls]] -[[$:/core/ui/SideBarSegments/tabs]] -[all[tiddlers+shadows]tag[$:/tags/SideBarSegment/User]!is[draft]]" variable="listItem">
-							<$transclude tiddler=<<listItem>>/>
+							<$transclude tiddler=<<listItem>> mode="block"/>
 						</$list>
 					</$navigator>
 				</div>
