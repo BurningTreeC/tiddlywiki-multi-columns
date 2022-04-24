@@ -2,6 +2,14 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/ControlPanel/Configuration
 tags: $:/tags/ControlPanel/Appearance
 caption: MultiColumn
 
+!!! user-panel header title:
+<$edit-text tag="input" tiddler="$:/UserPanelTitle" default="" placeholder="user-panel title"/><br>
+<hr>
+
+!!! user-panel header subtitle:
+<$edit-text tag="input" tiddler="$:/UserPanelSubtitle" default="" placeholder="user-panel subtitle"/><br>
+<hr>
+
 !!! ''scroll-snap-type'' in wide view (is "x mandatory" in narrow view):
 <$edit-text tag="input" tiddler="$:/config/scroll-snap-type" default="" placeholder="scroll-snap-type"/><br>
 <hr>
@@ -65,33 +73,33 @@ caption: MultiColumn
 </$select>
 <hr>
 
-!!! Sidebar width below 768px:
+!!! sidebar width below 768px:
 <$edit-text tag="input" tiddler="$:/config/panel/panel-width-below-768px" default="" placeholder="width below 768px"/><br>
 <hr>
 
-!!! Sidebar width below 1170px:
+!!! sidebar width below 1170px:
 <$edit-text tag="input" tiddler="$:/config/panel/panel-width-below-1170px" default="" placeholder="width below 1170px"/><br>
 <hr>
 
-!!! Sidebar width above 1170px:
+!!! sidebar width above 1170px:
 <$edit-text tag="input" tiddler="$:/config/panel/panel-width-above-1170px" default="" placeholder="width above 1170px"/><br>
 <hr>
 
-!!! Hide the ''scrollbars'':
+!!! hide the ''scrollbars'':
 <$select tiddler="$:/config/story-river/hide-scrollbars" default="no">
 <option value="yes">yes</option>
 <option value="no">no</option>
 </$select>
 <hr>
 
-!!! Style the ''focused'' Tiddler(s):
+!!! style the ''focused'' Tiddler(s):
 <$select tiddler="$:/config/story-river/style-focused-tiddlers" default="yes">
 <option value="yes">yes</option>
 <option value="no">no</option>
 </$select>
 <hr>
 
-!!! No ''box-shadows'' for Tiddlers:
+!!! no ''box-shadows'' for Tiddlers:
 <$select tiddler="$:/config/story-river/no-tiddler-box-shadows" default="no">
 <option value="yes">yes</option>
 <option value="no">no</option>
