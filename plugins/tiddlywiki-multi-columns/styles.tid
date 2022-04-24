@@ -552,6 +552,7 @@ tags: $:/tags/Stylesheet
 	padding-right: 5%;
 	height: calc(100% - 78px);
 	min-width: 100%;
+	overflow: auto;
 }
 
 .tc-panel-content {
