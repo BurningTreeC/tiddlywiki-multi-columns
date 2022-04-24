@@ -540,8 +540,17 @@ tags: $:/tags/Stylesheet
 	top: 78px;
 	padding-left: 5%;
 	padding-right: 5%;
-	height: 115px;
-	min-height: 115px;
+	height: 25px;
+	min-height: 25px;
+	min-width: 100%;
+}
+
+.tc-panel-content-subheader {
+	position: absolute;
+	top: calc(78px + 25px);
+	padding-left: 5%;
+	padding-right: 5%;
+	min-height: 90px;
 	min-width: 100%;
 }
 
@@ -586,8 +595,12 @@ tags: $:/tags/Stylesheet
 	-webkit-overflow-scrolling: touch;
 }
 
-.tc-panel-content .tc-tab-buttons.tc-sidebar-tabs-main {
+.tc-panel-content .tc-tab-buttons.tc-sidebar-tabs-main, .tc-panel-content-subheader .tc-page-controls {
 	white-space: nowrap;
+}
+
+.tc-panel-content .tc-tab-content.tc-sidebar-tabs-main .tc-more-sidebar .tc-tab-content.tc-vertical {
+	overflow: inherit;
 }
 
 .flextemplate-container {

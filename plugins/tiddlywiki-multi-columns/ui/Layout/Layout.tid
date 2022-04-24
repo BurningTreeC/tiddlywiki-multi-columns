@@ -8,7 +8,7 @@ name: ~MultiColumn
 tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(languageTitle)$
 \end
 \define sidebar-actions()
-<$action-setfield $tiddler="$:/state/panel/visibility" text="yes"/><$action-sendmessage $message="tm-focus-selector-deferred" $param=".tc-panel-container .tc-panel-content-header .tc-sidebar-search input" delay={{$:/config/AnimationDuration}}/>
+<$action-setfield $tiddler="$:/state/panel/visibility" text="yes"/><$action-sendmessage $message="tm-focus-selector-deferred" $param=".tc-panel-container .tc-panel-content-subheader .tc-sidebar-search input" delay={{$:/config/AnimationDuration}}/>
 \end
 \define user-sidebar-actions()
 <$action-setfield $tiddler="$:/state/user-panel/visibility" text="yes"/>
@@ -38,9 +38,9 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 		</$list>
 		<div class="flextemplate-container">
 			<header class="column-config column-config-top">
-				<$list filter="[all[tiddlers+shadows]tag[$:/tags/TopToolbar]!is[draft]]">
+				<$list filter="[all[tiddlers+shadows]tag[$:/tags/TopToolbar]!is[draft]]" variable="listItem">
 					<div class="column-container tc-top-toolbar">
-						<$transclude mode="block"/>
+						<$transclude tiddler=<<listItem>>/>
 					</div>
 				</$list>
 				<div class="column-container">
@@ -78,9 +78,9 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 				</$navigator>
 			</main>
 			<header class="column-config column-config-bottom">
-				<$list filter="[all[tiddlers+shadows]tag[$:/tags/BottomToolbar]!is[draft]]">
+				<$list filter="[all[tiddlers+shadows]tag[$:/tags/BottomToolbar]!is[draft]]" variable="listItem">
 					<div class="column-container tc-bottom-toolbar">
-						<$transclude mode="block"/>
+						<$transclude tiddler=<<listItem>>/>
 					</div>
 				</$list>
 			</header>
@@ -104,6 +104,8 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 							</$list>
 						</div>
 					</div>
+				</div>
+				<div class="tc-panel-content-subheader">
 					<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 						<$transclude tiddler="$:/core/ui/SideBarSegments/search"/>
 						<$transclude tiddler="$:/core/ui/SideBarSegments/page-controls"/>
@@ -133,7 +135,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 							<$transclude tiddler=<<listItem>> mode="block"/>
 						</$list>
 						<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]!is[draft]] -[[$:/core/ui/SideBarSegments/site-title]] -[[$:/core/ui/SideBarSegments/site-subtitle]] -[[$:/core/ui/SideBarSegments/search]] -[[$:/core/ui/SideBarSegments/page-controls]] -[[$:/core/ui/SideBarSegments/tabs]] -[all[tiddlers+shadows]tag[$:/tags/SideBarSegment/User]!is[draft]]" variable="listItem">
-							<$transclude tiddler=<<listItem>> mode="block"/>
+							<$transclude tiddler=<<listItem>>/>
 						</$list>
 					</$navigator>
 				</div>
