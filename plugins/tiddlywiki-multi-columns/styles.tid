@@ -323,6 +323,22 @@ tags: $:/tags/Stylesheet
 	box-shadow: -1px 0px 1px <<colour panel-container-box-shadow-light>>;
 }
 
+<$list filter="[[$:/state/panel/visibility]get[text]match[yes]then[$:/state/user-panel/visibility]get[text]match[yes]]" variable="ignore">
+
+.tc-panel-from-left .tc-panel-container {
+	z-index: 10002;
+}
+
+.tc-panel-from-left .tc-panel-header {
+	z-index: 10003;
+}
+
+.tc-notification {
+	z-index: 10003;
+}
+
+</$list>
+
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
 .tc-panel-container {
