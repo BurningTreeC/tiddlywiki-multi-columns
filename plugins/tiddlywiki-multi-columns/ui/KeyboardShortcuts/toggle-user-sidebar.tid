@@ -1,0 +1,11 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/toggle-user-sidebar
+tags: $:/tags/KeyboardShortcut
+key: ((toggle-user-sidebar))
+
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+<$list filter="[{$:/state/user-panel/visibility}match[yes]]" variable="ignore" emptyMessage="""
+<$action-setfield $tiddler="$:/state/user-panel/visibility" text="yes"/>
+""">
+<$action-setfield $tiddler="$:/state/user-panel/visibility" text="no"/>
+</$list>
+</$list>
