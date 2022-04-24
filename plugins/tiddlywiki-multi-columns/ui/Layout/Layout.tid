@@ -26,7 +26,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 		<$list filter="[{$:/state/panel/visibility}!match[yes]]" variable="ignore">
 			<$button class="tc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
 		</$list>
-		<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]] -[[$:/core/ui/SideBarSegments/site-title]] -[[$:/core/ui/SideBarSegments/site-subtitle]] -[[$:/core/ui/SideBarSegments/search]] -[[$:/core/ui/SideBarSegments/page-controls]] -[[$:/core/ui/SideBarSegments/tabs]] +[limit[1]]" variable="ignore">
+		<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]] -[[$:/core/ui/SideBarSegments/site-title]] -[[$:/core/ui/SideBarSegments/site-subtitle]] -[[$:/core/ui/SideBarSegments/search]] -[[$:/core/ui/SideBarSegments/page-controls]] -[[$:/core/ui/SideBarSegments/tabs]] [all[tiddlers+shadows]tag[$:/tags/SideBarSegments/User]] +[limit[1]]" variable="ignore">
 			<$list filter="[{$:/state/user-panel/visibility}!match[yes]]" variable="ignore">
 				<$button class="tc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
 			</$list>
@@ -129,7 +129,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 			<$scrollable fallthrough="no" class="tc-panel-container">
 				<div class="tc-user-panel-container">
 					<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-						<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]] -[[$:/core/ui/SideBarSegments/site-title]] -[[$:/core/ui/SideBarSegments/site-subtitle]] -[[$:/core/ui/SideBarSegments/search]] -[[$:/core/ui/SideBarSegments/page-controls]] -[[$:/core/ui/SideBarSegments/tabs]] [all[tiddlers+shadows]tag[$:/tags/SideBarSegment/User]]" variable="listItem">
+						<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]] -[[$:/core/ui/SideBarSegments/site-title]] -[[$:/core/ui/SideBarSegments/site-subtitle]] -[[$:/core/ui/SideBarSegments/search]] -[[$:/core/ui/SideBarSegments/page-controls]] -[[$:/core/ui/SideBarSegments/tabs]] [all[tiddlers+shadows]tag[$:/tags/SideBarSegments/User]]" variable="listItem">
 							<$transclude tiddler=<<listItem>>/>
 						</$list>
 					</$navigator>
