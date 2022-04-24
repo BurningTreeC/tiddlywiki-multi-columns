@@ -2,6 +2,8 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/ControlPanel/Configuration
 tags: $:/tags/ControlPanel/Appearance
 caption: MultiColumn
 
+<div>
+
 !!! user-panel header title:
 <$edit-text tag="input" tiddler="$:/UserPanelTitle" default="" placeholder="user-panel title"/><br>
 <hr>
@@ -104,3 +106,5 @@ caption: MultiColumn
 <option value="yes">yes</option>
 <option value="no">no</option>
 </$select>
+
+</div>
