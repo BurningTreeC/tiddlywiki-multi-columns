@@ -1072,7 +1072,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 </$list>
 
-<$list filter="[{$:/dragging-enabled}!match[no]]">
+<$list filter="[{$:/config/story-river/dragging-enable}!match[no]]">
 
 .tc-tiddler-frame img {
 	-webkit-user-drag: none;
