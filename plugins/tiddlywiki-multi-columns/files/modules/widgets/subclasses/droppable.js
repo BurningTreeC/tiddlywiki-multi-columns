@@ -62,17 +62,17 @@ exports.prototype.render = function(parent,nextSibling) {
 exports.prototype.handleEvent = function(event) {
 	if(event.type === "dragenter") {
 		if(event.target && event.target !== this.domNode && !$tw.utils.domContains(this.domNode,event.target)) {
-			this.resetState();
+			this.resetState(null,event);
 		}
 	} else if(event.type === "dragleave") {
 		// Check if drag left the window
 		if(event.relatedTarget === null || (event.relatedTarget && event.relatedTarget.nodeName === "HTML")) {
-			this.resetState();
+			this.resetState(null,event);
 		}
 	}
 };
 
-exports.prototype.resetState = function(options) {
+exports.prototype.resetState = function(options,event) {
 	options = options || {};
 	if(this.domNodes[0]) {
 		$tw.utils.removeClass(this.domNodes[0],"tc-dragover");
@@ -81,10 +81,12 @@ exports.prototype.resetState = function(options) {
 	this.document.body.removeEventListener("dragenter",this,true);
 	this.document.body.removeEventListener("dragleave",this,true);
 	if(options.performDragLeaveActions && this.dragLeaveActions) {
-		this.invokeActionString(this.dragLeaveActions,this,event);
+		var modifierKey = $tw.keyboardManager.getEventModifierKeyDescriptor(event);
+		this.invokeActionString(this.dragLeaveActions,this,event,{modifier: modifierKey});
 	}
 	if(options.performDragEndActions && this.dragEndActions) {
-		this.invokeActionString(this.dragEndActions,this,event);
+		var modifierKey = $tw.keyboardManager.getEventModifierKeyDescriptor(event);
+		this.invokeActionString(this.dragEndActions,this,event,{modifier: modifierKey});
 	}
 };
 
@@ -97,7 +99,8 @@ exports.prototype.enterDrag = function(event) {
 	this.document.body.addEventListener("dragenter",this,true);
 	this.document.body.addEventListener("dragleave",this,true);
 	if(this.dragEnterActions) {
-		this.invokeActionString(this.dragEnterActions,this,event);
+		var modifierKey = $tw.keyboardManager.getEventModifierKeyDescriptor(event);
+		this.invokeActionString(this.dragEnterActions,this,event,{modifier: modifierKey});
 	}
 };
 
@@ -108,7 +111,7 @@ exports.prototype.leaveDrag = function(event) {
 	}
 	// Remove highlighting if we're leaving externally. The hacky second condition is to resolve a problem with Firefox whereby there is an erroneous dragenter event if the node being dragged is within the dropzone
 	if(this.currentlyEntered.length === 0) {
-		this.resetState({performDragLeaveActions: true});
+		this.resetState({performDragLeaveActions: true},event);
 	}
 };
 
@@ -151,7 +154,7 @@ exports.prototype.handleDropEvent  = function(event) {
 	}
 	var dataTransfer = event.dataTransfer;
 	// Remove highlighting
-	this.resetState();
+	this.resetState(null,event);
 	// Try to import the various data types we understand
 	$tw.utils.importDataTransfer(dataTransfer,null,function(fieldsArray) {
 		fieldsArray.forEach(function(fields) {
