@@ -46,8 +46,10 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 		var computedStyle = window.getComputedStyle(targetElement),
 			currMarginBottom = parseInt(computedStyle.marginBottom,10),
 			currMarginTop = parseInt(computedStyle.marginTop,10),
-			currHeight = targetElement.offsetHeight + currMarginTop;
+			currHeight = targetElement.offsetHeight + currMarginTop,
+			focusedElement;
 		if(targetElement.attributes["data-tiddler-title"]) {
+			focusedElement = targetElement.ownerDocument.activeElement;
 			widget.wiki.setText("$:/state/inserting/to-story/" + targetElement.attributes["data-tiddler-title"].value,"height",undefined,currHeight);
 		}
 		$tw.utils.addClass(targetElement,"tc-inserting");
@@ -56,6 +58,9 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 			widget.wiki.deleteTiddler("$:/state/inserting/to-story/" + targetElement.attributes["data-tiddler-title"].value);
 			widget.wiki.deleteTiddler("$:/state/inserting/from-right/" + targetElement.attributes["data-tiddler-title"].value);
 			widget.wiki.deleteTiddler("$:/state/inserting/from-left/" + targetElement.attributes["data-tiddler-title"].value);
+			if(focusedElement.focus && focusedElement.select) {
+				focusedElement.focus() && focusedElement.select();
+			}
 		},duration);
 	}
 	if(duration && (widget.wiki.getTiddlerText("$:/state/DisableInsertAnimation") === "yes")) {
