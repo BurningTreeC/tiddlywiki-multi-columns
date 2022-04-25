@@ -17,8 +17,8 @@ caption: MultiColumn
 !!! dragging enabled
 <$link to="$:/config/story-river/dragging-enable"/><br>
 <$select tiddler="$:/config/story-river/dragging-enable" default="yes">
-<option value="bottom">bottom</option>
-<option value="top">top</option>
+<option value="yes">yes</option>
+<option value="no">no</option>
 </$select>
 <hr>
 
