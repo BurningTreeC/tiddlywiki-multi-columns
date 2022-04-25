@@ -24,7 +24,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 	storyviewTitle={{$:/view}}
 	languageTitle={{{ [{$:/language}get[name]] }}}>
 	<main class=<<containerClasses>>>
-		<$list filter="{$:/config/panel/disable}!match[yes]]" variable="ignore">
+		<$list filter="[{$:/config/panel/disable}!match[yes]]" variable="ignore">
 			<$list filter="[{$:/state/panel/visibility}!match[yes]]" variable="ignore">
 				<$button class="tc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
 			</$list>

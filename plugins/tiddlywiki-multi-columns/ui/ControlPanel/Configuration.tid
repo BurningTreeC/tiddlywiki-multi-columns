@@ -5,7 +5,7 @@ caption: MultiColumn
 <div>
 
 !!! user-panel header title
-<$link to="$:/UserPanelTitle"/>)<br>
+<$link to="$:/UserPanelTitle"/><br>
 <$edit-text tag="input" tiddler="$:/UserPanelTitle" default="" placeholder="user-panel title"/><br>
 <hr>
 
