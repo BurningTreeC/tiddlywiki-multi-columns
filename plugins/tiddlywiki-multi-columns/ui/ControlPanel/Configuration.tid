@@ -15,13 +15,13 @@ caption: MultiColumn
 <hr>
 
 !!! ''scroll-snap-type'' in wide view (is "x mandatory" in narrow view)
-<$link to="$:/config/scroll-snap-type"/><br>
-<$edit-text tag="input" tiddler="$:/config/scroll-snap-type" default="" placeholder="scroll-snap-type"/><br>
+<$link to="$:/config/story-river/scroll-snap-type"/><br>
+<$edit-text tag="input" tiddler="$:/config/story-river/scroll-snap-type" default="" placeholder="scroll-snap-type"/><br>
 <hr>
 
 !!! ''scroll duration'' in x-direction
-<$link to="$:/config/scroll-x-duration"/><br>
-<$edit-text tag="input" tiddler="$:/config/scroll-x-duration" default="" placeholder="scroll-x-duration"/><br>
+<$link to="$:/config/story-river/scroll-x-duration"/><br>
+<$edit-text tag="input" tiddler="$:/config/story-river/scroll-x-duration" default="" placeholder="scroll-x-duration"/><br>
 <hr>
 
 !!! ''tiddler margin-bottom''

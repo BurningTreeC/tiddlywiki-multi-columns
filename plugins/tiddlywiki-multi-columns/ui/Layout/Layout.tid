@@ -114,7 +114,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 					<div class="tc-sidebar-flexpanel">
 						<div class="tc-sidebar-flexpanel-column-container">
 							<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
-								<$button tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>] }}} animationDuration={{$:/config/scroll-x-duration}} passThrough="yes"/>"""><$list filter="[{$:/config/panel/show-numbers}!match[no]]"><div class="tc-sidebar-flexpanel-column-counter"><$text text=<<currentColumn>>/></div></$list></$button>
+								<$button tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}} passThrough="yes"/>"""><$list filter="[{$:/config/panel/show-numbers}!match[no]]"><div class="tc-sidebar-flexpanel-column-counter"><$text text=<<currentColumn>>/></div></$list></$button>
 							</$list>
 						</div>
 					</div>
@@ -170,7 +170,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 								<$list filter="[[$:/StoryList-]addsuffix<column>contains<searchResult>]">
 									<$text text="Column "/><$text text=<<column>>/><$text text=":"/><br>
 									<$navigator story={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} history={{{ [[$:/HistoryList-]addsuffix<column>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-										<$linkcatcher actions="""<$list filter="[{$:/config/scroll-snap-x}match[yes]]" emptyMessage='<$action-navigate $to=<<navigateTo>>/>'><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<column>] }}} animationDuration={{$:/config/scroll-x-duration}}/></$list>""">
+										<$linkcatcher actions="""<$list filter="[{$:/config/scroll-snap-x}match[yes]]" emptyMessage='<$action-navigate $to=<<navigateTo>>/>'><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<column>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/></$list>""">
 											<$link to=<<searchResult>>><$text text=<<searchResult>>/></$link><br>
 										</$linkcatcher>
 									</$navigator>

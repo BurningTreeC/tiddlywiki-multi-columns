@@ -10,11 +10,11 @@ panorama - [$(vertHorizShortcut)$]
 \whitespace trim
 <$set name="vertHorizShortcut" value=<<displayshortcuts ((scroll-snap-x-toggle))>>>
 <$button class=<<get-panorama-classes>> tooltip=<<get-panorama-tooltip>> aria-label="panorama">
-<$list filter="[{$:/config/scroll-snap-x}match[yes]]" emptyMessage="""
-	<$action-setfield $tiddler="$:/config/scroll-snap-x" text="yes"/>
+<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" emptyMessage="""
+	<$action-setfield $tiddler="$:/config/story-river/scroll-snap-x" text="yes"/>
 	{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/panorama-vertical}}
 """>
-	<$action-setfield $tiddler="$:/config/scroll-snap-x" text="no"/>
+	<$action-setfield $tiddler="$:/config/story-river/scroll-snap-x" text="no"/>
 	{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/panorama-horizontal}}
 </$list>
 </$button>

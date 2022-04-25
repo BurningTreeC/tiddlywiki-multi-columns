@@ -13,7 +13,7 @@ key: ((previous-column))
 				</$list>
 			</$let>
 			<$list filter="[{$:/config/scroll-snap-x}match[yes]]" variable="ignore">
-				<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<nextColumn>] }}} animationDuration={{$:/config/scroll-x-duration}}/>
+				<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<nextColumn>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/>
 			</$list>
 		</$list>
 	</$set>
