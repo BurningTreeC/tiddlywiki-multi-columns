@@ -4,110 +4,131 @@ caption: MultiColumn
 
 <div>
 
-!!! user-panel header title:
+!!! user-panel header title
+<$link to="$:/UserPanelTitle"/>)<br>
 <$edit-text tag="input" tiddler="$:/UserPanelTitle" default="" placeholder="user-panel title"/><br>
 <hr>
 
-!!! user-panel header subtitle:
+!!! user-panel header subtitle
+<$link to="$:/UserPanelSubtitle"/><br>
 <$edit-text tag="input" tiddler="$:/UserPanelSubtitle" default="" placeholder="user-panel subtitle"/><br>
 <hr>
 
-!!! ''scroll-snap-type'' in wide view (is "x mandatory" in narrow view):
+!!! ''scroll-snap-type'' in wide view (is "x mandatory" in narrow view)
+<$link to="$:/config/scroll-snap-type"/><br>
 <$edit-text tag="input" tiddler="$:/config/scroll-snap-type" default="" placeholder="scroll-snap-type"/><br>
 <hr>
 
-!!! ''scroll duration'' in x-direction:
+!!! ''scroll duration'' in x-direction
+<$link to="$:/config/scroll-x-duration"/><br>
 <$edit-text tag="input" tiddler="$:/config/scroll-x-duration" default="" placeholder="scroll-x-duration"/><br>
 <hr>
 
-!!! ''tiddler margin-bottom'':
+!!! ''tiddler margin-bottom''
+<$link to="$:/config/story-river/tiddler-margin"/><br>
 <$edit-text tag="input" tiddler="$:/config/story-river/tiddler-margin" default="" placeholder="tiddler margin-bottom"/><br>
 <hr>
 
-!!! ''story-river padding'':
+!!! ''story-river padding''
+<$link to="$:/config/story-river/padding"/><br>
 <$edit-text tag="input" tiddler="$:/config/story-river/padding" default="" placeholder="story-river padding"/><br>
 <hr>
 
-!!! ''tiddler border-thickness'':
+!!! ''tiddler border-thickness''
+<$link to="$:/config/story-river/tiddler-border"/><br>
 <$edit-text tag="input" tiddler="$:/config/story-river/tiddler-border" default="" placeholder="tiddler border-thickness"/><br>
 <hr>
 
-!!! ''amount of columns in horizontal view'':
+!!! ''amount of columns in horizontal view''
+<$link to="$:/config/story-river/horizontal/columns"/><br>
 <$edit-text tag="input" tiddler="$:/config/story-river/horizontal/columns" default="" placeholder="amount of columns"/><br>
 <hr>
 
-!!! ''show the search panel on top or bottom'':
+!!! ''show the search panel on top or bottom''
+<$link to="$:/config/story-river/search-panel"/><br>
 <$select tiddler="$:/config/story-river/search-panel" default="bottom">
 <option value="bottom">bottom</option>
 <option value="top">top</option>
 </$select>
 <hr>
 
-!!! ''show the bottom right panel'':
+!!! ''show the bottom right panel''
+<$link to="$:/config/story-river/bottom-right-panel"/><br>
 <$checkbox tiddler="$:/config/story-river/bottom-right-panel" field="text" checked="yes" unchecked="no" default="yes"> show or hide</$checkbox>
 <hr>
 
-!!! show the ''side panel'' on the ''right'' or the ''left'':
+!!! show the ''side panel'' on the ''right'' or the ''left''
+<$link to="$:/config/panel/position"/><br>
 <$select tiddler="$:/config/panel/position" default="right">
 <option value="right">right</option>
 <option value="left">left</option>
 </$select>
 <hr>
 
-!!! obscure the ''story river'' when the ''panel'' is shown:
+!!! obscure the ''story river'' when the ''panel'' is shown
+<$link to="$:/config/panel/river-obscured"/><br>
 <$select tiddler="$:/config/panel/river-obscured" default="yes">
 <option value="yes">yes</option>
 <option value="no">no</option>
 </$select>
 <hr>
 
-!!! show the ''numbers'' in the panel's column-buttons:
+!!! show the ''numbers'' in the panel's column-buttons
+<$link to="$:/config/panel/show-numbers"/><br>
 <$select tiddler="$:/config/panel/show-numbers" default="no">
 <option value="yes">yes</option>
 <option value="no">no</option>
 </$select>
 <hr>
 
-!!! make the ''move-to'' column the active column:
+!!! make the ''move-to'' column the active column
+<$link to="$:/config/story-river/follow-active-column"/><br>
 <$select tiddler="$:/config/story-river/follow-active-column" default="no">
 <option value="yes">yes</option>
 <option value="no">no</option>
 </$select>
 <hr>
 
-!!! sidebar width below 768px:
+!!! sidebar width below 768px
+<$link to="$:/config/panel/panel-width-below-768px"/><br>
 <$edit-text tag="input" tiddler="$:/config/panel/panel-width-below-768px" default="" placeholder="width below 768px"/><br>
 <hr>
 
-!!! sidebar width below 1170px:
+!!! sidebar width below 1170px
+<$link to="$:/config/panel/panel-width-below-1170px"/><br>
 <$edit-text tag="input" tiddler="$:/config/panel/panel-width-below-1170px" default="" placeholder="width below 1170px"/><br>
 <hr>
 
-!!! sidebar width above 1170px:
+!!! sidebar width above 1170px
+<$link to="$:/config/panel/panel-width-above-1170px"/><br>
 <$edit-text tag="input" tiddler="$:/config/panel/panel-width-above-1170px" default="" placeholder="width above 1170px"/><br>
 <hr>
 
-!!! hide the ''scrollbars'':
+!!! hide the ''scrollbars''
+<$link to="$:/config/story-river/hide-scrollbars"/><br>
 <$select tiddler="$:/config/story-river/hide-scrollbars" default="no">
 <option value="yes">yes</option>
 <option value="no">no</option>
 </$select>
 <hr>
 
-!!! style the ''focused'' Tiddler(s):
+!!! style the ''focused'' Tiddler(s)
+<$link to="$:/config/story-river/style-focused-tiddlers"/><br>
 <$select tiddler="$:/config/story-river/style-focused-tiddlers" default="yes">
 <option value="yes">yes</option>
 <option value="no">no</option>
 </$select>
 <hr>
 
-!!! no ''box-shadows'' for Tiddlers:
+!!! no ''box-shadows'' for Tiddlers
+<$link to="$:/config/story-river/no-tiddler-box-shadows"/><br>
 <$select tiddler="$:/config/story-river/no-tiddler-box-shadows" default="no">
 <option value="yes">yes</option>
 <option value="no">no</option>
 </$select>
 
-!!! hide the system-sidebar / panel and its button (Attention: you should know what you're doing):
+!!! hide the system-sidebar / panel and its button (Attention: you should know what you're doing)
+<$link to="$:/config/panel/disable"/><br>
 <$select tiddler="$:/config/panel/disable" default="no">
 <option value="yes">yes</option>
 <option value="no">no</option>
