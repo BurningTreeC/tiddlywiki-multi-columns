@@ -570,6 +570,11 @@ tags: $:/tags/Stylesheet
 	min-width: 100%;
 }
 
+.tc-panel-content-subheader .tc-page-controls .tc-panorama-button {
+	margin-left: -2px;
+	margin-right: 0.4em;
+}
+
 .tc-user-panel-container {
 	position: absolute;
 	top: 78px;
@@ -1193,5 +1198,9 @@ hr.simple {
 	<<style-focused-tiddler-normal>>
 
 </$set>
+
+.tc-panorama-button, .tc-remove-column-button, .tc-add-column-button {
+	display: none;
+}
 
 </$list>

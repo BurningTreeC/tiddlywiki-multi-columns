@@ -12,7 +12,7 @@ tags: $:/tags/PageControls
 </$list>
 </$set>
 \end
-<$button actions=<<remove-column-actions>> tooltip={{$:/language/Buttons/RemoveColumn/Hint}} aria-label={{$:/language/Buttons/RemoveColumn/Caption}} class=<<tv-config-toolbar-class>>>
+<$button actions=<<remove-column-actions>> tooltip={{$:/language/Buttons/RemoveColumn/Hint}} aria-label={{$:/language/Buttons/RemoveColumn/Caption}} class={{{ [[tc-remove-column-button ]addsuffix<tv-config-toolbar-class>] }}}>
 <$list filter="[<tv-config-toolbar-icons>match[yes]]">
 {{$:/core/images/minus-button}}
 </$list>

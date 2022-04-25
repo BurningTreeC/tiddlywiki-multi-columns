@@ -7,7 +7,7 @@ tags: $:/tags/PageControls
 <$action-listops $tiddler="$:/columns" $subfilter="[<newColumn>]"/>
 </$let>
 \end
-<$button actions=<<new-column-actions>> tooltip={{$:/language/Buttons/NewColumn/Hint}} aria-label={{$:/language/Buttons/NewColumn/Caption}} class=<<tv-config-toolbar-class>>>
+<$button actions=<<new-column-actions>> tooltip={{$:/language/Buttons/NewColumn/Hint}} aria-label={{$:/language/Buttons/NewColumn/Caption}} class={{{ [[tc-add-column-button ]addsuffix<tv-config-toolbar-class>] }}}>
 <$list filter="[<tv-config-toolbar-icons>match[yes]]">
 {{$:/core/images/plus-button}}
 </$list>
