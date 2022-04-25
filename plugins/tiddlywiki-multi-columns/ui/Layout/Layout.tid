@@ -13,6 +13,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 \define user-sidebar-actions()
 <$action-setfield $tiddler="$:/state/user-panel/visibility" text="yes"/><$action-sendmessage $message="tm-focus-selector-deferred" $param=".tc-user-panel-container input" delay={{$:/config/AnimationDuration}}/>
 \end
+\define drafts-list-filter() [list<currentTiddler>]
 \import [[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!is[draft]]
 <$vars
 	tv-config-toolbar-icons={{$:/config/Toolbar/Icons}}
@@ -38,6 +39,8 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 		</$list>
 		<div class="flextemplate-container">
 			<header class="column-config column-config-top">
+				{{$:/core/ui/PageTemplate/alerts}}
+				{{$:/core/ui/PageTemplate/pluginreloadwarning}}
 				<$list filter="[all[tiddlers+shadows]tag[$:/tags/TopToolbar]!is[draft]]" variable="listItem">
 					<div class="column-container tc-top-toolbar">
 						<$transclude tiddler=<<listItem>>/>
@@ -78,6 +81,13 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 				</$navigator>
 			</main>
 			<header class="column-config column-config-bottom">
+				<$reveal state="$:/status/IsReadOnly" type="nomatch" text="yes" tag="div" class="tc-drafts-list">
+					<$list filter="[has[draft.of]!sort[modified]] -[list[$:/columns]addprefix[$:/StoryList-]!match[$:/StoryList-1]get[list]enlist-input[]] -[[$:/StoryList]get[list]enlist-input[]]">
+						<$link>
+							{{$:/core/images/edit-button}} <$text text=<<currentTiddler>>/>
+						</$link>
+					</$list>
+				</$reveal>
 				<$list filter="[all[tiddlers+shadows]tag[$:/tags/BottomToolbar]!is[draft]]" variable="listItem">
 					<div class="column-container tc-bottom-toolbar">
 						<$transclude tiddler=<<listItem>>/>

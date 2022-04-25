@@ -1187,6 +1187,20 @@ hr.simple {
 
 </$list>
 
+.tc-plugin-reload-warning {
+	position: inherit;
+	top: inherit;
+	left: inherit;
+	right: inherit;
+	width: 100%;
+	z-index: inherit;
+}
+
+.tc-plugin-reload-warning > p {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
 {{$:/config/StoryViewAnimations}}
 
 </$list>
