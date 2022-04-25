@@ -1,0 +1,35 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/panorama-page-controls
+tags: $:/tags/PageControls
+
+\define get-panorama-classes()
+tc-panorama-button $(tv-config-toolbar-class)$
+\end
+\define get-panorama-tooltip()
+panorama - [$(vertHorizShortcut)$]
+\end
+\whitespace trim
+<$set name="vertHorizShortcut" value=<<displayshortcuts ((scroll-snap-x-toggle))>>>
+<$button class=<<get-panorama-classes>> tooltip=<<get-panorama-tooltip>> aria-label="panorama">
+<$list filter="[{$:/config/scroll-snap-x}match[yes]]" emptyMessage="""
+	<$action-setfield $tiddler="$:/config/scroll-snap-x" text="yes"/>
+	<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+		{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/panorama-vertical-small}}
+	</$list>
+	<$list filter="[<tv-config-toolbar-text>match[yes]]">
+		<span class="tc-btn-text">
+			<$text text={{$:/language/Buttons/Panorama/Caption}}/>
+		</span>
+	</$list>
+""">
+	<$action-setfield $tiddler="$:/config/scroll-snap-x" text="no"/>
+	<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+		{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/panorama-horizontal-small}}
+	</$list>
+	<$list filter="[<tv-config-toolbar-text>match[yes]]">
+		<span class="tc-btn-text">
+			<$text text={{$:/language/Buttons/Panorama/Caption}}/>
+		</span>
+	</$list>
+</$list>
+</$button>
+</$set>
