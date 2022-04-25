@@ -457,7 +457,7 @@ tags: $:/tags/Stylesheet
 	display: inline-block;
 	z-index: 10001;
 	line-height: 1.2;
-	padding: 4px;
+	padding: 0;
 }
 
 .tc-user-panel-show {
