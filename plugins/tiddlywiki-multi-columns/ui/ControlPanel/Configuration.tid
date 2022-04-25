@@ -14,6 +14,14 @@ caption: MultiColumn
 <$edit-text tag="input" tiddler="$:/UserPanelSubtitle" default="" placeholder="user-panel subtitle"/><br>
 <hr>
 
+!!! dragging enabled
+<$link to="$:/config/story-river/dragging-enable"/><br>
+<$select tiddler="$:/config/story-river/dragging-enable" default="yes">
+<option value="bottom">bottom</option>
+<option value="top">top</option>
+</$select>
+<hr>
+
 !!! ''scroll-snap-type'' in wide view (is "x mandatory" in narrow view)
 <$link to="$:/config/story-river/scroll-snap-type"/><br>
 <$edit-text tag="input" tiddler="$:/config/story-river/scroll-snap-type" default="" placeholder="scroll-snap-type"/><br>
