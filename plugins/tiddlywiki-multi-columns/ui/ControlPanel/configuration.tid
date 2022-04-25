@@ -107,4 +107,10 @@ caption: MultiColumn
 <option value="no">no</option>
 </$select>
 
+!!! hide the system-sidebar / panel and its button (Attention: you should know what you're doing):
+<$select tiddler="$:/config/panel/disable" default="no">
+<option value="yes">yes</option>
+<option value="no">no</option>
+</$select>
+
 </div>
