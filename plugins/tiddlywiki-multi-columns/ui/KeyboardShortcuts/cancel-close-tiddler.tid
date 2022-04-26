@@ -26,7 +26,7 @@ key: ((cancel-close-tiddler))
 		</$set>
 	</$list>
 </$list>
-<$let scrollTiddler={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}} scrollTiddlerCSSEscaped={{{ [<scrollTiddler>escapecss[]] }}} openBracket="[" closeBracket="]" quotes='"' isMissing={{{ [<tiddler>get[draft.of]is[missing]then[TRUE]else[FALSE]] }}}>
+<$let scrollTiddler={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}} isMissing={{{ [<tiddler>get[draft.of]is[missing]then[TRUE]else[FALSE]] }}}>
 	<$list filter="[<isMissing>match[TRUE]]" variable="ignore">
 		<$action-setfield $tiddler=<<historyList>> current-tiddler=<<scrollTiddler>>/>
 	</$list>
@@ -53,7 +53,7 @@ key: ((cancel-close-tiddler))
 		<$navigator story=<<storyList>> history=<<historyList>>>
 			<$set name="tiddler" value={{{ [<historyList>get[current-tiddler]] }}}>
 				<$list filter="[<tiddler>!is[draft]]" variable="ignore" emptyMessage=<<tiddler-is-draft-actions>>>
-					<$let scrollTiddler={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}} scrollTiddlerCSSEscaped={{{ [<scrollTiddler>escapecss[]] }}} openBracket="[" closeBracket="]" quotes='"'>
+					<$let scrollTiddler={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}}>
 						<$action-setfield $tiddler=<<historyList>> current-tiddler=<<scrollTiddler>>/>
 						<$action-sendmessage $message="tm-close-tiddler" $param=<<tiddler>>/>
 					</$let>
