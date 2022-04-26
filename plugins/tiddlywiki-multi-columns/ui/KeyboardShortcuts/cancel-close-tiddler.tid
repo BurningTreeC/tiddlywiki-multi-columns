@@ -31,9 +31,6 @@ key: ((cancel-close-tiddler))
 		<$action-setfield $tiddler=<<historyList>> current-tiddler=<<scrollTiddler>>/>
 	</$list>
 	<$action-sendmessage $message="tm-cancel-tiddler" $param=<<tiddler>>/>
-	<$list filter="[<isMissing>match[TRUE]]" variable="ignore">
-		<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>addsuffix[ ]addsuffix<openBracket>addsuffix[data-tiddler-title=]addsuffix<quotes>addsuffix<scrollTiddlerCSSEscaped>addsuffix<quotes>addsuffix<closeBracket>] }}}/>
-	</$list>
 </$let>
 \end
 \whitespace trim
@@ -59,7 +56,6 @@ key: ((cancel-close-tiddler))
 					<$let scrollTiddler={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}} scrollTiddlerCSSEscaped={{{ [<scrollTiddler>escapecss[]] }}} openBracket="[" closeBracket="]" quotes='"'>
 						<$action-setfield $tiddler=<<historyList>> current-tiddler=<<scrollTiddler>>/>
 						<$action-sendmessage $message="tm-close-tiddler" $param=<<tiddler>>/>
-						<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>addsuffix[ ]addsuffix<openBracket>addsuffix[data-tiddler-title=]addsuffix<quotes>addsuffix<scrollTiddlerCSSEscaped>addsuffix<quotes>addsuffix<closeBracket>] }}}/>
 					</$let>
 				</$list>
 			</$set>
