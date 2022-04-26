@@ -166,10 +166,20 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 					<div class="tc-search-panel-matches">
 						<$list filter="[!is[system]search{$:/state/search-panel/search}]" variable="searchResult">
 							<$list filter="[list[$:/columns]]" variable="column">
-								<$list filter="[[$:/StoryList-]addsuffix<column>contains<searchResult>]">
+								<$list filter="[<column>match[1]]" variable="ignore">
+									<$list filter="[[$:/StoryList]contains<searchResult>]" variable="ignore">
+										<$text text="Column 1:"/><br>
+										<$navigator story="$:/StoryList" history="$:/HistoryList" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+											<$linkcatcher actions="""<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" emptyMessage='<$action-navigate $to=<<navigateTo>>/>'><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<column>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/></$list>""">
+												<$link to=<<searchResult>>><$text text=<<searchResult>>/></$link><br>
+											</$linkcatcher>
+										</$navigator>
+									</$list>
+								</$list>
+								<$list filter="[[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]contains<searchResult>]" variable="ignore">
 									<$text text="Column "/><$text text=<<column>>/><$text text=":"/><br>
 									<$navigator story={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} history={{{ [[$:/HistoryList-]addsuffix<column>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-										<$linkcatcher actions="""<$list filter="[{$:/config/scroll-snap-x}match[yes]]" emptyMessage='<$action-navigate $to=<<navigateTo>>/>'><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<column>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/></$list>""">
+										<$linkcatcher actions="""<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" emptyMessage='<$action-navigate $to=<<navigateTo>>/>'><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<column>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/></$list>""">
 											<$link to=<<searchResult>>><$text text=<<searchResult>>/></$link><br>
 										</$linkcatcher>
 									</$navigator>
