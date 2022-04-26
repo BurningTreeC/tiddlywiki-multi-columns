@@ -73,7 +73,7 @@ PageScroller.prototype.scrollIntoView = function(element,callback,options) {
 	try {
 		$tw.utils.addClass(element,"tc-navigating");
 		setTimeout(function() {
-			element.scrollIntoView({behavior: "smooth"});
+			element.scrollIntoView();
 		},0);
 		setTimeout(function() {
 			$tw.utils.removeClass(element,"tc-navigating");
