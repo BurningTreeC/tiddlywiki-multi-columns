@@ -15,7 +15,7 @@ title: $:/config/StoryViewAnimations
 [data-tiddler-title="$(insertTiddlerCSSEscaped)$"].tc-inserting {
 	animation: slide-in-$(insertTiddlerCSSEscaped)$ {{$:/config/AnimationDuration}}ms;
 	animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-	display: block;
+	visibility: visible;
 }
 
 \end
@@ -35,13 +35,13 @@ title: $:/config/StoryViewAnimations
 [data-tiddler-title="$(removeTiddlerCSSEscaped)$"].tc-removing {
 	animation: slide-out-$(removeTiddlerCSSEscaped)$ {{$:/config/AnimationDuration}}ms;
 	animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-	display: block;
+	visibility: visible;
 }
 
 \end
 
 [data-tiddler-title].tc-removing, [data-tiddler-title].tc-inserting {
-	display: none;
+	visibility: hidden;
 }
 
 @keyframes fade-in {

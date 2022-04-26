@@ -53,6 +53,9 @@ PageScroller.prototype.handleEvent = function(event) {
 		if($tw.utils.hop(event.paramObject,"animationDuration")) {
 			options.animationDuration = event.paramObject.animationDuration;
 		}
+		if(event.paramObject && event.paramObject.noTimeout && event.paramObject.noTimeout === "yes") {
+			options.noTimeout = true;
+		}
 		if(event.paramObject && event.paramObject.selector) {
 			this.scrollSelectorIntoView(null,event.paramObject.selector,null,options);
 		} else {
@@ -72,9 +75,7 @@ PageScroller.prototype.scrollIntoView = function(element,callback,options) {
 		srcWindow = element ? element.ownerDocument.defaultView : window;
 	try {
 		$tw.utils.addClass(element,"tc-navigating");
-		setTimeout(function() {
-			element.scrollIntoView();
-		},0);
+		element.scrollIntoView();
 		setTimeout(function() {
 			$tw.utils.removeClass(element,"tc-navigating");
 		},$tw.utils.getAnimationDuration() * 1);
