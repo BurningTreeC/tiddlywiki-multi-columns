@@ -11,11 +11,11 @@ key: ((toggle-sidebar))
 <$action-setfield $tiddler="$:/state/panel/visibility" text="no"/>
 </$list>
 </$list>
+</$list>
 <$list filter="[{$:/layout}!match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 <$list filter="[[$:/state/sidebar]is[missing]] [{$:/state/sidebar}removeprefix[yes]]" emptyMessage="""
 <$action-setfield $tiddler="$:/state/sidebar" text="yes"/>
 """>
 <$action-setfield $tiddler="$:/state/sidebar" text="no"/>
-</$list>
 </$list>
 </$list>
