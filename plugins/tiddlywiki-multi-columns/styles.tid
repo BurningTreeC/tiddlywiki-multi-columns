@@ -1252,6 +1252,16 @@ hr.simple {
 
 <$list filter="[{$:/layout}!match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 
+html {
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
 <$set name="cssEscapedTitle" value={{{ [[$:/HistoryList]get[current-tiddler]escapecss[]] }}}>
 
 	<<style-focused-tiddler-normal>>
