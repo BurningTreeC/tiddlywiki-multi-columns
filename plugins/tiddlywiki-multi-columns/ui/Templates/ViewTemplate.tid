@@ -43,7 +43,6 @@ $:/state/folded/$(currentTiddler)$
 <$list filter="[<modifier>match[shift]]" variable="ignore" emptyMessage="""
 <$navigator story=<<tv-story-list>> history=<<tv-history-list>> openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 <$action-navigate $to=<<event-navigateTo>>/>
-<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>] }}}/>
 </$navigator>
 """>
 <$set name="nextColumn" value={{{ [<currentColumn>add[1]] }}}>
