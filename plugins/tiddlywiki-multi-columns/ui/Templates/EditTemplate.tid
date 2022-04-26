@@ -34,10 +34,9 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate
 </$list>
 </$let>
 <<delete-edittemplate-state-tiddlers>>
-<$let scrollTiddler={{{ [list<tv-story-list>after<currentTiddler>] ~[list<tv-story-list>before<currentTiddler>] }}} scrollTiddlerCSSEscaped={{{ [<scrollTiddler>escapecss[]] }}} openBracket="[" closeBracket="]" quotes='"'>
+<$let scrollTiddler={{{ [list<tv-story-list>after<currentTiddler>] ~[list<tv-story-list>before<currentTiddler>] }}}>
 	<$action-setfield $tiddler=<<tv-history-list>> current-tiddler=<<scrollTiddler>>/>
 	<$action-sendmessage $message="tm-delete-tiddler"/>
-	<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>addsuffix[ ]addsuffix<openBracket>addsuffix[data-tiddler-title=]addsuffix<quotes>addsuffix<scrollTiddlerCSSEscaped>addsuffix<quotes>addsuffix<closeBracket>] }}}/>
 </$let>
 </$list>
 <$list filter="[[$message$]match[cancel]]" variable="ignore">
@@ -69,10 +68,9 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate
 <$action-sendmessage $message="tm-cancel-tiddler"/>
 """>
 <<delete-edittemplate-state-tiddlers>>
-<$let scrollTiddler={{{ [list<tv-story-list>after<currentTiddler>] ~[list<tv-story-list>before<currentTiddler>] }}} scrollTiddlerCSSEscaped={{{ [<scrollTiddler>escapecss[]] }}} openBracket="[" closeBracket="]" quotes='"'>
+<$let scrollTiddler={{{ [list<tv-story-list>after<currentTiddler>] ~[list<tv-story-list>before<currentTiddler>] }}}>
 	<$action-setfield $tiddler=<<tv-history-list>> current-tiddler=<<scrollTiddler>>/>
 	<$action-sendmessage $message="tm-cancel-tiddler"/>
-	<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>addsuffix[ ]addsuffix<openBracket>addsuffix[data-tiddler-title=]addsuffix<quotes>addsuffix<scrollTiddlerCSSEscaped>addsuffix<quotes>addsuffix<closeBracket>] }}}/>
 </$let>
 </$list>
 </$list>
