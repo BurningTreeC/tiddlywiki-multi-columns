@@ -1258,7 +1258,7 @@ hr.simple {
 
 </$set>
 
-.tc-panorama-button, .tc-remove-column-button, .tc-add-column-button {
+.tc-panorama-button, .tc-remove-column-button, .tc-add-column-button, .tc-dragging-button {
 	display: none;
 }
 

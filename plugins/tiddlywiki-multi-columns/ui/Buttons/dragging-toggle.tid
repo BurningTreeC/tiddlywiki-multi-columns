@@ -2,7 +2,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/dragging-toggle
 tags: $:/tags/PageControls $:/tags/BottomRightPanel
 
 \define get-button-class(class)
-$(tv-config-toolbar-class)$ tc-toolbar-icon $class$
+tc-dragging-button $(tv-config-toolbar-class)$ tc-toolbar-icon $class$
 \end
 \define get-dragging-tooltip(onoff)
 dragging $onoff$ - [$(draggingShortcut)$]
