@@ -58,10 +58,9 @@ $:/state/folded/$(currentTiddler)$
 </$list>
 \end
 \define cancel-delete-tiddler-actions(message)
-<$let scrollTiddler={{{ [list<tv-story-list>after<currentTiddler>] ~[list<tv-story-list>before<currentTiddler>] }}} scrollTiddlerCSSEscaped={{{ [<scrollTiddler>escapecss[]] }}} openBracket="[" closeBracket="]" quotes='"'>
+<$let scrollTiddler={{{ [list<tv-story-list>after<currentTiddler>] ~[list<tv-story-list>before<currentTiddler>] }}} scrollTiddlerCSSEscaped={{{ [<scrollTiddler>escapecss[]] }}}>
 	<$action-setfield $tiddler=<<tv-history-list>> current-tiddler=<<scrollTiddler>>/>
 	<$action-sendmessage $message="tm-$message$-tiddler"/>
-	<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>addsuffix[ ]addsuffix<openBracket>addsuffix[data-tiddler-title=]addsuffix<quotes>addsuffix<scrollTiddlerCSSEscaped>addsuffix<quotes>addsuffix<closeBracket>] }}}/>
 </$let>
 \end
 \import [all[shadows+tiddlers]tag[$:/tags/Macro/View]!has[draft.of]]
