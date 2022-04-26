@@ -75,7 +75,7 @@ PageScroller.prototype.scrollIntoView = function(element,callback,options) {
 		srcWindow = element ? element.ownerDocument.defaultView : window;
 	try {
 		$tw.utils.addClass(element,"tc-navigating");
-		element.scrollIntoView();
+		element.scrollIntoView();			
 		setTimeout(function() {
 			$tw.utils.removeClass(element,"tc-navigating");
 		},$tw.utils.getAnimationDuration() * 1);
