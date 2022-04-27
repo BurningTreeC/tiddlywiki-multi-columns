@@ -36,9 +36,6 @@ $:/state/folded/$(currentTiddler)$
 </$list>
 </$set>
 \end
-\define get-navigate-to-selector()
-.tc-river-$(currentColumn)$ [data-tiddler-title="$(navigateToCSSEscaped)$"]
-\end
 \define navigate-actions()
 <$list filter="[<modifier>match[shift]]" variable="ignore" emptyMessage="""
 <$navigator story=<<tv-story-list>> history=<<tv-history-list>> openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
