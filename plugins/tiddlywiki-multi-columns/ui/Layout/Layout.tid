@@ -59,11 +59,11 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 					</$list>
 				</div>
 			</header>
-			<main class="main column-container tc-scroll-container">
+			<main class="main column-container">
 				<$navigator story="$:/columns" history="$:/ColumnHistoryList">
 					<$list filter="[list[$:/columns]] ~1" variable="currentColumn" history="$:/ColumnHistoryList">
 						<$set name="transclusion" value=<<currentColumn>>>
-							<div class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-scroll-container tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[$:/columns]is[missing]then<currentColumn>match[1]then[tc-scroll-container tc-river-active ]] :else[[tc-scroll-container tc-river-]addsuffix<currentColumn>] }}}>
+							<div class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[$:/columns]is[missing]then<currentColumn>match[1]then[tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[tc-river-]addsuffix<currentColumn>] }}}>
 								<$navigator story={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 									<$dropzone enable=<<tv-enable-drag-and-drop>> class={{{ [<currentColumn>!is[blank]addprefix[tc-dropzone-]] ~tc-dropzone-1 }}} importTitle={{{ [[$:/Import-]addsuffix<currentColumn>] }}}>
 										<$eventcatcher selector=".tc-activate-column-btn" $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""">
