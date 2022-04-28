@@ -334,7 +334,9 @@ html {
 	position: fixed;
 	width: {{$:/config/panel/panel-width-below-768px}};
 	height: 100%;
+	min-height: 100%;
 	top: 0;
+	bottom: 0;
 	z-index: 10001;
 	transition: transform {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
 	box-shadow: -1px 0px 1px <<colour panel-container-box-shadow-light>>;
