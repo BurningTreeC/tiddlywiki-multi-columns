@@ -8,7 +8,7 @@ The story "$(storyTitle)$" already exists.
 Do you want to overwrite?
 \end
 \define save-story-actions-inner(storyTitle)
-<$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} columns={{$:/columns!!list}} view={{{ [{$:/config/scroll-snap-x}!match[yes]then[vertical]else[horizontal]] }}} scrollbars={{{ [{$:/config/story-river/hide-scrollbars}match[yes]] ~no }}} bottom-right-panel={{{ [{$:/config/story-river/bottom-right-panel}match[yes]] ~no }}} dragging-enable={{{ [{$:/config/story-river/dragging-enable}match[yes]] ~no }}} follow-active-column={{{ [{$:/config/story-river/follow-active-column}match[yes]] ~no }}} horizontal-columns={{{ [[$:/config/story-river/horizontal/columns]get[text]] ~3 }}} no-tiddler-box-shadows={{{ [{$:/config/story-river/no-tiddler-box-shadows}match[yes]] ~no }}} panel-position={{{ [{$:/config/panel/position}match[right]] ~left }}} panel-show-numbers={{{ [{$:/config/panel/show-numbers}match[yes]] ~no }}} panel-width-above-1170px={{{ [[$:/config/panel/panel-width-above-1170px]get[text]] ~35% }}} panel-width-below-1170px={{{ [[$:/config/panel/panel-width-below-1170px]get[text]] ~50% }}} panel-width-below-768px={{{ [[$:/config/panel/panel-width-below-768px]get[text]] ~90% }}} river-obscured={{{ [{$:/config/panel/river-obscured}match[yes]] ~no }}} scroll-snap-type={{{ [[$:/config/story-river/scroll-snap-type]get[text]] ~none }}} show-edit-preview-per-tiddler={{{ [{$:/config/ShowEditPreview/PerTiddler}match[yes]] ~no }}} story-river-padding={{{ [[$:/config/story-river/padding]get[text]] ~15 }}} tiddler-border={{{ [[$:/config/story-river/tiddler-border]get[text]] ~1 }}} tiddler-margin={{{ [[$:/config/story-river/tiddler-margin]get[text]] ~10 }}} palette={{$:/palette}}/>
+<$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} columns={{$:/columns!!list}} view={{{ [{$:/config/story-river/scroll-snap-x}!match[yes]then[vertical]else[horizontal]] }}} scrollbars={{{ [{$:/config/story-river/hide-scrollbars}match[yes]] ~no }}} bottom-right-panel={{{ [{$:/config/story-river/bottom-right-panel}match[yes]] ~no }}} dragging-enable={{{ [{$:/config/story-river/dragging-enable}match[yes]] ~no }}} follow-active-column={{{ [{$:/config/story-river/follow-active-column}match[yes]] ~no }}} horizontal-columns={{{ [[$:/config/story-river/horizontal/columns]get[text]] ~3 }}} no-tiddler-box-shadows={{{ [{$:/config/story-river/no-tiddler-box-shadows}match[yes]] ~no }}} panel-position={{{ [{$:/config/panel/position}match[right]] ~left }}} panel-show-numbers={{{ [{$:/config/panel/show-numbers}match[yes]] ~no }}} panel-width-above-1170px={{{ [[$:/config/panel/panel-width-above-1170px]get[text]] ~35% }}} panel-width-below-1170px={{{ [[$:/config/panel/panel-width-below-1170px]get[text]] ~50% }}} panel-width-below-768px={{{ [[$:/config/panel/panel-width-below-768px]get[text]] ~90% }}} river-obscured={{{ [{$:/config/panel/river-obscured}match[yes]] ~no }}} scroll-snap-type={{{ [[$:/config/story-river/scroll-snap-type]get[text]] ~none }}} show-edit-preview-per-tiddler={{{ [{$:/config/ShowEditPreview/PerTiddler}match[yes]] ~no }}} story-river-padding={{{ [[$:/config/story-river/padding]get[text]] ~15 }}} tiddler-border={{{ [[$:/config/story-river/tiddler-border]get[text]] ~1 }}} tiddler-margin={{{ [[$:/config/story-river/tiddler-margin]get[text]] ~10 }}} palette={{$:/palette}}/>
 <$list filter="[list[$:/columns]]" variable="column">
 <$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} $field={{{ [[story-]addsuffix<column>] }}} $value={{{ [[$:/StoryList-]addsuffix<column>!match[StoryList-1]get[list]] ~[[$:/StoryList]get[list]] }}}/>
 </$list>
@@ -28,26 +28,32 @@ Do you want to overwrite?
 </$list>
 \end
 
+\define set-configuration(tiddler,field:"text",value)
+<$list filter="[<__tiddler__>get<__field__>!match<__value__>]" variable="ignore">
+<$action-setfield $tiddler=<<__tiddler__>> $field=<<__field__>> $value=<<__value__>>/>
+</$list>
+\end
+
 \define load-story-actions()
-<$action-setfield $tiddler="$:/columns" list={{{ [<storyTiddler>get[columns]] }}}/>
-<$action-setfield $tiddler="$:/config/scroll-snap-x" text={{{ [<storyTiddler>get[view]match[horizontal]then[yes]else[no]] }}}/>
-<$action-setfield $tiddler="$:/config/story-river/bottom-right-panel" text={{{ [<storyTiddler>get[bottom-right-panel]] }}}/>
-<$action-setfield $tiddler="$:/config/story-river/dragging-enable" text={{{ [<storyTiddler>get[dragging-enable]] }}}/>
-<$action-setfield $tiddler="$:/config/story-river/follow-active-column" text={{{ [<storyTiddler>get[follow-active-column]] }}}/>
-<$action-setfield $tiddler="$:/config/story-river/hide-scrollbars" text={{{ [<storyTiddler>get[hide-scrollbars]] }}}/>
-<$action-setfield $tiddler="$:/config/story-river/no-tiddler-box-shadows" text={{{ [<storyTiddler>get[no-tiddler-box-shadows]] }}}/>
-<$action-setfield $tiddler="$:/config/panel/position" text={{{ [<storyTiddler>get[panel-position]] }}}/>
-<$action-setfield $tiddler="$:/config/panel/show-numbers" text={{{ [<storyTiddler>get[panel-show-numbers]] }}}/>
-<$action-setfield $tiddler="$:/config/panel/panel-width-above-1170px" text={{{ [<storyTiddler>get[panel-width-above-1170px]] }}}/>
-<$action-setfield $tiddler="$:/config/panel/panel-width-below-1170px" text={{{ [<storyTiddler>get[panel-width-below-1170px]] }}}/>
-<$action-setfield $tiddler="$:/config/panel/panel-width-below-768px" text={{{ [<storyTiddler>get[panel-width-below-768px]] }}}/>
-<$action-setfield $tiddler="$:/config/panel/river-obscured" text={{{ [<storyTiddler>get[river-obscured]] }}}/>
-<$action-setfield $tiddler="$:/config/story-river/scroll-snap-type" text={{{ [<storyTiddler>get[scroll-snap-type]] }}}/>
-<$action-setfield $tiddler="$:/config/ShowEditPreview/PerTiddler" text={{{ [<storyTiddler>get[show-edit-preview-per-tiddler]] }}}/>
-<$action-setfield $tiddler="$:/config/story-river/padding" text={{{ [<storyTiddler>get[story-river-padding]] }}}/>
-<$action-setfield $tiddler="$:/config/story-river/tiddler-border" text={{{ [<storyTiddler>get[tiddler-border]] }}}/>
-<$action-setfield $tiddler="$:/config/story-river/tiddler-margin" text={{{ [<storyTiddler>get[tiddler-margin]] }}}/>
-<$action-setfield $tiddler="$:/palette" text={{{ [<storyTiddler>get[palette]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/columns" field="list" value={{{ [<storyTiddler>get[columns]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/scroll-snap-x" value={{{ [<storyTiddler>get[view]match[horizontal]then[yes]else[no]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/bottom-right-panel" value={{{ [<storyTiddler>get[bottom-right-panel]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/dragging-enable" value={{{ [<storyTiddler>get[dragging-enable]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/follow-active-column" value={{{ [<storyTiddler>get[follow-active-column]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/hide-scrollbars" value={{{ [<storyTiddler>get[hide-scrollbars]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/no-tiddler-box-shadows" value={{{ [<storyTiddler>get[no-tiddler-box-shadows]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/panel/position" value={{{ [<storyTiddler>get[panel-position]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/panel/show-numbers" value={{{ [<storyTiddler>get[panel-show-numbers]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/panel/panel-width-above-1170px" value={{{ [<storyTiddler>get[panel-width-above-1170px]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/panel/panel-width-below-1170px" value={{{ [<storyTiddler>get[panel-width-below-1170px]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/panel/panel-width-below-768px" value={{{ [<storyTiddler>get[panel-width-below-768px]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/panel/river-obscured" value={{{ [<storyTiddler>get[river-obscured]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/scroll-snap-type" value={{{ [<storyTiddler>get[scroll-snap-type]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/ShowEditPreview/PerTiddler" value={{{ [<storyTiddler>get[show-edit-preview-per-tiddler]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/padding" value={{{ [<storyTiddler>get[story-river-padding]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/tiddler-border" value={{{ [<storyTiddler>get[tiddler-border]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/tiddler-margin" value={{{ [<storyTiddler>get[tiddler-margin]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/palette" value={{{ [<storyTiddler>get[palette]] }}}/>
 <$list filter="[<storyTiddler>fields[]prefix[story-]]" variable="storyField">
 <$let storyNumber={{{ [<storyField>removeprefix[story-]] }}} storyTitle={{{ [[$:/StoryList-]addsuffix<storyNumber>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
 <$action-setfield $tiddler=<<storyTitle>> list={{{ [<storyTiddler>get<storyField>] }}}/>
