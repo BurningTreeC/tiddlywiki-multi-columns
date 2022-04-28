@@ -53,9 +53,6 @@ PageScroller.prototype.handleEvent = function(event) {
 		if($tw.utils.hop(event.paramObject,"animationDuration")) {
 			options.animationDuration = event.paramObject.animationDuration;
 		}
-		if(event.paramObject && event.paramObject.noTimeout && event.paramObject.noTimeout === "yes") {
-			options.noTimeout = true;
-		}
 		if(event.paramObject && event.paramObject.selector) {
 			this.scrollSelectorIntoView(null,event.paramObject.selector,null,options);
 		} else {
