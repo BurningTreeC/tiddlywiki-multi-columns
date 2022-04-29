@@ -3,8 +3,6 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/modules/storyviews/multi-column.j
 type: application/javascript
 module-type: storyview
 
-Views the story as a linear sequence
-
 \*/
 (function(){
 
