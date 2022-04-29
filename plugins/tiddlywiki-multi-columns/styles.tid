@@ -339,7 +339,14 @@ html {
 	bottom: 0;
 	z-index: 10001;
 	transition: transform {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
+}
+
+.tc-panel-from-right .tc-panel-container {
 	box-shadow: -1px 0px 1px <<colour panel-container-box-shadow-light>>;
+}
+
+.tc-panel-from-left .tc-panel-container {
+	box-shadow: 1px 0px 1px <<colour panel-container-box-shadow-light>>;
 }
 
 <$list filter="[[$:/state/panel/visibility]get[text]match[yes]then[$:/state/user-panel/visibility]get[text]match[yes]]" variable="ignore">
