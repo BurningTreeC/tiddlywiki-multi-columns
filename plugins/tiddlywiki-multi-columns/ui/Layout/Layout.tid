@@ -72,6 +72,13 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 										<$eventcatcher selector=".tc-activate-column-btn" $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""">
 											<div tag="a" class="tc-btn-invisible tc-activate-column-btn"/>
 										</$eventcatcher>
+										<section class="tc-story-backdrop">
+											<$set name="aboveStoryTag" value={{{ [<currentColumn>match[1]then[$:/tags/AboveStory]] [<currentColumn>!match[1]then[$:/tags/AboveStory-]addsuffix<currentColumn>] }}}>
+												<$list filter="[all[tiddlers+shadows]tag<aboveStoryTag>!is[draft]]" variable="listItem">
+													<$transclude tiddler=<<listItem>>/>
+												</$list>
+											</$set>
+										</section>
 										<div class="tc-river-inner">
 											<$list filter="[list<tv-story-list>search{$:/state/search-panel/search}]" template="$:/plugins/BTC/tiddlywiki-multi-columns/ui/ViewTemplate" editTemplate="$:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate" storyview={{$:/view}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-1]!match[$:/HistoryList-]] ~[[$:/HistoryList]] }}} emptyMessage="""<$set name="emptyMessageTiddler" value={{{ [[$:/EmptyMessage-]addsuffix<currentColumn>] }}}><$transclude tiddler=<<emptyMessageTiddler>> mode="block"/></$set>"""/>
 											<$droppable actions="""<$action-setfield $tiddler="$:/state/drag-handled" text="yes"/><$action-listops $tiddler=<<tv-story-list>> $subfilter="[<actionTiddler>]"/>""" dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target="" starting-next-tiddler="" copying=""/>""">
