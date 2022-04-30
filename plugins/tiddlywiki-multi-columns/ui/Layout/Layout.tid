@@ -38,6 +38,9 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 				<div class={{{ [{$:/state/panel/visibility}match[yes]] [{$:/state/user-panel/visibility}match[yes]] +[limit[1]] +[then[tc-panel-hide tc-btn-invisible tc-panel-shown]else[tc-panel-hide tc-btn-invisible tc-panel-hidden]] }}}/>
 			</$eventcatcher>
 		</$list>
+		<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageTemplate]!is[draft]] -[[$:/core/ui/PageTemplate/story]] -[[$:/core/ui/PageTemplate/sidebar]] -[[$:/core/ui/PageTemplate/drafts]] -[[$:/core/ui/PageTemplate/alerts]] -[[$:/core/ui/PageTemplate/pluginreloadwarning]] -[[$:/plugins/tiddlywiki/menubar/menu]]" variable="listItem">
+			<$transclude tiddler=<<listItem>>/>
+		</$list>
 		<div class="flextemplate-container">
 			<header class="column-config column-config-top">
 				{{$:/core/ui/PageTemplate/alerts}}
