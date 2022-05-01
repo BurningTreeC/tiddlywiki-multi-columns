@@ -40,7 +40,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 		</$list>
 		<$set name="currentColumn" value={{{ [[$:/columns]get[active-column]] ~1 }}}>
 			<$navigator story={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-				<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageTemplate]!is[draft]] -[[$:/core/ui/PageTemplate/story]] -[[$:/core/ui/PageTemplate/sidebar]] -[[$:/core/ui/PageTemplate/drafts]] -[[$:/core/ui/PageTemplate/alerts]] -[[$:/core/ui/PageTemplate/pluginreloadwarning]] -[[$:/plugins/tiddlywiki/menubar/menu]]" variable="listItem">
+				<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageTemplate]!is[draft]] -[[$:/core/ui/PageTemplate/story]] -[[$:/core/ui/PageTemplate/sidebar]] -[[$:/core/ui/PageTemplate/drafts]] -[[$:/core/ui/PageTemplate/alerts]] -[[$:/core/ui/PageTemplate/pluginreloadwarning]] -[[$:/core/ui/PageTemplate/toprightbar]] -[[$:/core/ui/PageTemplate/topleftbar]] -[[$:/plugins/tiddlywiki/menubar/menu]]" variable="listItem">
 					<$transclude tiddler=<<listItem>>/>
 				</$list>
 			</$navigator>
