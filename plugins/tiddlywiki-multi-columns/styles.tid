@@ -4,6 +4,7 @@ tags: $:/tags/Stylesheet
 \define get-color-scheme() <$text text={{{ [{$:/palette}get[color-scheme]] }}}/>
 \define set-color-scheme()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
 :root {
 	color-scheme: <<get-color-scheme>>;
 }
@@ -11,6 +12,7 @@ tags: $:/tags/Stylesheet
 \end
 
 \define style-focused-tiddler()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
 .tc-river-$(currentColumn)$ .tc-river-inner [data-tiddler-title="$(cssEscapedTitle)$"] > .tc-tiddler-frame {
 	border: {{$:/config/story-river/tiddler-border}}px solid <<colour focused-tiddler>>;
@@ -19,6 +21,7 @@ tags: $:/tags/Stylesheet
 \end
 
 \define style-focused-tiddler-normal()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
 .tc-story-river [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
 	border: 1px solid <<colour focused-tiddler>>;
@@ -27,6 +30,7 @@ tags: $:/tags/Stylesheet
 \end
 
 \define style-unfocused-tiddlers()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
 .tc-river-$(column)$ .tc-river-inner [data-tiddler-title="$(cssEscapedTitle)$"] > .tc-tiddler-frame {
 	border: {{$:/config/story-river/tiddler-border}}px solid <<colour muted-foreground>>;
@@ -70,6 +74,7 @@ tags: $:/tags/Stylesheet
 \end
 
 \define target-tiddler-margin()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
 .tc-river-$(currentRiver)$ .tc-tiddler-view-frame:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame, .tc-river-$(currentRiver)$ .tc-tiddler-edit-frame:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame {
 	margin-top: {{$:/config/story-river/tiddler-margin}}px;
@@ -83,13 +88,14 @@ tags: $:/tags/Stylesheet
 	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px));
 }
 
-<$list filter="[{$:/state/dragging!!nth}match[0]]">
+\end
+
+\define target-tiddler-margin-nth-0()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
 	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px);
 }
-
-</$list>
 
 \end
 
@@ -101,9 +107,8 @@ tags: $:/tags/Stylesheet
 
 \end
 
-\define position-start-tiddlers()
-
-<$list filter="[{$:/state/dragging!!copying}!match[yes]]">
+\define position-start-tiddlers-no-copying()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
 .tc-river-$(currentRiver)$ .tc-river-inner > [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"].tc-tiddler-view-frame > .tc-tiddler-frame, .tc-river-$(currentRiver)$ .tc-river-inner > [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"].tc-tiddler-edit-frame > .tc-tiddler-frame {
 	transition: none;
@@ -113,17 +118,19 @@ tags: $:/tags/Stylesheet
 	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px));
 }
 
-<$list filter="[{$:/state/dragging!!nth}match[0]]">
+\end
+
+\define position-start-tiddlers-no-copying-nth-0()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"] .tc-tiddler-frame {
 	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px);
 }
 
-</$list>
+\end
 
-</$list>
-
-<$list filter="[{$:/state/dragging!!copying}match[yes]]">
+\define position-start-tiddlers-copying()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
 .tc-river-$(currentRiver)$ .tc-river-inner > [data-tiddler-title="$(dragTiddlerCSSEscaped)$"].tc-tiddler-view-frame > .tc-tiddler-frame, .tc-river-$(currentRiver)$ .tc-river-inner > [data-tiddler-title="$(dragTiddlerCSSEscaped)$"].tc-tiddler-edit-frame > .tc-tiddler-frame {
 	transition: none;
@@ -133,15 +140,14 @@ tags: $:/tags/Stylesheet
 	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px));
 }
 
-<$list filter="[{$:/state/dragging!!nth}match[0]]">
+\end
+
+\define position-start-tiddlers-copying-nth-0()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
 .tc-river-$(currentRiver)$ [data-tiddler-title="$(dragTiddlerCSSEscaped)$"] .tc-tiddler-frame {
 	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px);
 }
-
-</$list>
-
-</$list>
 
 \end
 
@@ -1099,6 +1105,12 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 <<target-tiddler-margin>>
 
+<$list filter="[{$:/state/dragging!!nth}match[0]]">
+
+<<target-tiddler-margin-nth-0>>
+
+</$list>
+
 </$set>
 
 </$set>
@@ -1156,7 +1168,29 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 <$let currentRiver={{$:/state/dragging!!start-river}} dragTiddler={{$:/state/dragging!!drag-tiddler}} startingNextTiddler={{$:/state/dragging!!starting-next-tiddler}} startingNextTiddlerCSSEscaped={{{ [<startingNextTiddler>escapecss[]] }}} dragTiddlerCSSEscaped={{{ [<dragTiddler>escapecss[]] }}}>
 
-<<position-start-tiddlers>>
+<$list filter="[{$:/state/dragging!!copying}!match[yes]]">
+
+<<position-start-tiddlers-no-copying>>
+
+<$list filter="[{$:/state/dragging!!nth}match[0]]">
+
+<<position-start-tiddlers-no-copying-nth-0>>
+
+</$list>
+
+</$list>
+
+<$list filter="[{$:/state/dragging!!copying}match[yes]]">
+
+<<position-start-tiddlers-copying>>
+
+<$list filter="[{$:/state/dragging!!nth}match[0]]">
+
+<<position-start-tiddlers-copying-nth-0>>
+
+</$list>
+
+</$list>
 
 </$let>
 
