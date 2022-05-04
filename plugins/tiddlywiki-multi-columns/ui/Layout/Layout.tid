@@ -69,7 +69,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 			<main class="main column-container">
 				<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
 					<$set name="transclusion" value=<<currentColumn>>>
-						<div class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[$:/columns]is[missing]then<currentColumn>match[1]then[tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[tc-river-]addsuffix<currentColumn>] }}}>
+						<div class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[$:/columns]is[missing]then<currentColumn>match[1]then[tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[tc-river-]addsuffix<currentColumn>] }}} id={{{ [[tid-]addsuffix<currentColumn>] }}}>
 							<$navigator story={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 								<$dropzone enable=<<tv-enable-drag-and-drop>> class={{{ [<currentColumn>!is[blank]addprefix[tc-dropzone-]] ~tc-dropzone-1 }}} importTitle={{{ [[$:/Import-]addsuffix<currentColumn>] }}}>
 									<$eventcatcher selector=".tc-activate-column-btn" $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""">
@@ -125,7 +125,17 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 					<div class="tc-sidebar-flexpanel">
 						<div class="tc-sidebar-flexpanel-column-container">
 							<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
-								<$button tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}} passThrough="yes"/>"""><$list filter="[{$:/config/panel/show-numbers}!match[no]]"><div class="tc-sidebar-flexpanel-column-counter"><$text text=<<currentColumn>>/></div></$list></$button>
+								<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}}>
+									<$droppable tag="div" class="tc-column-active-button-droppable" actions="""<$action-log actionTiddler=<<actionTiddler>>/><$action-listops $tiddler=<<storyList>> $subfilter="[<actionTiddler>]"/>""">
+										<$button dragFilter="""[list<storyList>]""" tag="div" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}} passThrough="yes"/>""">
+											<$list filter="[{$:/config/panel/show-numbers}!match[no]]">
+												<div class="tc-sidebar-flexpanel-column-counter">
+													<$text text=<<currentColumn>>/>
+												</div>
+											</$list>
+										</$button>
+									</$droppable>
+								</$set>
 							</$list>
 						</div>
 					</div>
