@@ -1,5 +1,7 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/remove-column
 tags: $:/tags/PageControls
+description: remove a column from the layout
+caption: remove column
 
 \whitespace trim
 \define remove-column-actions()

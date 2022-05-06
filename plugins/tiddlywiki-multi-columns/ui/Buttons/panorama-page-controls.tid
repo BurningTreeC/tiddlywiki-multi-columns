@@ -1,5 +1,7 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/panorama-page-controls
 tags: $:/tags/PageControls
+description: horizontal or vertical view
+caption: toggle panorama
 
 \define get-panorama-classes()
 tc-panorama-button $(tv-config-toolbar-class)$

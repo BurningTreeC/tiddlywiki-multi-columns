@@ -1,5 +1,7 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/new-column
 tags: $:/tags/PageControls
+description: add a new column to the layout
+caption: new column
 
 \whitespace trim
 \define new-column-actions()

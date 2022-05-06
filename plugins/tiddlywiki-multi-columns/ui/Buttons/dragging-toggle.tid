@@ -1,5 +1,7 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/dragging-toggle
 tags: $:/tags/PageControls $:/tags/BottomRightPanel
+description: toggle the dragging functionality
+caption: dragging toggle
 
 \define get-button-class(class)
 tc-dragging-button $(tv-config-toolbar-class)$ tc-toolbar-icon $class$
