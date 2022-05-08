@@ -595,8 +595,6 @@ html {
 	display: flex;
 	flex-direction: column;
 	flex-basis: calc(100% - 78px);
-	padding-left: 5%;
-	padding-right: 5%;
 	min-width: 100%;
 	overflow: hidden;
 }
@@ -611,6 +609,8 @@ html {
 	flex-direction: column;
 	height: calc(100% - 25px);
 	overflow: hidden;
+	padding-left: 5%;
+	padding-right: 5%;
 }
 
 .tc-panel-content .tc-sidebar-lists.tc-sidebar-tabs, .tc-panel-content .tc-tab-set.tc-sidebar-tabs-main {
@@ -1004,6 +1004,8 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	justify-content: flex-start;
 	align-items: stretch;
 	height: 25px;
+	padding-left: 5%;
+	padding-right: 5%;
 }
 
 .tc-sidebar-flexpanel .tc-sidebar-flexpanel-column-container {
