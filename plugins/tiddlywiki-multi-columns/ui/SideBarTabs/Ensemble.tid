@@ -37,6 +37,9 @@ Do you want to overwrite?
 <$list filter="[list[$:/columns]]" variable="column">
 <$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} $field={{{ [[story-]addsuffix<column>] }}} $value={{{ [[$:/StoryList-]addsuffix<column>!match[StoryList-1]get[list]] ~[[$:/StoryList]get[list]] }}}/>
 </$list>
+<$list filter="[[$:/columns]fields[]prefix[flex-grow-]]" variable="flexGrowField">
+<$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} $field=<<flexGrowField>> $value={{{ [[$:/columns]get<flexGrowField>] }}}/>
+</$list>
 \end
 
 \define save-story-actions(storyTitle)
@@ -88,6 +91,9 @@ Do you want to overwrite?
 <$let storyNumber={{{ [<storyField>removeprefix[story-]] }}} storyTitle={{{ [[$:/StoryList-]addsuffix<storyNumber>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
 <$action-setfield $tiddler=<<storyTitle>> list={{{ [<storyTiddler>get<storyField>] }}}/>
 </$let>
+</$list>
+<$list filter="[<storyTiddler>fields[]prefix[flex-grow-]]" variable="flexGrowField">
+<$action-setfield $tiddler="$:/columns" $field=<<flexGrowField>> $value={{{ [<storyTiddler>get<flexGrowField>] }}}/>
 </$list>
 \end
 \whitespace trim
