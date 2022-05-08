@@ -13,6 +13,15 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 \define user-sidebar-actions()
 <$action-setfield $tiddler="$:/state/user-panel/visibility" text="yes"/><$action-sendmessage $message="tm-focus-selector-deferred" $param=".tc-user-panel-container input" delay={{$:/config/AnimationDuration}}/>
 \end
+\define active-column-dblclick-actions()
+<$let flexGrowField={{{ [[flex-grow-]addsuffix<currentColumn>] }}} flexGrow={{{ [[$:/columns]get<flexGrowField>] ~1 }}}>
+<$list filter="[<modifier>match[ctrl]]" variable="ignore" emptyMessage="""
+<$action-setfield $tiddler="$:/columns" $field=<<flexGrowField>> $value={{{ [<flexGrow>add[1]] }}}/>
+""">
+<$action-setfield $tiddler="$:/columns" $field=<<flexGrowField>> $value={{{ [<flexGrow>subtract[1]!match[0]] ~1 }}}/>
+</$list>
+</$let>
+\end
 \import [[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!is[draft]]
 <$vars
 	tv-config-toolbar-icons={{$:/config/Toolbar/Icons}}
@@ -115,7 +124,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 						<div class="tc-top-active-column">
 							<$set name="currentStory" value={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
 								<$draggable class="tc-top-active-column-draggable" filter="[list<currentStory>]" dragimagetype="pill">
-									<$button tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>"""></$button>
+									<$eventcatcher tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""" $dblclick=<<active-column-dblclick-actions>>></$eventcatcher>
 								</$draggable>
 							</$set>
 						</div>
@@ -125,10 +134,10 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 			<main class="main column-container">
 				<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
 					<$set name="transclusion" value=<<currentColumn>>>
-						<div class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[$:/columns]is[missing]then<currentColumn>match[1]then[tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[tc-river-]addsuffix<currentColumn>] }}} id={{{ [[tid-]addsuffix<currentColumn>] }}}>
+						<div class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[$:/columns]is[missing]then<currentColumn>match[1]then[tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[tc-river-]addsuffix<currentColumn>] }}}>
 							<$navigator story={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 								<$dropzone enable=<<tv-enable-drag-and-drop>> class={{{ [<currentColumn>!is[blank]addprefix[tc-dropzone-]] ~tc-dropzone-1 }}} importTitle={{{ [[$:/Import-]addsuffix<currentColumn>] }}}>
-									<$eventcatcher selector=".tc-activate-column-btn" $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""">
+									<$eventcatcher selector=".tc-activate-column-btn" $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""" $dblclick=<<active-column-dblclick-actions>>>
 										<div tag="a" class="tc-btn-invisible tc-activate-column-btn"/>
 									</$eventcatcher>
 									<section class="tc-story-backdrop">

@@ -42,9 +42,11 @@ tags: $:/tags/Stylesheet
 
 <$list filter="[list[$:/columns]] ~1" variable="currentColumn">
 
+<$let flexGrowField={{{ [[flex-grow-]addsuffix<currentColumn>] }}} flexGrow={{{ [[$:/columns]get<flexGrowField>] ~1 }}}>
+
 .column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > *:nth-child(<<currentColumn>>) {
 	flex-basis: 0;
-	flex-grow: 1;
+	flex-grow: <<flexGrow>>;
 	flex-shrink: 0;
 	overflow-y: scroll;
 	overflow-x: hidden;
@@ -68,6 +70,8 @@ tags: $:/tags/Stylesheet
 		}
 
 	</$list>
+
+</$let>
 
 </$list>
 
@@ -750,10 +754,8 @@ html {
 		}
 
 		.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > * {
-			flex-basis: initial;
-			flex-grow: 0;
+			flex-basis: calc(100vw / {{$:/config/story-river/horizontal/columns}});
 			flex-shrink: 0;
-			width: calc(100vw / {{$:/config/story-river/horizontal/columns}});
 			padding: 0;
 			overflow-y: scroll;
 			scroll-snap-align: start;
