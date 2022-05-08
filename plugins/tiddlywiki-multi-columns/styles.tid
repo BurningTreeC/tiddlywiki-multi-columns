@@ -336,6 +336,10 @@ html {
 }
 
 .tc-panel-container {
+	display: flex;
+	flex-direction: column;
+	align-content: start;
+	overflow: hidden;
 	background-color: <<colour page-background>>;
 	position: fixed;
 	width: {{$:/config/panel/panel-width-below-768px}};
@@ -345,6 +349,10 @@ html {
 	bottom: 0;
 	z-index: 10001;
 	transition: transform {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
+}
+
+.tc-panel-container .tc-panel-container-spacer {
+	flex: 1 0 78px;
 }
 
 .tc-panel-from-right .tc-panel-container {
@@ -584,27 +592,51 @@ html {
 }
 
 .tc-panel-content-header {
-	position: absolute;
-	top: 78px;
+	display: flex;
+	flex-direction: column;
+	flex-basis: calc(100% - 78px);
 	padding-left: 5%;
 	padding-right: 5%;
-	height: 25px;
-	min-height: 25px;
 	min-width: 100%;
+	overflow: hidden;
 }
 
-.tc-panel-content-subheader {
-	position: absolute;
-	top: calc(78px + 25px);
-	padding-left: 5%;
-	padding-right: 5%;
-	min-height: 90px;
-	min-width: 100%;
-}
-
-.tc-panel-content-subheader .tc-page-controls .tc-panorama-button {
+.tc-panel-content-header .tc-page-controls .tc-panorama-button {
 	margin-left: -2px;
 	margin-right: 0.4em;
+}
+
+.tc-panel-content {
+	display: flex;
+	flex-direction: column;
+	height: calc(100% - 25px);
+	overflow: hidden;
+}
+
+.tc-panel-content .tc-sidebar-lists.tc-sidebar-tabs, .tc-panel-content .tc-tab-set.tc-sidebar-tabs-main {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	width: 100%;
+}
+
+.tc-panel-content .tc-sidebar-lists.tc-sidebar-tabs > p {
+	display: flex;
+	overflow: hidden;
+}
+
+.tc-panel-content .tc-tab-content.tc-sidebar-tabs-main {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	align-content: start;
+	overflow: hidden;
+}
+
+.tc-panel-content .tc-tab-content.tc-sidebar-tabs-main > * {
+	flex: 1;
+	overflow: auto;
+	height: 100%;
 }
 
 .tc-user-panel-container {
@@ -613,47 +645,18 @@ html {
 	padding-left: 5%;
 	padding-right: 5%;
 	height: calc(100% - 78px);
+	min-height: calc(100% - 78px);
 	min-width: 100%;
 	overflow: auto;
 }
 
-.tc-panel-content {
-	position: absolute;
-	top: calc(78px + 115px);
-	overflow: auto;
-	-webkit-overflow-scrolling: touch;
-	padding-left: 5%;
-	padding-right: 5%;
-	min-height: calc(100% - 78px - 115px);
-	min-width: 100%;
-	height: calc(100% - 78px - 115px);
-	max-width: 100%;
-}
-
-.tc-panel-content .tc-sidebar-lists p {
+.tc-panel-content .tc-sidebar-lists.tc-sidebar-tabs p {
 	margin-top: 3px;
 	margin-bottom: 3px;
 }
 
-.tc-panel-content .tc-tab-buttons.tc-sidebar-tabs-main {
-	padding-top: 0;
-}
-
-.tc-panel-content .tc-tab-content.tc-sidebar-tabs-main {
-	position: absolute;
-	max-height: calc(100% - 2em - 14px);
-	min-width: 95%;
-	max-width: 95%;
-	overflow: auto;
-	-webkit-overflow-scrolling: touch;
-}
-
-.tc-panel-content .tc-tab-buttons.tc-sidebar-tabs-main, .tc-panel-content-subheader .tc-page-controls {
-	white-space: nowrap;
-}
-
-.tc-panel-content .tc-tab-content.tc-sidebar-tabs-main .tc-more-sidebar .tc-tab-content.tc-vertical {
-	overflow: inherit;
+.tc-panel-content .tc-sidebar-lists.tc-sidebar-search p {
+	margin-bottom: 3px;
 }
 
 .flextemplate-container {

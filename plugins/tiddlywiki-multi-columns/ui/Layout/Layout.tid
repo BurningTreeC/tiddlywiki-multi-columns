@@ -120,7 +120,8 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 				</$navigator>
 				<$button tag="a" class="tc-panel-close tc-btn-invisible" set="$:/state/panel/visibility" setTo="no">Close</$button>
 			</header>
-			<$scrollable fallthrough="no" class="tc-panel-container">
+			<div class="tc-panel-container">
+				<div class="tc-panel-container-spacer"/>
 				<div class="tc-panel-content-header">
 					<div class="tc-sidebar-flexpanel">
 						<div class="tc-sidebar-flexpanel-column-container">
@@ -139,19 +140,15 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 							</$list>
 						</div>
 					</div>
-				</div>
-				<div class="tc-panel-content-subheader">
 					<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-						<$transclude tiddler="$:/core/ui/SideBarSegments/search"/>
-						<$transclude tiddler="$:/core/ui/SideBarSegments/page-controls"/>
+						<div class="tc-panel-content">
+							<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]!is[draft]] -[[$:/core/ui/SideBarSegments/site-title]] -[[$:/core/ui/SideBarSegments/site-subtitle]]" variable="listItem">
+								<$transclude tiddler=<<listItem>>/>
+							</$list>
+						</div>
 					</$navigator>
 				</div>
-				<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>		
-					<div class="tc-panel-content">
-						{{$:/core/ui/SideBarSegments/tabs}}
-					</div>
-				</$navigator>
-			</$scrollable>
+			</div>
 		</div>
 	</$set>
 	<$set name="rightOrLeft" value={{{ [{$:/config/panel/position}match[left]then[tc-panel-from-right]else[tc-panel-from-left]] }}}>
