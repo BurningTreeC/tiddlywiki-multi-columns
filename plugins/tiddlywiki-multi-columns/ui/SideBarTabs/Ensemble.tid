@@ -31,6 +31,8 @@ Do you want to overwrite?
 	tiddler-border={{{ [[$:/config/story-river/tiddler-border]get[text]] ~1 }}}
 	tiddler-margin={{{ [[$:/config/story-river/tiddler-margin]get[text]] ~10 }}}
 	hamburger-top={{{ [[$:/config/story-river/hamburger-top]get[text]] ~no }}}
+	hamburger-show-page-controls={{{ [[$:/config/top-hamburger-toolbar/show-pagecontrols]get[text]] ~no }}}
+	hamburger-show-page-search={{{ [[$:/config/top-hamburger-toolbar/show-search]get[text]] ~no }}}
 	palette={{$:/palette}}/>
 <$list filter="[list[$:/columns]]" variable="column">
 <$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} $field={{{ [[story-]addsuffix<column>] }}} $value={{{ [[$:/StoryList-]addsuffix<column>!match[StoryList-1]get[list]] ~[[$:/StoryList]get[list]] }}}/>
@@ -79,6 +81,8 @@ Do you want to overwrite?
 <$macrocall $name="set-configuration" tiddler="$:/config/story-river/tiddler-border" value={{{ [<storyTiddler>get[tiddler-border]] }}}/>
 <$macrocall $name="set-configuration" tiddler="$:/config/story-river/tiddler-margin" value={{{ [<storyTiddler>get[tiddler-margin]] }}}/>
 <$macrocall $name="set-configuration" tiddler="$:/config/story-river/hamburger-top" value={{{ [<storyTiddler>get[hamburger-top]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/top-hamburger-toolbar/show-pagecontrols" value={{{ [<storyTiddler>get[hamburger-show-page-controls]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/top-hamburger-toolbar/show-search" value={{{ [<storyTiddler>get[hamburger-show-search]] }}}/>
 <$macrocall $name="set-configuration" tiddler="$:/palette" value={{{ [<storyTiddler>get[palette]] }}}/>
 <$list filter="[<storyTiddler>fields[]prefix[story-]]" variable="storyField">
 <$let storyNumber={{{ [<storyField>removeprefix[story-]] }}} storyTitle={{{ [[$:/StoryList-]addsuffix<storyNumber>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
