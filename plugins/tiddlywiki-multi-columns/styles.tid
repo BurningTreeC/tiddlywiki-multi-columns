@@ -638,7 +638,7 @@ html {
 	overflow: hidden;
 }
 
-.tc-panel-content-header .tc-page-controls .tc-panorama-button {
+.tc-panel-content-header .tc-page-controls .tc-panorama-button, .tc-hamburger-topbar .tc-page-controls .tc-panorama-button {
 	margin-left: -2px;
 	margin-right: 0.4em;
 }
