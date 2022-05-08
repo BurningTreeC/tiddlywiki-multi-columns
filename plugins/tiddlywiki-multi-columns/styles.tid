@@ -490,6 +490,8 @@ html {
 	width: 60px;
 }
 
+<$list filter="[{$:/config/story-river/hamburger-top}!match[yes]]" variable="ignore">
+
 .tc-panel-show, .tc-user-panel-show {
 	position: fixed;
 	top: 0;
@@ -505,15 +507,7 @@ html {
 	left: 5px;
 }
 
-.tc-panel-show svg, .tc-user-panel-show svg {
-	fill: <<colour show-panel-button>>;
-}
-
-.tc-panel-show:hover svg, .tc-user-panel-show:hover svg {
-	fill: <<colour show-panel-button-foreground>>;
-}
-
-<$list filter="[{$:/config/panel/position}match[left]]">
+<$list filter="[{$:/config/panel/position}match[left]]" variable="ignore">
 
 .tc-panel-show {
 	left: 5px;
@@ -526,6 +520,33 @@ html {
 }
 
 </$list>
+
+</$list>
+
+<$list filter="[{$:/config/story-river/hamburger-top}match[yes]]" variable="ignore">
+
+.tc-hamburger-topbar {
+	display: flex;
+	justify-content: space-between;
+}
+
+.tc-hamburger-right {
+	margin-right: 3px;
+}
+
+.tc-hamburger-left {
+	margin-left: 3px;
+}
+
+</$list>
+
+.tc-panel-show svg, .tc-user-panel-show svg {
+	fill: <<colour show-panel-button>>;
+}
+
+.tc-panel-show:hover svg, .tc-user-panel-show:hover svg {
+	fill: <<colour show-panel-button-foreground>>;
+}
 
 .tc-panel-close:hover, .tc-search-panel-close:hover {
 	background-color: <<colour foreground>>;

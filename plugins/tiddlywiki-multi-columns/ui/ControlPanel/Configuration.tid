@@ -135,6 +135,13 @@ caption: MultiColumn
 <option value="no">no</option>
 </$select>
 
+!!! show the ''hamburger buttons'' in a top panel
+<$link to="$:/config/story-river/hamburger-top"/><br>
+<$select tiddler="$:/config/story-river/hamburger-top" default="no">
+<option value="yes">yes</option>
+<option value="no">no</option>
+</$select>
+
 !!! hide the system-sidebar / panel and its button (Attention: you should know what you're doing)
 <$link to="$:/config/panel/disable"/><br>
 <$select tiddler="$:/config/panel/disable" default="no">

@@ -23,14 +23,18 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 	storyviewTitle={{$:/view}}
 	languageTitle={{{ [{$:/language}get[name]] }}}>
 	<main class=<<containerClasses>>>
-		<$list filter="[{$:/config/panel/disable}!match[yes]]" variable="ignore">
-			<$list filter="[{$:/state/panel/visibility}!match[yes]]" variable="ignore">
-				<$button class="tc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
+		<$list filter="[{$:/config/story-river/hamburger-top}!match[yes]]" variable="ignore">
+			<$list filter="[{$:/config/panel/disable}!match[yes]]" variable="ignore">
+				<$list filter="[{$:/state/panel/visibility}!match[yes]]" variable="ignore">
+					<$button class="tc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
+				</$list>
 			</$list>
 		</$list>
-		<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]!is[draft]] -[[$:/core/ui/SideBarSegments/site-title]] -[[$:/core/ui/SideBarSegments/site-subtitle]] -[[$:/core/ui/SideBarSegments/search]] -[[$:/core/ui/SideBarSegments/page-controls]] -[[$:/core/ui/SideBarSegments/tabs]] =[all[tiddlers+shadows]tag[$:/tags/SideBarSegment/User]!is[draft]] +[limit[1]]" variable="ignore">
-			<$list filter="[{$:/state/user-panel/visibility}!match[yes]]" variable="ignore">
-				<$button class="tc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
+		<$list filter="[{$:/config/story-river/hamburger-top}!match[yes]]" variable="ignore">
+			<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment/User]!is[draft]] +[limit[1]]" variable="ignore">
+				<$list filter="[{$:/state/user-panel/visibility}!match[yes]]" variable="ignore">
+					<$button class="tc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
+				</$list>
 			</$list>
 		</$list>
 		<$list filter="[{$:/config/panel/river-obscured}!match[no]]" variable="ignore">
@@ -49,6 +53,26 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 			<header class="column-config column-config-top">
 				{{$:/core/ui/PageTemplate/alerts}}
 				{{$:/core/ui/PageTemplate/pluginreloadwarning}}
+				<$list filter="[{$:/config/story-river/hamburger-top}match[yes]]" variable="ignore">
+					<div class="tc-hamburger-topbar">
+						<$list filter="[{$:/config/panel/position}match[right]]" variable="ignore">
+							<div class="tc-hamburger-left">
+								<$button class="tc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
+							</div>
+							<div class="tc-hamburger-right">
+								<$button class="tc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
+							</div>
+						</$list>
+						<$list filter="[{$:/config/panel/position}match[left]]" variable="ignore">
+							<div class="tc-hamburger-left">
+								<$button class="tc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
+							</div>
+							<div class="tc-hamburger-right">
+								<$button class="tc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
+							</div>
+						</$list>
+					</div>
+				</$list>
 				<$list filter="[all[tiddlers+shadows]tag[$:/tags/TopToolbar]!is[draft]]" variable="listItem">
 					<div class="column-container tc-top-toolbar">
 						<$transclude tiddler=<<listItem>>/>
