@@ -530,6 +530,24 @@ html {
 	justify-content: space-between;
 }
 
+.tc-hamburger-topbar-middle {
+	display: table;
+}
+
+.tc-hamburger-topbar-middle-table-cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.tc-hamburger-topbar-middle-table-cell:not(:first-of-type) {
+	padding-left: 15px;
+	border-left: 1px solid <<colour column-active-button-border>>;
+}
+
+.tc-hamburger-topbar-middle .tc-page-controls, .tc-hamburger-topbar-middle .tc-sidebar-lists.tc-sidebar-search > p {
+	margin: 0;
+}
+
 .tc-hamburger-right {
 	margin-right: 3px;
 }

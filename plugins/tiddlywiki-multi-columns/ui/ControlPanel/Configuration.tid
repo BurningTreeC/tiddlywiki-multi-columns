@@ -134,6 +134,7 @@ caption: MultiColumn
 <option value="yes">yes</option>
 <option value="no">no</option>
 </$select>
+<hr>
 
 !!! show the ''hamburger buttons'' in a top panel
 <$link to="$:/config/story-river/hamburger-top"/><br>
@@ -141,6 +142,24 @@ caption: MultiColumn
 <option value="yes">yes</option>
 <option value="no">no</option>
 </$select>
+<hr>
+
+!!! show the ''page controls'' in the ''top hamburger panel''
+<$link to="$:/config/top-hamburger-toolbar/show-pagecontrols"/><br>
+<$select tiddler="$:/config/top-hamburger-toolbar/show-pagecontrols" default="no">
+<option value="yes">yes</option>
+<option value="no">no</option>
+</$select>
+<hr>
+
+!!! show the ''search field'' in the ''top hamburger panel''
+<$link to="$:/config/top-hamburger-toolbar/show-search"/><br>
+<$select tiddler="$:/config/top-hamburger-toolbar/show-search" default="no">
+<option value="yes">yes</option>
+<option value="no">no</option>
+</$select>
+<hr>
+
 
 !!! hide the system-sidebar / panel and its button (Attention: you should know what you're doing)
 <$link to="$:/config/panel/disable"/><br>
