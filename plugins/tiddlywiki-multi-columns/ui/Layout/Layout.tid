@@ -17,8 +17,10 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 <$let flexGrowField={{{ [[flex-grow-]addsuffix<currentColumn>] }}} flexGrow={{{ [[$:/columns]get<flexGrowField>] ~1 }}}>
 <$list filter="[<modifier>match[ctrl]]" variable="ignore" emptyMessage="""
 <$action-setfield $tiddler="$:/columns" $field=<<flexGrowField>> $value={{{ [<flexGrow>add[1]] }}}/>
+<$action-sendmessage $message="tm-notify" $param="$:/plugins/BTC/tiddlywiki-multi-columns/ui/FlexGrowNotification" flexGrow={{{ [<flexGrow>add[1]] }}} flexGrowField=<<flexGrowField>> column=<<currentColumn>>/>
 """>
 <$action-setfield $tiddler="$:/columns" $field=<<flexGrowField>> $value={{{ [<flexGrow>subtract[1]!match[0]] ~1 }}}/>
+<$action-sendmessage $message="tm-notify" $param="$:/plugins/BTC/tiddlywiki-multi-columns/ui/FlexGrowNotification" flexGrow={{{ [<flexGrow>subtract[1]!match[0]] ~1 }}} flexGrowField=<<flexGrowField>> column=<<currentColumn>>/>
 </$list>
 </$let>
 \end
