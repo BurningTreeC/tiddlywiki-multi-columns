@@ -18,7 +18,7 @@ panorama - [$(vertHorizShortcut)$]
 		{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/panorama-vertical-small}}
 	</$list>
 	<$list filter="[<tv-config-toolbar-text>match[yes]]">
-		<span class="tc-btn-text">
+		<span class="tc-btn-text" style="margin-left: 0px;">
 			<$text text={{$:/language/Buttons/Panorama/Caption}}/>
 		</span>
 	</$list>
@@ -28,7 +28,7 @@ panorama - [$(vertHorizShortcut)$]
 		{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/panorama-horizontal-small}}
 	</$list>
 	<$list filter="[<tv-config-toolbar-text>match[yes]]">
-		<span class="tc-btn-text">
+		<span class="tc-btn-text" style="margin-left: 4px;">
 			<$text text={{$:/language/Buttons/Panorama/Caption}}/>
 		</span>
 	</$list>

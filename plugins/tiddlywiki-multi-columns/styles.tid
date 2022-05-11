@@ -647,6 +647,11 @@ html {
 	margin-right: 0.4em;
 }
 
+.tc-tab-content.tc-sidebar-tabs-main .tc-panorama-button svg {
+	height: 1.5em;
+	width: 1.5em;
+}
+
 .tc-panel-content {
 	display: flex;
 	flex-direction: column;
