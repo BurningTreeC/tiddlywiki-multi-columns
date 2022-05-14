@@ -155,6 +155,24 @@ tags: $:/tags/Stylesheet
 
 \end
 
+\define scroll-margin-top-story-river-padding()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
+.btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-view-frame, .btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-edit-frame {
+	scroll-margin-top: {{$:/config/story-river/padding}}px;
+}
+
+\end
+
+\define scroll-margin-top()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
+.btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-view-frame, .btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-edit-frame {
+	scroll-margin-top: {{{ [{$:/config/story-river/tiddler-margin}compare:number:lteq{$:/config/story-river/padding}] ~[{$:/config/story-river/padding}] }}}px;
+}
+
+\end
+
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 
 <<set-color-scheme>>
@@ -1331,6 +1349,34 @@ hr.simple {
 </$list>
 
 </$let>
+
+</$list>
+
+<$list filter="[list[$:/columns]]" variable="column">
+
+<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
+
+<$list filter="[list<storyList>nth[1]]" variable="tiddler">
+
+<$set name="cssEscapedTitle" value={{{ [<tiddler>escapecss[]] }}}>
+
+<<scroll-margin-top-story-river-padding>>
+
+</$set>
+
+</$list>
+
+<$list filter="[list<storyList>] -[list<storyList>nth[1]]" variable="tiddler">
+
+<$set name="cssEscapedTitle" value={{{ [<tiddler>escapecss[]] }}}>
+
+<<scroll-margin-top>>
+
+</$set>
+
+</$list>
+
+</$set>
 
 </$list>
 
