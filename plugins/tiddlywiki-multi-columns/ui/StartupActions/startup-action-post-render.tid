@@ -1,0 +1,15 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/StartupActions/PostRender
+tags: $:/tags/StartupAction/PostRender
+
+\define get-scroll-selector() [data-tiddler-title="$(scrollTiddlerCSSEscaped)$"]
+
+<$list filter="[{$:/columns!!active-column}!is[blank]!match[1]]" variable="ignore">
+<$let activeColumn={{{ [[$:/columns]get[active-column]] }}} storyList={{{ [[$:/StoryList-]addsuffix<activeColumn>] }}} historyList={{{ [[$:/HistoryList-]addsuffix<activeColumn>] }}}>
+<$list filter="[<historyList>!has[current-tiddler]]" variable="ignore">
+<$action-setfield $tiddler=<<historyList>> current-tiddler={{{ [list<storyList>nth[1]] }}}/>
+<$set name="scrollTiddlerCSSEscaped" value={{{ [list<storyList>nth[1]escapecss[]] }}}>
+<$action-sendmessage $message="tm-scroll" selector=<<get-scroll-selector>>/>
+</$set>
+</$list>
+</$let>
+</$list>

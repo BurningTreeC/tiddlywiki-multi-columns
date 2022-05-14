@@ -2,6 +2,8 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/previous-col
 tags: $:/tags/KeyboardShortcut
 key: ((previous-column))
 
+\define get-scroll-selector() [data-tiddler-title="$(scrollTiddlerCSSEscaped)$"]
+
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 <$set name="currentColumn" value={{{ [[$:/columns]get[active-column]] ~1 }}}>
 	<$set name="columnCount" value={{{ [list[$:/columns]count[]] ~1 }}}>
@@ -11,6 +13,9 @@ key: ((previous-column))
 				<$list filter="[<currentTiddler>is[blank]] [<previousStoryList>!contains<currentTiddler>] +[limit[1]]" variable="ignore">
 					<$action-setfield $tiddler=<<previousHistoryList>> current-tiddler={{{ [list<previousStoryList>nth[1]] }}}/>
 				</$list>
+			</$let>
+			<$let previousStoryList={{{ [[$:/StoryList-]addsuffix<nextColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} previousHistoryList={{{ [[$:/HistoryList-]addsuffix<nextColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} scrollTiddlerCSSEscaped={{{ [<previousHistoryList>get[current-tiddler]escapecss[]] ~[list<previousStoryList>nth[1]escapecss[]] }}}>
+				<$action-sendmessage $message="tm-scroll" selector=<<get-scroll-selector>>/>
 			</$let>
 			<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" variable="ignore">
 				<$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<nextColumn>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/>
