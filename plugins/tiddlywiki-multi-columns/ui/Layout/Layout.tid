@@ -8,10 +8,10 @@ name: ~MultiColumn
 tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(languageTitle)$
 \end
 \define sidebar-actions()
-<$action-setfield $tiddler="$:/state/panel/visibility" text="yes"/><$action-sendmessage $message="tm-focus-selector-deferred" $param=".tc-panel-container .tc-panel-content-header .tc-sidebar-search input" delay={{$:/config/AnimationDuration}}/>
+<$action-setfield $tiddler="$:/state/panel/visibility" text="yes"/><$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-panel-container .btc-panel-content-header .tc-sidebar-search input" delay={{$:/config/AnimationDuration}}/>
 \end
 \define user-sidebar-actions()
-<$action-setfield $tiddler="$:/state/user-panel/visibility" text="yes"/><$action-sendmessage $message="tm-focus-selector-deferred" $param=".tc-user-panel-container input" delay={{$:/config/AnimationDuration}}/>
+<$action-setfield $tiddler="$:/state/user-panel/visibility" text="yes"/><$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-user-panel-container input" delay={{$:/config/AnimationDuration}}/>
 \end
 \define active-column-dblclick-actions()
 <$let flexGrowField={{{ [[flex-grow-]addsuffix<currentColumn>] }}} flexGrow={{{ [[$:/columns]get<flexGrowField>] ~1 }}}>
@@ -37,20 +37,20 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 		<$list filter="[{$:/config/story-river/hamburger-top}!match[yes]]" variable="ignore">
 			<$list filter="[{$:/config/panel/disable}!match[yes]]" variable="ignore">
 				<$list filter="[{$:/state/panel/visibility}!match[yes]]" variable="ignore">
-					<$button class="tc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
+					<$button class="btc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
 				</$list>
 			</$list>
 		</$list>
 		<$list filter="[{$:/config/story-river/hamburger-top}!match[yes]]" variable="ignore">
 			<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment/User]!is[draft]] +[limit[1]]" variable="ignore">
 				<$list filter="[{$:/state/user-panel/visibility}!match[yes]]" variable="ignore">
-					<$button class="tc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
+					<$button class="btc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
 				</$list>
 			</$list>
 		</$list>
 		<$list filter="[{$:/config/panel/river-obscured}!match[no]]" variable="ignore">
-			<$eventcatcher selector=".tc-panel-shown" $click="""<$action-setfield $tiddler="$:/state/panel/visibility" text="no"/><$action-setfield $tiddler="$:/state/user-panel/visibility" text="no"/>""" class="tc-panel-shown-eventcatcher">
-				<div class={{{ [{$:/state/panel/visibility}match[yes]] [{$:/state/user-panel/visibility}match[yes]] +[limit[1]] +[then[tc-panel-hide tc-btn-invisible tc-panel-shown]else[tc-panel-hide tc-btn-invisible tc-panel-hidden]] }}}/>
+			<$eventcatcher selector=".btc-panel-shown" $click="""<$action-setfield $tiddler="$:/state/panel/visibility" text="no"/><$action-setfield $tiddler="$:/state/user-panel/visibility" text="no"/>""" class="btc-panel-shown-eventcatcher">
+				<div class={{{ [{$:/state/panel/visibility}match[yes]] [{$:/state/user-panel/visibility}match[yes]] +[limit[1]] +[then[btc-panel-hide tc-btn-invisible btc-panel-shown]else[btc-panel-hide tc-btn-invisible btc-panel-hidden]] }}}/>
 			</$eventcatcher>
 		</$list>
 		<$set name="currentColumn" value={{{ [[$:/columns]get[active-column]] ~1 }}}>
@@ -60,87 +60,87 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 				</$list>
 			</$navigator>
 		</$set>
-		<div class="flextemplate-container">
-			<header class="column-config column-config-top">
+		<div class="btc-flextemplate-container">
+			<header class="btc-column-config btc-column-config-top">
 				{{$:/core/ui/PageTemplate/alerts}}
 				{{$:/core/ui/PageTemplate/pluginreloadwarning}}
 				<$list filter="[{$:/config/story-river/hamburger-top}match[yes]]" variable="ignore">
-					<div class="tc-hamburger-topbar">
+					<div class="btc-hamburger-topbar">
 						<$list filter="[{$:/config/panel/position}match[right]]" variable="ignore">
-							<div class="tc-hamburger-left">
-								<$button class="tc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
+							<div class="btc-hamburger-left">
+								<$button class="btc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
 							</div>
-							<div class="tc-hamburger-topbar-middle">
+							<div class="btc-hamburger-topbar-middle">
 							<$list filter="[{$:/config/top-hamburger-toolbar/show-pagecontrols}match[yes]]" variable="ignore">
-								<div class="tc-hamburger-topbar-middle-table-cell">
+								<div class="btc-hamburger-topbar-middle-table-cell">
 									<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 										{{$:/core/ui/SideBarSegments/page-controls}}
 									</$navigator>
 								</div>
 							</$list>
 							<$list filter="[{$:/config/top-hamburger-toolbar/show-search}match[yes]]" variable="ignore">
-								<div class="tc-hamburger-topbar-middle-table-cell">
+								<div class="btc-hamburger-topbar-middle-table-cell">
 									<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 										{{$:/core/ui/SideBarSegments/search}}
 									</$navigator>
 								</div>
 							</$list>
 							</div>
-							<div class="tc-hamburger-right">
-								<$button class="tc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
+							<div class="btc-hamburger-right">
+								<$button class="btc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
 							</div>
 						</$list>
 						<$list filter="[{$:/config/panel/position}match[left]]" variable="ignore">
-							<div class="tc-hamburger-left">
-								<$button class="tc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
+							<div class="btc-hamburger-left">
+								<$button class="btc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
 							</div>
-							<div class="tc-hamburger-topbar-middle">
+							<div class="btc-hamburger-topbar-middle">
 							<$list filter="[{$:/config/top-hamburger-toolbar/show-pagecontrols}match[yes]]" variable="ignore">
-								<div class="tc-hamburger-topbar-middle-table-cell">
+								<div class="btc-hamburger-topbar-middle-table-cell">
 									<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 										{{$:/core/ui/SideBarSegments/page-controls}}
 									</$navigator>
 								</div>
 							</$list>
 							<$list filter="[{$:/config/top-hamburger-toolbar/show-search}match[yes]]" variable="ignore">
-								<div class="tc-hamburger-topbar-middle-table-cell">
+								<div class="btc-hamburger-topbar-middle-table-cell">
 									<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 										{{$:/core/ui/SideBarSegments/search}}
 									</$navigator>
 								</div>
 							</$list>
 							</div>
-							<div class="tc-hamburger-right">
-								<$button class="tc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
+							<div class="btc-hamburger-right">
+								<$button class="btc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
 							</div>
 						</$list>
 					</div>
 				</$list>
 				<$list filter="[all[tiddlers+shadows]tag[$:/tags/TopToolbar]!is[draft]]" variable="listItem">
-					<div class="column-container tc-top-toolbar">
+					<div class="btc-column-container btc-top-toolbar">
 						<$transclude tiddler=<<listItem>>/>
 					</div>
 				</$list>
-				<div class="column-container">
+				<div class="btc-column-container">
 					<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
-						<div class="tc-top-active-column">
+						<div class="btc-top-active-column">
 							<$set name="currentStory" value={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
-								<$draggable class="tc-top-active-column-draggable" filter="[list<currentStory>]" dragimagetype="pill">
-									<$eventcatcher tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""" $dblclick=<<active-column-dblclick-actions>>></$eventcatcher>
+								<$draggable class="btc-top-active-column-draggable" filter="[list<currentStory>]" dragimagetype="pill">
+									<$eventcatcher tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[btc-column-active-button btc-column-active]else[btc-column-active-button]] ~[<currentColumn>match[1]then[btc-column-active-button btc-column-active]] }}} $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""" $dblclick=<<active-column-dblclick-actions>>></$eventcatcher>
 								</$draggable>
 							</$set>
 						</div>
 					</$list>
 				</div>
 			</header>
-			<main class="main column-container">
+			<main class="main btc-column-container">
 				<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
 					<$set name="transclusion" value=<<currentColumn>>>
-						<div class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[$:/columns]is[missing]then<currentColumn>match[1]then[tc-river-active ]addsuffix[tc-river-]addsuffix<currentColumn>] :else[[tc-river-]addsuffix<currentColumn>] }}}>
+						<div class={{{ [[$:/columns]get[active-column]match<currentColumn>then[btc-river-active ]addsuffix[btc-river-]addsuffix<currentColumn>] :else[[$:/columns]is[missing]then<currentColumn>match[1]then[btc-river-active ]addsuffix[btc-river-]addsuffix<currentColumn>] :else[[btc-river-]addsuffix<currentColumn>] }}}>
 							<$navigator story={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-								<$dropzone enable=<<tv-enable-drag-and-drop>> class={{{ [<currentColumn>!is[blank]addprefix[tc-dropzone-]] ~tc-dropzone-1 }}} importTitle={{{ [[$:/Import-]addsuffix<currentColumn>] }}}>
-									<$eventcatcher selector=".tc-activate-column-btn" $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""" $dblclick=<<active-column-dblclick-actions>>>
-										<div tag="a" class="tc-btn-invisible tc-activate-column-btn"/>
+								<$dropzone enable=<<tv-enable-drag-and-drop>> class={{{ [<currentColumn>!is[blank]addprefix[btc-dropzone-]] ~btc-dropzone-1 }}} importTitle={{{ [[$:/Import-]addsuffix<currentColumn>] }}}>
+									<$eventcatcher selector=".btc-activate-column-btn" $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""" $dblclick=<<active-column-dblclick-actions>>>
+										<div tag="a" class="tc-btn-invisible btc-activate-column-btn"/>
 									</$eventcatcher>
 									<section class="tc-story-backdrop">
 										<$set name="aboveStoryTag" value={{{ [<currentColumn>match[1]then[$:/tags/AboveStory]] [<currentColumn>!match[1]then[$:/tags/AboveStory-]addsuffix<currentColumn>] }}}>
@@ -149,7 +149,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 											</$list>
 										</$set>
 									</section>
-									<div class="tc-river-inner">
+									<div class="btc-river-inner">
 										<$list filter="[list<tv-story-list>search{$:/state/search-panel/search}]" template="$:/plugins/BTC/tiddlywiki-multi-columns/ui/ViewTemplate" editTemplate="$:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate" storyview={{$:/view}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-1]!match[$:/HistoryList-]] ~[[$:/HistoryList]] }}} emptyMessage="""<$set name="emptyMessageTiddler" value={{{ [[$:/EmptyMessage-]addsuffix<currentColumn>] }}}><$transclude tiddler=<<emptyMessageTiddler>> mode="block"/></$set>"""/>
 										<$droppable actions="""<$action-setfield $tiddler="$:/state/drag-handled" text="yes"/><$action-listops $tiddler=<<tv-story-list>> $subfilter="[<actionTiddler>]"/>""" dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target="" starting-next-tiddler="" copying=""/>""">
 										</$droppable>
@@ -160,7 +160,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 					</$set>
 				</$list>
 			</main>
-			<header class="column-config column-config-bottom">
+			<header class="btc-column-config btc-column-config-bottom">
 				<$reveal state="$:/status/IsReadOnly" type="nomatch" text="yes" tag="div" class="tc-drafts-list">
 					<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 						<$list filter="[has[draft.of]!sort[modified]] -[list[$:/columns]addprefix[$:/StoryList-]!match[$:/StoryList-1]get[list]enlist-input[]] -[[$:/StoryList]get[list]enlist-input[]]">
@@ -171,33 +171,33 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 					</$navigator>
 				</$reveal>
 				<$list filter="[all[tiddlers+shadows]tag[$:/tags/BottomToolbar]!is[draft]]" variable="listItem">
-					<div class="column-container tc-bottom-toolbar">
+					<div class="btc-column-container btc-bottom-toolbar">
 						<$transclude tiddler=<<listItem>>/>
 					</div>
 				</$list>
 			</header>
 		</div>
 	</main>
-	<$set name="rightOrLeft" value={{{ [{$:/config/panel/position}match[left]then[tc-panel-from-left]else[tc-panel-from-right]] }}}>
-		<div class={{{ [{$:/state/panel/visibility}match[yes]then[tc-panel tc-panel-is-visible ]else[tc-panel ]addsuffix<rightOrLeft>] }}}>
-			<header class="tc-panel-header">
+	<$set name="rightOrLeft" value={{{ [{$:/config/panel/position}match[left]then[btc-panel-from-left]else[btc-panel-from-right]] }}}>
+		<div class={{{ [{$:/state/panel/visibility}match[yes]then[btc-panel btc-panel-is-visible ]else[btc-panel ]addsuffix<rightOrLeft>] }}}>
+			<header class="btc-panel-header">
 				<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 					<h1>{{$:/SiteTitle}}</h1>
 					<h4>{{$:/SiteSubtitle}}</h4>
 				</$navigator>
-				<$button tag="a" class="tc-panel-close tc-btn-invisible" set="$:/state/panel/visibility" setTo="no">Close</$button>
+				<$button tag="a" class="btc-panel-close tc-btn-invisible" set="$:/state/panel/visibility" setTo="no">Close</$button>
 			</header>
-			<div class="tc-panel-container">
-				<div class="tc-panel-container-spacer"/>
-				<div class="tc-panel-content-header">
-					<div class="tc-sidebar-flexpanel">
-						<div class="tc-sidebar-flexpanel-column-container">
+			<div class="btc-panel-container">
+				<div class="btc-panel-container-spacer"/>
+				<div class="btc-panel-content-header">
+					<div class="btc-sidebar-flexpanel">
+						<div class="btc-sidebar-flexpanel-column-container">
 							<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
 								<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}}>
-									<$droppable tag="div" class="tc-column-active-button-droppable" actions="""<$action-log actionTiddler=<<actionTiddler>>/><$action-listops $tiddler=<<storyList>> $subfilter="[<actionTiddler>]"/>""">
-										<$button dragFilter="""[list<storyList>]""" tag="div" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[tc-column-active-button tc-column-active]else[tc-column-active-button]] ~[<currentColumn>match[1]then[tc-column-active-button tc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<currentColumn>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}} passThrough="yes"/>""">
+									<$droppable tag="div" class="btc-column-active-button-droppable" actions="""<$action-log actionTiddler=<<actionTiddler>>/><$action-listops $tiddler=<<storyList>> $subfilter="[<actionTiddler>]"/>""">
+										<$button dragFilter="""[list<storyList>]""" tag="div" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[btc-column-active-button btc-column-active]else[btc-column-active-button]] ~[<currentColumn>match[1]then[btc-column-active-button btc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/><$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<currentColumn>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}} passThrough="yes"/>""">
 											<$list filter="[{$:/config/panel/show-numbers}!match[no]]">
-												<div class="tc-sidebar-flexpanel-column-counter">
+												<div class="btc-sidebar-flexpanel-column-counter">
 													<$text text=<<currentColumn>>/>
 												</div>
 											</$list>
@@ -208,7 +208,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 						</div>
 					</div>
 					<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-						<div class="tc-panel-content">
+						<div class="btc-panel-content">
 							<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]!is[draft]] -[[$:/core/ui/SideBarSegments/site-title]] -[[$:/core/ui/SideBarSegments/site-subtitle]]" variable="listItem">
 								<$transclude tiddler=<<listItem>>/>
 							</$list>
@@ -218,17 +218,17 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 			</div>
 		</div>
 	</$set>
-	<$set name="rightOrLeft" value={{{ [{$:/config/panel/position}match[left]then[tc-panel-from-right]else[tc-panel-from-left]] }}}>
-		<div class={{{ [{$:/state/user-panel/visibility}match[yes]then[tc-panel tc-panel-is-visible ]else[tc-panel ]addsuffix<rightOrLeft>] }}}>
-			<header class="tc-panel-header">
+	<$set name="rightOrLeft" value={{{ [{$:/config/panel/position}match[left]then[btc-panel-from-right]else[btc-panel-from-left]] }}}>
+		<div class={{{ [{$:/state/user-panel/visibility}match[yes]then[btc-panel btc-panel-is-visible ]else[btc-panel ]addsuffix<rightOrLeft>] }}}>
+			<header class="btc-panel-header">
 				<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 					<h1>{{$:/UserPanelTitle}}</h1>
 					<h4>{{$:/UserPanelSubtitle}}</h4>
 				</$navigator>
-				<$button tag="a" class="tc-panel-close tc-btn-invisible" set="$:/state/user-panel/visibility" setTo="no">Close</$button>
+				<$button tag="a" class="btc-panel-close tc-btn-invisible" set="$:/state/user-panel/visibility" setTo="no">Close</$button>
 			</header>
-			<$scrollable fallthrough="no" class="tc-panel-container">
-				<div class="tc-user-panel-container">
+			<$scrollable fallthrough="no" class="btc-panel-container">
+				<div class="btc-user-panel-container">
 					<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 						<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment/User]!is[draft]]" variable="listItem">
 							<$transclude tiddler=<<listItem>> mode="block"/>
@@ -241,22 +241,22 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 			</$scrollable>
 		</div>
 	</$set>
-	<$set name="topOrBottom" value={{{ [{$:/config/story-river/search-panel}match[top]then[tc-search-panel-from-top]else[tc-search-panel-from-bottom]] }}}>
-		<div class={{{ [[$:/state/search-panel]!is[missing]then[tc-search-panel tc-search-panel-is-visible tc-popup-handle tc-popup-keep ]else[tc-search-panel ]] +[addsuffix<topOrBottom>] }}}>
-			<div class="tc-search-panel-inner tc-popup-keep">
+	<$set name="topOrBottom" value={{{ [{$:/config/story-river/search-panel}match[top]then[btc-search-panel-from-top]else[btc-search-panel-from-bottom]] }}}>
+		<div class={{{ [[$:/state/search-panel]!is[missing]then[btc-search-panel btc-search-panel-is-visible tc-popup-handle tc-popup-keep ]else[btc-search-panel ]] +[addsuffix<topOrBottom>] }}}>
+			<div class="btc-search-panel-inner tc-popup-keep">
 				<$keyboard key="Escape" actions="""<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>""">
-					<$edit-text tag="input" class={{{ [{$:/state/search-panel}!match[yes]then[tc-search-panel-input]else[tc-search-panel-input tc-search-panel-shown]] }}} tiddler="$:/state/search-panel/search" default="" placeholder="Search" focus="yes"/>
+					<$edit-text tag="input" class={{{ [{$:/state/search-panel}!match[yes]then[btc-search-panel-input]else[btc-search-panel-input btc-search-panel-shown]] }}} tiddler="$:/state/search-panel/search" default="" placeholder="Search" focus="yes"/>
 				</$keyboard>
-				<$button tag="a" class="tc-search-panel-close tc-btn-invisible" actions="""<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>""">Close</$button>
+				<$button tag="a" class="btc-search-panel-close tc-btn-invisible" actions="""<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>""">Close</$button>
 				<$list filter="[[$:/state/search-panel]!is[missing]then[$:/state/search-panel/search]get[text]!match[]]">
-					<div class="tc-search-panel-matches">
+					<div class="btc-search-panel-matches">
 						<$list filter="[!is[system]search{$:/state/search-panel/search}]" variable="searchResult">
 							<$list filter="[list[$:/columns]]" variable="column">
 								<$list filter="[<column>match[1]]" variable="ignore">
 									<$list filter="[[$:/StoryList]contains<searchResult>]" variable="ignore">
 										<$text text="Column 1:"/><br>
 										<$navigator story="$:/StoryList" history="$:/HistoryList" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-											<$linkcatcher actions="""<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" emptyMessage='<$action-navigate $to=<<navigateTo>>/>'><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<column>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/></$list>""">
+											<$linkcatcher actions="""<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" emptyMessage='<$action-navigate $to=<<navigateTo>>/>'><$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<column>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/></$list>""">
 												<$link to=<<searchResult>>><$text text=<<searchResult>>/></$link><br>
 											</$linkcatcher>
 										</$navigator>
@@ -265,7 +265,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 								<$list filter="[[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]contains<searchResult>]" variable="ignore">
 									<$text text="Column "/><$text text=<<column>>/><$text text=":"/><br>
 									<$navigator story={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} history={{{ [[$:/HistoryList-]addsuffix<column>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-										<$linkcatcher actions="""<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" emptyMessage='<$action-navigate $to=<<navigateTo>>/>'><$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<column>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/></$list>""">
+										<$linkcatcher actions="""<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" emptyMessage='<$action-navigate $to=<<navigateTo>>/>'><$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<column>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/></$list>""">
 											<$link to=<<searchResult>>><$text text=<<searchResult>>/></$link><br>
 										</$linkcatcher>
 									</$navigator>
@@ -278,7 +278,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 		</div>
 	</$set>
 	<$list filter="[{$:/config/story-river/bottom-right-panel}match[yes]]" variable="ignore">
-		<div class="tc-bottom-right-panel">
+		<div class="btc-bottom-right-panel">
 			<$list filter="[all[tiddlers+shadows]tag[$:/tags/BottomRightPanel]!is[draft]]" variable="listItem">
 				<$transclude tiddler=<<listItem>>/>
 			</$list>

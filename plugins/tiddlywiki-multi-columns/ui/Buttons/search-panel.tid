@@ -11,7 +11,7 @@ search panel - [$(searchPanelShortcut)$]
 <$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>
 """>
 <$action-popup $state="$:/state/search-panel" $coords="(0,0,0,0)"/>
-<$action-sendmessage $message="tm-focus-selector-deferred" $param=".tc-search-panel-input" delay={{{ [{$:/config/AnimationDuration}divide[2]round[]] }}}/>
+<$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-search-panel-input" delay={{{ [{$:/config/AnimationDuration}divide[2]round[]] }}}/>
 </$list>
 {{$:/plugins/BTC/tiddlywiki-multi-columns/icons/search-panel}}
 </$button>

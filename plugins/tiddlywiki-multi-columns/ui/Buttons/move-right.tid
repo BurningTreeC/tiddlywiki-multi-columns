@@ -36,7 +36,7 @@ description: move the tiddler to the next column at the right
 </$list>
 <$list filter="[{$:/config/story-river/follow-active-column}match[yes]]" variable="ignore">
 <$action-setfield $tiddler="$:/columns" active-column=<<nextStoryCounter>>/>
-<$action-sendmessage $message="tm-scroll" selector={{{ [[.tc-river-]addsuffix<nextStoryCounter>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/>
+<$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<nextStoryCounter>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/>
 </$list>
 </$let>
 \end

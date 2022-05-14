@@ -14,7 +14,7 @@ tags: $:/tags/Stylesheet
 \define style-focused-tiddler()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
-.tc-river-$(currentColumn)$ .tc-river-inner [data-tiddler-title="$(cssEscapedTitle)$"] > .tc-tiddler-frame {
+.btc-river-$(currentColumn)$ .btc-river-inner [data-tiddler-title="$(cssEscapedTitle)$"] > .tc-tiddler-frame {
 	border: {{$:/config/story-river/tiddler-border}}px solid <<colour focused-tiddler>>;
 }
 
@@ -32,7 +32,7 @@ tags: $:/tags/Stylesheet
 \define style-unfocused-tiddlers()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
-.tc-river-$(column)$ .tc-river-inner [data-tiddler-title="$(cssEscapedTitle)$"] > .tc-tiddler-frame {
+.btc-river-$(column)$ .btc-river-inner [data-tiddler-title="$(cssEscapedTitle)$"] > .tc-tiddler-frame {
 	border: {{$:/config/story-river/tiddler-border}}px solid <<colour muted-foreground>>;
 }
 
@@ -44,7 +44,7 @@ tags: $:/tags/Stylesheet
 
 <$let flexGrowField={{{ [[flex-grow-]addsuffix<currentColumn>] }}} flexGrow={{{ [[$:/columns]get<flexGrowField>] ~1 }}}>
 
-.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > *:nth-child(<<currentColumn>>) {
+.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > *:nth-child(<<currentColumn>>) {
 	flex-basis: 0;
 	flex-grow: <<flexGrow>>;
 	flex-shrink: 0;
@@ -54,18 +54,18 @@ tags: $:/tags/Stylesheet
 }
 
 @media (prefers-reduced-motion) {
-	.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > *:nth-child(<<currentColumn>>) {
+	.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > *:nth-child(<<currentColumn>>) {
 		scroll-behavior: auto;
 	}
 }
 
 	<$list filter="[{$:/config/story-river/hide-scrollbars}match[yes]]" variable="ignore">
 
-		.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > *:nth-child(<<currentColumn>>) {
+		.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > *:nth-child(<<currentColumn>>) {
 			-ms-overflow-style: none;
 			scrollbar-width: none;
 		}
-		.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > *:nth-child(<<currentColumn>>)::-webkit-scrollbar { 
+		.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > *:nth-child(<<currentColumn>>)::-webkit-scrollbar { 
 			display: none;
 		}
 
@@ -80,15 +80,15 @@ tags: $:/tags/Stylesheet
 \define target-tiddler-margin()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
-.tc-river-$(currentRiver)$ .tc-tiddler-view-frame:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame, .tc-river-$(currentRiver)$ .tc-tiddler-edit-frame:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame {
+.btc-river-$(currentRiver)$ .tc-tiddler-view-frame:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame, .btc-river-$(currentRiver)$ .tc-tiddler-edit-frame:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame {
 	margin-top: {{$:/config/story-river/tiddler-margin}}px;
 }
 
-.tc-river-$(currentRiver)$ .tc-tiddler-view-frame:first-of-type:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame, .tc-river-$(currentRiver)$ .tc-tiddler-edit-frame:first-of-type:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame {
+.btc-river-$(currentRiver)$ .tc-tiddler-view-frame:first-of-type:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame, .btc-river-$(currentRiver)$ .tc-tiddler-edit-frame:first-of-type:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame {
 	margin-top: 0;
 }
 
-.tc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
+.btc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
 	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px));
 }
 
@@ -97,7 +97,7 @@ tags: $:/tags/Stylesheet
 \define target-tiddler-margin-nth-0()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
-.tc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
+.btc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
 	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px);
 }
 
@@ -105,7 +105,7 @@ tags: $:/tags/Stylesheet
 
 \define tiddler-frame-transitions()
 
-.tc-river-inner > .tc-tiddler-view-frame > .tc-tiddler-frame, .tc-river-inner > .tc-tiddler-edit-frame > .tc-tiddler-frame {
+.btc-river-inner > .tc-tiddler-view-frame > .tc-tiddler-frame, .btc-river-inner > .tc-tiddler-edit-frame > .tc-tiddler-frame {
 	transition: margin-top {{$:/config/AnimationDuration}}ms cubic-bezier(0.645, 0.045, 0.355, 1), margin-bottom {{$:/config/AnimationDuration}}ms cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
@@ -114,11 +114,11 @@ tags: $:/tags/Stylesheet
 \define position-start-tiddlers-no-copying()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
-.tc-river-$(currentRiver)$ .tc-river-inner > [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"].tc-tiddler-view-frame > .tc-tiddler-frame, .tc-river-$(currentRiver)$ .tc-river-inner > [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"].tc-tiddler-edit-frame > .tc-tiddler-frame {
+.btc-river-$(currentRiver)$ .btc-river-inner > [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"].tc-tiddler-view-frame > .tc-tiddler-frame, .btc-river-$(currentRiver)$ .btc-river-inner > [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"].tc-tiddler-edit-frame > .tc-tiddler-frame {
 	transition: none;
 }
 
-.tc-river-$(currentRiver)$ [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"] .tc-tiddler-frame {
+.btc-river-$(currentRiver)$ [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"] .tc-tiddler-frame {
 	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px));
 }
 
@@ -127,7 +127,7 @@ tags: $:/tags/Stylesheet
 \define position-start-tiddlers-no-copying-nth-0()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
-.tc-river-$(currentRiver)$ [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"] .tc-tiddler-frame {
+.btc-river-$(currentRiver)$ [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"] .tc-tiddler-frame {
 	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px);
 }
 
@@ -136,11 +136,11 @@ tags: $:/tags/Stylesheet
 \define position-start-tiddlers-copying()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
-.tc-river-$(currentRiver)$ .tc-river-inner > [data-tiddler-title="$(dragTiddlerCSSEscaped)$"].tc-tiddler-view-frame > .tc-tiddler-frame, .tc-river-$(currentRiver)$ .tc-river-inner > [data-tiddler-title="$(dragTiddlerCSSEscaped)$"].tc-tiddler-edit-frame > .tc-tiddler-frame {
+.btc-river-$(currentRiver)$ .btc-river-inner > [data-tiddler-title="$(dragTiddlerCSSEscaped)$"].tc-tiddler-view-frame > .tc-tiddler-frame, .btc-river-$(currentRiver)$ .btc-river-inner > [data-tiddler-title="$(dragTiddlerCSSEscaped)$"].tc-tiddler-edit-frame > .tc-tiddler-frame {
 	transition: none;
 }
 
-.tc-river-$(currentRiver)$ [data-tiddler-title="$(dragTiddlerCSSEscaped)$"] .tc-tiddler-frame {
+.btc-river-$(currentRiver)$ [data-tiddler-title="$(dragTiddlerCSSEscaped)$"] .tc-tiddler-frame {
 	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px));
 }
 
@@ -149,7 +149,7 @@ tags: $:/tags/Stylesheet
 \define position-start-tiddlers-copying-nth-0()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
-.tc-river-$(currentRiver)$ [data-tiddler-title="$(dragTiddlerCSSEscaped)$"] .tc-tiddler-frame {
+.btc-river-$(currentRiver)$ [data-tiddler-title="$(dragTiddlerCSSEscaped)$"] .tc-tiddler-frame {
 	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px);
 }
 
@@ -169,7 +169,7 @@ html {
 	}
 }
 
-.tc-river-inner .tc-tiddler-frame {
+.btc-river-inner .tc-tiddler-frame {
 	border-top-width: {{$:/config/story-river/tiddler-border}}px;
 	border-bottom-width: {{$:/config/story-river/tiddler-border}}px;
 	border-left-width: {{$:/config/story-river/tiddler-border}}px;
@@ -177,18 +177,18 @@ html {
 	margin-bottom: {{$:/config/story-river/tiddler-margin}}px;
 }
 
-.tc-panel {
+.btc-panel {
 	visibility: hidden;
 	transition: visibility 0s calc(2 * {{$:/config/AnimationDuration}}ms);
 	-webkit-transition: visibility 0s calc(2 * {{$:/config/AnimationDuration}}ms);
 }
 
-.tc-panel.tc-panel-is-visible {
+.btc-panel.btc-panel-is-visible {
 	visibility: visible;
 	transition: visibility 0s 0s;
 }
 
-.tc-panel-hide {
+.btc-panel-hide {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -204,7 +204,7 @@ html {
 	transition: background {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, visibility 0s calc(2 * {{$:/config/AnimationDuration}}ms);
 }
 
-.tc-panel-hide.tc-panel-shown {
+.btc-panel-hide.btc-panel-shown {
 	visibility: visible;
 	background: <<colour hide-panel-button-light>>;
 	-webkit-transition: background {{$:/config/AnimationDuration}}ms 0s;
@@ -213,13 +213,13 @@ html {
 
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
-.tc-panel-hide.tc-panel-shown {
+.btc-panel-hide.btc-panel-shown {
 	background: <<colour hide-panel-button-dark>>;
 }
 
 </$list>
 
-.tc-panel-header {
+.btc-panel-header {
 	position: fixed;
 	top: 0;
 	width: 90%;
@@ -232,7 +232,7 @@ html {
 	background-color: <<colour panel-header-background-light>>;
 }
 
-.tc-search-panel {
+.btc-search-panel {
 	position: fixed;
 	left: 0;
 	width: 100%;
@@ -241,22 +241,22 @@ html {
 	z-index: 10003;
 }
 
-.tc-search-panel.tc-search-panel-from-top {
+.btc-search-panel.btc-search-panel-from-top {
 	top: 0;
 	transform: translateY(-75px);
 }
 
-.tc-search-panel.tc-search-panel-from-bottom {
+.btc-search-panel.btc-search-panel-from-bottom {
 	bottom: 0;
 	transform: translateY(75px);
 }
 
-.tc-search-panel-is-visible.tc-search-panel {
+.btc-search-panel-is-visible.btc-search-panel {
 	transition: transform {{$:/config/AnimationDuration}}ms 0s;
 	transform: translateY(0px);
 }
 
-.tc-search-panel-inner {
+.btc-search-panel-inner {
 	position: relative;
 	height: 100%;
 	line-height: 100%;
@@ -264,7 +264,7 @@ html {
 	padding: 15px;
 }
 
-.tc-search-panel-input {
+.btc-search-panel-input {
 	border-radius: 4px;
 	border: 1px solid <<colour foreground>>;
 	box-shadow: 0px 0px 15px <<colour search-panel-box-shadow-light>>;
@@ -276,7 +276,7 @@ html {
 	font-size: 1.35em;
 }
 
-.tc-search-panel-matches {
+.btc-search-panel-matches {
 	position: absolute;
 	left: 0;
 	width: 100%;
@@ -287,32 +287,32 @@ html {
 	box-shadow: 0px 0px 15px <<colour search-panel-box-shadow-light>>;
 }
 
-.tc-search-panel.tc-search-panel-from-top .tc-search-panel-matches {
+.btc-search-panel.btc-search-panel-from-top .btc-search-panel-matches {
 	top: 75px;
 }
 
-.tc-search-panel.tc-search-panel-from-bottom .tc-search-panel-matches {
+.btc-search-panel.btc-search-panel-from-bottom .btc-search-panel-matches {
 	bottom: 75px;
 }
 
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
-.tc-panel-header {
+.btc-panel-header {
 	box-shadow: 0px 1px 1px <<colour panel-header-box-shadow-dark>>;
 	background-color: <<colour panel-header-background-dark>>
 }
 
-.tc-search-panel-input {
+.btc-search-panel-input {
 	box-shadow: 0px 0px 15px <<colour search-panel-box-shadow-dark>>;
 }
 
-.tc-search-panel-matches {
+.btc-search-panel-matches {
 	box-shadow: 0px 0px 15px <<colour search-panel-box-shadow-dark>>;
 }
 
 </$list>
 
-.tc-panel-header h1 {
+.btc-panel-header h1 {
 	color: <<colour primary>>;
 	padding-left: 5%;
 	margin-top: 0;
@@ -320,26 +320,26 @@ html {
 	line-height: 50px;
 }
 
-.tc-panel-header h4 {
+.btc-panel-header h4 {
 	padding-left: 5%;
 	line-height: 15px;
 	margin: 3px 0 0 0;
 }
 
-.tc-panel-from-right .tc-panel-header {
+.btc-panel-from-right .btc-panel-header {
 	right: 0;
 }
 
-.tc-panel-from-left .tc-panel-header {
+.btc-panel-from-left .btc-panel-header {
 	left: 0;
 }
 
-.tc-panel-is-visible .tc-panel-header {
+.btc-panel-is-visible .btc-panel-header {
 	transition: transform {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
 	transform: translateY(0px);
 }
 
-.tc-panel-container {
+.btc-panel-container {
 	display: flex;
 	flex-direction: column;
 	align-content: start;
@@ -355,25 +355,25 @@ html {
 	transition: transform {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
 }
 
-.tc-panel-container .tc-panel-container-spacer {
+.btc-panel-container .btc-panel-container-spacer {
 	flex: 1 0 78px;
 }
 
-.tc-panel-from-right .tc-panel-container {
+.btc-panel-from-right .btc-panel-container {
 	box-shadow: -1px 0px 1px <<colour panel-container-box-shadow-light>>;
 }
 
-.tc-panel-from-left .tc-panel-container {
+.btc-panel-from-left .btc-panel-container {
 	box-shadow: 1px 0px 1px <<colour panel-container-box-shadow-light>>;
 }
 
 <$list filter="[[$:/state/panel/visibility]get[text]match[yes]then[$:/state/user-panel/visibility]get[text]match[yes]]" variable="ignore">
 
-.tc-panel-from-left .tc-panel-container {
+.btc-panel-from-left .btc-panel-container {
 	z-index: 10002;
 }
 
-.tc-panel-from-left .tc-panel-header {
+.btc-panel-from-left .btc-panel-header {
 	z-index: 10003;
 }
 
@@ -385,45 +385,45 @@ html {
 
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
-.tc-panel-container {
+.btc-panel-container {
 	box-shadow: 0px 1px 1px <<colour panel-container-box-shadow-dark>>;
 }
 
 </$list>
 
 @media only screen and (min-width: 768px) {
-	.tc-panel-container, .tc-panel-header {
+	.btc-panel-container, .btc-panel-header {
 		width: {{$:/config/panel/panel-width-below-1170px}};
 	}
 
-	.tc-search-panel {
+	.btc-search-panel {
 		width: 550px;
 		left: calc((100vw / 2) - 275px);
 	}
 }
 
 @media only screen and (min-width: 1170px) {
-	.tc-panel-container, .tc-panel-header {
+	.btc-panel-container, .btc-panel-header {
 		width: {{$:/config/panel/panel-width-above-1170px}};
 	}
 
-	.tc-search-panel {
+	.btc-search-panel {
 		width: 400px;
 		left: calc((100vw / 2) - 200px);
 	}
 }
 
-.tc-panel-from-right .tc-panel-container {
+.btc-panel-from-right .btc-panel-container {
 	right: 0;
 	transform: translate3d(100%, 0, 0);
 }
 
-.tc-panel-from-left .tc-panel-container {
+.btc-panel-from-left .btc-panel-container {
 	left: 0;
 	transform: translate3d(-100%, 0, 0);
 }
 
-.tc-panel-is-visible .tc-panel-container {
+.btc-panel-is-visible .btc-panel-container {
 	transform: translate3d(0, 0, 0);
 	transition-delay: 0s;
 }
@@ -468,7 +468,7 @@ html {
 	}
 }
 
-.tc-panel-close {
+.btc-panel-close {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -480,7 +480,7 @@ html {
 	white-space: nowrap;
 }
 
-.tc-search-panel-close {
+.btc-search-panel-close {
 	position: absolute;
 	top: 15px;
 	right: 15px;
@@ -496,7 +496,7 @@ html {
 
 <$list filter="[{$:/config/story-river/hamburger-top}!match[yes]]" variable="ignore">
 
-.tc-panel-show, .tc-user-panel-show {
+.btc-panel-show, .btc-user-panel-show {
 	position: fixed;
 	top: 0;
 	right: 15px;
@@ -506,19 +506,19 @@ html {
 	padding: 0;
 }
 
-.tc-user-panel-show {
+.btc-user-panel-show {
 	right: inherit;
 	left: 5px;
 }
 
 <$list filter="[{$:/config/panel/position}match[left]]" variable="ignore">
 
-.tc-panel-show {
+.btc-panel-show {
 	left: 5px;
 	right: inherit;
 }
 
-.tc-user-panel-show {
+.btc-user-panel-show {
 	left: inherit;
 	right: 15px;
 }
@@ -529,67 +529,67 @@ html {
 
 <$list filter="[{$:/config/story-river/hamburger-top}match[yes]]" variable="ignore">
 
-.tc-hamburger-topbar {
+.btc-hamburger-topbar {
 	display: flex;
 	justify-content: space-between;
 }
 
-.tc-hamburger-topbar-middle {
+.btc-hamburger-topbar-middle {
 	display: table;
 }
 
-.tc-hamburger-topbar-middle-table-cell {
+.btc-hamburger-topbar-middle-table-cell {
 	display: table-cell;
 	vertical-align: middle;
 }
 
-.tc-hamburger-topbar-middle-table-cell:not(:first-of-type) {
+.btc-hamburger-topbar-middle-table-cell:not(:first-of-type) {
 	padding-left: 15px;
 	border-left: 1px solid <<colour column-active-button-border>>;
 }
 
-.tc-hamburger-topbar-middle .tc-page-controls, .tc-hamburger-topbar-middle .tc-sidebar-lists.tc-sidebar-search > p {
+.btc-hamburger-topbar-middle .tc-page-controls, .btc-hamburger-topbar-middle .tc-sidebar-lists.tc-sidebar-search > p {
 	margin: 0;
 }
 
-.tc-hamburger-right {
+.btc-hamburger-right {
 	margin-right: 3px;
 }
 
-.tc-hamburger-left {
+.btc-hamburger-left {
 	margin-left: 3px;
 }
 
 </$list>
 
-.tc-panel-show svg, .tc-user-panel-show svg {
+.btc-panel-show svg, .btc-user-panel-show svg {
 	fill: <<colour show-panel-button>>;
 }
 
-.tc-panel-show:hover svg, .tc-user-panel-show:hover svg {
+.btc-panel-show:hover svg, .btc-user-panel-show:hover svg {
 	fill: <<colour show-panel-button-foreground>>;
 }
 
-.tc-panel-close:hover, .tc-search-panel-close:hover {
+.btc-panel-close:hover, .btc-search-panel-close:hover {
 	background-color: <<colour foreground>>;
 }
 
-.tc-panel-is-visible .tc-panel-close::before {
+.btc-panel-is-visible .btc-panel-close::before {
 	-webkit-animation: cd-close-1 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
 	animation: cd-close-1 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
 }
 
-.tc-search-panel-is-visible .tc-search-panel-close::before {
+.btc-search-panel-is-visible .btc-search-panel-close::before {
 	-webkit-animation: cd-close-1 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 4);
 	animation: cd-close-1 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 4);	
 }
 
-.tc-panel-close::before, .tc-search-panel-close::before {
+.btc-panel-close::before, .btc-search-panel-close::before {
 	-webkit-transform: rotate(45deg);
 	transform: rotate(45deg);
 }
 
-.tc-panel-close::before, .tc-panel-close::after, .tc-search-panel-close::before, .tc-search-panel-close::after {
+.btc-panel-close::before, .btc-panel-close::after, .btc-search-panel-close::before, .btc-search-panel-close::after {
 	content: " ";
 	position: absolute;
 	top: 22px;
@@ -601,12 +601,12 @@ html {
 	backface-visibility: hidden;
 }
 
-.tc-panel-close:hover::before, .tc-search-panel-close:hover::before {
+.btc-panel-close:hover::before, .btc-search-panel-close:hover::before {
 	-webkit-transform: rotate(220deg);
 	transform: rotate(220deg);
 }
 
-.tc-panel-close:hover::before, .tc-panel-close:hover::after, .tc-search-panel-close:hover::before, .tc-search-panel-close:hover::after {
+.btc-panel-close:hover::before, .btc-panel-close:hover::after, .btc-search-panel-close:hover::before, .btc-search-panel-close:hover::after {
 	background-color: <<colour background>>;
 	-webkit-transition: -webkit-transform {{$:/config/AnimationDuration}}ms;
 	transition: -webkit-transform {{$:/config/AnimationDuration}}ms;
@@ -614,27 +614,27 @@ html {
 	transition: transform {{$:/config/AnimationDuration}}ms,-webkit-transform {{$:/config/AnimationDuration}}ms;
 }
 
-.tc-panel-is-visible .tc-panel-close::after, .tc-search-panel-is-visible .tc-search-panel-close::after {
+.btc-panel-is-visible .btc-panel-close::after, .btc-search-panel-is-visible .btc-search-panel-close::after {
 	-webkit-animation: cd-close-2 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
 	animation: cd-close-2 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
 }
 
-.tc-search-panel-is-visible .tc-search-panel-close::after {
+.btc-search-panel-is-visible .btc-search-panel-close::after {
 	-webkit-animation: cd-close-2 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 4);
 	animation: cd-close-2 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 4);
 }
 
-.tc-panel-close:hover::after, .tc-search-panel-close:hover::after {
+.btc-panel-close:hover::after, .btc-search-panel-close:hover::after {
 	-webkit-transform: rotate(135deg);
 	transform: rotate(135deg);
 }
 
-.tc-panel-close::after, .tc-search-panel-close::after {
+.btc-panel-close::after, .btc-search-panel-close::after {
 	-webkit-transform: rotate(-45deg);
 	transform: rotate(-45deg);
 }
 
-.tc-panel-content-header {
+.btc-panel-content-header {
 	display: flex;
 	flex-direction: column;
 	flex-basis: calc(100% - 78px);
@@ -642,17 +642,17 @@ html {
 	overflow: hidden;
 }
 
-.tc-panel-content-header .tc-page-controls .tc-panorama-button, .tc-hamburger-topbar .tc-page-controls .tc-panorama-button {
+.btc-panel-content-header .tc-page-controls .btc-panorama-button, .btc-hamburger-topbar .tc-page-controls .btc-panorama-button {
 	margin-left: -2px;
 	margin-right: 0.4em;
 }
 
-.tc-tab-content.tc-sidebar-tabs-main .tc-panorama-button svg {
+.tc-tab-content.tc-sidebar-tabs-main .btc-panorama-button svg {
 	height: 1.5em;
 	width: 1.5em;
 }
 
-.tc-panel-content {
+.btc-panel-content {
 	display: flex;
 	flex-direction: column;
 	height: calc(100% - 25px);
@@ -661,19 +661,19 @@ html {
 	padding-right: 5%;
 }
 
-.tc-panel-content .tc-sidebar-lists.tc-sidebar-tabs, .tc-panel-content .tc-tab-set.tc-sidebar-tabs-main {
+.btc-panel-content .tc-sidebar-lists.tc-sidebar-tabs, .btc-panel-content .tc-tab-set.tc-sidebar-tabs-main {
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
 	width: 100%;
 }
 
-.tc-panel-content .tc-sidebar-lists.tc-sidebar-tabs > p {
+.btc-panel-content .tc-sidebar-lists.tc-sidebar-tabs > p {
 	display: flex;
 	overflow: hidden;
 }
 
-.tc-panel-content .tc-tab-content.tc-sidebar-tabs-main {
+.btc-panel-content .tc-tab-content.tc-sidebar-tabs-main {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
@@ -681,13 +681,13 @@ html {
 	overflow: hidden;
 }
 
-.tc-panel-content .tc-tab-content.tc-sidebar-tabs-main > * {
+.btc-panel-content .tc-tab-content.tc-sidebar-tabs-main > * {
 	flex: 1;
 	overflow: auto;
 	height: 100%;
 }
 
-.tc-user-panel-container {
+.btc-user-panel-container {
 	position: absolute;
 	top: 78px;
 	padding-left: 5%;
@@ -698,16 +698,16 @@ html {
 	overflow: auto;
 }
 
-.tc-panel-content .tc-sidebar-lists.tc-sidebar-tabs p {
+.btc-panel-content .tc-sidebar-lists.tc-sidebar-tabs p {
 	margin-top: 3px;
 	margin-bottom: 3px;
 }
 
-.tc-panel-content .tc-sidebar-lists.tc-sidebar-search p {
+.btc-panel-content .tc-sidebar-lists.tc-sidebar-search p {
 	margin-bottom: 3px;
 }
 
-.flextemplate-container {
+.btc-flextemplate-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -715,11 +715,11 @@ html {
 	height: 100vh;
 }
 
-.flextemplate-container > .main {
+.btc-flextemplate-container > .main {
 	flex-grow: 1;
 }
 
-.flextemplate-container .column-config {
+.btc-flextemplate-container .btc-column-config {
 	flex-grow: 0;
 	flex-shrink: 0;
 	z-index: 9999;
@@ -727,7 +727,7 @@ html {
 
 /* Slice the column containers into vertical columns */
 
-.flextemplate-container .column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) {
+.btc-flextemplate-container .btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
@@ -745,7 +745,7 @@ html {
 
 	<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" variable="ignore">
 
-		.flextemplate-container main.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) {
+		.btc-flextemplate-container main.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) {
 			display: flex;
 			scroll-snap-type: {{$:/config/story-river/scroll-snap-type}};
 			overflow-x: scroll;
@@ -753,12 +753,12 @@ html {
 		}
 
 		@media (prefers-reduced-motion) {
-			.flextemplate-container main.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) {
+			.btc-flextemplate-container main.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) {
 				scroll-behavior: auto;
 			}
 		}
 
-		.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > * {
+		.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > * {
 			flex-basis: calc(100vw / {{$:/config/story-river/horizontal/columns}});
 			flex-shrink: 0;
 			padding: 0;
@@ -768,47 +768,47 @@ html {
 		}
 
 		@media (prefers-reduced-motion) {
-			.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > * {
+			.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > * {
 				scroll-behavior: auto;
 			}
 		}
 
 		<$list filter="[{$:/config/story-river/hide-scrollbars}match[yes]]" variable="ignore">
 
-			.flextemplate-container main.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) {
+			.btc-flextemplate-container main.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) {
 				-ms-overflow-style: none;
 				scrollbar-width: none;				
 			}
 
-			.flextemplate-container main.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar)::-webkit-scrollbar {
+			.btc-flextemplate-container main.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar)::-webkit-scrollbar {
 				display: none;				
 			}
 
-			.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > * {
+			.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > * {
 				-ms-overflow-style: none;
 				scrollbar-width: none;
 			}
 
-			.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > *::-webkit-scrollbar {
+			.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > *::-webkit-scrollbar {
 				display: none;
 			}
 
 		</$list>
 
-		.column-container > .tc-top-active-column {
+		.btc-column-container > .btc-top-active-column {
 			display: none;
 		}
 
 	</$list>
 
-	.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > .tc-top-active-column {
+	.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > .btc-top-active-column {
 		overflow: hidden;
 	}
 }
 
 @media (max-width: 800px) {
 
-	.flextemplate-container .column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) {
+	.btc-flextemplate-container .btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) {
 		display: flex;
 		scroll-snap-type: x mandatory;
 		overflow-x: scroll;
@@ -816,12 +816,12 @@ html {
 	}
 
 	@media (prefers-reduced-motion) {
-		.flextemplate-container .column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) {
+		.btc-flextemplate-container .btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) {
 			scroll-behavior: auto;
 		}
 	}
 
-	.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > * {
+	.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > * {
 		flex-basis: initial;
 		flex-grow: 0;
 		flex-shrink: 0;
@@ -833,39 +833,39 @@ html {
 	}
 
 	@media (prefers-reduced-motion) {
-		.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > * {
+		.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > * {
 			scroll-behavior: auto;
 		}
 	}
 
 	<$list filter="[{$:/config/story-river/hide-scrollbars}match[yes]]" variable="ignore">
 
-		.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > * {
+		.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > * {
 			-ms-overflow-style: none;
 			scrollbar-width: none;
 		}
 
-		.column-container:not(.tc-top-toolbar):not(.tc-bottom-toolbar) > *::-webkit-scrollbar {
+		.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > *::-webkit-scrollbar {
 			display: none;
 		}
 
 	</$list>
 
-	.flextemplate-container .column-config-top .column-container:last-of-type {
+	.btc-flextemplate-container .btc-column-config-top .btc-column-container:last-of-type {
 		display: none;
 	}
 
-	.tc-panorama-button {
+	.btc-panorama-button {
 		display: none;
 	}
 
 }
 
-.column-container.tc-top-toolbar, .column-container.tc-bottom-toolbar {
+.btc-column-container.btc-top-toolbar, .btc-column-container.btc-bottom-toolbar {
 	overflow: hidden;
 }
 
-.column-container.tc-top-toolbar > p, .column-container.tc-bottom-toolbar > p {
+.btc-column-container.btc-top-toolbar > p, .btc-column-container.btc-bottom-toolbar > p {
 	margin: 0;
 }
 
@@ -873,17 +873,17 @@ html {
 
 <$list filter="[list[$:/columns]] ~1" variable="currentColumn">
 
-.flextemplate-container .tc-river-<<currentColumn>> .tc-tiddler-frame {
+.btc-flextemplate-container .btc-river-<<currentColumn>> .tc-tiddler-frame {
 	width: 100%;
 }
 
 </$list>
 
-.tc-river-inner {
+.btc-river-inner {
 	padding: {{$:/config/story-river/padding}}px;
 }
 
-.tc-column-active-button {
+.btc-column-active-button {
 	display: flex;
 	z-index: 2;
 	top: 0;
@@ -892,45 +892,45 @@ html {
 	background-color: <<colour column-active-button-light>>;
 }
 
-.tc-column-active-button .tc-draggable-fill {
+.btc-column-active-button .btc-draggable-fill {
 	position: relative;
 	width= 100%;
 	height: 100%;
 }
 
-.tc-column-active-button:not(last-of-type) {
+.btc-column-active-button:not(last-of-type) {
 	border-right: thin solid <<colour column-active-button-border>>;
 }
 
 @media (max-width: 800px) {
-	.tc-column-active-button:not(last-of-type) {
+	.btc-column-active-button:not(last-of-type) {
 		border-right: none;
 	}
 }
 
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
-.tc-column-active-button {
+.btc-column-active-button {
 	background-color: <<colour column-active-button-dark>>;
 }
 
 </$list>
 
-.tc-column-active-button.tc-column-active {
+.btc-column-active-button.btc-column-active {
 	background-color: <<colour active-column>>;
 }
 
-.tc-column-active-button-droppable.tc-dragover .tc-column-active-button {
+.btc-column-active-button-droppable.tc-dragover .btc-column-active-button {
 	border-color: <<colour dropzone-background>> !important;	
 }
 
-.column-config-top .column-container {
+.btc-column-config-top .btc-column-container {
 	box-shadow: 0px 1px 1px <<colour column-config-top-column-container-box-shadow-light>>;
 }
 
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
-.column-config-top .column-container {
+.btc-column-config-top .btc-column-container {
 	box-shadow: 0px 1px 1px <<colour column-config-top-column-container-box-shadow-dark>>;
 }
 
@@ -950,13 +950,13 @@ html {
 
 ``
 <$list filter="[range[100]]">
-`.tc-river-inner .tc-tiddler-zindex-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) {
+`.btc-river-inner .btc-tiddler-zindex-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) {
 z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 `
 </$list>
 <$list filter="[range[100]]">
-`.tc-river-inner .tc-tiddler-zindex-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) .tc-tiddler-title {
+`.btc-river-inner .btc-tiddler-zindex-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) .tc-tiddler-title {
 z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 `
@@ -966,12 +966,12 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 <$list filter="[list[$:/columns]] ~1" variable="currentColumn">
 
-.tc-dropzone-<<currentColumn>> {
+.btc-dropzone-<<currentColumn>> {
 	min-height: 100%;
 	position: relative;
 }
 
-.tc-dropzone-<<currentColumn>>.tc-dragover:before {
+.btc-dropzone-<<currentColumn>>.tc-dragover:before {
 	z-index: 10000;
 	display: block;
 	position: sticky;
@@ -985,7 +985,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 </$list>
 
-.tc-river-active {
+.btc-river-active {
 	background-color: <<colour active-column>>;
 }
 
@@ -1009,7 +1009,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 </$list>
 
-.tc-activate-column-btn {
+.btc-activate-column-btn {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -1026,11 +1026,11 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	user-select: none;
 }
 
-.tc-activate-column-btn:focus {
+.btc-activate-column-btn:focus {
 	outline: none !important;
 }
 
-.tc-panel-shown-eventcatcher, .tc-panel-close {
+.btc-panel-shown-eventcatcher, .btc-panel-close {
 	-webkit-tap-highlight-color: transparent;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -1040,11 +1040,11 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	user-select: none;	
 }
 
-.tc-panel-shown-eventcatcher:focus {
+.btc-panel-shown-eventcatcher:focus {
 	outline: none !important;
 }
 
-.tc-sidebar-flexpanel {
+.btc-sidebar-flexpanel {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -1054,7 +1054,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	padding-right: 5%;
 }
 
-.tc-sidebar-flexpanel .tc-sidebar-flexpanel-column-container {
+.btc-sidebar-flexpanel .btc-sidebar-flexpanel-column-container {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
@@ -1064,7 +1064,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 <$list filter="[list[$:/columns]] ~1" variable="currentColumn">
 
-.tc-sidebar-flexpanel-column-container > *:nth-child(<<currentColumn>>) {
+.btc-sidebar-flexpanel-column-container > *:nth-child(<<currentColumn>>) {
 	flex-basis: 0;
 	flex-grow: 1;
 	flex-shrink: 0;
@@ -1072,21 +1072,21 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 </$list>
 
-.tc-sidebar-flexpanel .tc-column-active-button {
+.btc-sidebar-flexpanel .btc-column-active-button {
 	height: 25px;
 }
 
-.tc-sidebar-flexpanel .tc-column-active-button:first-of-type {
+.btc-sidebar-flexpanel .btc-column-active-button:first-of-type {
 	border: 1px dashed <<colour column-active-button-border>>;
 }
 
-.tc-sidebar-flexpanel .tc-column-active-button {
+.btc-sidebar-flexpanel .btc-column-active-button {
 	border-top: 1px dashed <<colour column-active-button-border>>;
 	border-bottom: 1px dashed <<colour column-active-button-border>>;
 	border-right: 1px dashed <<colour column-active-button-border>>;
 }
 
-.tc-sidebar-flexpanel-column-counter {
+.btc-sidebar-flexpanel-column-counter {
 	width: 100%;
 	text-align: center;
 	user-select: none;
@@ -1095,7 +1095,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	-ms-user-select: none;
 }
 
-.tc-droppable-top-half {
+.btc-droppable-top-half {
 	position: absolute;
 	top: calc(-{{$:/config/story-river/tiddler-margin}}px - {{$:/config/story-river/tiddler-border}}px);
 	left: calc(-{{$:/config/story-river/padding}}px - {{$:/config/story-river/tiddler-border}}px);
@@ -1105,12 +1105,12 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	z-index: 501;
 }
 
-.tc-tiddler-view-frame:first-of-type .tc-droppable-top-half, .tc-tiddler-edit-frame:first-of-type .tc-droppable-top-half {
+.tc-tiddler-view-frame:first-of-type .btc-droppable-top-half, .tc-tiddler-edit-frame:first-of-type .btc-droppable-top-half {
 	top: calc(-{{$:/config/story-river/padding}}px - {{$:/config/story-river/tiddler-border}}px);
 	height: calc(50% + {{$:/config/story-river/padding}}px + {{$:/config/story-river/tiddler-border}}px);
 }
 
-.tc-droppable-bottom-half {
+.btc-droppable-bottom-half {
 	position: absolute;
 	top: 50%;
 	left: calc(-{{$:/config/story-river/padding}}px - {{$:/config/story-river/tiddler-border}}px);
@@ -1120,23 +1120,23 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 	display: none;
 }
 
-.tc-droppable-top-half.tc-dragover {
+.btc-droppable-top-half.tc-dragover {
 	height: calc(50% + (2 * {{$:/config/story-river/tiddler-margin}}px) + {{$:/state/dragging!!height}}px);
 	top: calc(-{{$:/state/dragging!!height}}px - (2 * {{$:/config/story-river/tiddler-margin}}px));
 }
 
-.tc-tiddler-view-frame:first-of-type .tc-droppable-top-half.tc-dragover, .tc-tiddler-edit-frame:first-of-type .tc-droppable-top-half.tc-dragover {
+.tc-tiddler-view-frame:first-of-type .btc-droppable-top-half.tc-dragover, .tc-tiddler-edit-frame:first-of-type .btc-droppable-top-half.tc-dragover {
 	height: calc(50% + {{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/padding}}px + {{$:/state/dragging!!height}}px);
 	top: calc(-{{$:/state/dragging!!height}}px - {{$:/config/story-river/tiddler-margin}}px - {{$:/config/story-river/padding}}px);
 }
 
-.tc-droppable-bottom-half.tc-dragover {
+.btc-droppable-bottom-half.tc-dragover {
 	height: calc(50% + {{$:/config/story-river/tiddler-margin}}px + {{$:/state/dragging!!height}}px);
 }
 
 <$list filter="[{$:/state/dragging}match[yes]]">
 
-.tc-droppable-top-half, .tc-droppable-bottom-half {
+.btc-droppable-top-half, .btc-droppable-bottom-half {
 	display: block;
 }
 
@@ -1186,17 +1186,17 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 <$list filter="[{$:/state/dragging}match[yes]]">
 
-.tc-activate-column-btn {
+.btc-activate-column-btn {
 	display: none;
 }
 
-.tc-river-inner {
+.btc-river-inner {
 	height: 100%;
 	position: absolute;
 	width: 100%;
 }
 
-.tc-river-inner > .tc-droppable {
+.btc-river-inner > .tc-droppable {
 	position: absolute;
 	height: calc(100% - (2 * {{$:/config/story-river/padding}}px));
 	width: calc(100% - (2 * {{$:/config/story-river/padding}}px));
@@ -1223,7 +1223,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 </$list>
 
-.tc-river-inner > .tc-tiddler-view-frame > .tc-draggable, .tc-river-inner > .tc-tiddler-edit-frame > .tc-draggable {
+.btc-river-inner > .tc-tiddler-view-frame > .tc-draggable, .btc-river-inner > .tc-tiddler-edit-frame > .tc-draggable {
 	cursor: default;
 }
 
@@ -1265,11 +1265,11 @@ hr.simple {
 	background: <<colour foreground>>;
 }
 
-.tc-top-active-column-draggable {
+.btc-top-active-column-draggable {
 	cursor: default;
 }
 
-.tc-bottom-right-panel {
+.btc-bottom-right-panel {
 	position: fixed;
 	right: 0;
 	bottom: 0;
@@ -1280,21 +1280,21 @@ hr.simple {
 	z-index: 9999;
 }
 
-.tc-bottom-right-panel svg {
+.btc-bottom-right-panel svg {
 	fill: <<colour muted-foreground>>;
 }
 
-.tc-bottom-right-panel .tc-btn-invisible:hover svg {
+.btc-bottom-right-panel .tc-btn-invisible:hover svg {
 	fill: <<colour foreground>>;
 }
 
-.tc-bottom-right-panel .tc-btn-invisible.tc-selected svg {
+.btc-bottom-right-panel .tc-btn-invisible.tc-selected svg {
 	fill: <<colour tiddler-controls-foreground-selected>>;
 }
 
 <$wikify name="dropshadowColour" text="""<<colour selected-dropshadow-light>>""">
 
-	.tc-bottom-right-panel .tc-btn-invisible.tc-selected {
+	.btc-bottom-right-panel .tc-btn-invisible.tc-selected {
 		<$macrocall $name="filter" filter={{{ [[drop-shadow(0px -1px 2px ]addsuffix<dropshadowColour>addsuffix[)]] }}}/>
 	}
 
@@ -1304,7 +1304,7 @@ hr.simple {
 
 	<$wikify name="dropshadowColour" text="""<<colour selected-dropshadow-dark>>""">
 
-		.tc-bottom-right-panel .tc-btn-invisible.tc-selected {
+		.btc-bottom-right-panel .tc-btn-invisible.tc-selected {
 			<$macrocall $name="filter" filter={{{ [[drop-shadow(0px -1px 2px ]addsuffix[$(dropshadowColour)$]addsuffix[)]] }}}/>
 		}
 
@@ -1372,7 +1372,7 @@ html {
 
 </$set>
 
-.tc-panorama-button, .tc-remove-column-button, .tc-add-column-button, .tc-dragging-button {
+.btc-panorama-button, .btc-remove-column-button, .btc-add-column-button, .btc-dragging-button {
 	display: none;
 }
 

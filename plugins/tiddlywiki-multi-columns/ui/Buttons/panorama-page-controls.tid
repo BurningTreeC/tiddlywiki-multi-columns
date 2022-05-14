@@ -4,7 +4,7 @@ description: horizontal or vertical view
 caption: toggle panorama
 
 \define get-panorama-classes()
-tc-panorama-button $(tv-config-toolbar-class)$
+btc-panorama-button $(tv-config-toolbar-class)$
 \end
 \define get-panorama-tooltip()
 panorama - [$(vertHorizShortcut)$]

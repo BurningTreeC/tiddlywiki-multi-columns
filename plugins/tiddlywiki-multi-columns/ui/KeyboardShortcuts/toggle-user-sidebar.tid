@@ -6,7 +6,7 @@ key: ((toggle-user-sidebar))
 <$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]!is[draft]] -[[$:/core/ui/SideBarSegments/site-title]] -[[$:/core/ui/SideBarSegments/site-subtitle]] -[[$:/core/ui/SideBarSegments/search]] -[[$:/core/ui/SideBarSegments/page-controls]] -[[$:/core/ui/SideBarSegments/tabs]] =[all[tiddlers+shadows]tag[$:/tags/SideBarSegment/User]!is[draft]] +[limit[1]]" variable="ignore">
 <$list filter="[{$:/state/user-panel/visibility}match[yes]]" variable="ignore" emptyMessage="""
 <$action-setfield $tiddler="$:/state/user-panel/visibility" text="yes"/>
-<$action-sendmessage $message="tm-focus-selector-deferred" $param=".tc-user-panel-container input" delay={{$:/config/AnimationDuration}}/>
+<$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-user-panel-container input" delay={{$:/config/AnimationDuration}}/>
 """>
 <$action-setfield $tiddler="$:/state/user-panel/visibility" text="no"/>
 </$list>

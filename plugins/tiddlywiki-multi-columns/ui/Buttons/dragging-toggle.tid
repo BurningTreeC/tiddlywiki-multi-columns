@@ -4,7 +4,7 @@ description: toggle the dragging functionality
 caption: dragging toggle
 
 \define get-button-class(class)
-tc-dragging-button $(tv-config-toolbar-class)$ tc-toolbar-icon $class$
+btc-dragging-button $(tv-config-toolbar-class)$ tc-toolbar-icon $class$
 \end
 \define get-dragging-tooltip(onoff)
 dragging $onoff$ - [$(draggingShortcut)$]
