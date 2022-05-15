@@ -22,6 +22,9 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate
 <$action-sendmessage $message="tm-save-tiddler"/>
 \end
 \define cancel-delete-tiddler-actions(message)
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
 <$list filter="[[$message$]match[delete]]" variable="ignore">
 <$let deleteTiddlerViewMode={{{ [<currentTiddler>get[draft.of]] }}} deleteTiddlerEditMode=<<currentTiddler>>>
 <$list filter="[list[$:/columns]!match<currentColumn>]" variable="column">
