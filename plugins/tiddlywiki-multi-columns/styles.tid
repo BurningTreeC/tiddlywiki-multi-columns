@@ -194,6 +194,34 @@ tags: $:/tags/Stylesheet
 
 \end
 
+\define inherit-overflow-columns()
+
+@media (min-width: 800px) {
+
+	.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > *:nth-child(<<column>>) {
+		overflow-y: hidden;
+	}
+
+	.btc-flextemplate-container main.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) {
+		overflow-x: hidden;
+	}
+
+}
+
+@media (max-width: 800px) {
+
+	.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > *:nth-child(<<column>>) {
+		overflow-y: hidden;
+	}
+
+	.btc-flextemplate-container main.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) {
+		overflow-x: hidden;
+	}
+
+}
+
+\end
+
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 
 <<set-color-scheme>>
@@ -1403,25 +1431,33 @@ hr.simple {
 
 <$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
 
-<$vars column={{{ [<fullScreenTiddler>get[column]] }}} fullScreenTiddler={{{ [<fullScreenTiddler>removeprefix[$:/state/story-river/full-screen/]] }}}>
+	<$vars column={{{ [<fullScreenTiddler>get[column]] }}} fullScreenTiddler={{{ [<fullScreenTiddler>removeprefix[$:/state/story-river/full-screen/]] }}}>
 
-<$list filter="[<fullScreenTiddler>is[draft]]" variable="ignore" emptyMessage="""
+		<$list filter="[<fullScreenTiddler>is[draft]]" variable="ignore" emptyMessage="""
 
-<$let tiddlerTitle=<<fullScreenTiddler>> draftTiddlerTitle={{{ [[Draft of ']addsuffix<fullScreenTiddler>addsuffix[']] }}} tiddlerTitleCSSEscaped={{{ [<tiddlerTitle>escapecss[]] }}} draftTiddlerTitleCSSEscaped={{{ [<draftTiddlerTitle>escapecss[]] }}}>
+			<$let tiddlerTitle=<<fullScreenTiddler>> draftTiddlerTitle={{{ [[Draft of ']addsuffix<fullScreenTiddler>addsuffix[']] }}} tiddlerTitleCSSEscaped={{{ [<tiddlerTitle>escapecss[]] }}} draftTiddlerTitleCSSEscaped={{{ [<draftTiddlerTitle>escapecss[]] }}}>
 
-<<view-tiddler-full-screen>>
+			<<view-tiddler-full-screen>>
 
-</$let>
+			</$let>
 
-""">
+		""">
 
-<$let tiddlerTitle={{{ [<fullScreenTiddler>get[draft.title]] }}} draftTiddlerTitle=<<fullScreenTiddler>> tiddlerTitleCSSEscaped={{{ [<tiddlerTitle>escapecss[]] }}} draftTiddlerTitleCSSEscaped={{{ [<draftTiddlerTitle>escapecss[]] }}}>
+			<$let tiddlerTitle={{{ [<fullScreenTiddler>get[draft.title]] }}} draftTiddlerTitle=<<fullScreenTiddler>> tiddlerTitleCSSEscaped={{{ [<tiddlerTitle>escapecss[]] }}} draftTiddlerTitleCSSEscaped={{{ [<draftTiddlerTitle>escapecss[]] }}}>
 
-<<view-tiddler-full-screen>>
+				<<view-tiddler-full-screen>>
 
-</$list>
+			</$let>
 
-</$vars>
+		</$list>
+
+	</$vars>
+
+	<$list filter="[list[$:/columns]]" variable="column">
+
+		<<inherit-overflow-columns>>
+
+	</$list>
 
 </$list>
 
