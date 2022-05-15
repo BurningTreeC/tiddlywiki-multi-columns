@@ -3,7 +3,9 @@ tags: $:/tags/KeyboardShortcut
 key: ((new-column))
 
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
 <$let columnCount={{{ [list[$:/columns]count[]] }}} newColumn={{{ [<columnCount>add[1]] }}}>
 <$action-listops $tiddler="$:/columns" $subfilter="[<newColumn>]"/>
 </$let>
+"""></$list>
 </$list>

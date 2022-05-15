@@ -33,8 +33,8 @@ key: ((cancel-close-tiddler))
 	<$action-sendmessage $message="tm-cancel-tiddler" $param=<<tiddler>>/>
 </$let>
 \end
-\whitespace trim
-<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore" emptyMessage="""
+\define not-multi-column-layout-message()
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
 <$navigator story="$:/StoryList" history="$:/HistoryList">
 	<$set name="tiddler" value={{{ [[$:/HistoryList]get[current-tiddler]] }}}>
 		<$list filter="[<tiddler>!is[draft]]" emptyMessage="""
@@ -48,17 +48,22 @@ key: ((cancel-close-tiddler))
 		</$list>
 	</$set>
 </$navigator>
-""">
-	<$let currentColumn={{$:/columns!!active-column}} storyList={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}}>
-		<$navigator story=<<storyList>> history=<<historyList>>>
-			<$set name="tiddler" value={{{ [<historyList>get[current-tiddler]] }}}>
-				<$list filter="[<tiddler>!is[draft]]" variable="ignore" emptyMessage=<<tiddler-is-draft-actions>>>
-					<$let scrollTiddler={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}}>
-						<$action-setfield $tiddler=<<historyList>> current-tiddler=<<scrollTiddler>>/>
-						<$action-sendmessage $message="tm-close-tiddler" $param=<<tiddler>>/>
-					</$let>
-				</$list>
-			</$set>
-		</$navigator>
-	</$let>
+"""></$list>
+\end
+\whitespace trim
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore" emptyMessage=<<not-multi-column-layout-message>>>
+	<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
+		<$let currentColumn={{$:/columns!!active-column}} storyList={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}}>
+			<$navigator story=<<storyList>> history=<<historyList>>>
+				<$set name="tiddler" value={{{ [<historyList>get[current-tiddler]] }}}>
+					<$list filter="[<tiddler>!is[draft]]" variable="ignore" emptyMessage=<<tiddler-is-draft-actions>>>
+						<$let scrollTiddler={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}}>
+							<$action-setfield $tiddler=<<historyList>> current-tiddler=<<scrollTiddler>>/>
+							<$action-sendmessage $message="tm-close-tiddler" $param=<<tiddler>>/>
+						</$let>
+					</$list>
+				</$set>
+			</$navigator>
+		</$let>
+	"""></$list>
 </$list>

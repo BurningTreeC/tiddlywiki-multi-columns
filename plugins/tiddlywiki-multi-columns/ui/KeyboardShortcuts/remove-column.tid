@@ -3,6 +3,7 @@ tags: $:/tags/KeyboardShortcut
 key: ((remove-column))
 
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
 <$set name="columnCount" value={{{ [list[$:/columns]count[]] }}}>
 <$list filter="[[$:/columns]get[active-column]match<columnCount>]">
 <$action-setfield $tiddler="$:/columns" active-column={{{ [<columnCount>subtract[1]!match[0]] ~1 }}}/>
@@ -11,4 +12,5 @@ key: ((remove-column))
 <$action-listops $tiddler="$:/columns" $subfilter="-[<columnCount>]"/>
 </$list>
 </$set>
+"""></$list>
 </$list>

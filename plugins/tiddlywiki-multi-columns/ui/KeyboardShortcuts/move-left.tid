@@ -2,21 +2,26 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/move-left
 tags: $:/tags/KeyboardShortcut
 key: ((move-left))
 
+\define current-tiddler-is-empty-message()
+<$action-listops $tiddler=<<previousStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<firstPreviousStoryTiddler>]"/>
+<$action-setfield $tiddler=<<previousHistoryList>> current-tiddler=<<focusedTiddler>>/>
+\end
+
+\define previous-story-list-not-contains-previous-story-focused-tiddler()
+<$action-listops $tiddler=<<previousStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<firstPreviousStoryTiddler>]"/>
+<$action-setfield $tiddler=<<previousHistoryList>> current-tiddler=<<focusedTiddler>>/>
+\end
+
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
 <$let currentColumn={{$:/columns!!active-column}} storyList={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} focusedTiddler={{{ [<historyList>get[current-tiddler]] }}} previousStoryCounter={{{ [<currentColumn>subtract[1]] }}} previousStoryList={{{ [<storyList>!match[$:/StoryList]!match[$:/StoryList-1]removesuffix<currentColumn>addsuffix<previousStoryCounter>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} previousHistoryList={{{ [<historyList>!match[$:/HistoryList]!match[$:/HistoryList-1]removesuffix<currentColumn>addsuffix<previousStoryCounter>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} firstPreviousStoryTiddler={{{ [list<previousStoryList>first[]] }}}>
 <$list filter="[<storyList>!match[$:/StoryList]]" variable="ignore">
 <$action-setfield $tiddler={{{ [[$:/state/inserting/from-right/]addsuffix<focusedTiddler>] }}} text="yes"/>
 <$action-setfield $tiddler=<<historyList>> current-tiddler={{{ [list<storyList>after<focusedTiddler>] ~[list<storyList>before<focusedTiddler>] }}}/>
 <$action-listops $tiddler=<<storyList>> $subfilter="-[<focusedTiddler>]"/>
-<$list filter="[<previousHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage="""
-<$action-listops $tiddler=<<previousStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<firstPreviousStoryTiddler>]"/>
-<$action-setfield $tiddler=<<previousHistoryList>> current-tiddler=<<focusedTiddler>>/>
-""">
+<$list filter="[<previousHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
 <$set name="previousStoryFocusedTiddler" value={{{ [<previousHistoryList>get[current-tiddler]] }}}>
-<$list filter="[<previousStoryList>contains<previousStoryFocusedTiddler>]" variable="ignore" emptyMessage="""
-<$action-listops $tiddler=<<previousStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<firstPreviousStoryTiddler>]"/>
-<$action-setfield $tiddler=<<previousHistoryList>> current-tiddler=<<focusedTiddler>>/>
-""">
+<$list filter="[<previousStoryList>contains<previousStoryFocusedTiddler>]" variable="ignore" emptyMessage=<<previous-story-list-not-contains-previous-story-focused-tiddler>>>
 <$action-listops $tiddler=<<previousStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<previousStoryFocusedTiddler>]"/>
 <$action-setfield $tiddler=<<previousHistoryList>> current-tiddler=<<focusedTiddler>>/>
 </$list>
@@ -28,4 +33,5 @@ key: ((move-left))
 </$list>
 </$list>
 </$let>
+"""></$list>
 </$list>

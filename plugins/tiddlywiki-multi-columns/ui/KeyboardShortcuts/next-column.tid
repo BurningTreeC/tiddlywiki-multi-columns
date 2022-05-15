@@ -8,22 +8,24 @@ key: ((next-column))
 \end
 
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
-<$set name="currentColumn" value={{{ [[$:/columns]get[active-column]] ~1 }}}>
-	<$list filter="[list[$:/columns]after<currentColumn>] ~1" variable="nextColumn">
-		<$action-setfield $tiddler="$:/columns" active-column=<<nextColumn>>/>
-		<$let nextStoryList={{{ [[$:/StoryList-]addsuffix<nextColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} nextHistoryList={{{ [[$:/HistoryList-]addsuffix<nextColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} currentTiddler={{{ [<nextHistoryList>get[current-tiddler]] }}}>
-			<$list filter="[<currentTiddler>is[blank]] [<nextStoryList>!contains<currentTiddler>] +[limit[1]]" variable="ignore">
-				<$action-setfield $tiddler=<<nextHistoryList>> current-tiddler={{{ [list<nextStoryList>nth[1]] }}}/>
+	<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
+		<$set name="currentColumn" value={{{ [[$:/columns]get[active-column]] ~1 }}}>
+			<$list filter="[list[$:/columns]after<currentColumn>] ~1" variable="nextColumn">
+				<$action-setfield $tiddler="$:/columns" active-column=<<nextColumn>>/>
+				<$let nextStoryList={{{ [[$:/StoryList-]addsuffix<nextColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} nextHistoryList={{{ [[$:/HistoryList-]addsuffix<nextColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} currentTiddler={{{ [<nextHistoryList>get[current-tiddler]] }}}>
+					<$list filter="[<currentTiddler>is[blank]] [<nextStoryList>!contains<currentTiddler>] +[limit[1]]" variable="ignore">
+						<$action-setfield $tiddler=<<nextHistoryList>> current-tiddler={{{ [list<nextStoryList>nth[1]] }}}/>
+					</$list>
+				</$let>
+				<$let nextStoryList={{{ [[$:/StoryList-]addsuffix<nextColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} nextHistoryList={{{ [[$:/HistoryList-]addsuffix<nextColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} scrollTiddlerCSSEscaped={{{ [<nextHistoryList>get[current-tiddler]escapecss[]] ~[list<nextStoryList>nth[1]escapecss[]] }}}>
+					<$wikify name="scrollSelector" text=<<get-scroll-selector>>>
+						<$action-sendmessage $message="tm-scroll" selector=<<scrollSelector>>/>
+					</$wikify>
+				</$let>
+				<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" variable="ignore">
+					<$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<nextColumn>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/>
+				</$list>
 			</$list>
-		</$let>
-		<$let nextStoryList={{{ [[$:/StoryList-]addsuffix<nextColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} nextHistoryList={{{ [[$:/HistoryList-]addsuffix<nextColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} scrollTiddlerCSSEscaped={{{ [<nextHistoryList>get[current-tiddler]escapecss[]] ~[list<nextStoryList>nth[1]escapecss[]] }}}>
-			<$wikify name="scrollSelector" text=<<get-scroll-selector>>>
-				<$action-sendmessage $message="tm-scroll" selector=<<scrollSelector>>/>
-			</$wikify>
-		</$let>
-		<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" variable="ignore">
-			<$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<nextColumn>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/>
-		</$list>
-	</$list>
-</$set>
+		</$set>
+	"""></$list>
 </$list>
