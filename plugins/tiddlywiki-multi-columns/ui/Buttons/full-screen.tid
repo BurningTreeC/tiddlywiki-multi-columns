@@ -11,7 +11,6 @@ fullscreen $onoff$ - [$(fullScreenShortcut)$]
 \end
 
 \whitespace trim
-<$set name="currentTiddler" value={{{ [<currentTiddler>!is[draft]] ~[<currentTiddler>get[draft.title]] }}}>
 <$vars fullScreenShortcut=<<displayshortcuts ((full-screen))>> state={{{ [[$:/state/story-river/full-screen/]addsuffix<currentTiddler>] }}}>
 <$reveal state=<<state>> type="nomatch" text="yes">
 <$button class=<<get-button-class>> tooltip=<<get-fullscreen-tooltip "on">>>
@@ -38,4 +37,3 @@ fullscreen $onoff$ - [$(fullScreenShortcut)$]
 </$button>
 </$reveal>
 </$vars>
-</$set>
