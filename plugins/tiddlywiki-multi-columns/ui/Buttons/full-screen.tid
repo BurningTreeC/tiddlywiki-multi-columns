@@ -11,6 +11,7 @@ fullscreen $onoff$ - [$(fullScreenShortcut)$]
 \end
 
 \whitespace trim
+<$set name="currentTiddler" value={{{ [<currentTiddler>!is[draft]] ~[<currentTiddler>get[draft.title]] }}}>
 <$vars fullScreenShortcut=<<displayshortcuts ((full-screen))>> state={{{ [[$:/state/story-river/full-screen/]addsuffix<currentTiddler>] }}}>
 <$reveal state=<<state>> type="nomatch" text="yes">
 <$button class=<<get-button-class>> tooltip=<<get-fullscreen-tooltip "on">>>
@@ -25,7 +26,9 @@ fullscreen $onoff$ - [$(fullScreenShortcut)$]
 </$reveal>
 <$reveal state=<<state>> type="match" text="yes">
 <$button class=<<get-button-class "tc-selected">> tooltip=<<get-fullscreen-tooltip "off">>>
-<$action-deletetiddler $tiddler=<<state>>/>
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
 {{$:/core/images/full-screen-button}}
 </$list>
@@ -35,3 +38,4 @@ fullscreen $onoff$ - [$(fullScreenShortcut)$]
 </$button>
 </$reveal>
 </$vars>
+</$set>

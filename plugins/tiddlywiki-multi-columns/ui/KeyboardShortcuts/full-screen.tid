@@ -2,13 +2,15 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/full-screen
 tags: $:/tags/KeyboardShortcut
 key: ((full-screen))
 
-<$let currentColumn={{$:/columns!!active-column}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} currentTiddler={{{ [<historyList>get[current-tiddler]] }}} state={{{ [[$:/state/story-river/full-screen/]addsuffix<currentTiddler>] }}}>
+<$let currentColumn={{$:/columns!!active-column}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} currentTiddler={{{ [<historyList>get[current-tiddler]!is[draft]] ~[<historyList>get[currentTiddler]get[draft.title]] }}} state={{{ [[$:/state/story-river/full-screen/]addsuffix<currentTiddler>] }}}>
 <$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] :filter[removeprefix[$:/state/story-river/full-screen/]!match<currentTiddler>]" variable="fullScreenTiddler">
 <$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
 <$list filter="[<state>!is[missing]]" variable="ignore" emptyMessage="""
 <$action-setfield $tiddler=<<state>> text="yes" column=<<currentColumn>>/>
 """>
-<$action-deletetiddler $tiddler=<<state>>/>
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
 </$list>
 </$let>
