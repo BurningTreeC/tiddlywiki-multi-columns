@@ -1,0 +1,37 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/full-screen
+tags: $:/tags/ViewToolbar $:/tags/EditToolbar
+description: show tiddler full screen
+caption: full screen
+
+\define get-button-class(class)
+btc-fullscreen-button $(tv-config-toolbar-class)$ tc-toolbar-icon $class$
+\end
+\define get-fullscreen-tooltip(onoff)
+fullscreen $onoff$ - [$(fullScreenShortcut)$]
+\end
+
+\whitespace trim
+<$vars fullScreenShortcut=<<displayshortcuts ((full-screen))>> state={{{ [[$:/state/story-river/full-screen/]addsuffix<currentTiddler>] }}}>
+<$reveal state=<<state>> type="nomatch" text="yes">
+<$button class=<<get-button-class>> tooltip=<<get-fullscreen-tooltip "on">>>
+<$action-setfield $tiddler=<<state>> text="yes" column=<<currentColumn>>/>
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/core/images/full-screen-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text"><$text text="fullscreen"/></span>
+</$list>
+</$button>
+</$reveal>
+<$reveal state=<<state>> type="match" text="yes">
+<$button class=<<get-button-class "tc-selected">> tooltip=<<get-fullscreen-tooltip "off">>>
+<$action-deletetiddler $tiddler=<<state>>/>
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/core/images/full-screen-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text"><$text text="fullscreen"/></span>
+</$list>
+</$button>
+</$reveal>
+</$vars>

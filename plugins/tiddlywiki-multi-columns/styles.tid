@@ -173,6 +173,27 @@ tags: $:/tags/Stylesheet
 
 \end
 
+\define view-tiddler-full-screen()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
+.btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(tiddlerTitleCSSEscaped)$"], .btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(draftTiddlerTitleCSSEscaped)$"] {
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9999;
+}
+
+.btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(tiddlerTitleCSSEscaped)$"] > .tc-tiddler-frame, .btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(draftTiddlerTitleCSSEscaped)$"] > .tc-tiddler-frame {
+	min-height: 100%;
+	height: 100%;
+	overflow-y: scroll;
+	scroll-behavior: smooth;
+}
+
+\end
+
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 
 <<set-color-scheme>>
@@ -1377,6 +1398,30 @@ hr.simple {
 </$list>
 
 </$set>
+
+</$list>
+
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+
+<$vars column={{{ [<fullScreenTiddler>get[column]] }}} fullScreenTiddler={{{ [<fullScreenTiddler>removeprefix[$:/state/story-river/full-screen/]] }}}>
+
+<$list filter="[<fullScreenTiddler>is[draft]]" variable="ignore" emptyMessage="""
+
+<$let tiddlerTitle=<<fullScreenTiddler>> draftTiddlerTitle={{{ [[Draft of ']addsuffix<fullScreenTiddler>addsuffix[']] }}} tiddlerTitleCSSEscaped={{{ [<tiddlerTitle>escapecss[]] }}} draftTiddlerTitleCSSEscaped={{{ [<draftTiddlerTitle>escapecss[]] }}}>
+
+<<view-tiddler-full-screen>>
+
+</$let>
+
+""">
+
+<$let tiddlerTitle={{{ [<fullScreenTiddler>get[draft.title]] }}} draftTiddlerTitle=<<fullScreenTiddler>> tiddlerTitleCSSEscaped={{{ [<tiddlerTitle>escapecss[]] }}} draftTiddlerTitleCSSEscaped={{{ [<draftTiddlerTitle>escapecss[]] }}}>
+
+<<view-tiddler-full-screen>>
+
+</$list>
+
+</$vars>
 
 </$list>
 
