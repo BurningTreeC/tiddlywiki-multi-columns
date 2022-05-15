@@ -18,7 +18,9 @@ key: ((previous-column))
 				</$list>
 			</$let>
 			<$let previousStoryList={{{ [[$:/StoryList-]addsuffix<nextColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} previousHistoryList={{{ [[$:/HistoryList-]addsuffix<nextColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} scrollTiddlerCSSEscaped={{{ [<previousHistoryList>get[current-tiddler]escapecss[]] ~[list<previousStoryList>nth[1]escapecss[]] }}}>
-				<$action-sendmessage $message="tm-scroll" selector=<<get-scroll-selector>>/>
+				<$wikify name="scrollSelector" text=<<get-scroll-selector>>>
+					<$action-sendmessage $message="tm-scroll" selector=<<scrollSelector>>/>
+				</$wikify>
 			</$let>
 			<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" variable="ignore">
 				<$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<nextColumn>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/>

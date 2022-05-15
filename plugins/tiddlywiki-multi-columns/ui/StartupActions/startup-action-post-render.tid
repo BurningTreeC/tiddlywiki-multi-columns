@@ -11,7 +11,9 @@ tags: $:/tags/StartupAction/PostRender
 <$list filter="[<historyList>!has[current-tiddler]]" variable="ignore">
 <$action-setfield $tiddler=<<historyList>> current-tiddler={{{ [list<storyList>nth[1]] }}}/>
 <$set name="scrollTiddlerCSSEscaped" value={{{ [list<storyList>nth[1]escapecss[]] }}}>
-<$action-sendmessage $message="tm-scroll" selector=<<get-scroll-selector>>/>
+<$wikify name="scrollSelector" text=<<get-scroll-selector>>>
+<$action-sendmessage $message="tm-scroll" selector=<<scrollSelector>>/>
+</$wikify>
 </$set>
 </$list>
 </$let>
