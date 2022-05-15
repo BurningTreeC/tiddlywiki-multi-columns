@@ -928,10 +928,6 @@ html {
 
 }
 
-.btc-column-container.btc-top-toolbar, .btc-column-container.btc-bottom-toolbar {
-	overflow: hidden;
-}
-
 .btc-column-container.btc-top-toolbar > p, .btc-column-container.btc-bottom-toolbar > p {
 	margin: 0;
 }
