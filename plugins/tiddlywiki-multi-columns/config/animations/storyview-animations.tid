@@ -1,6 +1,7 @@
 title: $:/config/StoryViewAnimations
 
 \define insert-keyframes()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
 @keyframes slide-in-$(insertTiddlerCSSEscaped)$ {
 	from {
@@ -21,6 +22,7 @@ title: $:/config/StoryViewAnimations
 \end
 
 \define remove-keyframes()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
 @keyframes slide-out-$(removeTiddlerCSSEscaped)$ {
 	from {

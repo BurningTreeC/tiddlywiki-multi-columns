@@ -1,7 +1,10 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/StartupActions/PostRender
 tags: $:/tags/StartupAction/PostRender
 
-\define get-scroll-selector() [data-tiddler-title="$(scrollTiddlerCSSEscaped)$"]
+\define get-scroll-selector()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+[data-tiddler-title="$(scrollTiddlerCSSEscaped)$"]
+\end
 
 <$list filter="[{$:/columns!!active-column}!is[blank]!match[1]]" variable="ignore">
 <$let activeColumn={{{ [[$:/columns]get[active-column]] }}} storyList={{{ [[$:/StoryList-]addsuffix<activeColumn>] }}} historyList={{{ [[$:/HistoryList-]addsuffix<activeColumn>] }}}>

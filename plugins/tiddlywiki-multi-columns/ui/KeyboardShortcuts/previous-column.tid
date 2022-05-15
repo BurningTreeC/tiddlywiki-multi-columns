@@ -2,7 +2,10 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/previous-col
 tags: $:/tags/KeyboardShortcut
 key: ((previous-column))
 
-\define get-scroll-selector() [data-tiddler-title="$(scrollTiddlerCSSEscaped)$"]
+\define get-scroll-selector()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+[data-tiddler-title="$(scrollTiddlerCSSEscaped)$"]
+\end
 
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 <$set name="currentColumn" value={{{ [[$:/columns]get[active-column]] ~1 }}}>
