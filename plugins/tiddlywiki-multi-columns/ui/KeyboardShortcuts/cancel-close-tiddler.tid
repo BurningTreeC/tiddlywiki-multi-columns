@@ -15,6 +15,20 @@ key: ((cancel-close-tiddler))
 		</$list>
 	</$set>
 </$list>
+<$list filter="[[$:/state/story-river/full-screen/]addsuffix<tiddler>!is[missing]]" variable="ignore" emptyMessage="""
+	<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+		<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+	</$list>
+""">
+	<$set name="cancelTiddler" value={{{ [<tiddler>get[draft.of]] }}}>
+		<$action-setfield $tiddler="$:/state/DisableInsertAnimation" text="yes"/>
+		<$action-setfield $tiddler="$:/state/DisableRemoveAnimation" text="yes"/>
+		<$action-setfield $tiddler={{{ [[$:/state/story-river/full-screen/]addsuffix<cancelTiddler>] }}} text="yes" column=<<currentColumn>>/>
+		<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] -[[$:/state/story-river/full-screen/]addsuffix<cancelTiddler>]" variable="fullScreenTiddler">
+			<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+		</$list>
+	</$set>
+</$list>
 \end
 \define tiddler-is-draft-actions()
 <$list filter="[<tiddler>get[draft.of]is[missing]]" variable="ignore" emptyMessage=<<tiddler-is-draft-actions-draft-of-not-is-missing>>>
@@ -52,18 +66,19 @@ key: ((cancel-close-tiddler))
 \end
 \whitespace trim
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore" emptyMessage=<<not-multi-column-layout-message>>>
-	<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
-		<$let currentColumn={{$:/columns!!active-column}} storyList={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}}>
-			<$navigator story=<<storyList>> history=<<historyList>>>
-				<$set name="tiddler" value={{{ [<historyList>get[current-tiddler]] }}}>
-					<$list filter="[<tiddler>!is[draft]]" variable="ignore" emptyMessage=<<tiddler-is-draft-actions>>>
-						<$let scrollTiddler={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}}>
-							<$action-setfield $tiddler=<<historyList>> current-tiddler=<<scrollTiddler>>/>
-							<$action-sendmessage $message="tm-close-tiddler" $param=<<tiddler>>/>
-						</$let>
-					</$list>
-				</$set>
-			</$navigator>
-		</$let>
-	"""></$list>
+	<$let currentColumn={{$:/columns!!active-column}} storyList={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}}>
+		<$navigator story=<<storyList>> history=<<historyList>>>
+			<$set name="tiddler" value={{{ [<historyList>get[current-tiddler]] }}}>
+				<$list filter="[<tiddler>!is[draft]]" variable="ignore" emptyMessage=<<tiddler-is-draft-actions>>>
+					<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+						<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+					</$list>				
+					<$let scrollTiddler={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}}>
+						<$action-setfield $tiddler=<<historyList>> current-tiddler=<<scrollTiddler>>/>
+						<$action-sendmessage $message="tm-close-tiddler" $param=<<tiddler>>/>
+					</$let>
+				</$list>
+			</$set>
+		</$navigator>
+	</$let>
 </$list>

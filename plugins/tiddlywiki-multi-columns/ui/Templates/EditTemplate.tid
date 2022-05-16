@@ -4,6 +4,22 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate
 \define get-field-value-tiddler-filter() [subfilter<get-field-editor-filter>sha256[16]addprefix[/]addprefix<newFieldValueTiddlerPrefix>]
 \define get-field-editor-filter() [<newFieldNameTiddler>get[text]else[]] :cascade[all[shadows+tiddlers]tag[$:/tags/FieldEditorFilter]!is[draft]get[text]] :and[!is[blank]else{$:/core/ui/EditTemplate/fieldEditor/default}]
 \define save-tiddler-actions()
+<$list filter="[[$:/state/story-river/full-screen/]addsuffix<currentTiddler>!is[missing]]" variable="ignore" emptyMessage="""
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+""">
+<$set name="newTiddlerTitle" value={{{ [<currentTiddler>get[draft.title]] }}}>
+<$list filter="[<newTiddlerTitle>!is[blank]]" variable="ignore">
+<$action-setfield $tiddler="$:/state/DisableInsertAnimation" text="yes"/>
+<$action-setfield $tiddler="$:/state/DisableRemoveAnimation" text="yes"/>
+<$action-setfield $tiddler={{{ [[$:/state/story-river/full-screen/]addsuffix<newTiddlerTitle>] }}} text="yes" column=<<currentColumn>>/>
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] -[[$:/state/story-river/full-screen/]addsuffix<newTiddlerTitle>]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+</$list>
+</$set>
+</$list>
 <$action-sendmessage $message="tm-add-tag" $param={{{ [<newTagNameTiddler>get[text]] }}}/>
 <$action-sendmessage $message="tm-add-field" $name={{{ [<newFieldNameTiddler>get[text]] }}} $value={{{ [<newFieldNameTiddler>get[text]] :map[subfilter<get-field-value-tiddler-filter>get[text]] }}}/>
 <$list filter="[list[$:/columns]!match<currentColumn>]" variable="column">
@@ -21,11 +37,42 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate
 <<delete-edittemplate-state-tiddlers>>
 <$action-sendmessage $message="tm-save-tiddler"/>
 \end
-\define cancel-delete-tiddler-actions(message)
+\define cancel-tiddler-actions-draft-of-not-is-missing-I()
+<$list filter="[list[$:/columns]!match<currentColumn>]" variable="column">
+<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
+<$list filter="[<storyList>contains<currentTiddler>]" variable="ignore">
+<$set name="index" value={{{ [list<storyList>allbefore<currentTiddler>add[1]] }}}>
+<$let nextTiddler={{{ [list<storyList>zth<index>] }}} viewTiddler={{{ [<currentTiddler>get[draft.of]] }}}>
+<$action-listops $tiddler=<<storyList>> $subfilter="+[insertbefore<viewTiddler>,<nextTiddler>]"/>
+<$action-listops $tiddler=<<storyList>> $subfilter="-[<currentTiddler>]"/>
+</$let>
+</$set>
+</$list>
+</$set>
+</$list>
+\end
+\define cancel-tiddler-actions-draft-of-not-is-missing-II()
+<$action-setfield $tiddler=<<tv-history-list>> current-tiddler={{{ [<currentTiddler>get[draft.of]] }}}/>
+<<delete-edittemplate-state-tiddlers>>
+<$list filter="[[$:/state/story-river/full-screen/]addsuffix<currentTiddler>!is[missing]]" variable="ignore" emptyMessage="""
 <$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
 <$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
+""">
+<$set name="cancelTiddler" value={{{ [<currentTiddler>get[draft.of]] }}}>
+<$action-setfield $tiddler={{{ [[$:/state/story-river/full-screen/]addsuffix<cancelTiddler>] }}} text="yes" column=<<currentColumn>>/>
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] -[[$:/state/story-river/full-screen/]addsuffix<cancelTiddler>]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+</$set>
+</$list>
+<$action-sendmessage $message="tm-cancel-tiddler"/>
+\end
+\define cancel-delete-tiddler-actions(message)
 <$list filter="[[$message$]match[delete]]" variable="ignore">
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
 <$let deleteTiddlerViewMode={{{ [<currentTiddler>get[draft.of]] }}} deleteTiddlerEditMode=<<currentTiddler>>>
 <$list filter="[list[$:/columns]!match<currentColumn>]" variable="column">
 <$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
@@ -45,20 +92,10 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate
 </$let>
 </$list>
 <$list filter="[[$message$]match[cancel]]" variable="ignore">
-<$list filter="[<currentTiddler>get[draft.of]is[missing]]" variable="ignore" emptyMessage="""
-<$list filter="[list[$:/columns]!match<currentColumn>]" variable="column">
-<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
-<$list filter="[<storyList>contains<currentTiddler>]" variable="ignore">
-<$set name="index" value={{{ [list<storyList>allbefore<currentTiddler>add[1]] }}}>
-<$let nextTiddler={{{ [list<storyList>zth<index>] }}} viewTiddler={{{ [<currentTiddler>get[draft.of]] }}}>
-<$action-listops $tiddler=<<storyList>> $subfilter="+[insertbefore<viewTiddler>,<nextTiddler>]"/>
-<$action-listops $tiddler=<<storyList>> $subfilter="-[<currentTiddler>]"/>
-</$let>
-</$set>
+<$list filter="[<currentTiddler>get[draft.of]is[missing]]" variable="ignore" emptyMessage=<<cancel-tiddler-actions-draft-of-not-is-missing-I>>>
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
-</$set>
-</$list>
-""">
 <$list filter="[list[$:/columns]!match<currentColumn>]" variable="column">
 <$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
 <$list filter="[<storyList>contains<currentTiddler>]" variable="ignore">
@@ -67,11 +104,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate
 </$set>
 </$list>
 </$list>
-<$list filter="[<currentTiddler>get[draft.of]is[missing]]" variable="ignore" emptyMessage="""
-<$action-setfield $tiddler=<<tv-history-list>> current-tiddler={{{ [<currentTiddler>get[draft.of]] }}}/>
-<<delete-edittemplate-state-tiddlers>>
-<$action-sendmessage $message="tm-cancel-tiddler"/>
-""">
+<$list filter="[<currentTiddler>get[draft.of]is[missing]]" variable="ignore" emptyMessage=<<cancel-tiddler-actions-draft-of-not-is-missing-II>>>
 <<delete-edittemplate-state-tiddlers>>
 <$let scrollTiddler={{{ [list<tv-story-list>after<currentTiddler>] ~[list<tv-story-list>before<currentTiddler>] }}}>
 	<$action-setfield $tiddler=<<tv-history-list>> current-tiddler=<<scrollTiddler>>/>
