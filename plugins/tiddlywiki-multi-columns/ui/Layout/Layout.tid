@@ -233,9 +233,6 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 						<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment/User]!is[draft]]" variable="listItem">
 							<$transclude tiddler=<<listItem>> mode="block"/>
 						</$list>
-						<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]!is[draft]] -[[$:/core/ui/SideBarSegments/site-title]] -[[$:/core/ui/SideBarSegments/site-subtitle]] -[[$:/core/ui/SideBarSegments/search]] -[[$:/core/ui/SideBarSegments/page-controls]] -[[$:/core/ui/SideBarSegments/tabs]] -[all[tiddlers+shadows]tag[$:/tags/SideBarSegment/User]!is[draft]]" variable="listItem">
-							<$transclude tiddler=<<listItem>>/>
-						</$list>
 					</$navigator>
 				</div>
 			</$scrollable>
