@@ -1033,7 +1033,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 }
 
 .btc-dropzone-<<currentColumn>>.tc-dragover:before {
-	z-index: 10000;
+	z-index: 9998;
 	display: block;
 	position: sticky;
 	top: 0;

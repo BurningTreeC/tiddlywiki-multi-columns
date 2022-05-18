@@ -37,6 +37,9 @@ $:/state/folded/$(currentTiddler)$
 </$set>
 \end
 \define navigate-actions()
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
 <$list filter="[<modifier>match[shift]]" variable="ignore" emptyMessage="""
 <$navigator story=<<tv-story-list>> history=<<tv-history-list>> openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 <$action-navigate $to=<<event-navigateTo>>/>
