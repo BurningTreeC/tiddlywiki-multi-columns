@@ -1,0 +1,19 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Templates/columnswitcher
+
+<div class="btc-sidebar-flexpanel">
+	<div class="btc-sidebar-flexpanel-column-container">
+		<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
+			<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}}>
+				<$droppable tag="div" class="btc-column-active-button-droppable" actions="""<$action-log actionTiddler=<<actionTiddler>>/><$action-listops $tiddler=<<storyList>> $subfilter="[<actionTiddler>]"/>""">
+					<$button dragFilter="""[list<storyList>]""" tag="div" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[btc-column-active-button btc-column-active]else[btc-column-active-button]] ~[<currentColumn>match[1]then[btc-column-active-button btc-column-active]] }}} actions="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/><$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<currentColumn>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}} passThrough="yes"/>""">
+						<$list filter="[{$:/config/panel/show-numbers}!match[no]]">
+							<div class="btc-sidebar-flexpanel-column-counter">
+								<$text text=<<currentColumn>>/>
+							</div>
+						</$list>
+					</$button>
+				</$droppable>
+			</$set>
+		</$list>
+	</div>
+</div>
