@@ -1459,6 +1459,10 @@ hr.simple {
 	margin-bottom: 0;
 }
 
+.tc-modal-wrapper {
+	z-index: 10005;
+}
+
 {{$:/config/StoryViewAnimations}}
 
 </$list>
