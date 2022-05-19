@@ -14,8 +14,8 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 <$action-setfield $tiddler="$:/state/user-panel/visibility" text="yes"/><$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-user-panel-container input" delay={{$:/config/AnimationDuration}}/>
 \end
 \define active-column-dblclick-actions()
-<$let flexGrowField={{{ [[flex-grow-]addsuffix<currentColumn>] }}} flexGrow={{{ [[$:/columns]get<flexGrowField>] ~1 }}}>
-<$list filter="[<modifier>match[ctrl]]" variable="ignore" emptyMessage="""
+<$let flexGrowField={{{ [[flex-grow-]addsuffix<currentColumn>] }}} columnModifier={{{ [[$:/config/story-river/column-modifier]get[text]] }}} flexGrow={{{ [[$:/columns]get<flexGrowField>] ~1 }}}>
+<$list filter="[<modifier>match<columnModifier>]" variable="ignore" emptyMessage="""
 <$action-setfield $tiddler="$:/columns" $field=<<flexGrowField>> $value={{{ [<flexGrow>add[1]] }}}/>
 <$action-sendmessage $message="tm-notify" $param="$:/plugins/BTC/tiddlywiki-multi-columns/ui/FlexGrowNotification" flexGrow={{{ [<flexGrow>add[1]] }}} flexGrowField=<<flexGrowField>> column=<<currentColumn>>/>
 """>

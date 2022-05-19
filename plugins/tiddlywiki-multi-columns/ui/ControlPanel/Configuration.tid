@@ -167,5 +167,14 @@ caption: MultiColumn
 <option value="yes">yes</option>
 <option value="no">no</option>
 </$select>
+<hr>
+
+!!! ''modifier key'' to make columns more narrow
+<$link to="$:/config/story-river/column-modifier"/><br>
+<$select tiddler="$:/config/story-river/column-modifier" default="ctrl">
+<option value="ctrl">ctrl</option>
+<option value="alt">alt</option>
+<option value="shift">shift</option>
+</$select>
 
 </div>
