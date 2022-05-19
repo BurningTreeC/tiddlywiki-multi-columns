@@ -80,6 +80,7 @@ PageScroller.prototype.scrollIntoView = function(element,callback,options) {
 			$tw.utils.removeClass(element,"tc-navigating");
 		},$tw.utils.getAnimationDuration() * 1);
 	} catch(e) {
+		console.log(e);
 		// Now get ready to scroll the body
 		this.cancelScroll(srcWindow);
 		this.startTime = Date.now();
