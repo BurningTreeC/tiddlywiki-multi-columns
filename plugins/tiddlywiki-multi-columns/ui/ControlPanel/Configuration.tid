@@ -81,6 +81,14 @@ caption: MultiColumn
 </$select>
 <hr>
 
+!!! make the ''story-rivers adapt'' to the ''sidebar''
+<$link to="$:/config/story-river/adapt-to-panel"/><br>
+<$select tiddler="$:/config/story-river/adapt-to-panel" default="no">
+<option value="yes">yes</option>
+<option value="no">no</option>
+</$select>
+<hr>
+
 !!! show the ''numbers'' in the panel's column-buttons
 <$link to="$:/config/panel/show-numbers"/><br>
 <$select tiddler="$:/config/panel/show-numbers" default="no">

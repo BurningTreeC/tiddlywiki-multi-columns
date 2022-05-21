@@ -780,7 +780,37 @@ html {
 	justify-content: flex-start;
 	align-items: stretch;
 	height: 100vh;
+	width: 100vw;
+	transition: width {{$:/config/AnimationDuration}}ms;
 }
+
+<$list filter="[[$:/state/panel/visibility]get[text]match[yes]]" variable="ignore">
+
+<$list filter="[[$:/config/story-river/scroll-snap-x]get[text]!match[yes]]" variable="ignore">
+
+<$list filter="[[$:/config/story-river/adapt-to-panel]get[text]match[yes]]" variable="ignore">
+
+.btc-flextemplate-container {
+	width: calc(100vw - {{$:/config/panel/panel-width-below-768px}});
+}
+
+@media only screen and (min-width: 768px) {
+	.btc-flextemplate-container {
+		width: calc(100% - {{$:/config/panel/panel-width-below-1170px}});
+	}
+}
+
+@media only screen and (min-width: 1170px) {
+	.btc-flextemplate-container {
+		width: calc(100% - {{$:/config/panel/panel-width-above-1170px}});
+	}
+}
+
+</$list>
+
+</$list>
+
+</$list>
 
 .btc-flextemplate-container > .main {
 	flex-grow: 1;

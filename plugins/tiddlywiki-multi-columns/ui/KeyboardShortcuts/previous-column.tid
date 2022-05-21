@@ -4,7 +4,7 @@ key: ((previous-column))
 
 \define get-scroll-selector()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-[data-tiddler-title="$(scrollTiddlerCSSEscaped)$"]
+.btc-river-<<nextColumn>> .btc-river-inner > [data-tiddler-title="$(scrollTiddlerCSSEscaped)$"]
 \end
 
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
