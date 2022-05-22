@@ -192,7 +192,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 				</$navigator>
 				<$button tag="a" class="btc-panel-close tc-btn-invisible" set="$:/state/panel/visibility" setTo="no">Close</$button>
 			</header>
-			<div class="btc-panel-container">
+			<$scrollable fallthrough="no" class="btc-panel-container">
 				<div class="btc-panel-container-spacer"/>
 				<div class="btc-panel-content-header">
 					{{$:/plugins/BTC/tiddlywiki-multi-columns/ui/Templates/columnswitcher}}
@@ -204,7 +204,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 						</div>
 					</$navigator>
 				</div>
-			</div>
+			</$scrollable>
 		</div>
 	</$set>
 	<$set name="rightOrLeft" value={{{ [{$:/config/panel/position}match[left]then[btc-panel-from-right]else[btc-panel-from-left]] }}}>
