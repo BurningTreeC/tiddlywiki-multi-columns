@@ -47,16 +47,17 @@ key: ((cancel-close-tiddler))
 	<$action-sendmessage $message="tm-cancel-tiddler" $param=<<tiddler>>/>
 </$let>
 \end
+\define not-multi-column-layout-message-tiddler-is-draft()
+<$list filter="[<tiddler>get[draft.of]is[missing]]">
+	<$action-navigate $to={{{ [list[$:/StoryList]after<tiddler>] ~[list[$:/StoryList]before<tiddler>] }}}/>
+</$list>
+<$action-sendmessage $message="tm-cancel-tiddler" $param=<<tiddler>>/>
+\end
 \define not-multi-column-layout-message()
 <$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
 <$navigator story="$:/StoryList" history="$:/HistoryList">
 	<$set name="tiddler" value={{{ [[$:/HistoryList]get[current-tiddler]] }}}>
-		<$list filter="[<tiddler>!is[draft]]" emptyMessage="""
-			<$list filter="[<tiddler>get[draft.of]is[missing]]">
-				<$action-navigate $to={{{ [list[$:/StoryList]after<tiddler>] ~[list[$:/StoryList]before<tiddler>] }}}/>
-			</$list>
-			<$action-sendmessage $message="tm-cancel-tiddler" $param=<<tiddler>>/>
-			""">
+		<$list filter="[<tiddler>!is[draft]]" emptyMessage=<<not-multi-column-layout-message-tiddler-is-draft>>>
 			<$action-navigate $to={{{ [list[$:/StoryList]after<tiddler>] ~[list[$:/StoryList]before<tiddler>] }}}/>
 			<$action-sendmessage $message="tm-close-tiddler" $param=<<tiddler>>/>
 		</$list>
