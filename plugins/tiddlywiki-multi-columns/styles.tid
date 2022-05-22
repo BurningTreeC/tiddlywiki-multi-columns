@@ -790,20 +790,24 @@ html {
 
 <$list filter="[[$:/config/story-river/adapt-to-panel]get[text]match[yes]]" variable="ignore">
 
-.btc-flextemplate-container {
-	width: calc(100vw - {{$:/config/panel/panel-width-below-768px}});
-}
+@media (min-width: 800px) {
 
-@media only screen and (min-width: 768px) {
 	.btc-flextemplate-container {
-		width: calc(100% - {{$:/config/panel/panel-width-below-1170px}});
+		width: calc(100vw - {{$:/config/panel/panel-width-below-768px}});
 	}
-}
 
-@media only screen and (min-width: 1170px) {
-	.btc-flextemplate-container {
-		width: calc(100% - {{$:/config/panel/panel-width-above-1170px}});
+	@media only screen and (min-width: 768px) {
+		.btc-flextemplate-container {
+			width: calc(100% - {{$:/config/panel/panel-width-below-1170px}});
+		}
 	}
+
+	@media only screen and (min-width: 1170px) {
+		.btc-flextemplate-container {
+			width: calc(100% - {{$:/config/panel/panel-width-above-1170px}});
+		}
+	}
+
 }
 
 </$list>
