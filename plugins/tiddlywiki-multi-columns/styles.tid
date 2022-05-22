@@ -422,6 +422,11 @@ html {
 	transition: transform {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
 }
 
+.btc-panel-container > div {
+	display: flex;
+	flex-direction: column;
+}
+
 .btc-panel-container .btc-panel-container-spacer {
 	flex: 1 0 78px;
 }
