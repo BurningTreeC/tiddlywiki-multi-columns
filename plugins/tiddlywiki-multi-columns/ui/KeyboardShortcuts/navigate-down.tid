@@ -13,19 +13,14 @@ key: ((navigate-down))
 </$navigator>
 """></$list>
 \end
-\define get-scroll-selector()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-.btc-river-active.btc-river-<<currentColumn>> .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"]
-\end
 
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore" emptyMessage=<<not-multi-column-layout-message>>>
 <$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
 <$let currentColumn={{$:/columns!!active-column}} storyList={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}}>
 <$let focusedTiddler={{{ [<historyList>get[current-tiddler]] }}} nextTiddler={{{ [list<storyList>after<focusedTiddler>] ~[list<storyList>nth[1]] }}} cssEscapedTitle={{{ [<nextTiddler>escapecss[]] }}}>
-<$wikify name="scrollSelector" text=<<get-scroll-selector>>>
-<$action-sendmessage $message="tm-scroll" selector=<<scrollSelector>>/>
-<$action-setfield $tiddler=<<historyList>> current-tiddler=<<nextTiddler>>/>
-</$wikify>
+<$navigator story=<<storyList>> history=<<historyList>>>
+<$action-navigate $to=<<nextTiddler>>/>
+</$navigator>
 </$let>
 </$let>
 """></$list>

@@ -141,8 +141,8 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 			<main class="main btc-column-container">
 				<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
 					<$set name="transclusion" value=<<currentColumn>>>
-						<div class={{{ [[$:/columns]get[active-column]match<currentColumn>then[btc-river-active ]addsuffix[btc-river-]addsuffix<currentColumn>] :else[[$:/columns]is[missing]then<currentColumn>match[1]then[btc-river-active ]addsuffix[btc-river-]addsuffix<currentColumn>] :else[[btc-river-]addsuffix<currentColumn>] }}}>
-							<$navigator story={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+						<$navigator story={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+							<div class={{{ [[$:/columns]get[active-column]match<currentColumn>then[btc-river-active ]addsuffix[btc-river-]addsuffix<currentColumn>] :else[[$:/columns]is[missing]then<currentColumn>match[1]then[btc-river-active ]addsuffix[btc-river-]addsuffix<currentColumn>] :else[[btc-river-]addsuffix<currentColumn>] }}}>
 								<$dropzone enable=<<tv-enable-drag-and-drop>> class={{{ [<currentColumn>!is[blank]addprefix[btc-dropzone-]] ~btc-dropzone-1 }}} importTitle={{{ [[$:/Import-]addsuffix<currentColumn>] }}} actions=<<dropzone-import-actions>>>
 									<$eventcatcher selector=".btc-activate-column-btn" $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""" $dblclick=<<active-column-dblclick-actions>>>
 										<div tag="a" class="tc-btn-invisible btc-activate-column-btn"/>
@@ -160,8 +160,8 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 										</$droppable>
 									</div>
 								</$dropzone>
-							</$navigator>
-						</div>
+							</div>
+						</$navigator>
 					</$set>
 				</$list>
 			</main>
