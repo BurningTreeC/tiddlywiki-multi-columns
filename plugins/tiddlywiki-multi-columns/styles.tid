@@ -815,6 +815,31 @@ html {
 
 }
 
+<$list filter="[{$:/config/panel/position}match[left]]" variable="ignore">
+
+@media (min-width: 800px) {
+
+	.btc-flextemplate-container {
+		position: fixed;
+		left: {{$:/config/panel/panel-width-below-768px}};
+	}
+
+	@media only screen and (min-width: 768px) {
+		.btc-flextemplate-container {
+			left: {{$:/config/panel/panel-width-below-1170px}};
+		}
+	}
+
+	@media only screen and (min-width: 1170px) {
+		.btc-flextemplate-container {
+			left: {{$:/config/panel/panel-width-above-1170px}};
+		}
+	}
+
+}
+
+</$list>
+
 </$list>
 
 </$list>
