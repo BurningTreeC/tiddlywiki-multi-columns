@@ -425,6 +425,7 @@ html {
 .btc-panel-container > div {
 	display: flex;
 	flex-direction: column;
+	overflow: hidden;
 }
 
 .btc-panel-container .btc-panel-container-spacer {
