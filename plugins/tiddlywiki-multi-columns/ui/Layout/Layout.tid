@@ -231,7 +231,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 		<div class={{{ [[$:/state/search-panel]!is[missing]then[btc-search-panel btc-search-panel-is-visible tc-popup-handle tc-popup-keep ]else[btc-search-panel ]] +[addsuffix<topOrBottom>] }}}>
 			<div class="btc-search-panel-inner tc-popup-keep">
 				<$keyboard key="Escape" actions="""<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>""">
-					<$edit-text tag="input" class={{{ [{$:/state/search-panel}!match[yes]then[btc-search-panel-input]else[btc-search-panel-input btc-search-panel-shown]] }}} tiddler="$:/state/search-panel/search" default="" placeholder="Search" focus="yes"/>
+					<$edit-text tag="input" class={{{ [{$:/state/search-panel}!match[yes]then[btc-search-panel-input]else[btc-search-panel-input btc-search-panel-shown]] }}} tiddler="$:/state/search-panel/search" default="" placeholder="Search" focus={{{ [[$:/state/search-panel]is[missing]then[no]else[yes]] }}}/>
 				</$keyboard>
 				<$button tag="a" class="btc-search-panel-close tc-btn-invisible" actions="""<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>""">Close</$button>
 				<$list filter="[[$:/state/search-panel]!is[missing]then[$:/state/search-panel/search]get[text]!match[]]">
