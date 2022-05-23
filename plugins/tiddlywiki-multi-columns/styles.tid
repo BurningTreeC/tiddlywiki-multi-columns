@@ -410,7 +410,7 @@ html {
 	display: flex;
 	flex-direction: column;
 	align-content: start;
-	overflow: hidden;
+	overflow: hidden !important;
 	background-color: <<colour page-background>>;
 	position: fixed;
 	width: {{$:/config/panel/panel-width-below-768px}};
@@ -786,10 +786,14 @@ html {
 	align-items: stretch;
 	height: 100vh;
 	width: 100vw;
-	transition: width {{$:/config/AnimationDuration}}ms;
+	transition: width {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
 }
 
-<$list filter="[[$:/state/panel/visibility]get[text]match[yes]]" variable="ignore">
+.btc-flextemplate-container.btc-flextemplate-panel-shown {
+	transition: width {{$:/config/AnimationDuration}}ms 0s;
+}
+
+<$list filter="[{$:/config/panel/position}match[left]]" variable="ignore">
 
 <$list filter="[[$:/config/story-river/scroll-snap-x]get[text]!match[yes]]" variable="ignore">
 
@@ -798,40 +802,27 @@ html {
 @media (min-width: 800px) {
 
 	.btc-flextemplate-container {
-		width: calc(100vw - {{$:/config/panel/panel-width-below-768px}});
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		transition: width {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, left {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
 	}
 
-	@media only screen and (min-width: 768px) {
-		.btc-flextemplate-container {
-			width: calc(100% - {{$:/config/panel/panel-width-below-1170px}});
-		}
-	}
-
-	@media only screen and (min-width: 1170px) {
-		.btc-flextemplate-container {
-			width: calc(100% - {{$:/config/panel/panel-width-above-1170px}});
-		}
-	}
-
-}
-
-<$list filter="[{$:/config/panel/position}match[left]]" variable="ignore">
-
-@media (min-width: 800px) {
-
-	.btc-flextemplate-container {
-		position: fixed;
+	.btc-flextemplate-container.btc-flextemplate-panel-shown {
 		left: {{$:/config/panel/panel-width-below-768px}};
+		transition: width {{$:/config/AnimationDuration}}ms 0s, left {{$:/config/AnimationDuration}}ms 0s;
 	}
 
 	@media only screen and (min-width: 768px) {
-		.btc-flextemplate-container {
+		.btc-flextemplate-container.btc-flextemplate-panel-shown {
 			left: {{$:/config/panel/panel-width-below-1170px}};
 		}
 	}
 
 	@media only screen and (min-width: 1170px) {
-		.btc-flextemplate-container {
+		.btc-flextemplate-container.btc-flextemplate-panel-shown {
 			left: {{$:/config/panel/panel-width-above-1170px}};
 		}
 	}
@@ -841,6 +832,32 @@ html {
 </$list>
 
 </$list>
+
+</$list>
+
+<$list filter="[[$:/config/story-river/scroll-snap-x]get[text]!match[yes]]" variable="ignore">
+
+<$list filter="[[$:/config/story-river/adapt-to-panel]get[text]match[yes]]" variable="ignore">
+
+@media (min-width: 800px) {
+
+	.btc-flextemplate-container.btc-flextemplate-panel-shown {
+		width: calc(100% - {{$:/config/panel/panel-width-below-768px}});
+	}
+
+	@media only screen and (min-width: 768px) {
+		.btc-flextemplate-container.btc-flextemplate-panel-shown {
+			width: calc(100% - {{$:/config/panel/panel-width-below-1170px}});
+		}
+	}
+
+	@media only screen and (min-width: 1170px) {
+		.btc-flextemplate-container.btc-flextemplate-panel-shown {
+			width: calc(100% - {{$:/config/panel/panel-width-above-1170px}});
+		}
+	}
+
+}
 
 </$list>
 

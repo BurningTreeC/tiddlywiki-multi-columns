@@ -65,7 +65,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 				</$list>
 			</$navigator>
 		</$set>
-		<div class="btc-flextemplate-container">
+		<div class={{{ [{$:/state/panel/visibility}match[yes]then[btc-flextemplate-container btc-flextemplate-panel-shown]else[btc-flextemplate-container]] }}}>
 			<header class="btc-column-config btc-column-config-top">
 				{{$:/core/ui/PageTemplate/alerts}}
 				{{$:/core/ui/PageTemplate/pluginreloadwarning}}
