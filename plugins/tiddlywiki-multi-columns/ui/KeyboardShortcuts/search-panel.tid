@@ -4,7 +4,7 @@ key: ((search-panel))
 
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 <$list filter="[[$:/state/search-panel]is[missing]]" emptyMessage="""
-<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>
+<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/><$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container"/>
 """>
 <$action-popup $state="$:/state/search-panel" $coords="(0,0,0,0)"/>
 <$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-search-panel-input" delay={{{ [{$:/config/AnimationDuration}divide[2]round[]] }}}/>

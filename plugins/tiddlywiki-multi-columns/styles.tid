@@ -787,6 +787,7 @@ html {
 	align-items: stretch;
 	height: 100vh;
 	width: 100vw;
+	outline: none;
 	transition: width {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
 }
 

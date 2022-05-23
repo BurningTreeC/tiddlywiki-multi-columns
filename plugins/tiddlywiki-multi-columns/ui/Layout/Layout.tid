@@ -65,7 +65,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 				</$list>
 			</$navigator>
 		</$set>
-		<div class={{{ [{$:/state/panel/visibility}match[yes]then[btc-flextemplate-container btc-flextemplate-panel-shown]else[btc-flextemplate-container]] }}}>
+		<div class={{{ [{$:/state/panel/visibility}match[yes]then[btc-flextemplate-container btc-flextemplate-panel-shown]else[btc-flextemplate-container]] }}} tabindex="0">
 			<header class="btc-column-config btc-column-config-top">
 				{{$:/core/ui/PageTemplate/alerts}}
 				{{$:/core/ui/PageTemplate/pluginreloadwarning}}
@@ -230,10 +230,10 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 	<$set name="topOrBottom" value={{{ [{$:/config/story-river/search-panel}match[top]then[btc-search-panel-from-top]else[btc-search-panel-from-bottom]] }}}>
 		<div class={{{ [[$:/state/search-panel]!is[missing]then[btc-search-panel btc-search-panel-is-visible tc-popup-handle tc-popup-keep ]else[btc-search-panel ]] +[addsuffix<topOrBottom>] }}}>
 			<div class="btc-search-panel-inner tc-popup-keep">
-				<$keyboard key="Escape" actions="""<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>""">
+				<$keyboard key="Escape" actions="""<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/><$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container"/>""">
 					<$edit-text tag="input" class={{{ [{$:/state/search-panel}!match[yes]then[btc-search-panel-input]else[btc-search-panel-input btc-search-panel-shown]] }}} tiddler="$:/state/search-panel/search" default="" placeholder="Search" focus={{{ [[$:/state/search-panel]is[missing]then[no]else[yes]] }}}/>
 				</$keyboard>
-				<$button tag="a" class="btc-search-panel-close tc-btn-invisible" actions="""<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>""">Close</$button>
+				<$button tag="a" class="btc-search-panel-close tc-btn-invisible" actions="""<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/><$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container"/>""">Close</$button>
 				<$list filter="[[$:/state/search-panel]!is[missing]then[$:/state/search-panel/search]get[text]!match[]]">
 					<div class="btc-search-panel-matches">
 						<$list filter="[!is[system]search{$:/state/search-panel/search}]" variable="searchResult">
