@@ -264,7 +264,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 		</div>
 	</$set>
 	<$list filter="[{$:/config/story-river/bottom-right-panel}match[yes]]" variable="ignore">
-		<div class="btc-bottom-right-panel">
+		<div class={{{ [{$:/state/panel/visibility}match[yes]then[btc-bottom-right-panel btc-bottom-right-panel-sidebar-shown]else[btc-bottom-right-panel]] }}}>
 			<$list filter="[all[tiddlers+shadows]tag[$:/tags/BottomRightPanel]!is[draft]]" variable="listItem">
 				<$transclude tiddler=<<listItem>>/>
 			</$list>
