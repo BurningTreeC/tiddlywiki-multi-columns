@@ -9,6 +9,7 @@ key: ((toggle-sidebar))
 <$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-panel-container .btc-panel-content-header .tc-sidebar-search input" delay={{$:/config/AnimationDuration}}/>
 """>
 <$action-setfield $tiddler="$:/state/panel/visibility" text="no"/>
+<$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container"/>
 </$list>
 </$list>
 </$list>
