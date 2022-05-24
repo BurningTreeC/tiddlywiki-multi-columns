@@ -308,6 +308,16 @@ html {
 	z-index: 10003;
 }
 
+<$list filter="[[$:/state/panel/visibility]get[text]match[yes]]" variable="ignore">
+
+@media (max-width: 800px) {
+	.btc-search-panel {
+		display: none;
+	}
+}
+
+</$list>
+
 .btc-search-panel.btc-search-panel-from-top {
 	top: 0;
 	transform: translateY(-75px);
