@@ -92,7 +92,7 @@ key: ((cancel-close-tiddler))
 						<$action-setfield $tiddler=<<historyList>> current-tiddler=<<scrollTiddler>>/>
 						<$action-sendmessage $message="tm-close-tiddler" $param=<<tiddler>>/>
 						<$list filter="[<scrollTiddler>is[draft]]" variable="ignore" emptyMessage=<<not-is-draft-focus-selector>>>
-							<set name="cssEscapedTitle" value={{{ [<scrollTiddler>escapecss[]] }}}>
+							<$set name="cssEscapedTitle" value={{{ [<scrollTiddler>escapecss[]] }}}>
 								<$wikify name="focusSelector" text=<<get-focus-selector>>>
 									<$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
 								</$wikify>
