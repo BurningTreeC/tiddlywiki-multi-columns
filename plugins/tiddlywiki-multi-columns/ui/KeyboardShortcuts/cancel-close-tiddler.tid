@@ -2,6 +2,13 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/cancel-close
 tags: $:/tags/KeyboardShortcut
 key: ((cancel-close-tiddler))
 
+\define get-focus-selector()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+.btc-river-<<currentColumn>> .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"] input.tc-titlebar.tc-edit-texteditor
+\end
+\define not-is-draft-focus-selector()
+<$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container" preventScroll="true"/>
+\end
 \define tiddler-is-draft-actions-draft-of-not-is-missing()
 <$list filter="[list[$:/columns]!match{$:/columns!!active-column}]" variable="column">
 	<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
@@ -43,6 +50,13 @@ key: ((cancel-close-tiddler))
 <$let scrollTiddler={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}} isMissing={{{ [<tiddler>get[draft.of]is[missing]then[TRUE]else[FALSE]] }}}>
 	<$list filter="[<isMissing>match[TRUE]]" variable="ignore">
 		<$action-setfield $tiddler=<<historyList>> current-tiddler=<<scrollTiddler>>/>
+		<$list filter="[<scrollTiddler>is[draft]]" variable="ignore" emptyMessage=<<not-is-draft-focus-selector>>>
+			<set name="cssEscapedTitle" value={{{ [<scrollTiddler>escapecss[]] }}}>
+				<$wikify name="focusSelector" text=<<get-focus-selector>>>
+					<$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
+				</$wikify>
+			</$set>
+		</$list>
 	</$list>
 	<$action-sendmessage $message="tm-cancel-tiddler" $param=<<tiddler>>/>
 </$let>
@@ -77,6 +91,13 @@ key: ((cancel-close-tiddler))
 					<$let scrollTiddler={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}}>
 						<$action-setfield $tiddler=<<historyList>> current-tiddler=<<scrollTiddler>>/>
 						<$action-sendmessage $message="tm-close-tiddler" $param=<<tiddler>>/>
+						<$list filter="[<scrollTiddler>is[draft]]" variable="ignore" emptyMessage=<<not-is-draft-focus-selector>>>
+							<set name="cssEscapedTitle" value={{{ [<scrollTiddler>escapecss[]] }}}>
+								<$wikify name="focusSelector" text=<<get-focus-selector>>>
+									<$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
+								</$wikify>
+							</$set>
+						</$list>
 					</$let>
 				</$list>
 			</$set>
