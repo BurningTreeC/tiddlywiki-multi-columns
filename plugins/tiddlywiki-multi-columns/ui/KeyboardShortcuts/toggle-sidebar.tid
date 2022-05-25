@@ -2,6 +2,14 @@ title: $:/core/ui/KeyboardShortcuts/toggle-sidebar
 tags: $:/tags/KeyboardShortcut
 key: ((toggle-sidebar))
 
+\define get-focus-selector()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+.btc-river-<<currentColumn>> .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"] input.tc-titlebar.tc-edit-texteditor
+\end
+\define not-is-draft-focus-selector()
+<$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container"/>
+\end
+
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 <$list filter="[{$:/config/panel/disable}!match[yes]]" variable="ignore">
 <$list filter="[{$:/state/panel/visibility}match[yes]]" variable="ignore" emptyMessage="""
@@ -9,7 +17,15 @@ key: ((toggle-sidebar))
 <$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-panel-container .btc-panel-content-header .tc-sidebar-search input" delay={{$:/config/AnimationDuration}}/>
 """>
 <$action-setfield $tiddler="$:/state/panel/visibility" text="no"/>
-<$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container"/>
+<$let currentColumn={{$:/columns!!active-column}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} currentTiddler={{{ [<historyList>get[current-tiddler]] }}}>
+<$list filter="[<currentTiddler>is[draft]]" variable="ignore" emptyMessage=<<not-is-draft-focus-selector>>>
+<$set name="cssEscapedTitle" value={{{ [<currentTiddler>escapecss[]] }}}>
+<$wikify name="focusSelector" text=<<get-focus-selector>>>
+<$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
+</$wikify>
+</$set>
+</$list>
+</$let>
 </$list>
 </$list>
 </$list>
