@@ -10,6 +10,9 @@ key: ((next-column))
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 .btc-river-<<nextColumn>> .btc-river-inner > [data-tiddler-title="$(scrollTiddlerCSSEscaped)$"] input.tc-titlebar.tc-edit-texteditor
 \end
+\define not-is-draft-focus-selector()
+<$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container" preventScroll="true"/>
+\end
 
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 	<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
@@ -22,7 +25,7 @@ key: ((next-column))
 					</$list>
 				</$let>
 				<$let nextStoryList={{{ [[$:/StoryList-]addsuffix<nextColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} nextHistoryList={{{ [[$:/HistoryList-]addsuffix<nextColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} scrollTiddler={{{ [<nextHistoryList>get[current-tiddler]] ~[list<nextStoryList>nth[1]] }}} scrollTiddlerCSSEscaped={{{ [<scrollTiddler>escapecss[]] }}}>
-					<$list filter="[<scrollTiddler>is[draft]]" variable="ignore">
+					<$list filter="[<scrollTiddler>is[draft]]" variable="ignore" emptyMessage=<<not-is-draft-focus-selector>>>
 						<$wikify name="focusSelector" text=<<get-focus-selector>>>
 							<$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
 						</$wikify>
