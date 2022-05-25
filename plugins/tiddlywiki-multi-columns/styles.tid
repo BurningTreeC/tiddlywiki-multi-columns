@@ -798,12 +798,19 @@ html {
 	height: 100vh;
 	width: 100vw;
 	outline: none;
-	transition: width {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
+}
+
+<$list filter="[[$:/config/story-river/scroll-snap-x]get[text]!match[yes]]" variable="ignore">
+
+.btc-flextemplate-container {
+	transition: width {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;	
 }
 
 .btc-flextemplate-container.btc-flextemplate-panel-shown {
 	transition: width {{$:/config/AnimationDuration}}ms 0s;
 }
+
+</$list>
 
 <$list filter="[{$:/config/panel/position}match[left]]" variable="ignore">
 
