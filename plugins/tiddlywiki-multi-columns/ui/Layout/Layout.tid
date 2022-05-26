@@ -29,6 +29,37 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 <$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
 \end
+\define get-focus-selector()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+.btc-river-<<currentColumn>> .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"] input.tc-titlebar.tc-edit-texteditor
+\end
+\define not-is-draft-focus-selector()
+<$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container"/>
+\end
+\define focus-draft-tiddler-or-container()
+<$let currentColumn={{$:/columns!!active-column}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} currentTiddler={{{ [<historyList>get[current-tiddler]] }}}>
+<$list filter="[<currentTiddler>is[draft]]" variable="ignore" emptyMessage=<<not-is-draft-focus-selector>>>
+<$set name="cssEscapedTitle" value={{{ [<currentTiddler>escapecss[]] }}}>
+<$wikify name="focusSelector" text=<<get-focus-selector>>>
+<$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
+</$wikify>
+</$set>
+</$list>
+</$let>
+\end
+\define search-panel-close-actions()
+<$action-popup/>
+<$action-deletetiddler $tiddler="$:/state/search-panel/search"/>
+<<focus-draft-tiddler-or-container>>
+\end
+\define sidebar-close-actions()
+<$action-setfield $tiddler="$:/state/panel/visibility" text="no"/>
+<<focus-draft-tiddler-or-container>>
+\end
+\define user-sidebar-close-actions()
+<$action-setfield $tiddler="$:/state/user-panel/visibility" text="no"/>
+<<focus-draft-tiddler-or-container>>
+\end
 \import [[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!is[draft]]
 <$vars
 	tv-config-toolbar-icons={{$:/config/Toolbar/Icons}}
@@ -190,7 +221,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 					<h1>{{$:/SiteTitle}}</h1>
 					<h4>{{$:/SiteSubtitle}}</h4>
 				</$navigator>
-				<$button tag="a" class="btc-panel-close tc-btn-invisible" set="$:/state/panel/visibility" setTo="no">Close</$button>
+				<$button tag="a" class="btc-panel-close tc-btn-invisible" actions=<<sidebar-close-actions>>>Close</$button>
 			</header>
 			<$scrollable fallthrough="no" class="btc-panel-container">
 				<div class="btc-panel-container-spacer"/>
@@ -214,7 +245,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 					<h1>{{$:/UserPanelTitle}}</h1>
 					<h4>{{$:/UserPanelSubtitle}}</h4>
 				</$navigator>
-				<$button tag="a" class="btc-panel-close tc-btn-invisible" set="$:/state/user-panel/visibility" setTo="no">Close</$button>
+				<$button tag="a" class="btc-panel-close tc-btn-invisible" actions=<<user-sidebar-close-actions>>>Close</$button>
 			</header>
 			<$scrollable fallthrough="no" class="btc-panel-container">
 				<div class="btc-user-panel-container">
@@ -230,10 +261,10 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 	<$set name="topOrBottom" value={{{ [{$:/config/story-river/search-panel}match[top]then[btc-search-panel-from-top]else[btc-search-panel-from-bottom]] }}}>
 		<div class={{{ [[$:/state/search-panel]!is[missing]then[btc-search-panel btc-search-panel-is-visible tc-popup-handle tc-popup-keep ]else[btc-search-panel ]] +[addsuffix<topOrBottom>] }}}>
 			<div class="btc-search-panel-inner tc-popup-keep">
-				<$keyboard key="Escape" actions="""<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/><$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container"/>""">
+				<$keyboard key="Escape" actions=<<search-panel-close-actions>>>
 					<$edit-text tag="input" class={{{ [{$:/state/search-panel}!match[yes]then[btc-search-panel-input]else[btc-search-panel-input btc-search-panel-shown]] }}} tiddler="$:/state/search-panel/search" default="" placeholder="Search" focus={{{ [[$:/state/search-panel]is[missing]then[no]else[yes]] }}}/>
 				</$keyboard>
-				<$button tag="a" class="btc-search-panel-close tc-btn-invisible" actions="""<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/><$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container"/>""">Close</$button>
+				<$button tag="a" class="btc-search-panel-close tc-btn-invisible" actions=<<search-panel-close-actions>>>Close</$button>
 				<$list filter="[[$:/state/search-panel]!is[missing]then[$:/state/search-panel/search]get[text]!match[]]">
 					<div class="btc-search-panel-matches">
 						<$list filter="[!is[system]search{$:/state/search-panel/search}]" variable="searchResult">
