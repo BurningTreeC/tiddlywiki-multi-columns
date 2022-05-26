@@ -26,6 +26,7 @@ Do you want to overwrite?
 	panel-width-below-1170px={{{ [[$:/config/panel/panel-width-below-1170px]get[text]] ~50% }}}
 	panel-width-below-768px={{{ [[$:/config/panel/panel-width-below-768px]get[text]] ~90% }}}
 	river-obscured={{{ [{$:/config/panel/river-obscured}match[yes]] ~no }}}
+	adapt-river-to-sidebar={{{ [{$:/config/story-river/adapt-to-panel}match[yes]] ~no }}}
 	scroll-snap-type={{{ [[$:/config/story-river/scroll-snap-type]get[text]] ~none }}}
 	show-edit-preview-per-tiddler={{{ [{$:/config/ShowEditPreview/PerTiddler}match[yes]] ~no }}}
 	story-river-padding={{{ [[$:/config/story-river/padding]get[text]] ~15 }}}
@@ -76,6 +77,7 @@ Do you want to overwrite?
 <$macrocall $name="set-configuration" tiddler="$:/config/panel/panel-width-below-1170px" value={{{ [<storyTiddler>get[panel-width-below-1170px]] }}}/>
 <$macrocall $name="set-configuration" tiddler="$:/config/panel/panel-width-below-768px" value={{{ [<storyTiddler>get[panel-width-below-768px]] }}}/>
 <$macrocall $name="set-configuration" tiddler="$:/config/panel/river-obscured" value={{{ [<storyTiddler>get[river-obscured]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/adapt-to-panel" value={{{ [<storyTiddler>get[adapt-river-to-sidebar]] }}}/>
 <$macrocall $name="set-configuration" tiddler="$:/config/story-river/scroll-snap-type" value={{{ [<storyTiddler>get[scroll-snap-type]] }}}/>
 <$macrocall $name="set-configuration" tiddler="$:/config/ShowEditPreview/PerTiddler" value={{{ [<storyTiddler>get[show-edit-preview-per-tiddler]] }}}/>
 <$macrocall $name="set-configuration" tiddler="$:/config/story-river/padding" value={{{ [<storyTiddler>get[story-river-padding]] }}}/>
