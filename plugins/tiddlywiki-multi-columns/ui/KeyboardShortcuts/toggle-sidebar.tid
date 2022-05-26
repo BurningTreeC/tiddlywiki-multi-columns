@@ -14,7 +14,7 @@ key: ((toggle-sidebar))
 <$list filter="[{$:/config/panel/disable}!match[yes]]" variable="ignore">
 <$list filter="[{$:/state/panel/visibility}match[yes]]" variable="ignore" emptyMessage="""
 <$action-setfield $tiddler="$:/state/panel/visibility" text="yes"/>
-<$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-panel-container .btc-panel-content-header .tc-sidebar-search input" delay={{$:/config/AnimationDuration}}/>
+<$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-panel-container .btc-panel-content-header .tc-sidebar-search input" delay={{{ [{$:/config/AnimationDuration}divide[2]round[]] }}}/>
 """>
 <$action-setfield $tiddler="$:/state/panel/visibility" text="no"/>
 <$let currentColumn={{$:/columns!!active-column}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} currentTiddler={{{ [<historyList>get[current-tiddler]] }}}>

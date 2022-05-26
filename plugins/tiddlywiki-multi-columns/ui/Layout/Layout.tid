@@ -8,10 +8,10 @@ name: ~MultiColumn
 tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(languageTitle)$
 \end
 \define sidebar-actions()
-<$action-setfield $tiddler="$:/state/panel/visibility" text="yes"/><$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-panel-container .btc-panel-content-header .tc-sidebar-search input" delay={{$:/config/AnimationDuration}}/>
+<$action-setfield $tiddler="$:/state/panel/visibility" text="yes"/><$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-panel-container .btc-panel-content-header .tc-sidebar-search input" delay={{{ [{$:/config/AnimationDuration}divide[2]round[]] }}}/>
 \end
 \define user-sidebar-actions()
-<$action-setfield $tiddler="$:/state/user-panel/visibility" text="yes"/><$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-user-panel-container input" delay={{$:/config/AnimationDuration}}/>
+<$action-setfield $tiddler="$:/state/user-panel/visibility" text="yes"/><$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-user-panel-container input" delay={{{ [{$:/config/AnimationDuration}divide[2]round[]] }}}/>
 \end
 \define active-column-dblclick-actions()
 <$let flexGrowField={{{ [[flex-grow-]addsuffix<currentColumn>] }}} columnModifier={{{ [[$:/config/story-river/column-modifier]get[text]] }}} flexGrow={{{ [[$:/columns]get<flexGrowField>] ~1 }}}>
