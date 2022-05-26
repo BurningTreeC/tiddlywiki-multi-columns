@@ -2,9 +2,26 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/search-panel
 tags: $:/tags/KeyboardShortcut
 key: ((search-panel))
 
+\define get-focus-selector()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+.btc-river-<<currentColumn>> .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"] input.tc-titlebar.tc-edit-texteditor
+\end
+\define not-is-draft-focus-selector()
+<$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container"/>
+\end
+
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 <$list filter="[[$:/state/search-panel]is[missing]]" emptyMessage="""
-<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/><$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container"/>
+<$action-popup/><$action-deletetiddler $tiddler="$:/state/search-panel/search"/>
+<$let currentColumn={{$:/columns!!active-column}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} currentTiddler={{{ [<historyList>get[current-tiddler]] }}}>
+<$list filter="[<currentTiddler>is[draft]]" variable="ignore" emptyMessage=<<not-is-draft-focus-selector>>>
+<$set name="cssEscapedTitle" value={{{ [<currentTiddler>escapecss[]] }}}>
+<$wikify name="focusSelector" text=<<get-focus-selector>>>
+<$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
+</$wikify>
+</$set>
+</$list>
+</$let>
 """>
 <$action-popup $state="$:/state/search-panel" $coords="(0,0,0,0)"/>
 <$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-search-panel-input" delay={{{ [{$:/config/AnimationDuration}divide[2]round[]] }}}/>
