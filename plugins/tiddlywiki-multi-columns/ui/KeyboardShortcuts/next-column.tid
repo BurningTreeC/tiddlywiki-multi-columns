@@ -34,9 +34,6 @@ key: ((next-column))
 						<$action-sendmessage $message="tm-scroll" selector=<<scrollSelector>>/>
 					</$wikify>
 				</$let>
-				<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" variable="ignore">
-					<$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<nextColumn>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/>
-				</$list>
 			</$list>
 		</$set>
 	"""></$list>

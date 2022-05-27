@@ -73,7 +73,7 @@ PageScroller.prototype.scrollIntoView = function(element,callback,options) {
 	try {
 		$tw.utils.addClass(element,"tc-navigating");
 		var scrollIntoView = function() {
-			element.scrollIntoView();
+			element.scrollIntoView({inline: "start"});
 		};
 		this.requestAnimationFrame.call(srcWindow,scrollIntoView);
 		setTimeout(function() {

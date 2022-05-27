@@ -160,6 +160,7 @@ tags: $:/tags/Stylesheet
 
 .btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-view-frame, .btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-edit-frame {
 	scroll-margin-top: {{$:/config/story-river/padding}}px;
+	scroll-margin-left: {{$:/config/story-river/padding}}px;
 }
 
 \end
@@ -169,6 +170,7 @@ tags: $:/tags/Stylesheet
 
 .btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-view-frame, .btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-edit-frame {
 	scroll-margin-top: {{{ [{$:/config/story-river/tiddler-margin}compare:number:lteq{$:/config/story-river/padding}] ~[{$:/config/story-river/padding}] }}}px;
+	scroll-margin-left: {{$:/config/story-river/padding}}px;
 }
 
 \end
