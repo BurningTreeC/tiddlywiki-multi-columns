@@ -11,6 +11,33 @@ tags: $:/tags/Stylesheet
 
 \end
 
+\define sticky-titles()
+``
+.tc-tiddler-title {
+	position: -webkit-sticky;
+	position: -moz-sticky;
+	position: -o-sticky;
+	position: -ms-sticky;
+	position: sticky;
+	top: 0px;
+	background: ``<<colour tiddler-background>>``;
+}
+
+``
+<$list filter="[range[100]]">
+`.btc-river-inner .btc-tiddler-zindex-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) {
+z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
+}
+`
+</$list>
+<$list filter="[range[100]]">
+`.btc-river-inner .btc-tiddler-zindex-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) .tc-tiddler-title {
+z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
+}
+`
+</$list>
+\end
+
 \define style-focused-tiddler()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
@@ -1100,30 +1127,15 @@ html {
 </$list>
 
 <$list filter="[{$:/themes/tiddlywiki/vanilla/options/stickytitles}match[yes]]">
-``
+
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage=<<sticky-titles>>>
+
 .tc-tiddler-title {
-	position: -webkit-sticky;
-	position: -moz-sticky;
-	position: -o-sticky;
-	position: -ms-sticky;
-	position: sticky;
-	top: 0px;
-	background: ``<<colour tiddler-background>>``;
+	position: relative;
 }
 
-``
-<$list filter="[range[100]]">
-`.btc-river-inner .btc-tiddler-zindex-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) {
-z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
-}
-`
 </$list>
-<$list filter="[range[100]]">
-`.btc-river-inner .btc-tiddler-zindex-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) .tc-tiddler-title {
-z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
-}
-`
-</$list>
+
 </$list>
 
 
