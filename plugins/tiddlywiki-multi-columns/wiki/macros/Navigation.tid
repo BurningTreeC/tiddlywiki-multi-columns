@@ -39,12 +39,14 @@ tags: $:/tags/Macro
 </$list>
 \end
 
+\define btc-simple-multi-column-navigator-inner()
+<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+	<<__actions__>>
+</$navigator>
+\end
+
 \define btc-simple-multi-column-navigator(actions)
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore" emptyMessage=<<not-multi-column-layout-message>>>
-	<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
-		<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-			<<__actions__>>
-		</$navigator>
-	"""></$list>
+	<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage=<<btc-simple-multi-column-navigator-inner>>></$list>
 </$list>
 \end
