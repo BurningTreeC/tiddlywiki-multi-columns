@@ -1,7 +1,7 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/macros/Navigation
 tags: $:/tags/Macro
 
-\define btc-multi-columns-keyboard-navigation-inner()
+\define btc-multi-column-keyboard-navigation-inner()
 <$let currentColumn={{$:/columns!!active-column}} 
 	storyList={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}
 	historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}}
@@ -19,9 +19,9 @@ tags: $:/tags/Macro
 </$let>
 \end
 
-\define btc-multi-columns-keyboard-navigation(actions)
+\define btc-multi-column-keyboard-navigation(actions)
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
-	<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage=<<btc-multi-columns-keyboard-navigation-inner>>></$list>
+	<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage=<<btc-multi-column-keyboard-navigation-inner>>></$list>
 </$list>
 \end
 

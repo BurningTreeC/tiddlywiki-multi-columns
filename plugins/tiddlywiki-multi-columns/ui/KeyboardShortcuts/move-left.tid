@@ -47,4 +47,4 @@ key: ((move-left))
 </$list>
 \end
 
-<$macrocall $name="btc-multi-columns-keyboard-navigation" actions=<<actions>>/>
+<$macrocall $name="btc-multi-column-keyboard-navigation" actions=<<actions>>/>
