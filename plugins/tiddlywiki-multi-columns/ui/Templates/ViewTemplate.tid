@@ -36,15 +36,16 @@ $:/state/folded/$(currentTiddler)$
 </$list>
 </$set>
 \end
+\define navigate-actions-not-match-shift-message()
+<$navigator story=<<tv-story-list>> history=<<tv-history-list>> openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+<$action-navigate $to=<<event-navigateTo>>/>
+</$navigator>
+\end
 \define navigate-actions()
 <$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
 <$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
-<$list filter="[<modifier>match[shift]]" variable="ignore" emptyMessage="""
-<$navigator story=<<tv-story-list>> history=<<tv-history-list>> openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-<$action-navigate $to=<<event-navigateTo>>/>
-</$navigator>
-""">
+<$list filter="[<modifier>match[shift]]" variable="ignore" emptyMessage=<<navigate-actions-not-match-shift-message>>>
 <$set name="nextColumn" value={{{ [<currentColumn>add[1]] }}}>
 <$let storyList={{{ [[$:/StoryList-]addsuffix<nextColumn>] }}} historyList={{{ [[$:/HistoryList-]addsuffix<nextColumn>] }}}>
 <$list filter="[[$:/columns]!contains<nextColumn>]" variable="ignore">

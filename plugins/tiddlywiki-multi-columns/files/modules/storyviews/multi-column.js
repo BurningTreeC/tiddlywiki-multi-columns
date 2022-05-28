@@ -57,7 +57,7 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 			widget.wiki.deleteTiddler("$:/state/inserting/from-right/" + targetElement.attributes["data-tiddler-title"].value);
 			widget.wiki.deleteTiddler("$:/state/inserting/from-left/" + targetElement.attributes["data-tiddler-title"].value);
 			if(focusedElement.focus && focusedElement.select) {
-				focusedElement.focus() && focusedElement.select();
+				focusedElement.focus({preventScroll: "true"}) && focusedElement.select();
 			}
 		},duration);
 	}
@@ -66,6 +66,9 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 			widget.wiki.deleteTiddler("$:/state/DisableInsertAnimation");
 			widget.wiki.deleteTiddler("$:/state/DisableRemoveAnimation");
 		},duration);
+	} else {
+		widget.wiki.deleteTiddler("$:/state/DisableInsertAnimation");
+		widget.wiki.deleteTiddler("$:/state/DisableRemoveAnimation");		
 	}
 };
 
@@ -100,6 +103,9 @@ MultiColumnStoryView.prototype.remove = function(widget) {
 		$tw.utils.addClass(targetElement,"tc-removing");
 	} else {
 		widget.removeChildDomNodes();
+		widget.wiki.deleteTiddler("$:/state/removing/from-story/" + targetElement.attributes["data-tiddler-title"].value);
+		widget.wiki.deleteTiddler("$:/state/removing/to-right/" + targetElement.attributes["data-tiddler-title"].value);
+		widget.wiki.deleteTiddler("$:/state/removing/to-left/" + targetElement.attributes["data-tiddler-title"].value);
 	}
 };
 

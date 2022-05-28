@@ -24,9 +24,11 @@ key: ((move-right))
 
 \define not-follow-active-column-focus-selector()
 <$let currentTiddler={{{ [list<storyList>after<focusedTiddler>] ~[list<storyList>before<focusedTiddler>] }}} cssEscapedTitle={{{ [<currentTiddler>escapecss[]] }}}>
+<$list filter="[<currentTiddler>is[draft]]" variable="ignore">
 <$wikify name="focusSelector" text=<<get-focus-selector>>>
 <$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
 </$wikify>
+</$list>
 </$let>
 \end
 
@@ -49,13 +51,14 @@ key: ((move-right))
 </$list>
 <$list filter="[{$:/config/story-river/follow-active-column}match[yes]]" variable="ignore" emptyMessage=<<not-follow-active-column-focus-selector>>>
 <$action-setfield $tiddler="$:/columns" active-column=<<nextStoryCounter>>/>
-<$let currentColumn=<<nextStoryCounter>> historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} currentTiddler={{{ [<historyList>get[current-tiddler]] }}} cssEscapedTitle={{{ [<currentTiddler>escapecss[]] }}}>
+<$let currentColumn=<<nextStoryCounter>> cssEscapedTitle={{{ [<focusedTiddler>escapecss[]] }}}>
 <$wikify name="scrollSelector" text=<<get-scroll-selector>>>
 <$action-sendmessage $message="tm-scroll" selector=<<scrollSelector>>/>
 </$wikify>
-<$list filter="[<currentTiddler>is[draft]]" variable="ignore">
+<$list filter="[<focusedTiddler>is[draft]]" variable="ignore">
 <$wikify name="focusSelector" text=<<get-focus-selector>>>
-<$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
+<$action-log focus-selector=<<focusSelector>>/>
+<$action-sendmessage $message="tm-focus-selector-deferred" $param=<<focusSelector>> delay={{$:/config/AnimationDuration}} preventScroll="true"/>
 </$wikify>
 </$list>
 </$let>
