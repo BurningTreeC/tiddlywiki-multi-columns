@@ -1,16 +1,6 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/styles
 tags: $:/tags/Stylesheet
 
-\define get-color-scheme() <$text text={{{ [{$:/palette}get[color-scheme]] }}}/>
-\define set-color-scheme()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-
-:root {
-	color-scheme: <<get-color-scheme>>;
-}
-
-\end
-
 \define sticky-titles()
 ``
 .tc-tiddler-title {

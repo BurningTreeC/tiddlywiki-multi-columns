@@ -11,3 +11,14 @@ tags: $:/tags/Macro
 </$transclude>
 </$transclude>
 \end
+
+\define get-color-scheme() <$text text={{{ [{$:/palette}get[color-scheme]] }}}/>
+
+\define set-color-scheme()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
+:root {
+	color-scheme: <<get-color-scheme>>;
+}
+
+\end

@@ -1,2 +1,18 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/macros/Selectors
 tags: $:/tags/Macro
+
+\define btc-get-focus-selector()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+.btc-river-<<currentColumn>> .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"] input.tc-titlebar.tc-edit-texteditor
+\end
+
+\define btc-get-scroll-selector()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+.btc-river-<<currentColumn>> .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"]
+\end
+
+\define btc-scroll-to-tiddler()
+<$wikify name="scrollSelector" text=<<btc-get-scroll-selector>>>
+<$action-sendmessage $message="tm-scroll" selector=<<scrollSelector>>/>
+</$wikify>
+\end
