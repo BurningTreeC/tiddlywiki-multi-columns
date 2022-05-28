@@ -103,9 +103,6 @@ MultiColumnStoryView.prototype.remove = function(widget) {
 		$tw.utils.addClass(targetElement,"tc-removing");
 	} else {
 		widget.removeChildDomNodes();
-		widget.wiki.deleteTiddler("$:/state/removing/from-story/" + targetElement.attributes["data-tiddler-title"].value);
-		widget.wiki.deleteTiddler("$:/state/removing/to-right/" + targetElement.attributes["data-tiddler-title"].value);
-		widget.wiki.deleteTiddler("$:/state/removing/to-left/" + targetElement.attributes["data-tiddler-title"].value);
 	}
 };
 
