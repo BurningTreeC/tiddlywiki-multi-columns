@@ -11,4 +11,4 @@ key: ((new-image))
 </$navigator>
 """></$list>
 \end
-<$macrocall $name="btc-simple-multi-columns-navigator" actions={{$:/core/ui/Actions/new-image}}/>
+<$macrocall $name="btc-simple-multi-column-navigator" actions={{$:/core/ui/Actions/new-image}}/>
