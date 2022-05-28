@@ -31,4 +31,4 @@ key: ((edit-tiddler))
 <$action-sendmessage $message="tm-edit-tiddler" $param=<<currentTiddler>>/>
 </$list>
 \end
-<$macrocall $name="btc-multi-column-navigator" actions=<<actions>>/>
+<$macrocall $name="btc-multi-column-navigator" actions=<<actions>> fullscreen-block="no"/>
