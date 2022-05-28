@@ -2,6 +2,8 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/move-up
 tags: $:/tags/KeyboardShortcut
 key: ((move-up))
 
+\import $:/plugins/BTC/tiddlywiki-multi-columns/macros/Navigation
+
 \define not-multi-column-layout-message()
 <$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
 <$navigator story="$:/StoryList" history="$:/HistoryList">
@@ -13,15 +15,9 @@ key: ((move-up))
 </$navigator>
 """></$list>
 \end
-
-<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore" emptyMessage=<<not-multi-column-layout-message>>>
-<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
-<$let currentColumn={{$:/columns!!active-column}} storyList={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}}>
-<$set name="currentTiddler" value={{{ [<historyList>get[current-tiddler]] }}}>
+\define actions()
 <$set name="previousTiddler" value={{{ [list<storyList>before<currentTiddler>] }}}>
 <$action-listops $tiddler=<<storyList>> $subfilter="+[insertbefore:previousTiddler<currentTiddler>]"/>
 </$set>
-</$set>
-</$let>
-"""></$list>
-</$list>
+\end
+<$macrocall $name="btc-multi-column-navigator" actions=<<actions>>/>

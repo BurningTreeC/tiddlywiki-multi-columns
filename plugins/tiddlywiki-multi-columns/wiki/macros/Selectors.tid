@@ -1,6 +1,10 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/macros/Selectors
 tags: $:/tags/Macro
 
+\define btc-not-is-draft-focus-selector()
+<$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container" preventScroll="true"/>
+\end
+
 \define btc-get-focus-selector()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 .btc-river-<<currentColumn>> .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"] input.tc-titlebar.tc-edit-texteditor
@@ -14,5 +18,17 @@ tags: $:/tags/Macro
 \define btc-scroll-to-tiddler()
 <$wikify name="scrollSelector" text=<<btc-get-scroll-selector>>>
 <$action-sendmessage $message="tm-scroll" selector=<<scrollSelector>>/>
+</$wikify>
+\end
+
+\define btc-focus-title-input()
+<$wikify name="focusSelector" text=<<btc-get-focus-selector>>>
+<$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
+</$wikify>
+\end
+
+\define btc-focus-title-input-deferred(param:1)
+<$wikify name="focusSelector" text=<<btc-get-focus-selector>>>
+<$action-sendmessage $message="tm-focus-selector-deferred" $param=<<focusSelector>> delay={{{ [{$:/config/AnimationDuration}multiply[$param$]round[]] }}} preventScroll="true"/>
 </$wikify>
 \end

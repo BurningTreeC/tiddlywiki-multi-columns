@@ -29,20 +29,11 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 <$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
 \end
-\define get-focus-selector()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-.btc-river-<<currentColumn>> .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"] input.tc-titlebar.tc-edit-texteditor
-\end
-\define not-is-draft-focus-selector()
-<$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container"/>
-\end
 \define focus-draft-tiddler-or-container()
 <$let currentColumn={{$:/columns!!active-column}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} currentTiddler={{{ [<historyList>get[current-tiddler]] }}}>
-<$list filter="[<currentTiddler>is[draft]]" variable="ignore" emptyMessage=<<not-is-draft-focus-selector>>>
+<$list filter="[<currentTiddler>is[draft]]" variable="ignore" emptyMessage=<<btc-not-is-draft-focus-selector>>>
 <$set name="cssEscapedTitle" value={{{ [<currentTiddler>escapecss[]] }}}>
-<$wikify name="focusSelector" text=<<get-focus-selector>>>
-<$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
-</$wikify>
+<<btc-focus-title-input>>
 </$set>
 </$list>
 </$let>

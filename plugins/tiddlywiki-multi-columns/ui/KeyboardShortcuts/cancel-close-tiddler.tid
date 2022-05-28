@@ -2,13 +2,8 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/cancel-close
 tags: $:/tags/KeyboardShortcut
 key: ((cancel-close-tiddler))
 
-\define get-focus-selector()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-.btc-river-<<currentColumn>> .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"] input.tc-titlebar.tc-edit-texteditor
-\end
-\define not-is-draft-focus-selector()
-<$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container" preventScroll="true"/>
-\end
+\import $:/plugins/BTC/tiddlywiki-multi-columns/macros/Selectors $:/plugins/BTC/tiddlywiki-multi-columns/macros/Navigation
+
 \define tiddler-is-draft-actions-draft-of-not-is-missing()
 <$list filter="[list[$:/columns]!match{$:/columns!!active-column}]" variable="column">
 	<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
@@ -52,9 +47,7 @@ key: ((cancel-close-tiddler))
 		<$action-setfield $tiddler=<<historyList>> current-tiddler=<<scrollTiddler>>/>
 		<$list filter="[<scrollTiddler>is[draft]]" variable="ignore" emptyMessage=<<not-is-draft-focus-selector>>>
 			<$set name="cssEscapedTitle" value={{{ [<scrollTiddler>escapecss[]] }}}>
-				<$wikify name="focusSelector" text=<<get-focus-selector>>>
-					<$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
-				</$wikify>
+				<<btc-focus-title-input>>
 			</$set>
 		</$list>
 	</$list>
@@ -79,28 +72,22 @@ key: ((cancel-close-tiddler))
 </$navigator>
 """></$list>
 \end
-\whitespace trim
-<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore" emptyMessage=<<not-multi-column-layout-message>>>
-	<$let currentColumn={{$:/columns!!active-column}} storyList={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}}>
-		<$navigator story=<<storyList>> history=<<historyList>>>
-			<$set name="tiddler" value={{{ [<historyList>get[current-tiddler]] }}}>
-				<$list filter="[<tiddler>!is[draft]]" variable="ignore" emptyMessage=<<tiddler-is-draft-actions>>>
-					<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
-						<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
-					</$list>				
-					<$let scrollTiddler={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}}>
-						<$action-setfield $tiddler=<<historyList>> current-tiddler=<<scrollTiddler>>/>
-						<$action-sendmessage $message="tm-close-tiddler" $param=<<tiddler>>/>
-						<$list filter="[<scrollTiddler>is[draft]]" variable="ignore" emptyMessage=<<not-is-draft-focus-selector>>>
-							<$set name="cssEscapedTitle" value={{{ [<scrollTiddler>escapecss[]] }}}>
-								<$wikify name="focusSelector" text=<<get-focus-selector>>>
-									<$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
-								</$wikify>
-							</$set>
-						</$list>
-					</$let>
-				</$list>
-			</$set>
-		</$navigator>
-	</$let>
-</$list>
+\define actions()
+<$set name="tiddler" value={{{ [<historyList>get[current-tiddler]] }}}>
+	<$list filter="[<tiddler>!is[draft]]" variable="ignore" emptyMessage=<<tiddler-is-draft-actions>>>
+		<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+			<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+		</$list>				
+		<$let scrollTiddler={{{ [list<storyList>after<tiddler>] ~[list<storyList>before<tiddler>] }}}>
+			<$action-setfield $tiddler=<<historyList>> current-tiddler=<<scrollTiddler>>/>
+			<$action-sendmessage $message="tm-close-tiddler" $param=<<tiddler>>/>
+			<$list filter="[<scrollTiddler>is[draft]]" variable="ignore" emptyMessage=<<not-is-draft-focus-selector>>>
+				<$set name="cssEscapedTitle" value={{{ [<scrollTiddler>escapecss[]] }}}>
+					<<btc-focus-title-input>>
+				</$set>
+			</$list>
+		</$let>
+	</$list>
+</$set>
+\end
+<$macrocall $name="btc-multi-column-navigator" actions=<<actions>>/>

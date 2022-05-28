@@ -2,17 +2,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/previous-col
 tags: $:/tags/KeyboardShortcut
 key: ((previous-column))
 
-\define get-scroll-selector()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-.btc-river-<<nextColumn>> .btc-river-inner > [data-tiddler-title="$(scrollTiddlerCSSEscaped)$"]
-\end
-\define get-focus-selector()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-.btc-river-<<nextColumn>> .btc-river-inner > [data-tiddler-title="$(scrollTiddlerCSSEscaped)$"] input.tc-titlebar.tc-edit-texteditor
-\end
-\define not-is-draft-focus-selector()
-<$action-sendmessage $message="tm-focus-selector" $param=".btc-flextemplate-container" preventScroll="true"/>
-\end
+\import $:/plugins/BTC/tiddlywiki-multi-columns/macros/Selectors
 
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 	<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
@@ -25,15 +15,11 @@ key: ((previous-column))
 							<$action-setfield $tiddler=<<previousHistoryList>> current-tiddler={{{ [list<previousStoryList>nth[1]] }}}/>
 						</$list>
 					</$let>
-					<$let previousStoryList={{{ [[$:/StoryList-]addsuffix<nextColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} previousHistoryList={{{ [[$:/HistoryList-]addsuffix<nextColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} scrollTiddler={{{ [<previousHistoryList>get[current-tiddler]] ~[list<previousStoryList>nth[1]] }}} scrollTiddlerCSSEscaped={{{ [<scrollTiddler>escapecss[]] }}}>
-						<$list filter="[<scrollTiddler>is[draft]]" variable="ignore" emptyMessage=<<not-is-draft-focus-selector>>>
-							<$wikify name="focusSelector" text=<<get-focus-selector>>>
-								<$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
-							</$wikify>
+					<$let currentColumn=<<nextColumn>> previousStoryList={{{ [[$:/StoryList-]addsuffix<nextColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} previousHistoryList={{{ [[$:/HistoryList-]addsuffix<nextColumn>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} scrollTiddler={{{ [<previousHistoryList>get[current-tiddler]] ~[list<previousStoryList>nth[1]] }}} cssEscapedTitle={{{ [<scrollTiddler>escapecss[]] }}}>
+						<$list filter="[<scrollTiddler>is[draft]]" variable="ignore" emptyMessage=<<btc-not-is-draft-focus-selector>>>
+							<<btc-focus-title-input>>
 						</$list>
-						<$wikify name="scrollSelector" text=<<get-scroll-selector>>>
-							<$action-sendmessage $message="tm-scroll" selector=<<scrollSelector>>/>
-						</$wikify>
+						<<btc-scroll-to-tiddler>>
 					</$let>
 				</$list>
 			</$set>

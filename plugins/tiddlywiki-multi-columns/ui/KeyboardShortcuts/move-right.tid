@@ -2,6 +2,8 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/move-right
 tags: $:/tags/KeyboardShortcut
 key: ((move-right))
 
+\import $:/plugins/BTC/tiddlywiki-multi-columns/macros/Selectors $:/plugins/BTC/tiddlywiki-multi-columns/macros/Navigation
+
 \define current-tiddler-is-empty-message()
 <$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<firstNextStoryTiddler>]"/>
 <$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<focusedTiddler>>/>
@@ -12,29 +14,15 @@ key: ((move-right))
 <$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<focusedTiddler>>/>
 \end
 
-\define get-scroll-selector()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-.btc-river-<<currentColumn>> .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"]
-\end
-
-\define get-focus-selector()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-.btc-river-<<currentColumn>> .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"] input.tc-titlebar.tc-edit-texteditor
-\end
-
 \define not-follow-active-column-focus-selector()
 <$let currentTiddler={{{ [list<storyList>after<focusedTiddler>] ~[list<storyList>before<focusedTiddler>] }}} cssEscapedTitle={{{ [<currentTiddler>escapecss[]] }}}>
 <$list filter="[<currentTiddler>is[draft]]" variable="ignore">
-<$wikify name="focusSelector" text=<<get-focus-selector>>>
-<$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
-</$wikify>
+<<btc-focus-title-input>>
 </$list>
 </$let>
 \end
 
-<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
-<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
-<$let currentColumn={{$:/columns!!active-column}} storyList={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} focusedTiddler={{{ [<historyList>get[current-tiddler]] }}} nextStoryCounter={{{ [<currentColumn>add[1]] }}} nextStoryList={{{ [<storyList>!match[$:/StoryList]removesuffix<currentColumn>addsuffix<nextStoryCounter>] ~[[$:/StoryList-2]] }}} nextHistoryList={{{ [<historyList>!match[$:/HistoryList]removesuffix<currentColumn>addsuffix<nextStoryCounter>] ~[[$:/HistoryList-2]] }}} firstNextStoryTiddler={{{ [list<nextStoryList>first[]] }}}>
+\define actions()
 <$action-setfield $tiddler={{{ [[$:/state/removing/to-right/]addsuffix<focusedTiddler>] }}} text="yes"/>
 <$list filter="[[$:/columns]!contains<nextStoryCounter>]" variable="ignore">
 <$action-listops $tiddler="$:/columns" $subfilter="[<nextStoryCounter>]"/>
@@ -52,17 +40,12 @@ key: ((move-right))
 <$list filter="[{$:/config/story-river/follow-active-column}match[yes]]" variable="ignore" emptyMessage=<<not-follow-active-column-focus-selector>>>
 <$action-setfield $tiddler="$:/columns" active-column=<<nextStoryCounter>>/>
 <$let currentColumn=<<nextStoryCounter>> cssEscapedTitle={{{ [<focusedTiddler>escapecss[]] }}}>
-<$wikify name="scrollSelector" text=<<get-scroll-selector>>>
-<$action-sendmessage $message="tm-scroll" selector=<<scrollSelector>>/>
-</$wikify>
+<<btc-scroll-to-tiddler>>
 <$list filter="[<focusedTiddler>is[draft]]" variable="ignore">
-<$wikify name="focusSelector" text=<<get-focus-selector>>>
-<$action-log focus-selector=<<focusSelector>>/>
-<$action-sendmessage $message="tm-focus-selector-deferred" $param=<<focusSelector>> delay={{$:/config/AnimationDuration}} preventScroll="true"/>
-</$wikify>
+<<btc-focus-title-input-deferred>>
 </$list>
 </$let>
 </$list>
-</$let>
-"""></$list>
-</$list>
+\end
+
+<$macrocall $name="btc-multi-columns-keyboard-navigation" actions=<<actions>>/>

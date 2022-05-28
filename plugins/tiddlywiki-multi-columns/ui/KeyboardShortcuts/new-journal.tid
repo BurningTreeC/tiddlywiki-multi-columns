@@ -2,6 +2,8 @@ title: $:/core/ui/KeyboardShortcuts/new-journal
 tags: $:/tags/KeyboardShortcut
 key: ((new-journal))
 
+\import $:/plugins/BTC/tiddlywiki-multi-columns/macros/Navigation
+
 \define not-multi-column-layout-message()
 <$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
 <$navigator story="$:/StoryList" history="$:/HistoryList">
@@ -9,11 +11,4 @@ key: ((new-journal))
 </$navigator>
 """></$list>
 \end
-
-<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore" emptyMessage=<<not-multi-column-layout-message>>>
-<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
-<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-{{$:/core/ui/Actions/new-journal}}
-</$navigator>
-"""></$list>
-</$list>
+<$macrocall $name="btc-simple-multi-column-navigator" actions={{$:/core/ui/Actions/new-journal}}/>

@@ -1,19 +1,14 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/StartupActions/PostRender
 tags: $:/tags/StartupAction/PostRender
 
-\define get-scroll-selector()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-[data-tiddler-title="$(scrollTiddlerCSSEscaped)$"]
-\end
+\import $:/plugins/BTC/tiddlywiki-multi-columns/macros/Selectors
 
 <$list filter="[{$:/columns!!active-column}!is[blank]!match[1]]" variable="ignore">
-<$let activeColumn={{{ [[$:/columns]get[active-column]] }}} storyList={{{ [[$:/StoryList-]addsuffix<activeColumn>] }}} historyList={{{ [[$:/HistoryList-]addsuffix<activeColumn>] }}}>
+<$let currentColumn={{{ [[$:/columns]get[active-column]] }}} storyList={{{ [[$:/StoryList-]addsuffix<currentColumn>] }}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>] }}}>
 <$list filter="[<historyList>!has[current-tiddler]]" variable="ignore">
 <$action-setfield $tiddler=<<historyList>> current-tiddler={{{ [list<storyList>nth[1]] }}}/>
-<$set name="scrollTiddlerCSSEscaped" value={{{ [list<storyList>nth[1]escapecss[]] }}}>
-<$wikify name="scrollSelector" text=<<get-scroll-selector>>>
-<$action-sendmessage $message="tm-scroll" selector=<<scrollSelector>>/>
-</$wikify>
+<$set name="cssEscapedTitle" value={{{ [list<storyList>nth[1]escapecss[]] }}}>
+<<btc-scroll-to-tiddler>>
 </$set>
 </$list>
 </$let>
