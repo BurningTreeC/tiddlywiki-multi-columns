@@ -90,4 +90,4 @@ key: ((cancel-close-tiddler))
 	</$list>
 </$set>
 \end
-<$macrocall $name="btc-multi-column-navigator" actions=<<actions>>/>
+<$macrocall $name="btc-multi-column-navigator" actions=<<actions>> fullscreen-block="no"/>

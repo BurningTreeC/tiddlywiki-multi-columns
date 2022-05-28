@@ -60,11 +60,11 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate
 </$list>
 """>
 <$set name="cancelTiddler" value={{{ [<currentTiddler>get[draft.of]] }}}>
+<$action-setfield $tiddler="$:/state/DisableInsertAnimation" text="yes"/>
+<$action-setfield $tiddler="$:/state/DisableRemoveAnimation" text="yes"/>
 <$action-setfield $tiddler={{{ [[$:/state/story-river/full-screen/]addsuffix<cancelTiddler>] }}} text="yes" column=<<currentColumn>>/>
 <$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] -[[$:/state/story-river/full-screen/]addsuffix<cancelTiddler>]" variable="fullScreenTiddler">
-<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
-</$list>
-</$set>
+	<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
 <$action-sendmessage $message="tm-cancel-tiddler"/>
 \end

@@ -66,7 +66,7 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 			widget.wiki.deleteTiddler("$:/state/DisableInsertAnimation");
 			widget.wiki.deleteTiddler("$:/state/DisableRemoveAnimation");
 		},duration);
-	} else {
+	} else if(widget.wiki.getTiddlerText("$:/state/DisableInsertAnimation") === "yes") {
 		widget.wiki.deleteTiddler("$:/state/DisableInsertAnimation");
 		widget.wiki.deleteTiddler("$:/state/DisableRemoveAnimation");		
 	}
