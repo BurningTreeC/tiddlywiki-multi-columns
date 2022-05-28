@@ -1,0 +1,24 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Panel/User
+tags: $:/tags/MultiColumn/Panel
+
+\whitespace trim
+<$set name="rightOrLeft" value={{{ [{$:/config/panel/position}match[left]then[btc-panel-from-right]else[btc-panel-from-left]] }}}>
+	<div class={{{ [{$:/state/user-panel/visibility}match[yes]then[btc-panel btc-panel-is-visible ]else[btc-panel ]addsuffix<rightOrLeft>] }}}>
+		<header class="btc-panel-header">
+			<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+				<h1>{{$:/UserPanelTitle}}</h1>
+				<h4>{{$:/UserPanelSubtitle}}</h4>
+			</$navigator>
+			<$button tag="a" class="btc-panel-close tc-btn-invisible" actions=<<user-sidebar-close-actions>>>Close</$button>
+		</header>
+		<$scrollable fallthrough="no" class="btc-panel-container">
+			<div class="btc-user-panel-container">
+				<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+					<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment/User]!is[draft]]" variable="listItem">
+						<$transclude tiddler=<<listItem>> mode="block"/>
+					</$list>
+				</$navigator>
+			</div>
+		</$scrollable>
+	</div>
+</$set>

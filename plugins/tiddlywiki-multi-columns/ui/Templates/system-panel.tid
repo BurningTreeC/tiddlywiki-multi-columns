@@ -1,0 +1,28 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Panel/System
+tags: $:/tags/MultiColumn/Panel
+
+\whitespace trim
+<$set name="rightOrLeft" value={{{ [{$:/config/panel/position}match[left]then[btc-panel-from-left]else[btc-panel-from-right]] }}}>
+	<div class={{{ [{$:/state/panel/visibility}match[yes]then[btc-panel btc-panel-is-visible ]else[btc-panel ]addsuffix<rightOrLeft>] }}}>
+		<header class="btc-panel-header">
+			<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+				<h1>{{$:/SiteTitle}}</h1>
+				<h4>{{$:/SiteSubtitle}}</h4>
+			</$navigator>
+			<$button tag="a" class="btc-panel-close tc-btn-invisible" actions=<<sidebar-close-actions>>>Close</$button>
+		</header>
+		<$scrollable fallthrough="no" class="btc-panel-container">
+			<div class="btc-panel-container-spacer"/>
+			<div class="btc-panel-content-header">
+				{{$:/plugins/BTC/tiddlywiki-multi-columns/ui/Templates/columnswitcher}}
+				<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+					<div class="btc-panel-content">
+						<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment]!is[draft]] -[[$:/core/ui/SideBarSegments/site-title]] -[[$:/core/ui/SideBarSegments/site-subtitle]]" variable="listItem">
+							<$transclude tiddler=<<listItem>>/>
+						</$list>
+					</div>
+				</$navigator>
+			</div>
+		</$scrollable>
+	</div>
+</$set>

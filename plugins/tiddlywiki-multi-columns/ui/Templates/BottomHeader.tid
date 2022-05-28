@@ -1,0 +1,20 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Main/BottomHeader
+tags: $:/tags/MultiColumn/Main
+
+\whitespace trim
+<header class="btc-column-config btc-column-config-bottom">
+	<$reveal state="$:/status/IsReadOnly" type="nomatch" text="yes" tag="div" class="tc-drafts-list">
+		<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+			<$list filter="[has[draft.of]!sort[modified]] -[list[$:/columns]addprefix[$:/StoryList-]!match[$:/StoryList-1]get[list]enlist-input[]] -[[$:/StoryList]get[list]enlist-input[]]">
+				<$link>
+					{{$:/core/images/edit-button}} <$text text=<<currentTiddler>>/>
+				</$link>
+			</$list>
+		</$navigator>
+	</$reveal>
+	<$list filter="[all[tiddlers+shadows]tag[$:/tags/BottomToolbar]!is[draft]]" variable="listItem">
+		<div class="btc-column-container btc-bottom-toolbar">
+			<$transclude tiddler=<<listItem>>/>
+		</div>
+	</$list>
+</header>

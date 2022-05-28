@@ -1,0 +1,40 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Panel/Search
+tags: $:/tags/MultiColumn/Panel
+
+\whitespace trim
+<$set name="topOrBottom" value={{{ [{$:/config/story-river/search-panel}match[top]then[btc-search-panel-from-top]else[btc-search-panel-from-bottom]] }}}>
+	<div class={{{ [[$:/state/search-panel]!is[missing]then[btc-search-panel btc-search-panel-is-visible tc-popup-handle tc-popup-keep ]else[btc-search-panel ]] +[addsuffix<topOrBottom>] }}}>
+		<div class="btc-search-panel-inner tc-popup-keep">
+			<$keyboard key="Escape" actions=<<search-panel-close-actions>>>
+				<$edit-text tag="input" class={{{ [{$:/state/search-panel}!match[yes]then[btc-search-panel-input]else[btc-search-panel-input btc-search-panel-shown]] }}} tiddler="$:/state/search-panel/search" default="" placeholder="Search" focus={{{ [[$:/state/search-panel]is[missing]then[no]else[yes]] }}}/>
+			</$keyboard>
+			<$button tag="a" class="btc-search-panel-close tc-btn-invisible" actions=<<search-panel-close-actions>>>Close</$button>
+			<$list filter="[[$:/state/search-panel]!is[missing]then[$:/state/search-panel/search]get[text]!match[]]">
+				<div class="btc-search-panel-matches">
+					<$list filter="[!is[system]search{$:/state/search-panel/search}]" variable="searchResult">
+						<$list filter="[list[$:/columns]]" variable="column">
+							<$list filter="[<column>match[1]]" variable="ignore">
+								<$list filter="[[$:/StoryList]contains<searchResult>]" variable="ignore">
+									<$text text="Column 1:"/><br>
+									<$navigator story="$:/StoryList" history="$:/HistoryList" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+										<$linkcatcher actions="""<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" emptyMessage='<$action-navigate $to=<<navigateTo>>/>'><$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<column>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/></$list>""">
+											<$link to=<<searchResult>>><$text text=<<searchResult>>/></$link><br>
+										</$linkcatcher>
+									</$navigator>
+								</$list>
+							</$list>
+							<$list filter="[[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]contains<searchResult>]" variable="ignore">
+								<$text text="Column "/><$text text=<<column>>/><$text text=":"/><br>
+								<$navigator story={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} history={{{ [[$:/HistoryList-]addsuffix<column>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+									<$linkcatcher actions="""<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" emptyMessage='<$action-navigate $to=<<navigateTo>>/>'><$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<column>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/></$list>""">
+										<$link to=<<searchResult>>><$text text=<<searchResult>>/></$link><br>
+									</$linkcatcher>
+								</$navigator>
+							</$list>
+						</$list>
+					</$list>
+				</div>
+			</$list>
+		</div>
+	</div>
+</$set>

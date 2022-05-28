@@ -1,0 +1,11 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Panel/BottomRight
+tags: $:/tags/MultiColumn/Panel
+
+\whitespace trim
+<$list filter="[{$:/config/story-river/bottom-right-panel}match[yes]]" variable="ignore">
+	<div class={{{ [{$:/state/panel/visibility}match[yes]then[btc-bottom-right-panel btc-bottom-right-panel-sidebar-shown]else[btc-bottom-right-panel]] }}}>
+		<$list filter="[all[tiddlers+shadows]tag[$:/tags/BottomRightPanel]!is[draft]]" variable="listItem">
+			<$transclude tiddler=<<listItem>>/>
+		</$list>
+	</div>
+</$list>

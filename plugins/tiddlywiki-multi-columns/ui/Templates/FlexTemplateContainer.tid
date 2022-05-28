@@ -1,0 +1,8 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Main/FlexTemplateContainer
+
+\whitespace trim
+<div class={{{ [{$:/state/panel/visibility}match[yes]then[btc-flextemplate-container btc-flextemplate-panel-shown]else[btc-flextemplate-container]] }}} tabindex="0">
+	<$list filter="[all[tiddlers+shadows]tag[$:/tags/MultiColumn/Main]]" variable="listItem">
+		<$transclude tiddler=<<listItem>>/>
+	</$list>
+</div>
