@@ -58,6 +58,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate
 <$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
 <$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
+<$action-sendmessage $message="tm-cancel-tiddler"/>
 """>
 <$set name="cancelTiddler" value={{{ [<currentTiddler>get[draft.of]] }}}>
 <$action-setfield $tiddler="$:/state/DisableInsertAnimation" text="yes"/>
@@ -67,6 +68,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate
 	<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
 <$action-sendmessage $message="tm-cancel-tiddler"/>
+</$list>
 \end
 \define cancel-delete-tiddler-actions(message)
 <$list filter="[[$message$]match[delete]]" variable="ignore">
