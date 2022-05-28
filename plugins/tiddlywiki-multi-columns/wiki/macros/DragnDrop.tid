@@ -12,7 +12,7 @@ tags: $:/tags/Macro
 		<$action-setfield $tiddler=<<fromHistoryList>> current-tiddler={{{ [list<fromStoryList>zth{$:/state/dragging!!starting-from-index}] }}}/>
 	</$list>
 </$list>
-</$set>
+</$vars>
 \end
 \define btc-bottom-drop-actions()
 <$action-setfield $tiddler="$:/state/drag-handled" text="yes"/>
@@ -29,6 +29,13 @@ tags: $:/tags/Macro
 </$list>
 </$list>
 </$set>
+<$vars fromStoryList={{$:/state/dragging!!starting-from-story}} fromHistoryList={{$:/state/dragging!!from-history}}>
+<$list filter="[<fromStoryList>!match<tv-story-list>]" variable="ignore">
+	<$list filter="[{$:/state/dragging!!is-focused-tiddler}match[TRUE]]" variable="ignore">
+		<$action-setfield $tiddler=<<fromHistoryList>> current-tiddler={{{ [list<fromStoryList>zth{$:/state/dragging!!starting-from-index}] }}}/>
+	</$list>
+</$list>
+</$vars>
 \end
 \define btc-drag-start-actions()
 <$action-setfield $tiddler="$:/state/dragging"
