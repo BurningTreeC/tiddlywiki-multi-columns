@@ -42,6 +42,7 @@ Do you want to overwrite?
 <$list filter="[[$:/temp/save-story/story-title]get[stylesheets]!is[blank]]" variable="ignore">
 <$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} stylesheets={{{ [[$:/temp/save-story/story-title]get[stylesheets]] }}}/>
 </$list>
+<$action-deletetiddler $tiddler="$:/temp/save-story/story-title"/>
 \end
 
 \define save-story-actions(storyTitle)
