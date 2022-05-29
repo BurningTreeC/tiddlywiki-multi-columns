@@ -1,0 +1,74 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Modals/EnsembleSwitcher
+subtitle: Ensemble Switcher
+
+\define set-configuration(tiddler,field:"text",value)
+<$list filter="[<__tiddler__>get<__field__>!match<__value__>]" variable="ignore">
+<$action-setfield $tiddler=<<__tiddler__>> $field=<<__field__>> $value=<<__value__>>/>
+</$list>
+\end
+
+\define load-story-actions()
+<$macrocall $name="set-configuration" tiddler="$:/layout" value={{{ [<storyTiddler>get[layout]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/view" value={{{ [<storyTiddler>get[view]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/columns" field="list" value={{{ [<storyTiddler>get[columns]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/columns" field="active-column" value={{{ [<storyTiddler>get[active-column]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/scroll-snap-x" value={{{ [<storyTiddler>get[scroll-snap-x]match[horizontal]then[yes]else[no]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/bottom-right-panel" value={{{ [<storyTiddler>get[bottom-right-panel]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/dragging-enable" value={{{ [<storyTiddler>get[dragging-enable]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/follow-active-column" value={{{ [<storyTiddler>get[follow-active-column]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/hide-scrollbars" value={{{ [<storyTiddler>get[hide-scrollbars]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/no-tiddler-box-shadows" value={{{ [<storyTiddler>get[no-tiddler-box-shadows]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/panel/position" value={{{ [<storyTiddler>get[panel-position]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/panel/show-numbers" value={{{ [<storyTiddler>get[panel-show-numbers]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/panel/panel-width-above-1170px" value={{{ [<storyTiddler>get[panel-width-above-1170px]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/panel/panel-width-below-1170px" value={{{ [<storyTiddler>get[panel-width-below-1170px]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/panel/panel-width-below-768px" value={{{ [<storyTiddler>get[panel-width-below-768px]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/panel/river-obscured" value={{{ [<storyTiddler>get[river-obscured]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/adapt-to-panel" value={{{ [<storyTiddler>get[adapt-river-to-sidebar]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/scroll-snap-type" value={{{ [<storyTiddler>get[scroll-snap-type]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/ShowEditPreview/PerTiddler" value={{{ [<storyTiddler>get[show-edit-preview-per-tiddler]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/padding" value={{{ [<storyTiddler>get[story-river-padding]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/tiddler-border" value={{{ [<storyTiddler>get[tiddler-border]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/tiddler-margin" value={{{ [<storyTiddler>get[tiddler-margin]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/story-river/hamburger-top" value={{{ [<storyTiddler>get[hamburger-top]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/top-hamburger-toolbar/show-pagecontrols" value={{{ [<storyTiddler>get[hamburger-show-page-controls]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/config/top-hamburger-toolbar/show-search" value={{{ [<storyTiddler>get[hamburger-show-search]] }}}/>
+<$macrocall $name="set-configuration" tiddler="$:/palette" value={{{ [<storyTiddler>get[palette]] }}}/>
+<$list filter="[<storyTiddler>fields[]prefix[story-]]" variable="storyField">
+<$let storyNumber={{{ [<storyField>removeprefix[story-]] }}} storyTitle={{{ [[$:/StoryList-]addsuffix<storyNumber>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
+<$action-setfield $tiddler=<<storyTitle>> list={{{ [<storyTiddler>get<storyField>] }}}/>
+</$let>
+</$list>
+<$list filter="[all[tiddlers+shadows]prefix[$:/Story/]]" variable="storyTiddler">
+<$list filter="[<storyTiddler>has[stylesheets]]" variable="ignore">
+<$set name="stylesheetsList" value={{{ [<storyTiddler>get[stylesheets]] }}}>
+<$list filter="[enlist<stylesheetsList>]" variable="stylesheetTiddler">
+<$fieldmangler tiddler=<<stylesheetTiddler>>>
+<$action-sendmessage $message="tm-remove-tag" $param="$:/tags/Stylesheet"/>
+</$fieldmangler>
+</$list>
+</$set>
+</$list>
+</$list>
+<$list filter="[<storyTiddler>has[stylesheets]]" variable="ignore">
+<$set name="stylesheetsList" value={{{ [<storyTiddler>get[stylesheets]] }}}>
+<$list filter="[enlist<stylesheetsList>]" variable="stylesheetTiddler">
+<$fieldmangler tiddler=<<stylesheetTiddler>>>
+<$action-sendmessage $message="tm-add-tag" $param="$:/tags/Stylesheet"/>
+</$fieldmangler>
+</$list>
+</$set>
+</$list>
+<$action-sendmessage $message="tm-close-tiddler"/>
+\end
+\whitespace trim
+
+<$list filter="[all[tiddlers+shadows]prefix[$:/Story/]]" variable="storyTiddler">
+
+<$let storyName={{{ [<storyTiddler>removeprefix[$:/Story/]] }}}>
+
+<$text text=<<storyName>>/><$text text=" "/><$button actions=<<load-story-actions>>>Load</$button>
+
+</$let>
+
+</$list>
