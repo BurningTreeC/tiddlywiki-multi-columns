@@ -3,6 +3,9 @@ tags: $:/tags/KeyboardShortcut
 key: ((previous-column))
 
 \import $:/plugins/BTC/tiddlywiki-multi-columns/macros/Selectors
+\define scroll-to-river()
+<$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<currentColumn>] }}}/>
+\end
 
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 	<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
@@ -19,7 +22,9 @@ key: ((previous-column))
 						<$list filter="[<scrollTiddler>is[draft]]" variable="ignore" emptyMessage=<<btc-not-is-draft-focus-selector>>>
 							<<btc-focus-title-input>>
 						</$list>
-						<<btc-scroll-to-tiddler>>
+						<$list filter="[<scrollTiddler>!is[blank]]" variable="ignore" emptyMessage=<<scroll-to-river>>>
+							<<btc-scroll-to-tiddler>>
+						</$list>
 					</$let>
 				</$list>
 			</$set>
