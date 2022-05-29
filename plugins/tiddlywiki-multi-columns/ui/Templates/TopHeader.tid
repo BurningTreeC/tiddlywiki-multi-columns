@@ -2,6 +2,22 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Main/TopHeader
 tags: $:/tags/MultiColumn/Main
 
 \whitespace trim
+\define hamburger-middle()
+<$list filter="[{$:/config/top-hamburger-toolbar/show-pagecontrols}match[yes]]" variable="ignore">
+	<div class="btc-hamburger-topbar-middle-table-cell">
+		<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+			{{$:/core/ui/SideBarSegments/page-controls}}
+		</$navigator>
+	</div>
+</$list>
+<$list filter="[{$:/config/top-hamburger-toolbar/show-search}match[yes]]" variable="ignore">
+	<div class="btc-hamburger-topbar-middle-table-cell">
+		<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+			{{$:/core/ui/SideBarSegments/search}}
+		</$navigator>
+	</div>
+</$list>
+\end
 <header class="btc-column-config btc-column-config-top">
 	{{$:/core/ui/PageTemplate/alerts}}
 	{{$:/core/ui/PageTemplate/pluginreloadwarning}}
@@ -12,20 +28,7 @@ tags: $:/tags/MultiColumn/Main
 					<$button class="btc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
 				</div>
 				<div class="btc-hamburger-topbar-middle">
-				<$list filter="[{$:/config/top-hamburger-toolbar/show-pagecontrols}match[yes]]" variable="ignore">
-					<div class="btc-hamburger-topbar-middle-table-cell">
-						<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-							{{$:/core/ui/SideBarSegments/page-controls}}
-						</$navigator>
-					</div>
-				</$list>
-				<$list filter="[{$:/config/top-hamburger-toolbar/show-search}match[yes]]" variable="ignore">
-					<div class="btc-hamburger-topbar-middle-table-cell">
-						<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-							{{$:/core/ui/SideBarSegments/search}}
-						</$navigator>
-					</div>
-				</$list>
+					<<manburger-middle>>
 				</div>
 				<div class="btc-hamburger-right">
 					<$button class="btc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
@@ -36,20 +39,7 @@ tags: $:/tags/MultiColumn/Main
 					<$button class="btc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
 				</div>
 				<div class="btc-hamburger-topbar-middle">
-				<$list filter="[{$:/config/top-hamburger-toolbar/show-pagecontrols}match[yes]]" variable="ignore">
-					<div class="btc-hamburger-topbar-middle-table-cell">
-						<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-							{{$:/core/ui/SideBarSegments/page-controls}}
-						</$navigator>
-					</div>
-				</$list>
-				<$list filter="[{$:/config/top-hamburger-toolbar/show-search}match[yes]]" variable="ignore">
-					<div class="btc-hamburger-topbar-middle-table-cell">
-						<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-							{{$:/core/ui/SideBarSegments/search}}
-						</$navigator>
-					</div>
-				</$list>
+					<<hamburger-middle>>
 				</div>
 				<div class="btc-hamburger-right">
 					<$button class="btc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
