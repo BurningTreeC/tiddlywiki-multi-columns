@@ -6,7 +6,9 @@ key: ((move-right))
 
 \define current-tiddler-is-empty-message()
 <$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<firstNextStoryTiddler>]"/>
+<$list filter="[<focusedTiddler>!is[blank]]" variable="ignore">
 <$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<focusedTiddler>>/>
+</$list>
 \end
 
 \define not-follow-active-column-focus-selector()
