@@ -2,6 +2,6 @@
 	"title": "$:/plugins/BTC/tiddlywiki-multi-columns",
 	"description": "A multi-column Layout",
 	"author": "Simon Huber",
-	"version": "0.62.0",
+	"version": "0.63.0",
 	"list": "readme license"
 }
