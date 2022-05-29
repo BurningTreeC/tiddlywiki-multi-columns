@@ -39,6 +39,9 @@ Do you want to overwrite?
 <$list filter="[list[$:/columns]]" variable="column">
 <$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} $field={{{ [[story-]addsuffix<column>] }}} $value={{{ [[$:/StoryList-]addsuffix<column>!match[StoryList-1]get[list]] ~[[$:/StoryList]get[list]] }}}/>
 </$list>
+<$list filter="[<__storyTitle__>get[stylesheets]!is[blank]]" variable="ignore">
+<$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} stylesheets={{{ [<__storyTitle__>get[stylesheets]] }}}/>
+</$list>
 \end
 
 \define save-story-actions(storyTitle)
@@ -92,6 +95,26 @@ Do you want to overwrite?
 <$action-setfield $tiddler=<<storyTitle>> list={{{ [<storyTiddler>get<storyField>] }}}/>
 </$let>
 </$list>
+<$list filter="[all[tiddlers+shadows]prefix[$:/Story/]]" variable="storyTiddler">
+<$list filter="[<storyTiddler>has[stylesheets]]" variable="ignore">
+<$set name="stylesheetsList" value={{{ [<storyTiddler>get[stylesheets]] }}}>
+<$list filter="[enlist<stylesheetsList>]" variable="stylesheetTiddler">
+<$fieldmangler tiddler=<<stylesheetTiddler>>>
+<$action-sendmessage $message="tm-remove-tag" $param="$:/tags/Stylesheet"/>
+</$fieldmangler>
+</$list>
+</$set>
+</$list>
+</$list>
+<$list filter="[<storyTiddler>has[stylesheets]]" variable="ignore">
+<$set name="stylesheetsList" value={{{ [<storyTiddler>get[stylesheets]] }}}>
+<$list filter="[enlist<stylesheetsList>]" variable="stylesheetTiddler">
+<$fieldmangler tiddler=<<stylesheetTiddler>>>
+<$action-sendmessage $message="tm-add-tag" $param="$:/tags/Stylesheet"/>
+</$fieldmangler>
+</$list>
+</$set>
+</$list>
 \end
 \whitespace trim
 
@@ -99,6 +122,9 @@ Do you want to overwrite?
 
 Give your ensemble a name:<br>
 <$edit-text tiddler="$:/temp/save-story/story-title" default="" placeholder="Title" tag="input" class="tc-story-title"/>
+
+Optionally, provide a list of tiddlers that should get the tag <<tag-pill "$:/tags/Stylesheet">> when the Ensemble is loaded:<br>
+<$edit-text tiddler="$:/temp/save-story/story-title" field="stylesheets" placeholder="Stylesheets" tag="input"/>
 
 <$let storyTitle={{{ [[$:/temp/save-story/story-title]get[text]] }}}>
 <$button><$macrocall $name="save-story-actions" storyTitle=<<storyTitle>>/>Save</$button>
