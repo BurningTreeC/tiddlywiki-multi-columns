@@ -664,11 +664,11 @@ html {
 
 <$list filter="[{$:/config/panel/position}match[right]]" variable="ignore">
 
-.btc-hamburger-right.btc-system-panel-is-visible {
+.btc-hamburger-topbar.btc-system-panel-is-visible .btc-hamburger-right {
 	display: none;
 }
 
-.btc-hamburger-left.btc-user-panel-is-visible {
+.btc-hamburger-topbar.btc-user-panel-is-visible .btc-hamburger-left {
 	display: none;
 }
 
@@ -676,11 +676,11 @@ html {
 
 <$list filter="[{$:/config/panel/position}match[left]]" variable="ignore">
 
-.btc-hamburger-right.btc-user-panel-is-visible {
+.btc-hamburger-topbar.btc-user-panel-is-visible .btc-hamburger-right {
 	display: none;
 }
 
-.btc-hamburger-left.btc-system-panel-is-visible {
+.btc-hamburger-topbar.btc-system-panel-is-visible .btc-hamburger-left {
 	display: none;
 }
 
