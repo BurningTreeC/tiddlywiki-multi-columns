@@ -28,7 +28,7 @@ tags: $:/tags/MultiColumn/Main
 					<$button class="btc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
 				</div>
 				<div class="btc-hamburger-topbar-middle">
-					<<manburger-middle>>
+					<<hamburger-middle>>
 				</div>
 				<div class="btc-hamburger-right">
 					<$button class="btc-panel-show tc-btn-invisible" actions=<<sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
