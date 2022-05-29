@@ -37,7 +37,7 @@ Do you want to overwrite?
 	hamburger-show-page-search={{{ [[$:/config/top-hamburger-toolbar/show-search]get[text]] ~no }}}
 	palette={{$:/palette}}/>
 <$list filter="[list[$:/columns]]" variable="column">
-<$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} $field={{{ [[story-]addsuffix<column>] }}} $value={{{ [[$:/StoryList-]addsuffix<column>!match[StoryList-1]get[list]] ~[[$:/StoryList]get[list]] }}}/>
+<$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} $field={{{ [[story-]addsuffix<column>] }}} $value={{{ [[$:/StoryList-]addsuffix<column>!match[StoryList-1]get[list]] [[$:/StoryList-]addsuffix<column>match[$:/StoryList-1]then[$:/StoryList]get[list]] ~[[]] }}}/>
 </$list>
 <$list filter="[[$:/temp/save-story/story-title]get[stylesheets]!is[blank]]" variable="ignore">
 <$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} stylesheets={{{ [[$:/temp/save-story/story-title]get[stylesheets]] }}}/>
