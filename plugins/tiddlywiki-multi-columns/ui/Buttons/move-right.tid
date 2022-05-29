@@ -5,7 +5,11 @@ description: move the tiddler to the next column at the right
 
 \whitespace trim
 \define current-tiddler-is-empty-message()
+<$list filter="[<firstNextStoryTiddler>!is[blank]]" variable="ignore" emptyMessage="""
+<$action-listops $tiddler=<<nextStoryList>> $subfilter="[<currentTiddler>]"/>
+""">
 <$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<currentTiddler>,<firstNextStoryTiddler>]"/>
+</$list>
 <$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<currentTiddler>>/>
 \end
 \define not-follow-active-column-focus-selector()
