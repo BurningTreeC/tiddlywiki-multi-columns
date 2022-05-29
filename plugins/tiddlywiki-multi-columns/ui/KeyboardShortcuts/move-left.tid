@@ -6,9 +6,7 @@ key: ((move-left))
 
 \define current-tiddler-is-empty-message()
 <$action-listops $tiddler=<<previousStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<firstPreviousStoryTiddler>]"/>
-<$list filter="[<focusedTiddler>!is[blank]]" variable="ignore">
 <$action-setfield $tiddler=<<previousHistoryList>> current-tiddler=<<focusedTiddler>>/>
-</$list>
 \end
 
 \define not-follow-active-column-focus-selector()
@@ -20,6 +18,7 @@ key: ((move-left))
 \end
 
 \define actions()
+<$list filter="[<focusedTiddler>!is[blank]]" variable="ignore">
 <$list filter="[<storyList>!match[$:/StoryList]]" variable="ignore">
 <$action-setfield $tiddler={{{ [[$:/state/inserting/from-right/]addsuffix<focusedTiddler>] }}} text="yes"/>
 <$action-setfield $tiddler=<<historyList>> current-tiddler={{{ [list<storyList>after<focusedTiddler>] ~[list<storyList>before<focusedTiddler>] }}}/>
@@ -40,6 +39,7 @@ key: ((move-left))
 <<btc-focus-title-input-deferred "1.5">>
 </$list>
 </$let>
+</$list>
 </$list>
 </$list>
 \end
