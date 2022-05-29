@@ -59,6 +59,9 @@ subtitle: Ensemble Switcher
 </$list>
 </$set>
 </$list>
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
 <$action-sendmessage $message="tm-close-tiddler"/>
 \end
 \whitespace trim
