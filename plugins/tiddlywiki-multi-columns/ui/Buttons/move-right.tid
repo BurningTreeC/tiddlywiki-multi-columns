@@ -1,9 +1,20 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/move-right
-tags: $:/tags/ViewToolbar
+tags: $:/tags/ViewToolbar $:/tags/EditToolbar
 icon: $:/core/icons/right-arrow
 description: move the tiddler to the next column at the right
 
 \whitespace trim
+\define current-tiddler-is-empty-message()
+<$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<currentTiddler>,<firstNextStoryTiddler>]"/>
+<$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<currentTiddler>>/>
+\end
+\define not-follow-active-column-focus-selector()
+<$let focusTiddler={{{ [list<storyList>after<currentTiddler>] ~[list<storyList>before<currentTiddler>] }}} cssEscapedTitle={{{ [<focusTiddler>escapecss[]] }}}>
+<$list filter="[<focusTiddler>is[draft]]" variable="ignore">
+<<btc-focus-title-input>>
+</$list>
+</$let>
+\end
 \define move-right-actions()
 <$let storyList=<<tv-story-list>> historyList=<<tv-history-list>> nextStoryCounter={{{ [<currentColumn>add[1]] }}} nextStoryList={{{ [<storyList>!match[$:/StoryList]removesuffix<currentColumn>addsuffix<nextStoryCounter>] ~[[$:/StoryList-2]] }}} nextHistoryList={{{ [<historyList>!match[$:/HistoryList]removesuffix<currentColumn>addsuffix<nextStoryCounter>] ~[[$:/HistoryList-2]] }}} firstNextStoryTiddler={{{ [list<nextStoryList>first[]] }}}>
 <$action-setfield $tiddler={{{ [[$:/state/removing/to-right/]addsuffix<currentTiddler>] }}} text="yes"/>
@@ -12,31 +23,22 @@ description: move the tiddler to the next column at the right
 </$list>
 <$action-setfield $tiddler=<<historyList>> current-tiddler={{{ [list<storyList>after<currentTiddler>] ~[list<storyList>before<currentTiddler>] }}}/>
 <$action-listops $tiddler=<<storyList>> $subfilter="-[<currentTiddler>]"/>
-<$list filter="[<nextHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage="""
-<$list filter="[<nextStoryList>contains<firstNextStoryTiddler>]" variable="ignore" emptyMessage='
-<$action-listops $tiddler=<<nextStoryList>> $subfilter="[<currentTiddler>]"/>
-'>
-<$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<currentTiddler>,<firstNextStoryTiddler>]"/>
-</$list>
-<$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<currentTiddler>>/>
-""">
+<$list filter="[<nextHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
 <$set name="nextStoryFocusedTiddler" value={{{ [<nextHistoryList>get[current-tiddler]] }}}>
-<$list filter="[<nextStoryList>contains<nextStoryFocusedTiddler>]" variable="ignore" emptyMessage="""
-<$list filter="[<firstNextStoryTiddler>!is[blank]]" variable="ignore" emptyMessage='
-<$action-listops $tiddler=<<nextStoryList>> $subfilter="[<currentTiddler>]"/>
-'>
-<$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<currentTiddler>,<firstNextStoryTiddler>]"/>
-<$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<currentTiddler>>/>
-</$list>
-""">
+<$list filter="[<nextStoryList>contains<nextStoryFocusedTiddler>]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
 <$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<currentTiddler>,<nextStoryFocusedTiddler>]"/>
 <$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<currentTiddler>>/>
 </$list>
 </$set>
 </$list>
-<$list filter="[{$:/config/story-river/follow-active-column}match[yes]]" variable="ignore">
+<$list filter="[{$:/config/story-river/follow-active-column}match[yes]]" variable="ignore" emptyMessage=<<not-follow-active-column-focus-selector>>>
 <$action-setfield $tiddler="$:/columns" active-column=<<nextStoryCounter>>/>
-<$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<nextStoryCounter>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/>
+<$let currentColumn=<<nextStoryCounter>> cssEscapedTitle={{{ [<currentTiddler>escapecss[]] }}}>
+<<btc-scroll-to-tiddler>>
+<$list filter="[<currentTiddler>is[draft]]" variable="ignore">
+<<btc-focus-title-input-deferred>>
+</$list>
+</$let>
 </$list>
 </$let>
 \end

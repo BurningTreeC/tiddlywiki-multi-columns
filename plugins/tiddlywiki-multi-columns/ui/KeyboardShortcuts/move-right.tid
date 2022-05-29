@@ -9,11 +9,6 @@ key: ((move-right))
 <$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<focusedTiddler>>/>
 \end
 
-\define next-story-list-not-contains-next-story-focused-tiddler()
-<$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<firstNextStoryTiddler>]"/>
-<$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<focusedTiddler>>/>
-\end
-
 \define not-follow-active-column-focus-selector()
 <$let currentTiddler={{{ [list<storyList>after<focusedTiddler>] ~[list<storyList>before<focusedTiddler>] }}} cssEscapedTitle={{{ [<currentTiddler>escapecss[]] }}}>
 <$list filter="[<currentTiddler>is[draft]]" variable="ignore">
@@ -31,7 +26,7 @@ key: ((move-right))
 <$action-listops $tiddler=<<storyList>> $subfilter="-[<focusedTiddler>]"/>
 <$list filter="[<nextHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
 <$set name="nextStoryFocusedTiddler" value={{{ [<nextHistoryList>get[current-tiddler]] }}}>
-<$list filter="[<nextStoryList>contains<nextStoryFocusedTiddler>]" variable="ignore" emptyMessage=<<next-story-list-not-contains-next-story-focused-tiddler>>>
+<$list filter="[<nextStoryList>contains<nextStoryFocusedTiddler>]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
 <$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<focusedTiddler>,<nextStoryFocusedTiddler>]"/>
 <$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<focusedTiddler>>/>
 </$list>

@@ -1,39 +1,42 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/move-left
-tags: $:/tags/ViewToolbar
+tags: $:/tags/ViewToolbar $:/tags/EditToolbar
 icon: $:/core/icons/left-arrow
 description: move the tiddler to the previous column at the left
 
 \whitespace trim
+\define current-tiddler-is-empty-message()
+<$action-listops $tiddler=<<previousStoryList>> $subfilter="+[insertbefore<currentTiddler>,<firstPreviousStoryTiddler>]"/>
+<$action-setfield $tiddler=<<previousHistoryList>> current-tiddler=<<currentTiddler>>/>
+\end
+\define not-follow-active-column-focus-selector()
+<$let focusTiddler={{{ [list<storyList>after<currentTiddler>] ~[list<storyList>before<currentTiddler>] }}} cssEscapedTitle={{{ [<focusTiddler>escapecss[]] }}}>
+<$list filter="[<focusTiddler>is[draft]]" variable="ignore">
+<<btc-focus-title-input>>
+</$list>
+</$let>
+\end
 \define move-left-actions()
 <$let storyList=<<tv-story-list>> historyList=<<tv-history-list>> previousStoryCounter={{{ [<currentColumn>subtract[1]] }}} previousStoryList={{{ [<storyList>!match[$:/StoryList]!match[$:/StoryList-1]removesuffix<currentColumn>addsuffix<previousStoryCounter>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} previousHistoryList={{{ [<historyList>!match[$:/HistoryList]!match[$:/HistoryList-1]removesuffix<currentColumn>addsuffix<previousStoryCounter>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} firstPreviousStoryTiddler={{{ [list<previousStoryList>first[]] }}}>
 <$list filter="[<storyList>!match[$:/StoryList]]" variable="ignore">
 <$action-setfield $tiddler={{{ [[$:/state/inserting/from-right/]addsuffix<currentTiddler>] }}} text="yes"/>
 <$action-setfield $tiddler=<<historyList>> current-tiddler={{{ [list<storyList>after<currentTiddler>] ~[list<storyList>before<currentTiddler>] }}}/>
 <$action-listops $tiddler=<<storyList>> $subfilter="-[<currentTiddler>]"/>
-<$list filter="[<previousHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage="""
-<$list filter="[<previousStoryList>contains<firstPreviousStoryTiddler>]" variable="ignore" emptyMessage='
-<$action-listops $tiddler=<<previousStoryList>> $subfilter="[<currentTiddler>]"/>
-'>
-<$action-listops $tiddler=<<previousStoryList>> $subfilter="+[insertbefore<currentTiddler>,<firstPreviousStoryTiddler>]"/>
-<$action-setfield $tiddler=<<previousHistoryList>> current-tiddler=<<currentTiddler>>/>
-""">
+<$list filter="[<previousHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
 <$set name="previousStoryFocusedTiddler" value={{{ [<previousHistoryList>get[current-tiddler]] }}}>
-<$list filter="[<previousStoryList>contains<previousStoryFocusedTiddler>]" variable="ignore" emptyMessage="""
-<$list filter="[<firstPreviousStoryTiddler>!is[blank]]" variable="ignore" emptyMessage='
-<$action-listops $tiddler=<<previousStoryList>> $subfilter="[<currentTiddler>]"/>
-'>
-<$action-listops $tiddler=<<previousStoryList>> $subfilter="+[insertbefore<currentTiddler>,<firstPreviousStoryTiddler>]"/>
-<$action-setfield $tiddler=<<previousHistoryList>> current-tiddler=<<currentTiddler>>/>
-""">
+<$list filter="[<previousStoryList>contains<previousStoryFocusedTiddler>]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
 <$action-listops $tiddler=<<previousStoryList>> $subfilter="+[insertbefore<currentTiddler>,<previousStoryFocusedTiddler>]"/>
 <$action-setfield $tiddler=<<previousHistoryList>> current-tiddler=<<currentTiddler>>/>
 </$list>
 </$set>
 </$list>
-<$list filter="[{$:/config/story-river/follow-active-column}match[yes]]" variable="ignore">
+<$list filter="[{$:/config/story-river/follow-active-column}match[yes]]" variable="ignore" emptyMessage=<<not-follow-active-column-focus-selector>>>
 <$action-setfield $tiddler="$:/columns" active-column=<<previousStoryCounter>>/>
-<$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<previousStoryCounter>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/>
+<$let currentColumn=<<previousStoryCounter>> cssEscapedTitle={{{ [<currentTiddler>escapecss[]] }}}>
+<<btc-scroll-to-tiddler>>
+<$list filter="[<currentTiddler>is[draft]]" variable="ignore">
+<<btc-focus-title-input-deferred "1.5">>
 </$list>
+</$let>
 </$list>
 </$let>
 \end
