@@ -6,7 +6,7 @@ tags: $:/tags/MultiColumn/Main
 	{{$:/core/ui/PageTemplate/alerts}}
 	{{$:/core/ui/PageTemplate/pluginreloadwarning}}
 	<$list filter="[{$:/config/story-river/hamburger-top}match[yes]]" variable="ignore">
-		<div class="btc-hamburger-topbar">
+		<div class={{{ btc-hamburger-topbar [[$:/state/panel/visibility]get[text]match[yes]then[btc-system-panel-is-visible]] [[$:/state/user-panel/visibility]get[text]match[yes]then[btc-user-panel-is-visible]] +[join[ ]] }}}>
 			<$list filter="[{$:/config/panel/position}match[right]]" variable="ignore">
 				<div class="btc-hamburger-left">
 					<$button class="btc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>

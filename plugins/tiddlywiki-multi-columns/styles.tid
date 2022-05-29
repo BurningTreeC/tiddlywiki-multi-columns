@@ -662,6 +662,30 @@ html {
 	margin-left: 3px;
 }
 
+<$list filter="[{$:/config/panel/position}match[right]]" variable="ignore">
+
+.btc-hamburger-right.btc-system-panel-is-visible {
+	display: none;
+}
+
+.btc-hamburger-left.btc-user-panel-is-visible {
+	display: none;
+}
+
+</$list>
+
+<$list filter="[{$:/config/panel/position}match[left]]" variable="ignore">
+
+.btc-hamburger-right.btc-user-panel-is-visible {
+	display: none;
+}
+
+.btc-hamburger-left.btc-system-panel-is-visible {
+	display: none;
+}
+
+</$list>
+
 </$list>
 
 .btc-panel-show svg, .btc-user-panel-show svg {
