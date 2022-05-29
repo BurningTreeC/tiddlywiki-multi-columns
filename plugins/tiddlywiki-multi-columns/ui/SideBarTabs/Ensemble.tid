@@ -39,8 +39,8 @@ Do you want to overwrite?
 <$list filter="[list[$:/columns]]" variable="column">
 <$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} $field={{{ [[story-]addsuffix<column>] }}} $value={{{ [[$:/StoryList-]addsuffix<column>!match[StoryList-1]get[list]] ~[[$:/StoryList]get[list]] }}}/>
 </$list>
-<$list filter="[<__storyTitle__>get[stylesheets]!is[blank]]" variable="ignore">
-<$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} stylesheets={{{ [<__storyTitle__>get[stylesheets]] }}}/>
+<$list filter="[[$:/temp/save-story/story-title]get[stylesheets]!is[blank]]" variable="ignore">
+<$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} stylesheets={{{ [[$:/temp/save-story/story-title]get[stylesheets]] }}}/>
 </$list>
 \end
 
@@ -124,7 +124,7 @@ Give your ensemble a name:<br>
 <$edit-text tiddler="$:/temp/save-story/story-title" default="" placeholder="Title" tag="input" class="tc-story-title"/>
 
 Optionally, provide a list of tiddlers that should get the tag <<tag-pill "$:/tags/Stylesheet">> when the Ensemble is loaded:<br>
-<$edit-text tiddler="$:/temp/save-story/story-title" field="stylesheets" placeholder="Stylesheets" tag="input"/>
+<$edit-text tiddler="$:/temp/save-story/story-title" default="" field="stylesheets" placeholder="Stylesheets" tag="input"/>
 
 <$let storyTitle={{{ [[$:/temp/save-story/story-title]get[text]] }}}>
 <$button><$macrocall $name="save-story-actions" storyTitle=<<storyTitle>>/>Save</$button>
