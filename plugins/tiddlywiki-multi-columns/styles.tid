@@ -1384,6 +1384,7 @@ html {
 	-ms-user-select: none;
 	user-select: none;
 	touch-action: none;
+	pointer-events: none;
 }
 
 </$list>
