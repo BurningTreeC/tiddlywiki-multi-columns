@@ -19,7 +19,7 @@ description: move the tiddler to the previous column at the left
 </$list>
 </$let>
 \end
-\define move-left-actions()
+\define move-left-actions-inner()
 <$let storyList=<<tv-story-list>> historyList=<<tv-history-list>> previousStoryCounter={{{ [<currentColumn>subtract[1]] }}} previousStoryList={{{ [<storyList>!match[$:/StoryList]!match[$:/StoryList-1]removesuffix<currentColumn>addsuffix<previousStoryCounter>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} previousHistoryList={{{ [<historyList>!match[$:/HistoryList]!match[$:/HistoryList-1]removesuffix<currentColumn>addsuffix<previousStoryCounter>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} firstPreviousStoryTiddler={{{ [list<previousStoryList>first[]] }}}>
 <$list filter="[<storyList>!match[$:/StoryList]]" variable="ignore">
 <$action-setfield $tiddler={{{ [[$:/state/inserting/from-right/]addsuffix<currentTiddler>] }}} text="yes"/>
@@ -43,6 +43,9 @@ description: move the tiddler to the previous column at the left
 </$let>
 </$list>
 </$let>
+\end
+\define move-left-actions()
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage=<<move-left-actions-inner>>></$list>
 \end
 <$list filter="[<currentColumn>!match[1]]" variable="ignore">
 <$button actions=<<move-left-actions>> tooltip={{$:/language/Buttons/MoveLeft/Hint}} aria-label={{$:/language/Buttons/MoveLeft/Caption}} class=<<tv-config-toolbar-class>>>
