@@ -1082,7 +1082,7 @@ html {
 
 @media (min-width: 800px) {
 
-	.btc-column-active-button:not(last-of-type) {
+	.btc-top-active-column:not(:last-of-type) .btc-column-active-button {
 		border-right: thin solid <<colour column-active-button-border>>;
 	}
 
