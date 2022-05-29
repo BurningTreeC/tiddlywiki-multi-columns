@@ -662,30 +662,6 @@ html {
 	margin-left: 3px;
 }
 
-<$list filter="[{$:/config/panel/position}match[right]]" variable="ignore">
-
-.btc-hamburger-topbar.btc-system-panel-is-visible .btc-hamburger-right button {
-	display: none;
-}
-
-.btc-hamburger-topbar.btc-user-panel-is-visible .btc-hamburger-left button {
-	display: none;
-}
-
-</$list>
-
-<$list filter="[{$:/config/panel/position}match[left]]" variable="ignore">
-
-.btc-hamburger-topbar.btc-user-panel-is-visible .btc-hamburger-right button {
-	display: none;
-}
-
-.btc-hamburger-topbar.btc-system-panel-is-visible .btc-hamburger-left button {
-	display: none;
-}
-
-</$list>
-
 </$list>
 
 .btc-panel-show svg, .btc-user-panel-show svg {
