@@ -1,0 +1,22 @@
+title: $:/core/ui/Buttons/clone
+tags: $:/tags/ViewToolbar
+description: {{$:/language/Buttons/Clone/Hint}}
+caption: {{$:/core/images/clone-button}} {{$:/language/Buttons/Clone/Caption}}
+
+\define actions()
+<$list filter="[all[tiddlers]prefix[$:/state/story-view/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+<$action-sendmessage $message="tm-new-tiddler" $param=<<currentTiddler>>/>
+\end
+\whitespace trim
+<$button actions=<<actions>> tooltip={{$:/language/Buttons/Clone/Hint}} aria-label={{$:/language/Buttons/Clone/Caption}} class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/clone-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text={{$:/language/Buttons/Clone/Caption}}/>
+</span>
+</$list>
+</$button>
