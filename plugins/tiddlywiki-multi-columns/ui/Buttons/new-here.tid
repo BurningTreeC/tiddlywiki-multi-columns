@@ -6,7 +6,7 @@ caption: {{$:/core/images/new-here-button}} {{$:/language/Buttons/NewHere/Captio
 \whitespace trim
 \define newHereActions()
 \whitespace trim
-<$list filter="[all[tiddlers]prefix[$:/state/story-view/full-screen/]]" variable="fullScreenTiddler">
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
 <$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
 <$set name="tags" filter="[<currentTiddler>] [{$:/config/NewTiddler/Tags}]">

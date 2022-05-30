@@ -4,7 +4,7 @@ description: {{$:/language/Buttons/Clone/Hint}}
 caption: {{$:/core/images/clone-button}} {{$:/language/Buttons/Clone/Caption}}
 
 \define actions()
-<$list filter="[all[tiddlers]prefix[$:/state/story-view/full-screen/]]" variable="fullScreenTiddler">
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
 <$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
 <$action-sendmessage $message="tm-new-tiddler" $param=<<currentTiddler>>/>
