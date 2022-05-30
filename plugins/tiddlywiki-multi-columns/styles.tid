@@ -1600,6 +1600,8 @@ hr.simple {
 	right: inherit;
 	width: 100%;
 	z-index: inherit;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
 }
 
 .tc-plugin-reload-warning > p {
