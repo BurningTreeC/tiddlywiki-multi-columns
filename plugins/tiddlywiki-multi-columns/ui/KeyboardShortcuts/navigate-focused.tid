@@ -1,6 +1,6 @@
-title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/navigate-first
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/navigate-focused
 tags: $:/tags/KeyboardShortcut
-key: ((navigate-first))
+key: ((navigate-focused))
 
 \import $:/plugins/BTC/tiddlywiki-multi-columns/macros/Selectors $:/plugins/BTC/tiddlywiki-multi-columns/macros/Navigation
 
@@ -12,11 +12,11 @@ key: ((navigate-first))
 """></$list>
 \end
 \define actions()
-<$let nextTiddler={{{ [list<storyList>nth[1]] }}} cssEscapedTitle={{{ [<nextTiddler>escapecss[]] }}}>
+<$let nextTiddler=<<currentTiddler>> cssEscapedTitle={{{ [<nextTiddler>escapecss[]] }}}>
 <$list filter="[<nextTiddler>is[draft]]" variable="ignore" emptyMessage=<<not-is-draft-focus-selector>>>
 <<btc-focus-title-input>>
 </$list>
 <$action-navigate $to=<<nextTiddler>>/>
-</$let>
+</$set>
 \end
 <$macrocall $name="btc-multi-column-navigator" actions=<<actions>>/>
