@@ -8,6 +8,12 @@ subtitle: Ensemble Switcher
 \end
 
 \define load-story-actions()
+<$list filter="[all[tiddlers]prefix[$:/StoryList]]" variable="storyListTiddler">
+<$action-deletetiddler $tiddler=<<storyListTiddler>>/>
+</$list>
+<$list filter="[all[tiddlers]prefix[$:/HistoryList]]" variable="historyListTiddler">
+<$action-deletetiddler $tiddler=<<historyListTiddler>>/>
+</$list>
 <$macrocall $name="set-configuration" tiddler="$:/layout" value={{{ [<storyTiddler>get[layout]] }}}/>
 <$macrocall $name="set-configuration" tiddler="$:/view" value={{{ [<storyTiddler>get[view]] }}}/>
 <$macrocall $name="set-configuration" tiddler="$:/columns" field="list" value={{{ [<storyTiddler>get[columns]] }}}/>
