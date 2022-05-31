@@ -1,0 +1,132 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/macros/Ensemble
+tags: $:/tags/Macro
+
+\define btc-get-overwrite-message()
+The story "$(storyTitle)$" already exists.
+Do you want to overwrite?
+\end
+\define btc-save-story-actions-inner(storyTitle)
+<$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}}
+	layout={{$:/layout}}
+	view={{$:/view}}
+	storyview={{$:/view}}
+	columns={{$:/columns!!list}}
+	active-column={{$:/columns!!active-column}}
+	scroll-snap-x={{{ [{$:/config/story-river/scroll-snap-x}!match[yes]then[vertical]else[horizontal]] }}}
+	hide-scrollbars={{{ [{$:/config/story-river/hide-scrollbars}match[yes]] ~no }}}
+	bottom-right-panel={{{ [{$:/config/story-river/bottom-right-panel}match[yes]] ~no }}}
+	dragging-enable={{{ [{$:/config/story-river/dragging-enable}match[yes]] ~no }}}
+	follow-active-column={{{ [{$:/config/story-river/follow-active-column}match[yes]] ~no }}}
+	horizontal-columns={{{ [[$:/config/story-river/horizontal/columns]get[text]] ~3 }}}
+	no-tiddler-box-shadows={{{ [{$:/config/story-river/no-tiddler-box-shadows}match[yes]] ~no }}}
+	panel-position={{{ [{$:/config/panel/position}match[right]] ~left }}}
+	panel-show-numbers={{{ [{$:/config/panel/show-numbers}match[yes]] ~no }}}
+	panel-width-above-1170px={{{ [[$:/config/panel/panel-width-above-1170px]get[text]] ~35% }}}
+	panel-width-below-1170px={{{ [[$:/config/panel/panel-width-below-1170px]get[text]] ~50% }}}
+	panel-width-below-768px={{{ [[$:/config/panel/panel-width-below-768px]get[text]] ~90% }}}
+	river-obscured={{{ [{$:/config/panel/river-obscured}match[yes]] ~no }}}
+	adapt-river-to-sidebar={{{ [{$:/config/story-river/adapt-to-panel}match[yes]] ~no }}}
+	scroll-snap-type={{{ [[$:/config/story-river/scroll-snap-type]get[text]] ~none }}}
+	show-edit-preview-per-tiddler={{{ [{$:/config/ShowEditPreview/PerTiddler}match[yes]] ~no }}}
+	story-river-padding={{{ [[$:/config/story-river/padding]get[text]] ~15 }}}
+	tiddler-border={{{ [[$:/config/story-river/tiddler-border]get[text]] ~1 }}}
+	tiddler-margin={{{ [[$:/config/story-river/tiddler-margin]get[text]] ~10 }}}
+	hamburger-top={{{ [[$:/config/story-river/hamburger-top]get[text]] ~no }}}
+	hamburger-show-page-controls={{{ [[$:/config/top-hamburger-toolbar/show-pagecontrols]get[text]] ~no }}}
+	hamburger-show-page-search={{{ [[$:/config/top-hamburger-toolbar/show-search]get[text]] ~no }}}
+	palette={{$:/palette}}/>
+<$list filter="[list[$:/columns]]" variable="column">
+<$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} $field={{{ [[story-]addsuffix<column>] }}} $value={{{ [[$:/StoryList-]addsuffix<column>!match[StoryList-1]get[list]] [[$:/StoryList-]addsuffix<column>match[$:/StoryList-1]then[$:/StoryList]get[list]] ~[[]] }}}/>
+</$list>
+<$list filter="[[$:/temp/save-story/story-title]get[stylesheets]!is[blank]]" variable="ignore">
+<$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} stylesheets={{{ [[$:/temp/save-story/story-title]get[stylesheets]] }}}/>
+</$list>
+<$action-deletetiddler $tiddler="$:/temp/save-story/story-title"/>
+\end
+
+\define btc-empty-ensemble-title-message()
+<$action-sendmessage $message="tm-notify" $param="$:/plugins/BTC/tiddlywiki-multi-columns/ui/SideBarTabs/Story/EmptyNotification"/>
+\end
+
+\define btc-overwrite-ensemble-message()
+<$action-confirm $message=<<btc-get-overwrite-message>>>
+<$macrocall $name="btc-save-story-actions-inner" storyTitle=<<__storyTitle__>>/>
+</$action-confirm>
+\end
+
+\define btc-save-story-actions(storyTitle)
+<$list filter="[<__storyTitle__>!match[]]" emptyMessage=<<btc-empty-ensemble-title-message>>>
+<$list filter="[[$:/Story/]addsuffix<__storyTitle__>is[missing]]" emptyMessage=<<btc-overwrite-ensemble-message>>>
+<$macrocall $name="btc-save-story-actions-inner" storyTitle=<<__storyTitle__>>/>
+</$list>
+</$list>
+\end
+
+\define btc-set-configuration(tiddler,field:"text",value)
+<$list filter="[<__tiddler__>get<__field__>!match<__value__>]" variable="ignore">
+<$action-setfield $tiddler=<<__tiddler__>> $field=<<__field__>> $value=<<__value__>>/>
+</$list>
+\end
+
+\define btc-load-story-actions()
+<$list filter="[all[tiddlers]prefix[$:/StoryList]]" variable="storyListTiddler">
+<$action-deletetiddler $tiddler=<<storyListTiddler>>/>
+</$list>
+<$list filter="[all[tiddlers]prefix[$:/HistoryList]]" variable="historyListTiddler">
+<$action-deletetiddler $tiddler=<<historyListTiddler>>/>
+</$list>
+<$macrocall $name="btc-set-configuration" tiddler="$:/layout" value={{{ [<storyTiddler>get[layout]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/view" value={{{ [<storyTiddler>get[view]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/columns" field="list" value={{{ [<storyTiddler>get[columns]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/columns" field="active-column" value={{{ [<storyTiddler>get[active-column]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/scroll-snap-x" value={{{ [<storyTiddler>get[scroll-snap-x]match[horizontal]then[yes]else[no]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/bottom-right-panel" value={{{ [<storyTiddler>get[bottom-right-panel]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/dragging-enable" value={{{ [<storyTiddler>get[dragging-enable]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/follow-active-column" value={{{ [<storyTiddler>get[follow-active-column]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/hide-scrollbars" value={{{ [<storyTiddler>get[hide-scrollbars]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/no-tiddler-box-shadows" value={{{ [<storyTiddler>get[no-tiddler-box-shadows]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/panel/position" value={{{ [<storyTiddler>get[panel-position]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/panel/show-numbers" value={{{ [<storyTiddler>get[panel-show-numbers]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/panel/panel-width-above-1170px" value={{{ [<storyTiddler>get[panel-width-above-1170px]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/panel/panel-width-below-1170px" value={{{ [<storyTiddler>get[panel-width-below-1170px]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/panel/panel-width-below-768px" value={{{ [<storyTiddler>get[panel-width-below-768px]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/panel/river-obscured" value={{{ [<storyTiddler>get[river-obscured]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/adapt-to-panel" value={{{ [<storyTiddler>get[adapt-river-to-sidebar]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/scroll-snap-type" value={{{ [<storyTiddler>get[scroll-snap-type]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/ShowEditPreview/PerTiddler" value={{{ [<storyTiddler>get[show-edit-preview-per-tiddler]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/padding" value={{{ [<storyTiddler>get[story-river-padding]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/tiddler-border" value={{{ [<storyTiddler>get[tiddler-border]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/tiddler-margin" value={{{ [<storyTiddler>get[tiddler-margin]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/hamburger-top" value={{{ [<storyTiddler>get[hamburger-top]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/top-hamburger-toolbar/show-pagecontrols" value={{{ [<storyTiddler>get[hamburger-show-page-controls]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/top-hamburger-toolbar/show-search" value={{{ [<storyTiddler>get[hamburger-show-search]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/palette" value={{{ [<storyTiddler>get[palette]] }}}/>
+<$list filter="[<storyTiddler>fields[]prefix[story-]]" variable="storyField">
+<$let storyNumber={{{ [<storyField>removeprefix[story-]] }}} storyTitle={{{ [[$:/StoryList-]addsuffix<storyNumber>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
+<$action-setfield $tiddler=<<storyTitle>> list={{{ [<storyTiddler>get<storyField>] }}}/>
+</$let>
+</$list>
+<$list filter="[all[tiddlers+shadows]prefix[$:/Story/]]" variable="storyTiddler">
+<$list filter="[<storyTiddler>has[stylesheets]]" variable="ignore">
+<$set name="stylesheetsList" value={{{ [<storyTiddler>get[stylesheets]] }}}>
+<$list filter="[enlist<stylesheetsList>]" variable="stylesheetTiddler">
+<$fieldmangler tiddler=<<stylesheetTiddler>>>
+<$action-sendmessage $message="tm-remove-tag" $param="$:/tags/Stylesheet"/>
+</$fieldmangler>
+</$list>
+</$set>
+</$list>
+</$list>
+<$list filter="[<storyTiddler>has[stylesheets]]" variable="ignore">
+<$set name="stylesheetsList" value={{{ [<storyTiddler>get[stylesheets]] }}}>
+<$list filter="[enlist<stylesheetsList>]" variable="stylesheetTiddler">
+<$fieldmangler tiddler=<<stylesheetTiddler>>>
+<$action-sendmessage $message="tm-add-tag" $param="$:/tags/Stylesheet"/>
+</$fieldmangler>
+</$list>
+</$set>
+</$list>
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+\end
