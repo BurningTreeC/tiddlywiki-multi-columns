@@ -2,7 +2,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Panel/Search
 tags: $:/tags/MultiColumn/Panel
 
 \define search-panel-link-actions()
-<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] -[[$:/state/story-river/full-screen]addsuffix<navigateTo>]" variable="fullScreenTiddler">
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] -[[$:/state/story-river/full-screen/]addsuffix<navigateTo>]" variable="fullScreenTiddler">
 <$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
 <$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" emptyMessage="""
