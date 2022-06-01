@@ -1,6 +1,16 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Panel/Search
 tags: $:/tags/MultiColumn/Panel
 
+\define search-panel-link-actions()
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] -[[$:/state/story-river/full-screen]addsuffix<navigateTo>]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" emptyMessage="""
+<$action-navigate $to=<<navigateTo>>/>
+""">
+<$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<column>] }}}/>
+</$list>
+\end
 \whitespace trim
 <$set name="topOrBottom" value={{{ [{$:/config/story-river/search-panel}match[top]then[btc-search-panel-from-top]else[btc-search-panel-from-bottom]] }}}>
 	<div class={{{ [[$:/state/search-panel]!is[missing]then[btc-search-panel btc-search-panel-is-visible tc-popup-handle tc-popup-keep ]else[btc-search-panel ]] +[addsuffix<topOrBottom>] }}}>
@@ -26,7 +36,7 @@ tags: $:/tags/MultiColumn/Panel
 							<$list filter="[[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]contains<searchResult>]" variable="ignore">
 								<$text text="Column "/><$text text=<<column>>/><$text text=":"/><br>
 								<$navigator story={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} history={{{ [[$:/HistoryList-]addsuffix<column>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-									<$linkcatcher actions="""<$list filter="[{$:/config/story-river/scroll-snap-x}match[yes]]" emptyMessage='<$action-navigate $to=<<navigateTo>>/>'><$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<column>] }}} animationDuration={{$:/config/story-river/scroll-x-duration}}/></$list>""">
+									<$linkcatcher actions=<<search-panel-link-actions>>>
 										<$link to=<<searchResult>>><$text text=<<searchResult>>/></$link><br>
 									</$linkcatcher>
 								</$navigator>
