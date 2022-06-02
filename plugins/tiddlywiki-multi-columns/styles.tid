@@ -1053,7 +1053,7 @@ html {
 
 .btc-column-container.btc-top-toolbar > * , .btc-column-container.btc-bottom-toolbar > * {
 	max-width: 100vw;
-	max-height: 50vh;
+	max-height: 25vh;
 }
 
 .btc-column-container.btc-top-toolbar > p, .btc-column-container.btc-bottom-toolbar > p {
