@@ -11,6 +11,8 @@ caption: remove column
 </$list>
 <$list filter="[<columnCount>!match[1]]">
 <$action-listops $tiddler="$:/columns" $subfilter="-[<columnCount>]"/>
+<$action-deletetiddler $tiddler={{{ [[$:/StoryList-]addsuffix<columnCount>] }}}/>
+<$action-deletetiddler $tiddler={{{ [[$:/HistoryList-]addsuffix<columnCount>] }}}/>
 </$list>
 </$set>
 \end
