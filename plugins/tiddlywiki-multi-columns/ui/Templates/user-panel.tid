@@ -5,19 +5,23 @@ tags: $:/tags/MultiColumn/Panel
 <$set name="rightOrLeft" value={{{ [{$:/config/panel/position}match[left]then[btc-panel-from-right]else[btc-panel-from-left]] }}}>
 	<div class={{{ [{$:/state/user-panel/visibility}match[yes]then[btc-panel btc-panel-is-visible ]else[btc-panel ]addsuffix<rightOrLeft>] }}}>
 		<header class="btc-panel-header">
-			<$messagecatcher $tm-navigate=<<btc-sidebar-navigate-actions>>>
-				<h1>{{$:/UserPanelTitle}}</h1>
-				<h4>{{$:/UserPanelSubtitle}}</h4>
-			</$messagecatcher>
+			<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+				<$messagecatcher $tm-navigate=<<btc-sidebar-navigate-actions>>>
+					<h1>{{$:/UserPanelTitle}}</h1>
+					<h4>{{$:/UserPanelSubtitle}}</h4>
+				</$messagecatcher>
+			</$navigator>
 			<$button tag="a" class="btc-panel-close tc-btn-invisible" actions=<<user-sidebar-close-actions>>>Close</$button>
 		</header>
 		<$scrollable fallthrough="no" class="btc-panel-container">
 			<div class="btc-user-panel-container">
-				<$messagecatcher $tm-navigate=<<btc-sidebar-navigate-actions>>>
-					<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment/User]!is[draft]]" variable="listItem">
-						<$transclude tiddler=<<listItem>> mode="block"/>
-					</$list>
-				</$messagecatcher>
+				<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+					<$messagecatcher $tm-navigate=<<btc-sidebar-navigate-actions>>>
+						<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment/User]!is[draft]]" variable="listItem">
+							<$transclude tiddler=<<listItem>> mode="block"/>
+						</$list>
+					</$messagecatcher>
+				</$navigator>
 			</div>
 		</$scrollable>
 	</div>
