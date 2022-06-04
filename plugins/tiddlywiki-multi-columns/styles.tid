@@ -598,6 +598,8 @@ html {
 
 <$list filter="[{$:/config/story-river/hamburger-top}!match[yes]]" variable="ignore">
 
+<$list filter="[all[tiddlers+shadows]tag[$:/tags/TopToolbar]get[hamburgers]match[yes]] +[limit[1]]" variable="ignore" emptyMessage="""
+
 .btc-panel-show, .btc-user-panel-show {
 	position: fixed;
 	top: 0;
@@ -626,6 +628,8 @@ html {
 }
 
 </$list>
+
+"""><$text text=""/></$list>
 
 </$list>
 
@@ -1550,7 +1554,7 @@ hr.simple {
 
 </$let>
 
-"""></$list>
+"""><$text text=""/></$list>
 
 </$list>
 
