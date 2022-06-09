@@ -297,6 +297,20 @@ html {
 	transition: background {{$:/config/AnimationDuration}}ms 0s;
 }
 
+<$list filter="[[$:/config/panel/river-obscured]get[text]!match[yes]]" variable="ignore">
+
+.btc-panel-hide.btc-panel-shown {
+	visibility: hidden;
+}
+
+@media (max-width: 800px) {
+	.btc-panel-hide.btc-panel-shown {
+		visibility: visible;
+	}
+}
+
+</$list>
+
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
 .btc-panel-hide.btc-panel-shown {
@@ -1362,7 +1376,7 @@ html {
 
 </$set>
 
-<$list filter="[{$:/state/dragging}match[yes]]">
+<$list filter="[{$:/state/dragging}match[yes]]" variable="ignore">
 
 .btc-activate-column-btn {
 	display: none;

@@ -2,8 +2,6 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Overlays/river-obscured
 tags: $:/tags/MultiColumn/Overlay
 
 \whitespace trim
-<$list filter="[{$:/config/panel/river-obscured}!match[no]]" variable="ignore">
-	<$eventcatcher selector=".btc-panel-shown" $click="""<$action-setfield $tiddler="$:/state/panel/visibility" text="no"/><$action-setfield $tiddler="$:/state/user-panel/visibility" text="no"/>""" class="btc-panel-shown-eventcatcher">
-		<div class={{{ [{$:/state/panel/visibility}match[yes]] [{$:/state/user-panel/visibility}match[yes]] +[limit[1]] +[then[btc-panel-hide tc-btn-invisible btc-panel-shown]else[btc-panel-hide tc-btn-invisible btc-panel-hidden]] }}}/>
-	</$eventcatcher>
-</$list>
+<$eventcatcher selector=".btc-panel-shown" $click="""<$action-setfield $tiddler="$:/state/panel/visibility" text="no"/><$action-setfield $tiddler="$:/state/user-panel/visibility" text="no"/>""" class="btc-panel-shown-eventcatcher">
+	<div class={{{ [{$:/state/panel/visibility}match[yes]] [{$:/state/user-panel/visibility}match[yes]] +[limit[1]] +[then[btc-panel-hide tc-btn-invisible btc-panel-shown]else[btc-panel-hide tc-btn-invisible btc-panel-hidden]] }}}/>
+</$eventcatcher>
