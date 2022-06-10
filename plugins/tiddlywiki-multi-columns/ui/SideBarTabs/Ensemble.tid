@@ -12,6 +12,15 @@ Give your ensemble a name:<br>
 Optionally, provide a list of tiddlers that should get the tag <<tag-pill "$:/tags/Stylesheet">> when the Ensemble is loaded:<br>
 <$edit-text tiddler="$:/temp/save-story/story-title" default="" field="stylesheets" placeholder="Stylesheets" tag="input"/>
 
+Optionally, provide a list of tiddlers that should get the tag <<tag-pill "$:/tags/TopToolbar">> when the Ensemble is loaded:<br>
+<$edit-text tiddler="$:/temp/save-story/story-title" default="" field="toptoolbars" placeholder="Top Toolbars" tag="input"/>
+
+Optionally, provide a list of tiddlers that should get the tag <<tag-pill "$:/tags/BottomToolbar">> when the Ensemble is loaded:<br>
+<$edit-text tiddler="$:/temp/save-story/story-title" default="" field="bottomtoolbars" placeholder="Bottom Toolbars" tag="input"/>
+
+Optionally, provide a list of tiddlers that should get the tag <<tag-pill "$:/tags/PageTemplate">> when the Ensemble is loaded:<br>
+<$edit-text tiddler="$:/temp/save-story/story-title" default="" field="pagetemplates" placeholder="PageTemplates" tag="input"/>
+
 <$let storyTitle={{{ [[$:/temp/save-story/story-title]get[text]] }}}>
 <$button><$macrocall $name="btc-save-story-actions" storyTitle=<<storyTitle>>/>Save</$button>
 </$let>

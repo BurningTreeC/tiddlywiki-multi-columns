@@ -41,6 +41,15 @@ Do you want to overwrite?
 <$list filter="[[$:/temp/save-story/story-title]get[stylesheets]!is[blank]]" variable="ignore">
 <$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} stylesheets={{{ [[$:/temp/save-story/story-title]get[stylesheets]] }}}/>
 </$list>
+<$list filter="[[$:/temp/save-story/story-title]get[toptoolbars]!is[blank]]" variable="ignore">
+<$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} toptoolbars={{{ [[$:/temp/save-story/story-title]get[toptoolbars]] }}}/>
+</$list>
+<$list filter="[[$:/temp/save-story/story-title]get[bottomtoolbars]!is[blank]]" variable="ignore">
+<$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} bottomtoolbars={{{ [[$:/temp/save-story/story-title]get[bottomtoolbars]] }}}/>
+</$list>
+<$list filter="[[$:/temp/save-story/story-title]get[pagetemplates]!is[blank]]" variable="ignore">
+<$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} pagetemplates={{{ [[$:/temp/save-story/story-title]get[pagetemplates]] }}}/>
+</$list>
 <$action-deletetiddler $tiddler="$:/temp/save-story/story-title"/>
 \end
 
@@ -116,12 +125,66 @@ Do you want to overwrite?
 </$list>
 </$set>
 </$list>
+<$list filter="[<storyTiddler>has[topbars]]" variable="ignore">
+<$set name="topbarsList" value={{{ [<storyTiddler>get[topbars]] }}}>
+<$list filter="[enlist<topbarsList>]" variable="topbarTiddler">
+<$fieldmangler tiddler=<<topbarTiddler>>>
+<$action-sendmessage $message="tm-remove-tag" $param="$:/tags/TopToolbar"/>
+</$fieldmangler>
+</$list>
+</$set>
+</$list>
+<$list filter="[<storyTiddler>has[bottombars]]" variable="ignore">
+<$set name="bottombarsList" value={{{ [<storyTiddler>get[bottombars]] }}}>
+<$list filter="[enlist<bottombarsList>]" variable="bottombarTiddler">
+<$fieldmangler tiddler=<<bottombarTiddler>>>
+<$action-sendmessage $message="tm-remove-tag" $param="$:/tags/BottomToolbar"/>
+</$fieldmangler>
+</$list>
+</$set>
+</$list>
+<$list filter="[<storyTiddler>has[pagetemplates]]" variable="ignore">
+<$set name="pagetemplatesList" value={{{ [<storyTiddler>get[pagetemplates]] }}}>
+<$list filter="[enlist<pagetemplatesList>]" variable="pagetemplateTiddler">
+<$fieldmangler tiddler=<<pagetemplateTiddler>>>
+<$action-sendmessage $message="tm-remove-tag" $param="$:/tags/PageTemplate"/>
+</$fieldmangler>
+</$list>
+</$set>
+</$list>
 </$list>
 <$list filter="[<storyTiddler>has[stylesheets]]" variable="ignore">
 <$set name="stylesheetsList" value={{{ [<storyTiddler>get[stylesheets]] }}}>
 <$list filter="[enlist<stylesheetsList>]" variable="stylesheetTiddler">
 <$fieldmangler tiddler=<<stylesheetTiddler>>>
 <$action-sendmessage $message="tm-add-tag" $param="$:/tags/Stylesheet"/>
+</$fieldmangler>
+</$list>
+</$set>
+</$list>
+<$list filter="[<storyTiddler>has[topbars]]" variable="ignore">
+<$set name="topbarsList" value={{{ [<storyTiddler>get[topbars]] }}}>
+<$list filter="[enlist<topbarsList>]" variable="topbarTiddler">
+<$fieldmangler tiddler=<<topbarTiddler>>>
+<$action-sendmessage $message="tm-add-tag" $param="$:/tags/TopToolbar"/>
+</$fieldmangler>
+</$list>
+</$set>
+</$list>
+<$list filter="[<storyTiddler>has[bottombars]]" variable="ignore">
+<$set name="bottombarsList" value={{{ [<storyTiddler>get[bottombars]] }}}>
+<$list filter="[enlist<bottombarsList>]" variable="bottombarTiddler">
+<$fieldmangler tiddler=<<bottombarTiddler>>>
+<$action-sendmessage $message="tm-add-tag" $param="$:/tags/BottomToolbar"/>
+</$fieldmangler>
+</$list>
+</$set>
+</$list>
+<$list filter="[<storyTiddler>has[pagetemplates]]" variable="ignore">
+<$set name="pagetemplatesList" value={{{ [<storyTiddler>get[pagetemplates]] }}}>
+<$list filter="[enlist<pagetemplatesList>]" variable="pagetemplateTiddler">
+<$fieldmangler tiddler=<<pagetemplateTiddler>>>
+<$action-sendmessage $message="tm-add-tag" $param="$:/tags/PageTemplate"/>
 </$fieldmangler>
 </$list>
 </$set>
