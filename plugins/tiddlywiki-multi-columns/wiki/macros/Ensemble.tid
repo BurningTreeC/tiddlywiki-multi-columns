@@ -162,8 +162,8 @@ Do you want to overwrite?
 </$list>
 </$set>
 </$list>
-<$list filter="[<storyTiddler>has[topbars]]" variable="ignore">
-<$set name="topbarsList" value={{{ [<storyTiddler>get[topbars]] }}}>
+<$list filter="[<storyTiddler>has[toptoolbars]]" variable="ignore">
+<$set name="topbarsList" value={{{ [<storyTiddler>get[toptoolbars]] }}}>
 <$list filter="[enlist<topbarsList>]" variable="topbarTiddler">
 <$fieldmangler tiddler=<<topbarTiddler>>>
 <$action-sendmessage $message="tm-add-tag" $param="$:/tags/TopToolbar"/>
@@ -171,8 +171,8 @@ Do you want to overwrite?
 </$list>
 </$set>
 </$list>
-<$list filter="[<storyTiddler>has[bottombars]]" variable="ignore">
-<$set name="bottombarsList" value={{{ [<storyTiddler>get[bottombars]] }}}>
+<$list filter="[<storyTiddler>has[bottomtoolbars]]" variable="ignore">
+<$set name="bottombarsList" value={{{ [<storyTiddler>get[bottomtoolbars]] }}}>
 <$list filter="[enlist<bottombarsList>]" variable="bottombarTiddler">
 <$fieldmangler tiddler=<<bottombarTiddler>>>
 <$action-sendmessage $message="tm-add-tag" $param="$:/tags/BottomToolbar"/>
