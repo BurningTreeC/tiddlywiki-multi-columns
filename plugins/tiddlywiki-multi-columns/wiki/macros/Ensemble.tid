@@ -78,6 +78,7 @@ Do you want to overwrite?
 \end
 
 \define btc-load-story-actions()
+<$list filter="[<storyTiddler>!is[missing]]" variable="ignore">
 <$list filter="[all[tiddlers]prefix[$:/StoryList]]" variable="storyListTiddler">
 <$action-deletetiddler $tiddler=<<storyListTiddler>>/>
 </$list>
@@ -192,4 +193,11 @@ Do you want to overwrite?
 <$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
 <$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
+</$list>
+\end
+
+\define ensemble(title)
+<$set name="storyTiddler" value={{{ [[$:/Story/]addsuffix<__title__>] }}}>
+<$button class="tc-btn-invisible" actions=<<btc-load-story-actions>>><$text text=<<__title__>>/></$button>
+</$set>
 \end
