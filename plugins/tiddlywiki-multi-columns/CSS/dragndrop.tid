@@ -53,6 +53,32 @@ tags: $:/tags/Stylesheet
 
 \end
 
+\define target-tiddler-margin()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
+.btc-river-$(currentRiver)$ .tc-tiddler-view-frame:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame, .btc-river-$(currentRiver)$ .tc-tiddler-edit-frame:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame {
+	margin-top: {{$:/config/story-river/tiddler-margin}}px;
+}
+
+.btc-river-$(currentRiver)$ .tc-tiddler-view-frame:first-of-type:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame, .btc-river-$(currentRiver)$ .tc-tiddler-edit-frame:first-of-type:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame {
+	margin-top: 0;
+}
+
+.btc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
+	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px));
+}
+
+\end
+
+\define target-tiddler-margin-nth-0()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
+.btc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
+	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px);
+}
+
+\end
+
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 
 .btc-droppable-top-half {

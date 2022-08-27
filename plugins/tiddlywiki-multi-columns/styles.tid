@@ -28,137 +28,13 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 </$list>
 \end
 
-\define style-focused-tiddler()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
-.btc-river-$(currentColumn)$ .btc-river-inner [data-tiddler-title="$(cssEscapedTitle)$"] > .tc-tiddler-frame {
-	border: {{$:/config/story-river/tiddler-border}}px solid <<colour focused-tiddler>>;
-}
 
-\end
 
-\define style-focused-tiddler-normal()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
-.tc-story-river [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
-	border: 1px solid <<colour focused-tiddler>>;
-}
 
-\end
-
-\define style-unfocused-tiddlers()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-
-.btc-river-$(column)$ .btc-river-inner [data-tiddler-title="$(cssEscapedTitle)$"] > .tc-tiddler-frame {
-	border: {{$:/config/story-river/tiddler-border}}px solid <<colour muted-foreground>>;
-}
-
-\end
-
-\define target-tiddler-margin()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-
-.btc-river-$(currentRiver)$ .tc-tiddler-view-frame:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame, .btc-river-$(currentRiver)$ .tc-tiddler-edit-frame:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame {
-	margin-top: {{$:/config/story-river/tiddler-margin}}px;
-}
-
-.btc-river-$(currentRiver)$ .tc-tiddler-view-frame:first-of-type:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame, .btc-river-$(currentRiver)$ .tc-tiddler-edit-frame:first-of-type:not([data-tiddler-title="$(targetTiddlerCSSEscaped)$"]) .tc-tiddler-frame {
-	margin-top: 0;
-}
-
-.btc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px));
-}
-
-\end
-
-\define target-tiddler-margin-nth-0()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-
-.btc-river-$(currentRiver)$ [data-tiddler-title="$(targetTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px);
-}
-
-\end
-
-\define scroll-margin-top-story-river-padding()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-
-.btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-view-frame, .btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-edit-frame {
-	scroll-margin-top: {{$:/config/story-river/padding}}px;
-	scroll-margin-left: {{$:/config/story-river/padding}}px;
-}
-
-\end
-
-\define scroll-margin-top()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-
-.btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-view-frame, .btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-edit-frame {
-	scroll-margin-top: {{{ [{$:/config/story-river/tiddler-margin}compare:number:lteq{$:/config/story-river/padding}] ~[{$:/config/story-river/padding}] }}}px;
-	scroll-margin-left: {{$:/config/story-river/padding}}px;
-}
-
-\end
-
-\define view-tiddler-full-screen()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-
-.btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(tiddlerTitleCSSEscaped)$"] {
-	position: fixed;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	z-index: 9999;
-}
-
-.btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(tiddlerTitleCSSEscaped)$"] > .tc-tiddler-frame {
-	min-height: 100%;
-	height: 100%;
-	overflow-y: scroll;
-	scroll-behavior: smooth;
-}
-
-\end
-
-\define inherit-overflow-columns()
-
-@media (min-width: 800px) {
-
-	.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > *:nth-child(<<column>>) {
-		overflow-y: hidden;
-	}
-
-	.btc-flextemplate-container main.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) {
-		overflow-x: hidden;
-	}
-
-}
-
-@media (max-width: 800px) {
-
-	.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > *:nth-child(<<column>>) {
-		overflow-y: hidden;
-	}
-
-	.btc-flextemplate-container main.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) {
-		overflow-x: hidden;
-	}
-
-}
-
-\end
 
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
-
-.btc-river-inner .tc-tiddler-frame {
-	border-top-width: {{$:/config/story-river/tiddler-border}}px;
-	border-bottom-width: {{$:/config/story-river/tiddler-border}}px;
-	border-left-width: {{$:/config/story-river/tiddler-border}}px;
-	border-right-width: {{$:/config/story-river/tiddler-border}}px;
-	margin-bottom: {{$:/config/story-river/tiddler-margin}}px;
-}
 
 
 
@@ -225,19 +101,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 
 
-/* Adjust width of things that were previously hardcoded */
 
-<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
-
-.btc-flextemplate-container .btc-river-<<currentColumn>> .tc-tiddler-frame {
-	width: 100%;
-}
-
-</$list>
-
-.btc-river-inner {
-	padding: {{$:/config/story-river/padding}}px;
-}
 
 .btc-column-active-button {
 	display: flex;
@@ -290,17 +154,7 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 </$list>
 
-<$list filter="[{$:/themes/tiddlywiki/vanilla/options/stickytitles}match[yes]]">
 
-<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage=<<sticky-titles>>>
-
-.tc-tiddler-title {
-	position: relative;
-}
-
-</$list>
-
-</$list>
 
 
 <$list filter="[list[$:/columns]] ~1" variable="currentColumn">
@@ -447,40 +301,6 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.tc-notification {
-	z-index: 10002;
-}
-
-hr.simple {
-	border: 0;
-	height: 1px;
-	background: <<colour foreground>>;
-}
-
 .btc-top-active-column-draggable {
 	cursor: default;
 }
@@ -498,123 +318,19 @@ hr.simple {
 
 
 
-<$list filter="[{$:/config/story-river/style-focused-tiddlers}!match[no]]" variable="ignore">
 
-<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
 
-<$let currentColumn={{$:/columns!!active-column}} currentHistoryList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}}>
 
-<$set name="cssEscapedTitle" value={{{ [<currentHistoryList>get[current-tiddler]escapecss[]] }}}>
 
-<<style-focused-tiddler>>
 
-</$set>
 
-<$list filter="[list[$:/columns]!match<currentColumn>]" variable="column">
 
-<$let currentHistoryList={{{ [[$:/HistoryList-]addsuffix<column>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} cssEscapedTitle={{{ [<currentHistoryList>get[current-tiddler]escapecss[]] }}}>
-
-<<style-unfocused-tiddlers>>
-
-</$let>
-
-</$list>
-
-</$let>
-
-"""><$text text=""/></$list>
-
-</$list>
-
-<$list filter="[list[$:/columns]]" variable="column">
-
-<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
-
-<$list filter="[list<storyList>nth[1]]" variable="tiddler">
-
-<$set name="cssEscapedTitle" value={{{ [<tiddler>escapecss[]] }}}>
-
-<<scroll-margin-top-story-river-padding>>
-
-</$set>
-
-</$list>
-
-<$list filter="[list<storyList>] -[list<storyList>nth[1]]" variable="tiddler">
-
-<$set name="cssEscapedTitle" value={{{ [<tiddler>escapecss[]] }}}>
-
-<<scroll-margin-top>>
-
-</$set>
-
-</$list>
-
-</$set>
-
-</$list>
-
-<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
-
-	<$vars column={{{ [<fullScreenTiddler>get[column]] }}} fullScreenTiddler={{{ [<fullScreenTiddler>removeprefix[$:/state/story-river/full-screen/]] }}}>
-
-		<$let tiddlerTitle=<<fullScreenTiddler>> tiddlerTitleCSSEscaped={{{ [<tiddlerTitle>escapecss[]] }}}>
-
-			<<view-tiddler-full-screen>>
-
-		</$let>
-
-	</$vars>
-
-	<$list filter="[list[$:/columns]]" variable="column">
-
-		<<inherit-overflow-columns>>
-
-	</$list>
-
-</$list>
-
-.tc-plugin-reload-warning {
-	position: inherit;
-	top: inherit;
-	left: inherit;
-	right: inherit;
-	width: 100%;
-	z-index: inherit;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
-}
-
-.tc-plugin-reload-warning > p {
-	margin-top: 0;
-	margin-bottom: 0;
-}
-
-.tc-modal-wrapper {
-	z-index: 10005;
-}
 
 {{$:/config/StoryViewAnimations}}
 
 </$list>
 
 <$list filter="[{$:/layout}!match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
-
-html {
-	scroll-behavior: smooth;
-}
-
-@media (prefers-reduced-motion) {
-	html {
-		scroll-behavior: auto;
-	}
-}
-
-<$set name="cssEscapedTitle" value={{{ [[$:/HistoryList]get[current-tiddler]escapecss[]] }}}>
-
-	<<style-focused-tiddler-normal>>
-
-</$set>
 
 .btc-panorama-button, .btc-remove-column-button, .btc-add-column-button, .btc-dragging-button {
 	display: none;

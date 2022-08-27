@@ -1,0 +1,75 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/CSS/fullscreen
+tags: $:/tags/Stylesheet
+
+\define view-tiddler-full-screen()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
+.btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(tiddlerTitleCSSEscaped)$"] {
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9999;
+}
+
+.btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(tiddlerTitleCSSEscaped)$"] > .tc-tiddler-frame {
+	min-height: 100%;
+	height: 100%;
+	overflow-y: scroll;
+	scroll-behavior: smooth;
+}
+
+\end
+
+\define inherit-overflow-columns()
+
+@media (min-width: 800px) {
+
+	.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > *:nth-child(<<column>>) {
+		overflow-y: hidden;
+	}
+
+	.btc-flextemplate-container main.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) {
+		overflow-x: hidden;
+	}
+
+}
+
+@media (max-width: 800px) {
+
+	.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > *:nth-child(<<column>>) {
+		overflow-y: hidden;
+	}
+
+	.btc-flextemplate-container main.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) {
+		overflow-x: hidden;
+	}
+
+}
+
+\end
+
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+
+	<$vars column={{{ [<fullScreenTiddler>get[column]] }}} fullScreenTiddler={{{ [<fullScreenTiddler>removeprefix[$:/state/story-river/full-screen/]] }}}>
+
+		<$let tiddlerTitle=<<fullScreenTiddler>> tiddlerTitleCSSEscaped={{{ [<tiddlerTitle>escapecss[]] }}}>
+
+			<<view-tiddler-full-screen>>
+
+		</$let>
+
+	</$vars>
+
+	<$list filter="[list[$:/columns]]" variable="column">
+
+		<<inherit-overflow-columns>>
+
+	</$list>
+
+</$list>
+
+</$list>

@@ -1,0 +1,71 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/CSS/focused-tiddlers
+tags: $:/tags/Stylesheet
+
+\define style-focused-tiddler()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
+.btc-river-$(currentColumn)$ .btc-river-inner [data-tiddler-title="$(cssEscapedTitle)$"] > .tc-tiddler-frame {
+	border: {{$:/config/story-river/tiddler-border}}px solid <<colour focused-tiddler>>;
+}
+
+\end
+
+\define style-focused-tiddler-normal()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
+.tc-story-river [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
+	border: 1px solid <<colour focused-tiddler>>;
+}
+
+\end
+
+\define style-unfocused-tiddlers()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
+.btc-river-$(column)$ .btc-river-inner [data-tiddler-title="$(cssEscapedTitle)$"] > .tc-tiddler-frame {
+	border: {{$:/config/story-river/tiddler-border}}px solid <<colour muted-foreground>>;
+}
+
+\end
+
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+
+<$list filter="[{$:/config/story-river/style-focused-tiddlers}!match[no]]" variable="ignore">
+
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
+
+<$let currentColumn={{$:/columns!!active-column}} currentHistoryList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}}>
+
+<$set name="cssEscapedTitle" value={{{ [<currentHistoryList>get[current-tiddler]escapecss[]] }}}>
+
+<<style-focused-tiddler>>
+
+</$set>
+
+<$list filter="[list[$:/columns]!match<currentColumn>]" variable="column">
+
+<$let currentHistoryList={{{ [[$:/HistoryList-]addsuffix<column>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} cssEscapedTitle={{{ [<currentHistoryList>get[current-tiddler]escapecss[]] }}}>
+
+<<style-unfocused-tiddlers>>
+
+</$let>
+
+</$list>
+
+</$let>
+
+"""><$text text=""/></$list>
+
+</$list>
+
+</$list>
+
+<$list filter="[{$:/layout}!match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+
+<$set name="cssEscapedTitle" value={{{ [[$:/HistoryList]get[current-tiddler]escapecss[]] }}}>
+
+	<<style-focused-tiddler-normal>>
+
+</$set>
+
+</$list>

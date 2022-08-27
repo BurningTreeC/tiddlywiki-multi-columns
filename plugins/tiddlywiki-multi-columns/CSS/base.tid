@@ -15,4 +15,80 @@ html {
 	}
 }
 
+.btc-river-inner .tc-tiddler-frame {
+	border-top-width: {{$:/config/story-river/tiddler-border}}px;
+	border-bottom-width: {{$:/config/story-river/tiddler-border}}px;
+	border-left-width: {{$:/config/story-river/tiddler-border}}px;
+	border-right-width: {{$:/config/story-river/tiddler-border}}px;
+	margin-bottom: {{$:/config/story-river/tiddler-margin}}px;
+}
+
+<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
+
+.btc-flextemplate-container .btc-river-<<currentColumn>> .tc-tiddler-frame {
+	width: 100%;
+}
+
+</$list>
+
+.btc-river-inner {
+	padding: {{$:/config/story-river/padding}}px;
+}
+
+<$list filter="[{$:/themes/tiddlywiki/vanilla/options/stickytitles}match[yes]]">
+
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage=<<sticky-titles>>>
+
+.tc-tiddler-title {
+	position: relative;
+}
+
+</$list>
+
+</$list>
+
+.tc-notification {
+	z-index: 10002;
+}
+
+hr.simple {
+	border: 0;
+	height: 1px;
+	background: <<colour foreground>>;
+}
+
+.tc-plugin-reload-warning {
+	position: inherit;
+	top: inherit;
+	left: inherit;
+	right: inherit;
+	width: 100%;
+	z-index: inherit;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+.tc-plugin-reload-warning > p {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.tc-modal-wrapper {
+	z-index: 10005;
+}
+
+</$list>
+
+<$list filter="[{$:/layout}!match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+
+html {
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
 </$list>
