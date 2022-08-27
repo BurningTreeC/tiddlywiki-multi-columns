@@ -1,0 +1,57 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/CSS/sidebar-flexpanel
+tags: $:/tags/Stylesheet
+
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+
+.btc-sidebar-flexpanel {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: stretch;
+	height: 25px;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.btc-sidebar-flexpanel .btc-sidebar-flexpanel-column-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: stretch;
+	overflow: hidden;
+}
+
+<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
+
+.btc-sidebar-flexpanel-column-container > *:nth-child(<<currentColumn>>) {
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+}
+
+</$list>
+
+.btc-sidebar-flexpanel .btc-column-active-button {
+	height: 25px;
+}
+
+.btc-sidebar-flexpanel .btc-column-active-button:first-of-type {
+	border: 1px dashed <<colour column-active-button-border>>;
+}
+
+.btc-sidebar-flexpanel .btc-column-active-button {
+	border-top: 1px dashed <<colour column-active-button-border>>;
+	border-bottom: 1px dashed <<colour column-active-button-border>>;
+	border-right: 1px dashed <<colour column-active-button-border>>;
+}
+
+.btc-sidebar-flexpanel-column-counter {
+	width: 100%;
+	text-align: center;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+</$list>

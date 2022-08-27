@@ -1,6 +1,33 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/CSS/base
 tags: $:/tags/Stylesheet
 
+\define sticky-titles()
+``
+.tc-tiddler-title {
+	position: -webkit-sticky;
+	position: -moz-sticky;
+	position: -o-sticky;
+	position: -ms-sticky;
+	position: sticky;
+	top: 0px;
+	background: ``<<colour tiddler-background>>``;
+}
+
+``
+<$list filter="[range[100]]">
+`.btc-river-inner .btc-tiddler-zindex-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) {
+z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
+}
+`
+</$list>
+<$list filter="[range[100]]">
+`.btc-river-inner .btc-tiddler-zindex-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) .tc-tiddler-title {
+z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
+}
+`
+</$list>
+\end
+
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 
 <<set-color-scheme>>
@@ -76,6 +103,8 @@ hr.simple {
 .tc-modal-wrapper {
 	z-index: 10005;
 }
+
+{{$:/config/StoryViewAnimations}}
 
 </$list>
 
