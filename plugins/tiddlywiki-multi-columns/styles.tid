@@ -81,58 +81,6 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 \end
 
-\define tiddler-frame-transitions()
-
-.btc-river-inner > .tc-tiddler-view-frame > .tc-tiddler-frame, .btc-river-inner > .tc-tiddler-edit-frame > .tc-tiddler-frame {
-	transition: margin-top {{$:/config/AnimationDuration}}ms cubic-bezier(0.645, 0.045, 0.355, 1), margin-bottom {{$:/config/AnimationDuration}}ms cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-\end
-
-\define position-start-tiddlers-no-copying()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-
-.btc-river-$(currentRiver)$ .btc-river-inner > [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"].tc-tiddler-view-frame > .tc-tiddler-frame, .btc-river-$(currentRiver)$ .btc-river-inner > [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"].tc-tiddler-edit-frame > .tc-tiddler-frame {
-	transition: none;
-}
-
-.btc-river-$(currentRiver)$ [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px));
-}
-
-\end
-
-\define position-start-tiddlers-no-copying-nth-0()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-
-.btc-river-$(currentRiver)$ [data-tiddler-title="$(startingNextTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px);
-}
-
-\end
-
-\define position-start-tiddlers-copying()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-
-.btc-river-$(currentRiver)$ .btc-river-inner > [data-tiddler-title="$(dragTiddlerCSSEscaped)$"].tc-tiddler-view-frame > .tc-tiddler-frame, .btc-river-$(currentRiver)$ .btc-river-inner > [data-tiddler-title="$(dragTiddlerCSSEscaped)$"].tc-tiddler-edit-frame > .tc-tiddler-frame {
-	transition: none;
-}
-
-.btc-river-$(currentRiver)$ [data-tiddler-title="$(dragTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + (2 * {{$:/config/story-river/tiddler-margin}}px));
-}
-
-\end
-
-\define position-start-tiddlers-copying-nth-0()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-
-.btc-river-$(currentRiver)$ [data-tiddler-title="$(dragTiddlerCSSEscaped)$"] .tc-tiddler-frame {
-	margin-top: calc({{$:/state/dragging!!height}}px + {{$:/config/story-river/tiddler-margin}}px);
-}
-
-\end
-
 \define scroll-margin-top-story-river-padding()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
@@ -204,18 +152,6 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 
-<<set-color-scheme>>
-
-html {
-	scroll-behavior: smooth;
-}
-
-@media (prefers-reduced-motion) {
-	html {
-		scroll-behavior: auto;
-	}
-}
-
 .btc-river-inner .tc-tiddler-frame {
 	border-top-width: {{$:/config/story-river/tiddler-border}}px;
 	border-bottom-width: {{$:/config/story-river/tiddler-border}}px;
@@ -224,389 +160,14 @@ html {
 	margin-bottom: {{$:/config/story-river/tiddler-margin}}px;
 }
 
-.btc-panel {
-	visibility: hidden;
-	transition: visibility 0s calc(2 * {{$:/config/AnimationDuration}}ms);
-	-webkit-transition: visibility 0s calc(2 * {{$:/config/AnimationDuration}}ms);
-}
 
-.btc-panel.btc-panel-is-visible {
-	visibility: visible;
-	transition: visibility 0s 0s;
-}
 
-.btc-panel-hide {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	width: 100vw;
-	height: 100vh;
-	background: 0 0;
-	visibility: hidden;
-	z-index: 10000;
-	cursor: pointer;
-	-webkit-transition: background {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, visibility 0s calc(2 * {{$:/config/AnimationDuration}}ms);
-	transition: background {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, visibility 0s calc(2 * {{$:/config/AnimationDuration}}ms);
-}
 
-.btc-panel-hide.btc-panel-shown {
-	visibility: visible;
-	background: <<colour hide-panel-button-light>>;
-	-webkit-transition: background {{$:/config/AnimationDuration}}ms 0s;
-	transition: background {{$:/config/AnimationDuration}}ms 0s;
-}
 
-<$list filter="[[$:/config/panel/river-obscured]get[text]!match[yes]]" variable="ignore">
 
-.btc-panel-hide.btc-panel-shown {
-	visibility: hidden;
-}
 
-@media (max-width: 800px) {
-	.btc-panel-hide.btc-panel-shown {
-		visibility: visible;
-	}
-}
 
-</$list>
 
-<$list filter="[{$:/palette}get[color-scheme]match[dark]]">
-
-.btc-panel-hide.btc-panel-shown {
-	background: <<colour hide-panel-button-dark>>;
-}
-
-</$list>
-
-.btc-panel-header {
-	position: fixed;
-	top: 0;
-	width: 90%;
-	height: 50px;
-	transition: transform {{$:/config/AnimationDuration}}ms 0s;
-	transform: translateY(-78px);
-	z-index: 10002;
-	line-height: 50px;
-	box-shadow: 0 1px 1px <<colour panel-header-box-shadow-light>>;
-	background-color: <<colour panel-header-background-light>>;
-}
-
-.btc-search-panel {
-	position: fixed;
-	left: 0;
-	width: 100%;
-	height: 75px;
-	transition: transform calc({{$:/config/AnimationDuration}}ms / 2) calc({{$:/config/AnimationDuration}}ms / 2);
-	z-index: 10003;
-}
-
-<$list filter="[[$:/state/panel/visibility]get[text]match[yes]]" variable="ignore">
-
-@media (max-width: 800px) {
-	.btc-search-panel {
-		display: none;
-	}
-}
-
-</$list>
-
-.btc-search-panel.btc-search-panel-from-top {
-	top: 0;
-	transform: translateY(-75px);
-}
-
-.btc-search-panel.btc-search-panel-from-bottom {
-	bottom: 0;
-	transform: translateY(75px);
-}
-
-.btc-search-panel-is-visible.btc-search-panel {
-	transition: transform {{$:/config/AnimationDuration}}ms 0s;
-	transform: translateY(0px);
-}
-
-.btc-search-panel-inner {
-	position: relative;
-	height: 100%;
-	line-height: 100%;
-	width: 100%;
-	padding: 15px;
-}
-
-.btc-search-panel-input {
-	border-radius: 4px;
-	border: 1px solid <<colour foreground>>;
-	box-shadow: 0px 0px 15px <<colour search-panel-box-shadow-light>>;
-	width: 100%;
-	height: 100%;
-	padding-left: 10px;
-	padding-right: 70px;
-	outline: none;
-	font-size: 1.35em;
-}
-
-.btc-search-panel-matches {
-	position: absolute;
-	left: 0;
-	width: 100%;
-	background-color: <<colour tiddler-background>>;
-	padding: 15px;
-	border-radius: 4px;
-	border: 1px solid <<colour foreground>>;
-	box-shadow: 0px 0px 15px <<colour search-panel-box-shadow-light>>;
-}
-
-.btc-search-panel.btc-search-panel-from-top .btc-search-panel-matches {
-	top: 75px;
-}
-
-.btc-search-panel.btc-search-panel-from-bottom .btc-search-panel-matches {
-	bottom: 75px;
-}
-
-<$list filter="[{$:/palette}get[color-scheme]match[dark]]">
-
-.btc-panel-header {
-	box-shadow: 0px 1px 1px <<colour panel-header-box-shadow-dark>>;
-	background-color: <<colour panel-header-background-dark>>
-}
-
-.btc-search-panel-input {
-	box-shadow: 0px 0px 15px <<colour search-panel-box-shadow-dark>>;
-}
-
-.btc-search-panel-matches {
-	box-shadow: 0px 0px 15px <<colour search-panel-box-shadow-dark>>;
-}
-
-</$list>
-
-.btc-panel-header h1 {
-	color: <<colour primary>>;
-	padding-left: 5%;
-	margin-top: 0;
-	margin-bottom: 0;
-	line-height: 50px;
-}
-
-.btc-panel-header h4 {
-	padding-left: 5%;
-	line-height: 15px;
-	margin: 3px 0 0 0;
-}
-
-.btc-panel-from-right .btc-panel-header {
-	right: 0;
-}
-
-.btc-panel-from-left .btc-panel-header {
-	left: 0;
-}
-
-.btc-panel-is-visible .btc-panel-header {
-	transition: transform {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
-	transform: translateY(0px);
-}
-
-.btc-panel-container {
-	display: flex;
-	flex-direction: column;
-	align-content: start;
-	overflow: hidden !important;
-	background-color: <<colour page-background>>;
-	position: fixed;
-	width: {{$:/config/panel/panel-width-below-768px}};
-	height: 100%;
-	min-height: 100%;
-	top: 0;
-	bottom: 0;
-	z-index: 10001;
-	transition: transform {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
-}
-
-.btc-panel-container > div {
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
-}
-
-.btc-panel-container .btc-panel-container-spacer {
-	flex: 1 0 78px;
-}
-
-.btc-panel-from-right .btc-panel-container {
-	box-shadow: -1px 0px 1px <<colour panel-container-box-shadow-light>>;
-}
-
-.btc-panel-from-left .btc-panel-container {
-	box-shadow: 1px 0px 1px <<colour panel-container-box-shadow-light>>;
-}
-
-<$list filter="[[$:/state/panel/visibility]get[text]match[yes]then[$:/state/user-panel/visibility]get[text]match[yes]]" variable="ignore">
-
-.btc-panel-from-left .btc-panel-container {
-	z-index: 10002;
-}
-
-.btc-panel-from-left .btc-panel-header {
-	z-index: 10003;
-}
-
-.tc-notification {
-	z-index: 10003;
-}
-
-</$list>
-
-<$list filter="[{$:/palette}get[color-scheme]match[dark]]">
-
-.btc-panel-container {
-	box-shadow: 0px 1px 1px <<colour panel-container-box-shadow-dark>>;
-}
-
-</$list>
-
-@media only screen and (min-width: 768px) {
-	.btc-panel-container, .btc-panel-header {
-		width: {{$:/config/panel/panel-width-below-1170px}};
-	}
-
-	.btc-search-panel {
-		width: 550px;
-		left: calc((100vw / 2) - 275px);
-	}
-}
-
-@media only screen and (min-width: 1170px) {
-	.btc-panel-container, .btc-panel-header {
-		width: {{$:/config/panel/panel-width-above-1170px}};
-	}
-
-	.btc-search-panel {
-		width: 400px;
-		left: calc((100vw / 2) - 200px);
-	}
-}
-
-.btc-panel-from-right .btc-panel-container {
-	right: 0;
-	transform: translate3d(100%, 0, 0);
-}
-
-.btc-panel-from-left .btc-panel-container {
-	left: 0;
-	transform: translate3d(-100%, 0, 0);
-}
-
-.btc-panel-is-visible .btc-panel-container {
-	transform: translate3d(0, 0, 0);
-	transition-delay: 0s;
-}
-
-@-webkit-keyframes cd-close-1 {
-	0%,50% {
-		-webkit-transform:rotate(0deg);
-		transform:rotate(0deg);
-	} 100% {
-		-webkit-transform:rotate(45deg);
-		transform:rotate(45deg);
-	}
-}
-
-@keyframes cd-close-1 {
-	0%,50% {
-		-webkit-transform:rotate(0deg);
-		transform:rotate(0deg);
-	} 100% {
-		-webkit-transform:rotate(45deg);
-		transform:rotate(45deg);
-	}
-}
-
-@-webkit-keyframes cd-close-2 {
-	0%,50% {
-		-webkit-transform:rotate(0deg);
-		transform:rotate(0deg);
-	} 100% {
-		-webkit-transform:rotate(-45deg);
-		transform:rotate(-45deg);
-	}
-}
-
-@keyframes cd-close-2 {
-	0%,50% {
-		-webkit-transform:rotate(0deg);
-		transform:rotate(0deg);
-	} 100% {
-		-webkit-transform:rotate(-45deg);
-		transform:rotate(-45deg);
-	}
-}
-
-.btc-panel-close {
-	position: absolute;
-	top: 0;
-	right: 0;
-	height: 100%;
-	width: 60px;
-	display: inline-block;
-	overflow: hidden;
-	text-indent: 100%;
-	white-space: nowrap;
-}
-
-.btc-search-panel-close {
-	position: absolute;
-	top: 15px;
-	right: 15px;
-	height: calc(100% - 30px);
-	display: inline-block;
-	overflow: hidden;
-	text-indent: 100%;
-	white-space: nowrap;
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 4px;
-	width: 60px;
-}
-
-<$list filter="[{$:/config/story-river/hamburger-top}!match[yes]]" variable="ignore">
-
-<$list filter="[all[tiddlers+shadows]tag[$:/tags/TopToolbar]get[hamburgers]match[yes]] +[limit[1]]" variable="ignore" emptyMessage="""
-
-.btc-panel-show, .btc-user-panel-show {
-	position: fixed;
-	top: 0;
-	right: 15px;
-	display: inline-block;
-	z-index: 10001;
-	line-height: 1.2;
-	padding: 0;
-}
-
-.btc-user-panel-show {
-	right: inherit;
-	left: 5px;
-}
-
-<$list filter="[{$:/config/panel/position}match[left]]" variable="ignore">
-
-.btc-panel-show {
-	left: 5px;
-	right: inherit;
-}
-
-.btc-user-panel-show {
-	left: inherit;
-	right: 15px;
-}
-
-</$list>
-
-"""><$text text=""/></$list>
-
-</$list>
 
 <$list filter="[{$:/config/story-river/hamburger-top}match[yes]]" variable="ignore">
 
@@ -642,156 +203,6 @@ html {
 }
 
 </$list>
-
-.btc-panel-show svg, .btc-user-panel-show svg {
-	fill: <<colour show-panel-button>>;
-}
-
-.btc-panel-show:hover svg, .btc-user-panel-show:hover svg {
-	fill: <<colour show-panel-button-foreground>>;
-}
-
-.btc-panel-close:hover, .btc-search-panel-close:hover {
-	background-color: <<colour foreground>>;
-}
-
-.btc-panel-is-visible .btc-panel-close::before {
-	-webkit-animation: cd-close-1 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
-	animation: cd-close-1 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
-}
-
-.btc-search-panel-is-visible .btc-search-panel-close::before {
-	-webkit-animation: cd-close-1 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 4);
-	animation: cd-close-1 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 4);	
-}
-
-.btc-panel-close::before, .btc-search-panel-close::before {
-	-webkit-transform: rotate(45deg);
-	transform: rotate(45deg);
-}
-
-.btc-panel-close::before, .btc-panel-close::after, .btc-search-panel-close::before, .btc-search-panel-close::after {
-	content: " ";
-	position: absolute;
-	top: 22px;
-	left: 20px;
-	height: 3px;
-	width: 20px;
-	background-color: <<colour foreground>>;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-}
-
-.btc-panel-close:hover::before, .btc-search-panel-close:hover::before {
-	-webkit-transform: rotate(220deg);
-	transform: rotate(220deg);
-}
-
-.btc-panel-close:hover::before, .btc-panel-close:hover::after, .btc-search-panel-close:hover::before, .btc-search-panel-close:hover::after {
-	background-color: <<colour background>>;
-	-webkit-transition: -webkit-transform {{$:/config/AnimationDuration}}ms;
-	transition: -webkit-transform {{$:/config/AnimationDuration}}ms;
-	transition: transform {{$:/config/AnimationDuration}}ms;
-	transition: transform {{$:/config/AnimationDuration}}ms,-webkit-transform {{$:/config/AnimationDuration}}ms;
-}
-
-.btc-panel-is-visible .btc-panel-close::after, .btc-search-panel-is-visible .btc-search-panel-close::after {
-	-webkit-animation: cd-close-2 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
-	animation: cd-close-2 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
-}
-
-.btc-search-panel-is-visible .btc-search-panel-close::after {
-	-webkit-animation: cd-close-2 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 4);
-	animation: cd-close-2 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 4);
-}
-
-.btc-panel-close:hover::after, .btc-search-panel-close:hover::after {
-	-webkit-transform: rotate(135deg);
-	transform: rotate(135deg);
-}
-
-.btc-panel-close::after, .btc-search-panel-close::after {
-	-webkit-transform: rotate(-45deg);
-	transform: rotate(-45deg);
-}
-
-.btc-panel-content-header {
-	display: flex;
-	flex-direction: column;
-	flex-basis: calc(100% - 78px);
-	min-width: 100%;
-	overflow: hidden;
-}
-
-.btc-panel-content-header .tc-page-controls .btc-panorama-button, .btc-hamburger-topbar .tc-page-controls .btc-panorama-button {
-	margin-left: -2px;
-	margin-right: 0.4em;
-}
-
-.tc-tab-content.tc-sidebar-tabs-main .btc-panorama-button svg {
-	height: 1.5em;
-	width: 1.5em;
-}
-
-.btc-panel-content {
-	display: flex;
-	flex-direction: column;
-	height: calc(100% - 25px);
-	overflow: hidden;
-	padding-left: 5%;
-	padding-right: 5%;
-}
-
-.btc-panel-content .tc-sidebar-lists.tc-sidebar-tabs, .btc-panel-content .tc-tab-set.tc-sidebar-tabs-main {
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
-	width: 100%;
-}
-
-.btc-panel-content .tc-sidebar-lists.tc-sidebar-tabs > p {
-	display: flex;
-	overflow: hidden;
-}
-
-.btc-panel-content .tc-tab-content.tc-sidebar-tabs-main {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	align-content: start;
-	overflow: hidden;
-}
-
-.btc-panel-content .tc-tab-content.tc-sidebar-tabs-main > * {
-	flex: 1;
-	overflow: auto;
-	height: 100%;
-}
-
-.btc-user-panel-container {
-	position: absolute;
-	top: 78px;
-	padding-left: 5%;
-	padding-right: 5%;
-	height: calc(100% - 78px);
-	min-height: calc(100% - 78px);
-	min-width: 100%;
-	overflow: auto;
-}
-
-.btc-panel-content .tc-sidebar-lists.tc-sidebar-tabs p {
-	margin-top: 3px;
-	margin-bottom: 3px;
-}
-
-.btc-panel-content .tc-sidebar-lists.tc-sidebar-search p {
-	margin-bottom: 3px;
-}
-
-
-
-
-
 
 
 
@@ -1023,166 +434,42 @@ html {
 	-ms-user-select: none;
 }
 
-.btc-droppable-top-half {
-	position: absolute;
-	top: calc(-{{$:/config/story-river/tiddler-margin}}px - {{$:/config/story-river/tiddler-border}}px);
-	left: calc(-{{$:/config/story-river/padding}}px - {{$:/config/story-river/tiddler-border}}px);
-	height: calc(50% + {{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/tiddler-border}}px);
-	width: calc(100% + (2 * {{$:/config/story-river/padding}}px) + (2 * {{$:/config/story-river/tiddler-border}}px));
-	display: none;
-	z-index: 501;
-}
 
-.tc-tiddler-view-frame:first-of-type .btc-droppable-top-half, .tc-tiddler-edit-frame:first-of-type .btc-droppable-top-half {
-	top: calc(-{{$:/config/story-river/padding}}px - {{$:/config/story-river/tiddler-border}}px);
-	height: calc(50% + {{$:/config/story-river/padding}}px + {{$:/config/story-river/tiddler-border}}px);
-}
 
-.btc-droppable-bottom-half {
-	position: absolute;
-	top: 50%;
-	left: calc(-{{$:/config/story-river/padding}}px - {{$:/config/story-river/tiddler-border}}px);
-	height: calc(50% + {{$:/config/story-river/tiddler-border}}px);
-	width: calc(100% + (2 * {{$:/config/story-river/padding}}px) + (2 * {{$:/config/story-river/tiddler-border}}px));
-	z-index: 501;
-	display: none;
-}
 
-.btc-droppable-top-half.tc-dragover {
-	height: calc(50% + (2 * {{$:/config/story-river/tiddler-margin}}px) + {{$:/state/dragging!!height}}px);
-	top: calc(-{{$:/state/dragging!!height}}px - (2 * {{$:/config/story-river/tiddler-margin}}px));
-}
 
-.tc-tiddler-view-frame:first-of-type .btc-droppable-top-half.tc-dragover, .tc-tiddler-edit-frame:first-of-type .btc-droppable-top-half.tc-dragover {
-	height: calc(50% + {{$:/config/story-river/tiddler-margin}}px + {{$:/config/story-river/padding}}px + {{$:/state/dragging!!height}}px);
-	top: calc(-{{$:/state/dragging!!height}}px - {{$:/config/story-river/tiddler-margin}}px - {{$:/config/story-river/padding}}px);
-}
 
-.btc-droppable-bottom-half.tc-dragover {
-	height: calc(50% + {{$:/config/story-river/tiddler-margin}}px + {{$:/state/dragging!!height}}px);
-}
 
-<$list filter="[{$:/state/dragging}match[yes]]">
 
-.btc-droppable-top-half, .btc-droppable-bottom-half {
-	display: block;
-}
 
-<$set name="dragTiddler" value={{$:/state/dragging!!drag-tiddler}}>
 
-<$set name="dragTiddlerCSSEscaped" value={{{ [<dragTiddler>escapecss[]] }}}>
 
-<<tiddler-frame-transitions>>
 
-</$set>
 
-</$set>
 
-</$list>
 
-<$set name="currentRiver" value={{$:/state/dragging!!river}}>
 
-<$set name="story" value={{{ [[$:/StoryList-]addsuffix<currentRiver>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
 
-<$set name="targetTiddler" value={{$:/state/dragging!!target}}>
 
-<$set name="nextTiddler" value={{{ [list<story>after<targetTiddler>] }}}>
 
-<$set name="margin" value={{$:/state/dragging!!margin}}>
 
-<$set name="targetTiddlerCSSEscaped" value={{{ [<margin>match[top]then<targetTiddler>escapecss[]] :else[<margin>match[bottom]then<nextTiddler>escapecss[]] }}}>
 
-<<target-tiddler-margin>>
 
-<$list filter="[{$:/state/dragging!!nth}match[0]]">
 
-<<target-tiddler-margin-nth-0>>
 
-</$list>
 
-</$set>
 
-</$set>
 
-</$set>
 
-</$set>
 
-</$set>
 
-</$set>
 
-<$list filter="[{$:/state/dragging}match[yes]]" variable="ignore">
 
-.btc-activate-column-btn {
-	display: none;
-}
 
-.btc-river-inner {
-	height: 100%;
-	position: absolute;
-	width: 100%;
-}
 
-.btc-river-inner > .tc-droppable {
-	position: absolute;
-	height: calc(100% - (2 * {{$:/config/story-river/padding}}px));
-	width: calc(100% - (2 * {{$:/config/story-river/padding}}px));
-}
 
-</$list>
 
-<$list filter="[{$:/config/story-river/dragging-enable}!match[no]]">
 
-.tc-tiddler-frame img {
-	-webkit-user-drag: none;
-	-khtml-user-drag: none;
-	-moz-user-drag: none;
-	-o-user-drag: none;
-	user-drag: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-o-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	touch-action: none;
-	pointer-events: none;
-}
-
-</$list>
-
-.btc-river-inner > .tc-tiddler-view-frame > .tc-draggable, .btc-river-inner > .tc-tiddler-edit-frame > .tc-draggable {
-	cursor: default;
-}
-
-<$let currentRiver={{$:/state/dragging!!start-river}} dragTiddler={{$:/state/dragging!!drag-tiddler}} startingNextTiddler={{$:/state/dragging!!starting-next-tiddler}} startingNextTiddlerCSSEscaped={{{ [<startingNextTiddler>escapecss[]] }}} dragTiddlerCSSEscaped={{{ [<dragTiddler>escapecss[]] }}}>
-
-<$list filter="[{$:/state/dragging!!copying}!match[yes]]">
-
-<<position-start-tiddlers-no-copying>>
-
-<$list filter="[{$:/state/dragging!!nth}match[0]]">
-
-<<position-start-tiddlers-no-copying-nth-0>>
-
-</$list>
-
-</$list>
-
-<$list filter="[{$:/state/dragging!!copying}match[yes]]">
-
-<<position-start-tiddlers-copying>>
-
-<$list filter="[{$:/state/dragging!!nth}match[0]]">
-
-<<position-start-tiddlers-copying-nth-0>>
-
-</$list>
-
-</$list>
-
-</$let>
 
 .tc-notification {
 	z-index: 10002;
@@ -1198,87 +485,18 @@ hr.simple {
 	cursor: default;
 }
 
-.btc-bottom-right-panel {
-	position: fixed;
-	right: 0;
-	bottom: 0;
-	font-size: 35px;
-	margin-bottom: 25px;
-	margin-right: 25px;
-	max-width: 35px;
-	z-index: 9999;
-	transition: right {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
-}
 
-.btc-bottom-right-panel.btc-bottom-right-panel-sidebar-shown {
-	transition: right {{$:/config/AnimationDuration}}ms 0s;
-}
 
-<$list filter="[[$:/config/story-river/scroll-snap-x]get[text]!match[yes]]" variable="ignore">
 
-<$list filter="[[$:/config/story-river/adapt-to-panel]get[text]match[yes]]" variable="ignore">
 
-<$list filter="[[$:/config/panel/position]get[text]match[right]]" variable="ignore">
 
-@media (min-width: 800px) {
 
-	.btc-bottom-right-panel.btc-bottom-right-panel-sidebar-shown {
-		right: {{$:/config/panel/panel-width-below-768px}};
-	}
 
-	@media only screen and (min-width: 768px) {
 
-		.btc-bottom-right-panel.btc-bottom-right-panel-sidebar-shown {
-			right: {{$:/config/panel/panel-width-below-1170px}};
-		}
-	}
 
-	@media only screen and (min-width: 1170px) {
 
-		.btc-bottom-right-panel.btc-bottom-right-panel-sidebar-shown {
-			right: {{$:/config/panel/panel-width-above-1170px}};
-		}
-	}
 
-}
 
-</$list>
-
-</$list>
-
-</$list>
-
-.btc-bottom-right-panel svg {
-	fill: <<colour muted-foreground>>;
-}
-
-.btc-bottom-right-panel .tc-btn-invisible:hover svg {
-	fill: <<colour foreground>>;
-}
-
-.btc-bottom-right-panel .tc-btn-invisible.tc-selected svg {
-	fill: <<colour tiddler-controls-foreground-selected>>;
-}
-
-<$wikify name="dropshadowColour" text="""<<colour selected-dropshadow-light>>""">
-
-	.btc-bottom-right-panel .tc-btn-invisible.tc-selected {
-		<$macrocall $name="filter" filter={{{ [[drop-shadow(0px -1px 2px ]addsuffix<dropshadowColour>addsuffix[)]] }}}/>
-	}
-
-</$wikify>
-
-<$list filter="[{$:/palette}get[color-scheme]match[dark]]">
-
-	<$wikify name="dropshadowColour" text="""<<colour selected-dropshadow-dark>>""">
-
-		.btc-bottom-right-panel .tc-btn-invisible.tc-selected {
-			<$macrocall $name="filter" filter={{{ [[drop-shadow(0px -1px 2px ]addsuffix[$(dropshadowColour)$]addsuffix[)]] }}}/>
-		}
-
-	</$wikify>
-
-</$list>
 
 <$list filter="[{$:/config/story-river/style-focused-tiddlers}!match[no]]" variable="ignore">
 

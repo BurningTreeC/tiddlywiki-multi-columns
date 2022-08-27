@@ -1,0 +1,18 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/CSS/base
+tags: $:/tags/Stylesheet
+
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+
+<<set-color-scheme>>
+
+html {
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+</$list>

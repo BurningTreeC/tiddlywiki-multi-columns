@@ -1,0 +1,88 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/CSS/bottom-right-panel
+tags: $:/tags/Stylesheet
+
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+
+.btc-bottom-right-panel {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	font-size: 35px;
+	margin-bottom: 25px;
+	margin-right: 25px;
+	max-width: 35px;
+	z-index: 9999;
+	transition: right {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
+}
+
+.btc-bottom-right-panel.btc-bottom-right-panel-sidebar-shown {
+	transition: right {{$:/config/AnimationDuration}}ms 0s;
+}
+
+<$list filter="[[$:/config/story-river/scroll-snap-x]get[text]!match[yes]]" variable="ignore">
+
+<$list filter="[[$:/config/story-river/adapt-to-panel]get[text]match[yes]]" variable="ignore">
+
+<$list filter="[[$:/config/panel/position]get[text]match[right]]" variable="ignore">
+
+@media (min-width: 800px) {
+
+	.btc-bottom-right-panel.btc-bottom-right-panel-sidebar-shown {
+		right: {{$:/config/panel/panel-width-below-768px}};
+	}
+
+	@media only screen and (min-width: 768px) {
+
+		.btc-bottom-right-panel.btc-bottom-right-panel-sidebar-shown {
+			right: {{$:/config/panel/panel-width-below-1170px}};
+		}
+	}
+
+	@media only screen and (min-width: 1170px) {
+
+		.btc-bottom-right-panel.btc-bottom-right-panel-sidebar-shown {
+			right: {{$:/config/panel/panel-width-above-1170px}};
+		}
+	}
+
+}
+
+</$list>
+
+</$list>
+
+</$list>
+
+.btc-bottom-right-panel svg {
+	fill: <<colour muted-foreground>>;
+}
+
+.btc-bottom-right-panel .tc-btn-invisible:hover svg {
+	fill: <<colour foreground>>;
+}
+
+.btc-bottom-right-panel .tc-btn-invisible.tc-selected svg {
+	fill: <<colour tiddler-controls-foreground-selected>>;
+}
+
+<$wikify name="dropshadowColour" text="""<<colour selected-dropshadow-light>>""">
+
+	.btc-bottom-right-panel .tc-btn-invisible.tc-selected {
+		<$macrocall $name="filter" filter={{{ [[drop-shadow(0px -1px 2px ]addsuffix<dropshadowColour>addsuffix[)]] }}}/>
+	}
+
+</$wikify>
+
+<$list filter="[{$:/palette}get[color-scheme]match[dark]]">
+
+	<$wikify name="dropshadowColour" text="""<<colour selected-dropshadow-dark>>""">
+
+		.btc-bottom-right-panel .tc-btn-invisible.tc-selected {
+			<$macrocall $name="filter" filter={{{ [[drop-shadow(0px -1px 2px ]addsuffix[$(dropshadowColour)$]addsuffix[)]] }}}/>
+		}
+
+	</$wikify>
+
+</$list>
+
+</$list>

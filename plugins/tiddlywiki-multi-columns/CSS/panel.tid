@@ -1,3 +1,381 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/CSS/panel
 tags: $:/tags/Stylesheet
 
+.btc-panel {
+	visibility: hidden;
+	transition: visibility 0s calc(2 * {{$:/config/AnimationDuration}}ms);
+	-webkit-transition: visibility 0s calc(2 * {{$:/config/AnimationDuration}}ms);
+}
+
+.btc-panel.btc-panel-is-visible {
+	visibility: visible;
+	transition: visibility 0s 0s;
+}
+
+.btc-panel-hide {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 100vw;
+	height: 100vh;
+	background: 0 0;
+	visibility: hidden;
+	z-index: 10000;
+	cursor: pointer;
+	-webkit-transition: background {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, visibility 0s calc(2 * {{$:/config/AnimationDuration}}ms);
+	transition: background {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, visibility 0s calc(2 * {{$:/config/AnimationDuration}}ms);
+}
+
+.btc-panel-hide.btc-panel-shown {
+	visibility: visible;
+	background: <<colour hide-panel-button-light>>;
+	-webkit-transition: background {{$:/config/AnimationDuration}}ms 0s;
+	transition: background {{$:/config/AnimationDuration}}ms 0s;
+}
+
+<$list filter="[[$:/config/panel/river-obscured]get[text]!match[yes]]" variable="ignore">
+
+.btc-panel-hide.btc-panel-shown {
+	visibility: hidden;
+}
+
+@media (max-width: 800px) {
+	.btc-panel-hide.btc-panel-shown {
+		visibility: visible;
+	}
+}
+
+</$list>
+
+<$list filter="[{$:/palette}get[color-scheme]match[dark]]">
+
+.btc-panel-hide.btc-panel-shown {
+	background: <<colour hide-panel-button-dark>>;
+}
+
+</$list>
+
+.btc-panel-header {
+	position: fixed;
+	top: 0;
+	width: 90%;
+	height: 50px;
+	transition: transform {{$:/config/AnimationDuration}}ms 0s;
+	transform: translateY(-78px);
+	z-index: 10002;
+	line-height: 50px;
+	box-shadow: 0 1px 1px <<colour panel-header-box-shadow-light>>;
+	background-color: <<colour panel-header-background-light>>;
+}
+
+<$list filter="[{$:/palette}get[color-scheme]match[dark]]">
+
+.btc-panel-header {
+	box-shadow: 0px 1px 1px <<colour panel-header-box-shadow-dark>>;
+	background-color: <<colour panel-header-background-dark>>
+}
+
+</$list>
+
+.btc-panel-header h1 {
+	color: <<colour primary>>;
+	padding-left: 5%;
+	margin-top: 0;
+	margin-bottom: 0;
+	line-height: 50px;
+}
+
+.btc-panel-header h4 {
+	padding-left: 5%;
+	line-height: 15px;
+	margin: 3px 0 0 0;
+}
+
+.btc-panel-from-right .btc-panel-header {
+	right: 0;
+}
+
+.btc-panel-from-left .btc-panel-header {
+	left: 0;
+}
+
+.btc-panel-is-visible .btc-panel-header {
+	transition: transform {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
+	transform: translateY(0px);
+}
+
+.btc-panel-container {
+	display: flex;
+	flex-direction: column;
+	align-content: start;
+	overflow: hidden !important;
+	background-color: <<colour page-background>>;
+	position: fixed;
+	width: {{$:/config/panel/panel-width-below-768px}};
+	height: 100%;
+	min-height: 100%;
+	top: 0;
+	bottom: 0;
+	z-index: 10001;
+	transition: transform {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
+}
+
+.btc-panel-container > div {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.btc-panel-container .btc-panel-container-spacer {
+	flex: 1 0 78px;
+}
+
+.btc-panel-from-right .btc-panel-container {
+	box-shadow: -1px 0px 1px <<colour panel-container-box-shadow-light>>;
+}
+
+.btc-panel-from-left .btc-panel-container {
+	box-shadow: 1px 0px 1px <<colour panel-container-box-shadow-light>>;
+}
+
+<$list filter="[[$:/state/panel/visibility]get[text]match[yes]then[$:/state/user-panel/visibility]get[text]match[yes]]" variable="ignore">
+
+.btc-panel-from-left .btc-panel-container {
+	z-index: 10002;
+}
+
+.btc-panel-from-left .btc-panel-header {
+	z-index: 10003;
+}
+
+.tc-notification {
+	z-index: 10003;
+}
+
+</$list>
+
+<$list filter="[{$:/palette}get[color-scheme]match[dark]]">
+
+.btc-panel-container {
+	box-shadow: 0px 1px 1px <<colour panel-container-box-shadow-dark>>;
+}
+
+</$list>
+
+@media only screen and (min-width: 768px) {
+	.btc-panel-container, .btc-panel-header {
+		width: {{$:/config/panel/panel-width-below-1170px}};
+	}
+
+	.btc-search-panel {
+		width: 550px;
+		left: calc((100vw / 2) - 275px);
+	}
+}
+
+@media only screen and (min-width: 1170px) {
+	.btc-panel-container, .btc-panel-header {
+		width: {{$:/config/panel/panel-width-above-1170px}};
+	}
+}
+
+.btc-panel-from-right .btc-panel-container {
+	right: 0;
+	transform: translate3d(100%, 0, 0);
+}
+
+.btc-panel-from-left .btc-panel-container {
+	left: 0;
+	transform: translate3d(-100%, 0, 0);
+}
+
+.btc-panel-is-visible .btc-panel-container {
+	transform: translate3d(0, 0, 0);
+	transition-delay: 0s;
+}
+
+.btc-panel-close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 60px;
+	display: inline-block;
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+}
+
+<$list filter="[{$:/config/story-river/hamburger-top}!match[yes]]" variable="ignore">
+
+<$list filter="[all[tiddlers+shadows]tag[$:/tags/TopToolbar]get[hamburgers]match[yes]] +[limit[1]]" variable="ignore" emptyMessage="""
+
+.btc-panel-show, .btc-user-panel-show {
+	position: fixed;
+	top: 0;
+	right: 15px;
+	display: inline-block;
+	z-index: 10001;
+	line-height: 1.2;
+	padding: 0;
+}
+
+.btc-user-panel-show {
+	right: inherit;
+	left: 5px;
+}
+
+<$list filter="[{$:/config/panel/position}match[left]]" variable="ignore">
+
+.btc-panel-show {
+	left: 5px;
+	right: inherit;
+}
+
+.btc-user-panel-show {
+	left: inherit;
+	right: 15px;
+}
+
+</$list>
+
+"""><$text text=""/></$list>
+
+.btc-panel-show svg, .btc-user-panel-show svg {
+	fill: <<colour show-panel-button>>;
+}
+
+.btc-panel-show:hover svg, .btc-user-panel-show:hover svg {
+	fill: <<colour show-panel-button-foreground>>;
+}
+
+.btc-panel-close:hover {
+	background-color: <<colour foreground>>;
+}
+
+.btc-panel-is-visible .btc-panel-close::before {
+	-webkit-animation: cd-close-1 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
+	animation: cd-close-1 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
+}
+
+.btc-panel-close::before {
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.btc-panel-close::before, .btc-panel-close::after {
+	content: " ";
+	position: absolute;
+	top: 22px;
+	left: 20px;
+	height: 3px;
+	width: 20px;
+	background-color: <<colour foreground>>;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.btc-panel-close:hover::before {
+	-webkit-transform: rotate(220deg);
+	transform: rotate(220deg);
+}
+
+.btc-panel-close:hover::before, .btc-panel-close:hover::after {
+	background-color: <<colour background>>;
+	-webkit-transition: -webkit-transform {{$:/config/AnimationDuration}}ms;
+	transition: -webkit-transform {{$:/config/AnimationDuration}}ms;
+	transition: transform {{$:/config/AnimationDuration}}ms;
+	transition: transform {{$:/config/AnimationDuration}}ms,-webkit-transform {{$:/config/AnimationDuration}}ms;
+}
+
+.btc-panel-is-visible .btc-panel-close::after {
+	-webkit-animation: cd-close-2 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
+	animation: cd-close-2 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
+}
+
+.btc-panel-close:hover::after {
+	-webkit-transform: rotate(135deg);
+	transform: rotate(135deg);
+}
+
+.btc-panel-close::after {
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.btc-panel-content-header {
+	display: flex;
+	flex-direction: column;
+	flex-basis: calc(100% - 78px);
+	min-width: 100%;
+	overflow: hidden;
+}
+
+.btc-panel-content-header .tc-page-controls .btc-panorama-button, .btc-hamburger-topbar .tc-page-controls .btc-panorama-button {
+	margin-left: -2px;
+	margin-right: 0.4em;
+}
+
+.tc-tab-content.tc-sidebar-tabs-main .btc-panorama-button svg {
+	height: 1.5em;
+	width: 1.5em;
+}
+
+.btc-panel-content {
+	display: flex;
+	flex-direction: column;
+	height: calc(100% - 25px);
+	overflow: hidden;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.btc-panel-content .tc-sidebar-lists.tc-sidebar-tabs, .btc-panel-content .tc-tab-set.tc-sidebar-tabs-main {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	width: 100%;
+}
+
+.btc-panel-content .tc-sidebar-lists.tc-sidebar-tabs > p {
+	display: flex;
+	overflow: hidden;
+}
+
+.btc-panel-content .tc-tab-content.tc-sidebar-tabs-main {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	align-content: start;
+	overflow: hidden;
+}
+
+.btc-panel-content .tc-tab-content.tc-sidebar-tabs-main > * {
+	flex: 1;
+	overflow: auto;
+	height: 100%;
+}
+
+.btc-user-panel-container {
+	position: absolute;
+	top: 78px;
+	padding-left: 5%;
+	padding-right: 5%;
+	height: calc(100% - 78px);
+	min-height: calc(100% - 78px);
+	min-width: 100%;
+	overflow: auto;
+}
+
+.btc-panel-content .tc-sidebar-lists.tc-sidebar-tabs p {
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.btc-panel-content .tc-sidebar-lists.tc-sidebar-search p {
+	margin-bottom: 3px;
+}
+
+</$list>

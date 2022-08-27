@@ -1,0 +1,178 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/CSS/search-panel
+tags: $:/tags/Stylesheet
+
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+
+.btc-search-panel {
+	position: fixed;
+	left: 0;
+	width: 100%;
+	height: 75px;
+	transition: transform calc({{$:/config/AnimationDuration}}ms / 2) calc({{$:/config/AnimationDuration}}ms / 2);
+	z-index: 10003;
+}
+
+<$list filter="[[$:/state/panel/visibility]get[text]match[yes]]" variable="ignore">
+
+@media (max-width: 800px) {
+	.btc-search-panel {
+		display: none;
+	}
+}
+
+</$list>
+
+.btc-search-panel.btc-search-panel-from-top {
+	top: 0;
+	transform: translateY(-75px);
+}
+
+.btc-search-panel.btc-search-panel-from-bottom {
+	bottom: 0;
+	transform: translateY(75px);
+}
+
+.btc-search-panel-is-visible.btc-search-panel {
+	transition: transform {{$:/config/AnimationDuration}}ms 0s;
+	transform: translateY(0px);
+}
+
+.btc-search-panel-inner {
+	position: relative;
+	height: 100%;
+	line-height: 100%;
+	width: 100%;
+	padding: 15px;
+}
+
+.btc-search-panel-input {
+	border-radius: 4px;
+	border: 1px solid <<colour foreground>>;
+	box-shadow: 0px 0px 15px <<colour search-panel-box-shadow-light>>;
+	width: 100%;
+	height: 100%;
+	padding-left: 10px;
+	padding-right: 70px;
+	outline: none;
+	font-size: 1.35em;
+}
+
+.btc-search-panel-matches {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	background-color: <<colour tiddler-background>>;
+	padding: 15px;
+	border-radius: 4px;
+	border: 1px solid <<colour foreground>>;
+	box-shadow: 0px 0px 15px <<colour search-panel-box-shadow-light>>;
+}
+
+.btc-search-panel.btc-search-panel-from-top .btc-search-panel-matches {
+	top: 75px;
+}
+
+.btc-search-panel.btc-search-panel-from-bottom .btc-search-panel-matches {
+	bottom: 75px;
+}
+
+<$list filter="[{$:/palette}get[color-scheme]match[dark]]">
+
+.btc-search-panel-input {
+	box-shadow: 0px 0px 15px <<colour search-panel-box-shadow-dark>>;
+}
+
+.btc-search-panel-matches {
+	box-shadow: 0px 0px 15px <<colour search-panel-box-shadow-dark>>;
+}
+
+</$list>
+
+@media only screen and (min-width: 768px) {
+	.btc-search-panel {
+		width: 550px;
+		left: calc((100vw / 2) - 275px);
+	}
+}
+
+@media only screen and (min-width: 1170px) {
+	.btc-search-panel {
+		width: 400px;
+		left: calc((100vw / 2) - 200px);
+	}
+}
+
+.btc-search-panel-close {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	height: calc(100% - 30px);
+	display: inline-block;
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	width: 60px;
+}
+
+.btc-search-panel-close:hover {
+	background-color: <<colour foreground>>;
+}
+
+.btc-search-panel-is-visible .btc-search-panel-close::before {
+	-webkit-animation: cd-close-1 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 4);
+	animation: cd-close-1 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 4);	
+}
+
+.btc-search-panel-close::before {
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.btc-search-panel-close::before, .btc-search-panel-close::after {
+	content: " ";
+	position: absolute;
+	top: 22px;
+	left: 20px;
+	height: 3px;
+	width: 20px;
+	background-color: <<colour foreground>>;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.btc-search-panel-close:hover::before {
+	-webkit-transform: rotate(220deg);
+	transform: rotate(220deg);
+}
+
+.btc-search-panel-close:hover::before, .btc-search-panel-close:hover::after {
+	background-color: <<colour background>>;
+	-webkit-transition: -webkit-transform {{$:/config/AnimationDuration}}ms;
+	transition: -webkit-transform {{$:/config/AnimationDuration}}ms;
+	transition: transform {{$:/config/AnimationDuration}}ms;
+	transition: transform {{$:/config/AnimationDuration}}ms,-webkit-transform {{$:/config/AnimationDuration}}ms;
+}
+
+.btc-search-panel-is-visible .btc-search-panel-close::after {
+	-webkit-animation: cd-close-2 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
+	animation: cd-close-2 calc(2 * {{$:/config/AnimationDuration}}ms) {{$:/config/AnimationDuration}}ms;
+}
+
+.btc-search-panel-is-visible .btc-search-panel-close::after {
+	-webkit-animation: cd-close-2 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 4);
+	animation: cd-close-2 {{$:/config/AnimationDuration}}ms calc({{$:/config/AnimationDuration}}ms / 4);
+}
+
+.btc-search-panel-close:hover::after {
+	-webkit-transform: rotate(135deg);
+	transform: rotate(135deg);
+}
+
+.btc-search-panel-close::after {
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+</$list>
