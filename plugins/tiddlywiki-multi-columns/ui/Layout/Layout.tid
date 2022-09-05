@@ -9,10 +9,12 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 \end
 \define sidebar-actions()
 <$action-setfield $tiddler="$:/state/panel/visibility" text="yes"/>
+<$action-deletetiddler $filter="[[$:/state/panel/is-hiding]] [[$:/state/user-panel/is-hiding]]"/>
 <$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-panel-container .btc-panel-content-header .tc-sidebar-search input" delay={{{ [{$:/config/AnimationDuration}divide[2]round[]] }}}/>
 \end
 \define user-sidebar-actions()
 <$action-setfield $tiddler="$:/state/user-panel/visibility" text="yes"/>
+<$action-deletetiddler $filter="[[$:/state/panel/is-hiding]] [[$:/state/user-panel/is-hiding]]"/>
 <$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-user-panel-container input" delay={{{ [{$:/config/AnimationDuration}divide[2]round[]] }}}/>
 \end
 \define active-column-dblclick-actions()
@@ -46,10 +48,16 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 <<focus-draft-tiddler-or-container>>
 \end
 \define sidebar-close-actions()
+<$list filter="[{$:/state/user-panel/visibility}match[yes]]" variable="ignore" emptyMessage="""<$action-deletetiddler $filter="[[$:/state/panel/is-hiding]] [[$:/state/user-panel/is-hiding]]"/>""">
+<$action-setfield $tiddler="$:/state/panel/is-hiding" text="yes"/>
+</$list>
 <$action-setfield $tiddler="$:/state/panel/visibility" text="no"/>
 <<focus-draft-tiddler-or-container>>
 \end
 \define user-sidebar-close-actions()
+<$list filter="[{$:/state/panel/visibility}match[yes]]" variable="ignore" emptyMessage="""<$action-deletetiddler $filter="[[$:/state/panel/is-hiding]] [[$:/state/user-panel/is-hiding]]"/>""">
+<$action-setfield $tiddler="$:/state/user-panel/is-hiding" text="yes"/>
+</$list>
 <$action-setfield $tiddler="$:/state/user-panel/visibility" text="no"/>
 <<focus-draft-tiddler-or-container>>
 \end

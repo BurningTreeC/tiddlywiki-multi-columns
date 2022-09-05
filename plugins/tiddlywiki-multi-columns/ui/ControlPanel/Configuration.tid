@@ -27,11 +27,6 @@ caption: MultiColumn
 <$edit-text tag="input" tiddler="$:/config/story-river/scroll-snap-type" default="" placeholder="scroll-snap-type"/><br>
 <hr>
 
-!!! ''scroll duration'' in x-direction
-<$link to="$:/config/story-river/scroll-x-duration"/><br>
-<$edit-text tag="input" tiddler="$:/config/story-river/scroll-x-duration" default="" placeholder="scroll-x-duration"/><br>
-<hr>
-
 !!! ''tiddler margin-bottom''
 <$link to="$:/config/story-river/tiddler-margin"/><br>
 <$edit-text tag="input" tiddler="$:/config/story-river/tiddler-margin" default="" placeholder="tiddler margin-bottom"/><br>

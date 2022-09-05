@@ -8,8 +8,12 @@ key: ((toggle-sidebar))
 <$list filter="[{$:/config/panel/disable}!match[yes]]" variable="ignore">
 <$list filter="[{$:/state/panel/visibility}match[yes]]" variable="ignore" emptyMessage="""
 <$action-setfield $tiddler="$:/state/panel/visibility" text="yes"/>
+<$action-deletetiddler $filter="[[$:/state/panel/is-hiding]] [[$:/state/user-panel/is-hiding]]"/>
 <$action-sendmessage $message="tm-focus-selector-deferred" $param=".btc-panel-container .btc-panel-content-header .tc-sidebar-search input" delay={{{ [{$:/config/AnimationDuration}divide[2]round[]] }}}/>
 """>
+<$list filter="[{$:/state/user-panel/visibility}match[yes]]" variable="ignore" emptyMessage="""<$action-deletetiddler $filter="[[$:/state/panel/is-hiding]] [[$:/state/user-panel/is-hiding]]"/>""">
+<$action-setfield $tiddler="$:/state/panel/is-hiding" text="yes"/>
+</$list>
 <$action-setfield $tiddler="$:/state/panel/visibility" text="no"/>
 <$let currentColumn={{$:/columns!!active-column}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} currentTiddler={{{ [<historyList>get[current-tiddler]] }}}>
 <$list filter="[<currentTiddler>is[draft]]" variable="ignore" emptyMessage=<<btc-not-is-draft-focus-selector>>>

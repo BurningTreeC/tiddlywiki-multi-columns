@@ -55,11 +55,27 @@ tags: $:/tags/Stylesheet
 <$list filter="[[$:/config/story-river/scroll-snap-x]get[text]!match[yes]]" variable="ignore">
 
 .btc-flextemplate-container {
-	transition: width {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;	
+	transition: width {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, left {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, right {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
 }
 
-.btc-flextemplate-container.btc-flextemplate-panel-shown {
+.btc-flextemplate-container.btc-flextemplate-panel-shown) {
 	transition: width {{$:/config/AnimationDuration}}ms 0s;
+}
+
+.btc-flextemplate-container.btc-flextemplate-user-panel-shown {
+	transition: width {{$:/config/AnimationDuration}}ms 0s;
+}
+
+.btc-flextemplate-container.btc-flextemplate-panel-shown.btc-flextemplate-user-panel-shown {
+	transition: width {{$:/config/AnimationDuration}}ms 0s, left {{$:/config/AnimationDuration}}ms 0s, right 0s 0s;
+}
+
+.btc-flextemplate-container.btc-flextemplate-panel-shown.btc-user-panel-is-hiding {
+	transition: width {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, left {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, right {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
+}
+
+.btc-flextemplate-container.btc-flextemplate-user-panel-shown.btc-panel-is-hiding {
+	transition: width {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, left {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, right {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
 }
 
 </$list>
@@ -78,23 +94,36 @@ tags: $:/tags/Stylesheet
 		right: 0;
 		left: 0;
 		bottom: 0;
-		transition: width {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, left {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
+		transition: width {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, left {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, right {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
 	}
 
 	.btc-flextemplate-container.btc-flextemplate-panel-shown {
 		left: {{$:/config/panel/panel-width-below-768px}};
-		transition: width {{$:/config/AnimationDuration}}ms 0s, left {{$:/config/AnimationDuration}}ms 0s;
+		transition: width {{$:/config/AnimationDuration}}ms 0s, left {{$:/config/AnimationDuration}}ms 0s, right {{$:/config/AnimationDuration}}ms 0s;
+	}
+
+	.btc-flextemplate-container.btc-flextemplate-user-panel-shown {
+		right: {{$:/config/panel/panel-width-below-768px}};
+		transition: width {{$:/config/AnimationDuration}}ms 0s, left {{$:/config/AnimationDuration}}ms 0s, right {{$:/config/AnimationDuration}}ms 0s;
 	}
 
 	@media only screen and (min-width: 768px) {
 		.btc-flextemplate-container.btc-flextemplate-panel-shown {
 			left: {{$:/config/panel/panel-width-below-1170px}};
 		}
+
+		.btc-flextemplate-container.btc-flextemplate-user-panel-shown {
+			right: {{$:/config/panel/panel-width-below-1170px}};
+		}
 	}
 
 	@media only screen and (min-width: 1170px) {
 		.btc-flextemplate-container.btc-flextemplate-panel-shown {
 			left: {{$:/config/panel/panel-width-above-1170px}};
+		}
+
+		.btc-flextemplate-container.btc-flextemplate-user-panel-shown {
+			right: {{$:/config/panel/panel-width-above-1170px}};
 		}
 	}
 
@@ -112,19 +141,43 @@ tags: $:/tags/Stylesheet
 
 @media (min-width: 800px) {
 
-	.btc-flextemplate-container.btc-flextemplate-panel-shown {
+	.btc-flextemplate-container.btc-flextemplate-panel-shown:not(.btc-flextemplate-user-panel-shown) {
 		width: calc(100% - {{$:/config/panel/panel-width-below-768px}});
 	}
 
+	.btc-flextemplate-container.btc-flextemplate-user-panel-shown:not(.btc-flextemplate-panel-shown) {
+		width: calc(100% - {{$:/config/panel/panel-width-below-768px}});
+	}
+
+	.btc-flextemplate-container.btc-flextemplate-panel-shown.btc-flextemplate-user-panel-shown {
+		width: calc(100% - (2 * {{$:/config/panel/panel-width-below-768px}}))
+	}
+
 	@media only screen and (min-width: 768px) {
-		.btc-flextemplate-container.btc-flextemplate-panel-shown {
+		.btc-flextemplate-container.btc-flextemplate-panel-shown:not(.btc-flextemplate-user-panel-shown) {
 			width: calc(100% - {{$:/config/panel/panel-width-below-1170px}});
+		}
+
+		.btc-flextemplate-container.btc-flextemplate-user-panel-shown:not(.btc-flextemplate-panel-shown) {
+			width: calc(100% - {{$:/config/panel/panel-width-below-1170px}});
+		}
+
+		.btc-flextemplate-container.btc-flextemplate-panel-shown.btc-flextemplate-user-panel-shown {
+			width: calc(100% - (2 * {{$:/config/panel/panel-width-below-1170px}}))
 		}
 	}
 
 	@media only screen and (min-width: 1170px) {
-		.btc-flextemplate-container.btc-flextemplate-panel-shown {
+		.btc-flextemplate-container.btc-flextemplate-panel-shown:not(.btc-flextemplate-user-panel-shown) {
 			width: calc(100% - {{$:/config/panel/panel-width-above-1170px}});
+		}
+
+		.btc-flextemplate-container.btc-flextemplate-user-panel-shown:not(.btc-flextemplate-panel-shown) {
+			width: calc(100% - {{$:/config/panel/panel-width-above-1170px}});
+		}
+
+		.btc-flextemplate-container.btc-flextemplate-panel-shown.btc-flextemplate-user-panel-shown {
+			width: calc(100% - (2 * {{$:/config/panel/panel-width-above-1170px}}));
 		}
 	}
 

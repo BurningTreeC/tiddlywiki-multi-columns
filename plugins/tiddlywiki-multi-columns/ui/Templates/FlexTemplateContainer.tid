@@ -1,7 +1,7 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Main/FlexTemplateContainer
 
 \whitespace trim
-<div class={{{ [{$:/state/panel/visibility}match[yes]then[btc-flextemplate-container btc-flextemplate-panel-shown]else[btc-flextemplate-container]] }}} tabindex="0">
+<div class={{{ [{$:/state/panel/visibility}match[yes]then[btc-flextemplate-panel-shown]] [{$:/state/user-panel/visibility}match[yes]then[btc-flextemplate-user-panel-shown]] [{$:/state/panel/is-hiding}match[yes]then[btc-panel-is-hiding]] [{$:/state/user-panel/is-hiding}match[yes]then[btc-user-panel-is-hiding]] btc-flextemplate-container +[join[ ]] }}} tabindex="0">
 	<$list filter="[all[tiddlers+shadows]tag[$:/tags/MultiColumn/Main]]" variable="listItem">
 		<$transclude tiddler=<<listItem>>/>
 	</$list>
