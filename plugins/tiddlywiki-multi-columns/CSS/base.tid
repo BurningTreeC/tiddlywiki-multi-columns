@@ -28,6 +28,14 @@ z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
 </$list>
 \end
 
+.tc-greyed-out-button svg {
+	fill: <<colour muted-foreground>>;
+}
+
+.tc-greyed-out-button:hover svg {
+	fill: <<colour foreground>>;
+}
+
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 
 <<set-color-scheme>>

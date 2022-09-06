@@ -7,19 +7,19 @@ caption: Ensemble
 !! Save Ensemble
 
 Give your ensemble a name:<br>
-<$edit-text tiddler="$:/temp/save-story/story-title" default="" placeholder="Title" tag="input" class="tc-story-title"/>
+<$edit-text tiddler="$:/temp/save-story/story-title" default="" placeholder="Title" tag="input" class="tc-story-title tc-small-gap-right"/><$button class="tc-btn-invisible tc-greyed-out-button"><$action-deletefield $tiddler="$:/temp/save-story/story-title" $field="text"/>{{$:/core/images/close-button}}</$button>
 
 Optionally, provide a list of tiddlers that should get the tag <<tag-pill "$:/tags/Stylesheet">> when the Ensemble is loaded:<br>
-<$edit-text tiddler="$:/temp/save-story/story-title" default="" field="stylesheets" placeholder="Stylesheets" tag="input"/>
+<$edit-text tiddler="$:/temp/save-story/story-title" default="" field="stylesheets" placeholder="Stylesheets" tag="input" class="tc-small-gap-right"/><$button class="tc-btn-invisible tc-greyed-out-button"><$action-deletefield $tiddler="$:/temp/save-story/story-title" $field="stylesheets"/>{{$:/core/images/close-button}}</$button>
 
 Optionally, provide a list of tiddlers that should get the tag <<tag-pill "$:/tags/TopToolbar">> when the Ensemble is loaded:<br>
-<$edit-text tiddler="$:/temp/save-story/story-title" default="" field="toptoolbars" placeholder="Top Toolbars" tag="input"/>
+<$edit-text tiddler="$:/temp/save-story/story-title" default="" field="toptoolbars" placeholder="Top Toolbars" tag="input" class="tc-small-gap-right"/><$button class="tc-btn-invisible tc-greyed-out-button"><$action-deletefield $tiddler="$:/temp/save-story/story-title" $field="toptoolbars"/>{{$:/core/images/close-button}}</$button>
 
 Optionally, provide a list of tiddlers that should get the tag <<tag-pill "$:/tags/BottomToolbar">> when the Ensemble is loaded:<br>
-<$edit-text tiddler="$:/temp/save-story/story-title" default="" field="bottomtoolbars" placeholder="Bottom Toolbars" tag="input"/>
+<$edit-text tiddler="$:/temp/save-story/story-title" default="" field="bottomtoolbars" placeholder="Bottom Toolbars" tag="input" class="tc-small-gap-right"/><$button class="tc-btn-invisible tc-greyed-out-button"><$action-deletefield $tiddler="$:/temp/save-story/story-title" $field="bottomtoolbars"/>{{$:/core/images/close-button}}</$button>
 
 Optionally, provide a list of tiddlers that should get the tag <<tag-pill "$:/tags/PageTemplate">> when the Ensemble is loaded:<br>
-<$edit-text tiddler="$:/temp/save-story/story-title" default="" field="pagetemplates" placeholder="PageTemplates" tag="input"/>
+<$edit-text tiddler="$:/temp/save-story/story-title" default="" field="pagetemplates" placeholder="PageTemplates" tag="input" class="tc-small-gap-right"/><$button class="tc-btn-invisible tc-greyed-out-button"><$action-deletefield $tiddler="$:/temp/save-story/story-title" $field="pagetemplates"/>{{$:/core/images/close-button}}</$button>
 
 <$let storyTitle={{{ [[$:/temp/save-story/story-title]get[text]] }}}>
 <$button><$macrocall $name="btc-save-story-actions" storyTitle=<<storyTitle>>/>Save</$button>
