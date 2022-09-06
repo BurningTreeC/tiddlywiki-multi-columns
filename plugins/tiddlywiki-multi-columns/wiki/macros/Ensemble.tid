@@ -50,6 +50,7 @@ Do you want to overwrite?
 <$list filter="[[$:/temp/save-story/story-title]get[pagetemplates]!is[blank]]" variable="ignore">
 <$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} pagetemplates={{{ [[$:/temp/save-story/story-title]get[pagetemplates]] }}}/>
 </$list>
+<$action-sendmessage $message="tm-auto-save-wiki"/>
 \end
 
 \define btc-empty-ensemble-title-message()
