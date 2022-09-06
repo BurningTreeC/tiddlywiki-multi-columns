@@ -126,6 +126,7 @@ tags: $:/tags/Stylesheet
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
+	min-height: 100%;
 }
 
 .btc-panel-container .btc-panel-container-spacer {
