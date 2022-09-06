@@ -135,6 +135,61 @@ tags: $:/tags/Stylesheet
 
 </$list>
 
+<$list filter="[{$:/config/panel/position}match[right]]" variable="ignore">
+
+<$list filter="[[$:/config/story-river/scroll-snap-x]get[text]!match[yes]]" variable="ignore">
+
+<$list filter="[[$:/config/story-river/adapt-to-panel]get[text]match[yes]]" variable="ignore">
+
+@media (min-width: 800px) {
+
+	.btc-flextemplate-container {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		transition: width {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, left {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms, right {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
+	}
+
+	.btc-flextemplate-container.btc-flextemplate-panel-shown {
+		right: {{$:/config/panel/panel-width-below-768px}};
+		transition: width {{$:/config/AnimationDuration}}ms 0s, left {{$:/config/AnimationDuration}}ms 0s, right {{$:/config/AnimationDuration}}ms 0s;
+	}
+
+	.btc-flextemplate-container.btc-flextemplate-user-panel-shown {
+		left: {{$:/config/panel/panel-width-below-768px}};
+		transition: width {{$:/config/AnimationDuration}}ms 0s, left {{$:/config/AnimationDuration}}ms 0s, right {{$:/config/AnimationDuration}}ms 0s;
+	}
+
+	@media only screen and (min-width: 768px) {
+		.btc-flextemplate-container.btc-flextemplate-panel-shown {
+			right: {{$:/config/panel/panel-width-below-1170px}};
+		}
+
+		.btc-flextemplate-container.btc-flextemplate-user-panel-shown {
+			left: {{$:/config/panel/panel-width-below-1170px}};
+		}
+	}
+
+	@media only screen and (min-width: 1170px) {
+		.btc-flextemplate-container.btc-flextemplate-panel-shown {
+			right: {{$:/config/panel/panel-width-above-1170px}};
+		}
+
+		.btc-flextemplate-container.btc-flextemplate-user-panel-shown {
+			left: {{$:/config/panel/panel-width-above-1170px}};
+		}
+	}
+
+}
+
+</$list>
+
+</$list>
+
+</$list>
+
 <$list filter="[[$:/config/story-river/scroll-snap-x]get[text]!match[yes]]" variable="ignore">
 
 <$list filter="[[$:/config/story-river/adapt-to-panel]get[text]match[yes]]" variable="ignore">
