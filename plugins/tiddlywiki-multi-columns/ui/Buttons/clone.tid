@@ -7,7 +7,18 @@ caption: {{$:/core/images/clone-button}} {{$:/language/Buttons/Clone/Caption}}
 <$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
 <$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
+<$list filter="[<modifier>match[shift]]" variable="ignore" emptyMessage="""<$action-sendmessage $message="tm-new-tiddler" $param=<<currentTiddler>>/>""">
+<$set name="nextColumn" value={{{ [<currentColumn>add[1]] }}}>
+<$let storyList={{{ [[$:/StoryList-]addsuffix<nextColumn>] }}} historyList={{{ [[$:/HistoryList-]addsuffix<nextColumn>] }}}>
+<$list filter="[[$:/columns]!contains<nextColumn>]" variable="ignore">
+<$action-listops $tiddler="$:/columns" $subfilter="[<nextColumn>]"/>
+</$list>
+<$navigator story=<<storyList>> history=<<historyList>> openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 <$action-sendmessage $message="tm-new-tiddler" $param=<<currentTiddler>>/>
+</$navigator>
+</$let>
+</$set>
+</$list>
 \end
 \whitespace trim
 <$button actions=<<actions>> tooltip={{$:/language/Buttons/Clone/Hint}} aria-label={{$:/language/Buttons/Clone/Caption}} class=<<tv-config-toolbar-class>>>
