@@ -22,6 +22,14 @@ caption: MultiColumn
 </$select>
 <hr>
 
+!!! ''scroll-behavior''
+<$link to="$:/config/scroll-behavior"/><br>
+<$select tiddler="$:/config/scroll-behavior" default="smooth">
+<option value="smooth">smooth</option>
+<option value="auto">auto</option>
+</$select>
+<hr>
+
 !!! ''scroll-snap-type'' in wide view (is "x mandatory" in narrow view)
 <$link to="$:/config/story-river/scroll-snap-type"/><br>
 <$edit-text tag="input" tiddler="$:/config/story-river/scroll-snap-type" default="" placeholder="scroll-snap-type"/><br>
