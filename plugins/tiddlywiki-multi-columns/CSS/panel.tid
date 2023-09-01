@@ -59,6 +59,8 @@ tags: $:/tags/Stylesheet
 
 .btc-panel-header {
 	position: fixed;
+	overflow: hidden;
+	white-space: nowrap;
 	top: 0;
 	width: 90%;
 	height: 50px;
@@ -68,6 +70,20 @@ tags: $:/tags/Stylesheet
 	line-height: 50px;
 	box-shadow: 0 1px 1px <<colour panel-header-box-shadow-light>>;
 	background-color: <<colour panel-header-background-light>>;
+}
+
+.btc-panel-header-subtitle {
+	position: fixed;
+	overflow: hidden;
+	white-space: nowrap;
+	top: 50px;
+	width: 90%;
+	height: 20px;
+	transition: transform {{$:/config/AnimationDuration}}ms 0s;
+	transform: translateY(-78px);
+	z-index: 10002;
+	line-height: 20px;
+	font-size: 15px;
 }
 
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
@@ -87,21 +103,21 @@ tags: $:/tags/Stylesheet
 	line-height: 50px;
 }
 
-.btc-panel-header h4 {
+.btc-panel-header-subtitle h4 {
 	padding-left: 5%;
 	line-height: 15px;
 	margin: 3px 0 0 0;
 }
 
-.btc-panel-from-right .btc-panel-header {
+.btc-panel-from-right .btc-panel-header, .btc-panel-from-right .btc-panel-header-subtitle {
 	right: 0;
 }
 
-.btc-panel-from-left .btc-panel-header {
+.btc-panel-from-left .btc-panel-header, .btc-panel-from-left .btc-panel-header-subtitle {
 	left: 0;
 }
 
-.btc-panel-is-visible .btc-panel-header {
+.btc-panel-is-visible .btc-panel-header, .btc-panel-is-visible .btc-panel-header-subtitle {
 	transition: transform {{$:/config/AnimationDuration}}ms {{$:/config/AnimationDuration}}ms;
 	transform: translateY(0px);
 }
@@ -147,7 +163,7 @@ tags: $:/tags/Stylesheet
 	z-index: 10002;
 }
 
-.btc-panel-from-left .btc-panel-header {
+.btc-panel-from-left .btc-panel-header, .btc-panel-from-left .btc-panel-header-subtitle {
 	z-index: 10003;
 }
 
@@ -166,7 +182,7 @@ tags: $:/tags/Stylesheet
 </$list>
 
 @media only screen and (min-width: 768px) {
-	.btc-panel-container, .btc-panel-header {
+	.btc-panel-container, .btc-panel-header, .btc-panel-header-subtitle {
 		width: {{$:/config/panel/panel-width-below-1170px}};
 	}
 
@@ -177,7 +193,7 @@ tags: $:/tags/Stylesheet
 }
 
 @media only screen and (min-width: 1170px) {
-	.btc-panel-container, .btc-panel-header {
+	.btc-panel-container, .btc-panel-header, .btc-panel-header-subtitle {
 		width: {{$:/config/panel/panel-width-above-1170px}};
 	}
 }

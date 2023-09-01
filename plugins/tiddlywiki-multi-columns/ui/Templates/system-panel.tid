@@ -7,11 +7,15 @@ tags: $:/tags/MultiColumn/Panel
 		<header class="btc-panel-header">
 			<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 				<$messagecatcher $tm-navigate=<<btc-sidebar-navigate-actions>>>
-					<h1>{{$:/SiteTitle}}</h1>
-					<h4>{{$:/SiteSubtitle}}</h4>
+					<h1 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: calc(100% - 60px);">{{$:/SiteTitle}}</h1>
 				</$messagecatcher>
 			</$navigator>
 			<$button tag="a" class="btc-panel-close tc-btn-invisible" actions=<<sidebar-close-actions>>>Close</$button>
+		</header>
+		<header class="btc-panel-header-subtitle">
+			<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+				<h4 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;">{{$:/SiteSubtitle}}</h4>
+			</$navigator>
 		</header>
 		<$scrollable fallthrough="no" class="btc-panel-container">
 			<div class="btc-panel-container-spacer"/>
