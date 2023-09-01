@@ -83,7 +83,11 @@ html {
 </$list>
 
 .tc-notification {
-	z-index: 10002;
+	z-index: 10005 !important;
+}
+
+.tc-modal-wrapper {
+	z-index: 10004 !important;
 }
 
 hr.simple {
