@@ -378,10 +378,6 @@ tags: $:/tags/Stylesheet
 
 	</$list>
 
-	.btc-flextemplate-container .btc-column-config-top .btc-column-container:last-of-type {
-		display: none;
-	}
-
 	.btc-panorama-button {
 		display: none;
 	}
