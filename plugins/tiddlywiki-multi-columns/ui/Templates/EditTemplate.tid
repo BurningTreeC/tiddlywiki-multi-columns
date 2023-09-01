@@ -1,4 +1,5 @@
 title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate
+code-body: yes
 
 \define delete-edittemplate-state-tiddlers() <$action-deletetiddler $filter="[<newFieldNameTiddler>] [prefix<newFieldValueTiddlerPrefix>] [<newFieldNameInputTiddler>] [<newFieldNameSelectionTiddler>] [<newTagNameTiddler>] [<newTagNameInputTiddler>] [<newTagNameSelectionTiddler>] [<typeInputTiddler>] [<typeSelectionTiddler>]"/>
 \define get-field-value-tiddler-filter() [subfilter<get-field-editor-filter>sha256[16]addprefix[/]addprefix<newFieldValueTiddlerPrefix>]
