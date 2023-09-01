@@ -50,9 +50,9 @@ $:/state/folded/$(currentTiddler)$
 </$list>
 <$action-sendmessage $message="tm-edit-tiddler"/>
 \end
-\import [all[shadows+tiddlers]tag[$:/tags/Macro/View]!has[draft.of]]
+\import [all[shadows+tiddlers]tag[$:/tags/Macro/View]!is[draft]] [all[shadows+tiddlers]tag[$:/tags/Global/View]!is[draft]]
 <$vars storyTiddler=<<currentTiddler>> tiddlerInfoState=<<qualify "$:/state/popup/tiddler-info">>>
-<div data-tiddler-title=<<currentTiddler>> data-tags={{!!tags}} class={{{ tc-tiddler-view-frame btc-tiddler-zindex-frame [<currentTiddler>is[tiddler]then[tc-tiddler-exists]] [<currentTiddler>is[missing]!is[shadow]then[tc-tiddler-missing]] [<currentTiddler>is[shadow]then[tc-tiddler-exists tc-tiddler-shadow]] [<currentTiddler>is[shadow]is[tiddler]then[tc-tiddler-overridden-shadow]] [<currentTiddler>is[system]then[tc-tiddler-system]] [{!!class}] [<currentTiddler>tags[]encodeuricomponent[]addprefix[tc-tagged-]] +[join[ ]] }}}>
+<div data-tiddler-title=<<currentTiddler>> data-tags={{!!tags}} class={{{ [all[shadows+tiddlers]tag[$:/tags/ClassFilters/TiddlerTemplate]!is[draft]] :map:flat[subfilter{!!text}] tc-tiddler-view-frame [<currentTiddler>is[tiddler]then[tc-tiddler-exists]] [<currentTiddler>is[missing]!is[shadow]then[tc-tiddler-missing]] [<currentTiddler>is[shadow]then[tc-tiddler-exists tc-tiddler-shadow]] [<currentTiddler>is[shadow]is[tiddler]then[tc-tiddler-overridden-shadow]] [<currentTiddler>is[system]then[tc-tiddler-system]] [{!!class}] [<currentTiddler>tags[]encodeuricomponent[]addprefix[tc-tagged-]] +[join[ ]] }}} role="article">
 <$draggable enable={{{ [{$:/config/story-river/dragging-enable}match[yes]addsuffix[$:/state/story-river/full-screen/]addsuffix<currentTiddler>removeprefix[yes]is[missing]then[yes]] ~[[no]] }}} tiddler=<<currentTiddler>> startactions=<<btc-drag-start-actions>> endactions=<<btc-drag-end-actions>> class="tc-tiddler-frame">
 <$messagecatcher $tm-navigate=<<navigate-actions>>>
 <$list filter="[all[shadows+tiddlers]tag[$:/tags/ViewTemplate]!has[draft.of]]" variable="listItem">

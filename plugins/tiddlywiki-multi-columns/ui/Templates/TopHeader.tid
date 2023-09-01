@@ -10,7 +10,7 @@ tags: $:/tags/MultiColumn/Main
 			<$transclude tiddler=<<listItem>>/>
 		</div>
 	</$list>
-	<div class="btc-column-container">
+<!--	<div class="btc-column-container">
 		<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
 			<div class="btc-top-active-column">
 				<$set name="currentStory" value={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
@@ -20,5 +20,5 @@ tags: $:/tags/MultiColumn/Main
 				</$set>
 			</div>
 		</$list>
-	</div>
+	</div>-->
 </header>
