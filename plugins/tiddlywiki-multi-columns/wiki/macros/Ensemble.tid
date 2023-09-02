@@ -31,9 +31,6 @@ Do you want to overwrite?
 	story-river-padding={{{ [[$:/config/story-river/padding]get[text]] ~15 }}}
 	tiddler-border={{{ [[$:/config/story-river/tiddler-border]get[text]] ~1 }}}
 	tiddler-margin={{{ [[$:/config/story-river/tiddler-margin]get[text]] ~10 }}}
-	hamburger-top={{{ [[$:/config/story-river/hamburger-top]get[text]] ~no }}}
-	hamburger-show-page-controls={{{ [[$:/config/top-hamburger-toolbar/show-pagecontrols]get[text]] ~no }}}
-	hamburger-show-page-search={{{ [[$:/config/top-hamburger-toolbar/show-search]get[text]] ~no }}}
 	palette={{$:/palette}}/>
 <$list filter="[list[$:/columns]]" variable="column">
 <$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} $field={{{ [[story-]addsuffix<column>] }}} $value={{{ [[$:/StoryList-]addsuffix<column>!match[StoryList-1]get[list]] [[$:/StoryList-]addsuffix<column>match[$:/StoryList-1]then[$:/StoryList]get[list]] ~[[]] }}}/>
@@ -107,9 +104,6 @@ Do you want to overwrite?
 <$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/padding" value={{{ [<storyTiddler>get[story-river-padding]] }}}/>
 <$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/tiddler-border" value={{{ [<storyTiddler>get[tiddler-border]] }}}/>
 <$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/tiddler-margin" value={{{ [<storyTiddler>get[tiddler-margin]] }}}/>
-<$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/hamburger-top" value={{{ [<storyTiddler>get[hamburger-top]] }}}/>
-<$macrocall $name="btc-set-configuration" tiddler="$:/config/top-hamburger-toolbar/show-pagecontrols" value={{{ [<storyTiddler>get[hamburger-show-page-controls]] }}}/>
-<$macrocall $name="btc-set-configuration" tiddler="$:/config/top-hamburger-toolbar/show-search" value={{{ [<storyTiddler>get[hamburger-show-search]] }}}/>
 <$macrocall $name="btc-set-configuration" tiddler="$:/palette" value={{{ [<storyTiddler>get[palette]] }}}/>
 <$list filter="[<storyTiddler>fields[]prefix[story-]]" variable="storyField">
 <$let storyNumber={{{ [<storyField>removeprefix[story-]] }}} storyTitle={{{ [[$:/StoryList-]addsuffix<storyNumber>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>

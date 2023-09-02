@@ -3,11 +3,9 @@ tags: $:/tags/MultiColumn/Overlay
 
 \whitespace trim
 <$list filter="[all[tiddlers+shadows]tag[$:/tags/TopToolbar]get[hamburgers]match[yes]] +[limit[1]]" variable="ignore" emptyMessage="""
-	<$list filter="[{$:/config/story-river/hamburger-top}!match[yes]]" variable="ignore">
-		<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment/User]!is[draft]] +[limit[1]]" variable="ignore">
-			<$list filter="[{$:/state/user-panel/visibility}!match[yes]]" variable="ignore">
-				<$button class="btc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
-			</$list>
+	<$list filter="[all[tiddlers+shadows]tag[$:/tags/SideBarSegment/User]!is[draft]] +[limit[1]]" variable="ignore">
+		<$list filter="[{$:/state/user-panel/visibility}!match[yes]]" variable="ignore">
+			<$button class="btc-user-panel-show tc-btn-invisible" actions=<<user-sidebar-actions>>>{{$:/plugins/BTC/tiddlywiki-multi-columns/icons/menu-hamburger}}</$button>
 		</$list>
 	</$list>
 """><$text text=""/></$list>

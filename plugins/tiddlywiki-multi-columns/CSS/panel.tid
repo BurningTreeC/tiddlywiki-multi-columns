@@ -225,8 +225,6 @@ tags: $:/tags/Stylesheet
 	white-space: nowrap;
 }
 
-<$list filter="[{$:/config/story-river/hamburger-top}!match[yes]]" variable="ignore">
-
 <$list filter="[all[tiddlers+shadows]tag[$:/tags/TopToolbar]get[hamburgers]match[yes]] +[limit[1]]" variable="ignore" emptyMessage="""
 
 .btc-panel-show, .btc-user-panel-show {
@@ -394,5 +392,3 @@ tags: $:/tags/Stylesheet
 .btc-panel-content .tc-sidebar-lists.tc-sidebar-search p {
 	margin-bottom: 3px;
 }
-
-</$list>
