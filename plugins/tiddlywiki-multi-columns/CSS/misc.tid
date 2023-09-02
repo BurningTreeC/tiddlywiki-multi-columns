@@ -93,7 +93,7 @@ tags: $:/tags/Stylesheet
 
 <$list filter="[{$:/config/story-river/no-tiddler-box-shadows}match[yes]]" variable="ignore">
 
-.tc-tiddler-frame {
+.btc-river-inner > div > .tc-tiddler-frame {
 	box-shadow: none;
 }
 
