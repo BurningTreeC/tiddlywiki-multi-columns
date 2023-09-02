@@ -22,6 +22,14 @@ caption: MultiColumn
 </$select>
 <hr>
 
+!!! show the top panels in vertical view
+<$link to="$:/config/panel/top-panels"/><br>
+<$select tiddler="$:/config/panel/top-panels" default="no">
+<option value="no">no</option>
+<option value="yes">yes</option>
+</$select>
+<hr>
+
 !!! ''scroll-behavior''
 <$link to="$:/config/scroll-behavior"/><br>
 <$select tiddler="$:/config/scroll-behavior" default="smooth">
