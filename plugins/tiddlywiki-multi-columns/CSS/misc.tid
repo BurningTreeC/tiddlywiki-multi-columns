@@ -26,6 +26,10 @@ tags: $:/tags/Stylesheet
 
 }
 
+.btc-top-active-column, .btc-river-header .btc-river-header-item {
+	border-bottom: thin solid <<colour column-active-button-border>>;
+}
+
 <$list filter="[{$:/palette}get[color-scheme]match[dark]]">
 
 .btc-column-active-button {
