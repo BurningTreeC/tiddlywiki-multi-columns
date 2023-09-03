@@ -454,6 +454,7 @@ tags: $:/tags/Stylesheet
 }
 
 .btc-river-header-item-inner {
+	display: flex;
 	padding-left: 1em;
 	padding-right: 1em;
 	width: 100%;

@@ -38,18 +38,14 @@ Do you want to overwrite?
 <$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} $field={{{ [[story-]addsuffix<column>] }}} $value={{{ [[$:/StoryList-]addsuffix<column>!match[StoryList-1]get[list]] [[$:/StoryList-]addsuffix<column>match[$:/StoryList-1]then[$:/StoryList]get[list]] ~[[]] }}}/>
 </$list>
 <$list filter="[tags[]prefix[$:/tags/RiverHeader-]]" variable="riverHeaderTag">
+<$set name="index" value={{{ [<riverHeaderTag>removeprefix[$:/tags/RiverHeader-]] }}}>
 <$list filter="[all[tiddlers+shadows]tag<riverHeaderTag>!is[draft]]" variable="riverHeaderTiddler">
-<$action-listops $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} $field={{{ [[river-header-tiddler-]addsuffix<column>] }}} $subfilter="[<riverHeaderTiddler>]"/>
-<$fieldmangler tiddler=<<riverHeaderTiddler>>>
-<$action-sendmessage $message="tm-remove-tag" $param=<riverHeaderTag>/>
-</$fieldmangler>
+<$action-listops $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} $field={{{ [[river-header-tiddler-]addsuffix<index>] }}} $subfilter="[<riverHeaderTiddler>]"/>
 </$list>
+</$set>
 </$list>
 <$list filter="[all[tiddlers+shadows]tag[$:/tags/RiverHeader]!is[draft]]" variable="riverHeaderTiddler">
 <$action-listops $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} $field="river-header-tiddler" $subfilter="[<riverHeaderTiddler>]"/>
-<$fieldmangler tiddler=<<riverHeaderTiddler>>>
-<$action-sendmessage $message="tm-remove-tag" $param=<riverHeaderTag>/>
-</$fieldmangler>
 </$list>
 <$list filter="[[$:/temp/save-story/story-title]get[stylesheets]!is[blank]]" variable="ignore">
 <$action-setfield $tiddler={{{ [[$:/Story/]addsuffix<__storyTitle__>] }}} stylesheets={{{ [[$:/temp/save-story/story-title]get[stylesheets]] }}}/>
@@ -97,6 +93,13 @@ Do you want to overwrite?
 </$list>
 <$list filter="[all[tiddlers]prefix[$:/HistoryList]]" variable="historyListTiddler">
 <$action-deletetiddler $tiddler=<<historyListTiddler>>/>
+</$list>
+<$list filter="[tags[]prefix[$:/tags/RiverHeader]]" variable="riverHeaderTag">
+<$list filter="[all[tiddlers+shadows]tag<riverHeaderTag>]" variable="riverHeaderTiddler">
+<$fieldmangler tiddler=<<riverHeaderTiddler>>>
+<$action-sendmessage $message="tm-remove-tag" $param=<<riverHeaderTag>>/>
+</$fieldmangler>
+</$list>
 </$list>
 <$macrocall $name="btc-set-configuration" tiddler="$:/layout" value={{{ [<storyTiddler>get[layout]] }}}/>
 <$macrocall $name="btc-set-configuration" tiddler="$:/view" value={{{ [<storyTiddler>get[view]] }}}/>
