@@ -448,11 +448,16 @@ tags: $:/tags/Stylesheet
 }
 
 .btc-river-header-item {
-	padding-left: 1em;
-	padding-right: 1em;
 	height: 40px;
 	line-height: 40px;
 	overflow: hidden !important;
+}
+
+.btc-river-header-item-inner {
+	padding-left: 1em;
+	padding-right: 1em;
+	width: 100%;
+	height: 100%;
 }
 
 .btc-river-header-item p, .btc-river-header-item h1, .btc-river-header-item h2, .btc-river-header-item h3, .btc-river-header-item h4, .btc-river-header-item h5, .btc-river-header-item h6 {

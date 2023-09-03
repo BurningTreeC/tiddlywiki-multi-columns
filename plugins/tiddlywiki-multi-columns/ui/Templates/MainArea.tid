@@ -9,14 +9,16 @@ tags: $:/tags/MultiColumn/Main
 				<div class={{{ [[btc-river-header-item ]addsuffix[btc-river-header-item-]addsuffix<currentColumn>] }}}>
 					<$navigator story={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 						<$messagecatcher $tm-navigate=<<btc-river-header-navigate-actions>>>
-							<$set name="riverHeaderTag" value={{{ [[$:/tags/RiverHeader-]addsuffix<currentColumn>] }}}>
-								<$list filter="[all[tiddlers+shadows]tag<riverHeaderTag>!is[draft]]" variable="listItem">
-									<$transclude tiddler=<<listItem>> mode="inline"/>
-								</$list>
-								<$list filter="[all[tiddlers+shadows]tag[$:/tags/RiverHeader]!is[draft]]" variable="listItem">
-									<$transclude tiddler=<<listItem>> mode="inline"/>
-								</$list>
-							</$set>
+							<div class="btc-river-header-item-inner">
+								<$set name="riverHeaderTag" value={{{ [[$:/tags/RiverHeader-]addsuffix<currentColumn>] }}}>
+									<$list filter="[all[tiddlers+shadows]tag<riverHeaderTag>!is[draft]]" variable="listItem">
+										<$transclude tiddler=<<listItem>> mode="inline"/>
+									</$list>
+									<$list filter="[all[tiddlers+shadows]tag[$:/tags/RiverHeader]!is[draft]]" variable="listItem">
+										<$transclude tiddler=<<listItem>> mode="inline"/>
+									</$list>
+								</$set>
+							</div>
 						</$messagecatcher>
 					</$navigator>
 				</div>
