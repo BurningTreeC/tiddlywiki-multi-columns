@@ -23,6 +23,11 @@ tags: $:/tags/MultiColumn/Main
 			</$list>
 		</div>
 	</$list>
+	<div class="btc-column-container" style="overflow: initial">
+		<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
+			<div/>
+		</$list>
+	</div>
 	<$list filter="[[$:/config/panel/top-panels]get[text]match[yes]]" variable="ignore">
 		<div class="btc-column-container btc-column-container-active-column" style="overflow: initial;">
 			<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
