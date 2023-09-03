@@ -2,6 +2,41 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Main/MainArea
 tags: $:/tags/MultiColumn/Main
 
 \whitespace trim
-<main class="main btc-column-container">
-	<$list filter="[list[$:/columns]] ~1" variable="currentColumn" template="$:/plugins/BTC/tiddlywiki-multi-columns/ui/Templates/RiverTemplate"/>
-</main>
+<div class="btc-horizontal-scroll-container">
+	<$list filter="[[$:/config/panel/top-river-panel]get[text]match[yes]]" variable="ignore">
+		<div class="btc-river-header btc-column-container">
+			<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
+				<div class={{{ [[btc-river-header-item ]addsuffix[btc-river-header-item-]addsuffix<currentColumn>] }}}>
+					<$navigator story={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+						<$messagecatcher $tm-navigate=<<btc-river-header-navigate-actions>>>
+							<$set name="riverHeaderTag" value={{{ [[$:/tags/RiverHeader-]addsuffix<currentColumn>] }}}>
+								<$list filter="[all[tiddlers+shadows]tag<riverHeaderTag>!is[draft]]" variable="listItem">
+									<$transclude tiddler=<<listItem>> mode="inline"/>
+								</$list>
+								<$list filter="[all[tiddlers+shadows]tag[$:/tags/RiverHeader]!is[draft]]" variable="listItem">
+									<$transclude tiddler=<<listItem>> mode="inline"/>
+								</$list>
+							</$set>
+						</$messagecatcher>
+					</$navigator>
+				</div>
+			</$list>
+		</div>
+	</$list>
+	<$list filter="[[$:/config/panel/top-panels]get[text]match[yes]]" variable="ignore">
+		<div class="btc-column-container btc-column-container-active-column" style="overflow: initial;">
+			<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
+				<div class="btc-top-active-column">
+					<$set name="currentStory" value={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
+						<$draggable class="btc-top-active-column-draggable" filter="[list<currentStory>]" dragimagetype="pill">
+							<$eventcatcher tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[btc-column-active-button btc-column-active]else[btc-column-active-button]] ~[<currentColumn>match[1]then[btc-column-active-button btc-column-active]] }}} $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""" $dblclick=<<active-column-dblclick-actions>>></$eventcatcher>
+						</$draggable>
+					</$set>
+				</div>
+			</$list>
+		</div>
+	</$list>
+	<main class="main btc-column-container">
+		<$list filter="[list[$:/columns]] ~1" variable="currentColumn" template="$:/plugins/BTC/tiddlywiki-multi-columns/ui/Templates/RiverTemplate"/>
+	</main>
+</div>

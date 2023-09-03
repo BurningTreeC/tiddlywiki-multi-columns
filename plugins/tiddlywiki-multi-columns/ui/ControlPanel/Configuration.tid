@@ -22,9 +22,17 @@ caption: MultiColumn
 </$select>
 <hr>
 
-!!! show the top panels in vertical view
+!!! show the top panels
 <$link to="$:/config/panel/top-panels"/><br>
 <$select tiddler="$:/config/panel/top-panels" default="no">
+<option value="no">no</option>
+<option value="yes">yes</option>
+</$select>
+<hr>
+
+!!! show the top river panels
+<$link to="$:/config/panel/top-river-panel"/><br>
+<$select tiddler="$:/config/panel/top-river-panel" default="no">
 <option value="no">no</option>
 <option value="yes">yes</option>
 </$select>

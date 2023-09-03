@@ -20,7 +20,7 @@ tags: $:/tags/Stylesheet
 
 @media (min-width: 800px) {
 
-	.btc-top-active-column:not(:last-of-type) .btc-column-active-button {
+	.btc-top-active-column:not(:last-of-type), .btc-river-header .btc-river-header-item:not(:last-of-type) {
 		border-right: thin solid <<colour column-active-button-border>>;
 	}
 
@@ -127,7 +127,7 @@ tags: $:/tags/Stylesheet
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
-	user-select: none;	
+	user-select: none;
 }
 
 .btc-panel-shown-eventcatcher:focus {

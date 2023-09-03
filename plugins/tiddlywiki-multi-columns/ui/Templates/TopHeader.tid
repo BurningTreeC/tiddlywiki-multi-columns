@@ -10,17 +10,4 @@ tags: $:/tags/MultiColumn/Main
 			<$transclude tiddler=<<listItem>>/>
 		</div>
 	</$list>
-	<$list filter="[[$:/config/panel/top-panels]get[text]match[yes]]" variable="ignore">
-		<div class="btc-column-container">
-			<$list filter="[list[$:/columns]] ~1" variable="currentColumn">
-				<div class="btc-top-active-column">
-					<$set name="currentStory" value={{{ [[$:/StoryList-]addsuffix<currentColumn>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
-						<$draggable class="btc-top-active-column-draggable" filter="[list<currentStory>]" dragimagetype="pill">
-							<$eventcatcher tag="a" class={{{ [[$:/columns]get[active-column]match<currentColumn>then[btc-column-active-button btc-column-active]else[btc-column-active-button]] ~[<currentColumn>match[1]then[btc-column-active-button btc-column-active]] }}} $click="""<$action-setfield $tiddler="$:/columns" active-column=<<currentColumn>>/>""" $dblclick=<<active-column-dblclick-actions>>></$eventcatcher>
-						</$draggable>
-					</$set>
-				</div>
-			</$list>
-		</div>
-	</$list>
 </header>

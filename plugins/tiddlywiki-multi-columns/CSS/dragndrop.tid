@@ -178,7 +178,7 @@ tags: $:/tags/Stylesheet
 
 .btc-river-inner {
 	height: 100%;
-	position: absolute;
+	/* position: absolute; */
 	width: 100%;
 }
 

@@ -64,3 +64,10 @@ tags: $:/tags/Macro
 <$action-navigate $to=<<event-navigateTo>>/>
 </$navigator>
 \end
+
+\define btc-river-header-navigate-actions()
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] -[[$:/state/story-river/full-screen/]addsuffix<event-navigateTo>]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+<$action-navigate $to=<<event-navigateTo>>/>
+\end

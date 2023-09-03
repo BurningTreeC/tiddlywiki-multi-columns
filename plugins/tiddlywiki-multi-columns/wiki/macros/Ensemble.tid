@@ -29,6 +29,8 @@ Do you want to overwrite?
 	scroll-snap-type={{{ [[$:/config/story-river/scroll-snap-type]get[text]] ~none }}}
 	show-edit-preview-per-tiddler={{{ [{$:/config/ShowEditPreview/PerTiddler}match[yes]] ~no }}}
 	story-river-padding={{{ [[$:/config/story-river/padding]get[text]] ~15 }}}
+	top-river-panel={{{ [[$:/config/panel/top-river-panel]get[text]match[yes]] ~no }}}
+	top-panels={{{ [[$:/config/panel/top-panels]get[text]match[yes]] ~no }}}
 	tiddler-border={{{ [[$:/config/story-river/tiddler-border]get[text]] ~1 }}}
 	tiddler-margin={{{ [[$:/config/story-river/tiddler-margin]get[text]] ~10 }}}
 	palette={{$:/palette}}/>
@@ -104,6 +106,8 @@ Do you want to overwrite?
 <$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/padding" value={{{ [<storyTiddler>get[story-river-padding]] }}}/>
 <$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/tiddler-border" value={{{ [<storyTiddler>get[tiddler-border]] }}}/>
 <$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/tiddler-margin" value={{{ [<storyTiddler>get[tiddler-margin]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/panel/top-river-panel" value={{{ [<storyTiddler>get[top-river-panel]match[yes]then[yes]else[no]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/panel/top-panels" value={{{ [<storyTiddler>get[top-panels]match[yes]then[yes]else[no]] }}}/>
 <$macrocall $name="btc-set-configuration" tiddler="$:/palette" value={{{ [<storyTiddler>get[palette]] }}}/>
 <$list filter="[<storyTiddler>fields[]prefix[story-]]" variable="storyField">
 <$let storyNumber={{{ [<storyField>removeprefix[story-]] }}} storyTitle={{{ [[$:/StoryList-]addsuffix<storyNumber>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>

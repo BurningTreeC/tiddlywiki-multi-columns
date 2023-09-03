@@ -14,7 +14,9 @@ tags: $:/tags/MultiColumn/Panel
 		</header>
 		<header class="btc-panel-header-subtitle">
 			<$navigator story={{{ [[$:/StoryList-]addsuffix{$:/columns!!active-column}!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} history={{{ [[$:/HistoryList-]addsuffix{$:/columns!!active-column}!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-				<h4 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;">{{$:/SiteSubtitle}}</h4>
+				<$messagecatcher $tm-navigate=<<btc-sidebar-navigate-actions>>>
+					<h4 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;">{{$:/SiteSubtitle}}</h4>
+				</$messagecatcher>
 			</$navigator>
 		</header>
 		<$scrollable fallthrough="no" class="btc-panel-container">
