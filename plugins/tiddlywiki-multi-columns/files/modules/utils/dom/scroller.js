@@ -73,42 +73,17 @@ PageScroller.prototype.scrollIntoView = function(element,callback,options) {
 	try {
 		$tw.utils.addClass(element,"tc-navigating");
 		var scrollIntoView = function() {
-			element.scrollIntoView({inline: "start"});
+			element.scrollIntoView({block: "start", inline: "start"});
 		};
 		this.requestAnimationFrame.call(srcWindow,scrollIntoView);
 		setTimeout(function() {
+			self.requestAnimationFrame.call(srcWindow,scrollIntoView);
+		},100);
+		setTimeout(function() {
 			$tw.utils.removeClass(element,"tc-navigating");
-		},$tw.utils.getAnimationDuration() * 1);
+		},$tw.utils.getAnimationDuration());
 	} catch(e) {
 		console.log(e);
-		// Now get ready to scroll the body
-		this.cancelScroll(srcWindow);
-		this.startTime = Date.now();
-		// Get the height of any position:fixed toolbars
-		var toolbar = srcWindow.document.querySelector(".tc-adjust-top-of-scroll"),
-			offset = 0;
-		if(toolbar) {
-			offset = toolbar.offsetHeight;
-		}
-		// Get the client bounds of the element and adjust by the scroll position
-		var drawFrame = function drawFrame() {
-				var t;
-				if(duration <= 0) {
-					t = 1;
-				} else {
-					t = ((Date.now()) - self.startTime) / duration;
-				}
-				if(t >= 1) {
-					self.cancelScroll(srcWindow);
-					t = 1;
-				}
-				t = $tw.utils.slowInSlowOut(t);
-				scrollIntoView();
-				if(t < 1) {
-					self.idRequestFrame = self.requestAnimationFrame.call(srcWindow,drawFrame);
-				}
-			};
-		drawFrame();
 	}
 };
 
