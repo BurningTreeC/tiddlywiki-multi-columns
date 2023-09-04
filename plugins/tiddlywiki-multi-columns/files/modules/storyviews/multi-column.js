@@ -45,21 +45,44 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 			currMarginBottom = parseInt(computedStyle.marginBottom,10),
 			currMarginTop = parseInt(computedStyle.marginTop,10),
 			currHeight = targetElement.offsetHeight + currMarginTop,
-			focusedElement;
+			focusedElement,
+			percentage;
 		if(targetElement.attributes["data-tiddler-title"]) {
 			focusedElement = targetElement.ownerDocument.activeElement;
-			widget.wiki.setText("$:/state/inserting/to-story/" + targetElement.attributes["data-tiddler-title"].value,"height",undefined,currHeight);
+			//widget.wiki.setText("$:/state/inserting/to-story/" + targetElement.attributes["data-tiddler-title"].value,"height",undefined,currHeight);
+		}
+		if($tw.wiki.getTiddlerText("$:/state/inserting/from-right/" + targetElement.attributes["data-tiddler-title"].value) === "yes") {
+			percentage = 100;
+		} else {
+			percentage = -100;
 		}
 		$tw.utils.addClass(targetElement,"tc-inserting");
 		setTimeout(function() {
-			$tw.utils.removeClass(targetElement,"tc-inserting");
+			$tw.utils.setStyle(targetElement,[
+				{transition: "none"},
+				{transform: "translateX(0%)"},
+				{marginBottom: ""}
+			]);
 			widget.wiki.deleteTiddler("$:/state/inserting/to-story/" + targetElement.attributes["data-tiddler-title"].value);
 			widget.wiki.deleteTiddler("$:/state/inserting/from-right/" + targetElement.attributes["data-tiddler-title"].value);
 			widget.wiki.deleteTiddler("$:/state/inserting/from-left/" + targetElement.attributes["data-tiddler-title"].value);
+			widget.wiki.deleteTiddler("$:/state/inserting");
 			if(focusedElement.focus && focusedElement.select) {
 				focusedElement.focus({preventScroll: "true"}) && focusedElement.select();
 			}
+			$tw.utils.removeClass(targetElement,"tc-inserting");
 		},duration);
+		$tw.utils.setStyle(targetElement,[
+			{transition: "none"},
+			{transform: "translateX(" + percentage + "%)"},
+			{marginBottom: (-currHeight) + "px"}
+		]);
+		$tw.utils.forceLayout(targetElement);
+		$tw.utils.setStyle(targetElement,[
+			{transition: $tw.utils.roundTripPropertyName("transform") + " " + duration + "ms " + easing + ", " + "margin-bottom " + duration + "ms " + easing},
+			{transform: "translateX(0%)"},
+			{marginBottom: currMarginBottom + "px"}
+		]);
 	}
 	if(duration && (widget.wiki.getTiddlerText("$:/state/DisableInsertAnimation") === "yes")) {
 		setTimeout(function() {
@@ -68,7 +91,7 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 		},duration);
 	} else if(widget.wiki.getTiddlerText("$:/state/DisableInsertAnimation") === "yes") {
 		widget.wiki.deleteTiddler("$:/state/DisableInsertAnimation");
-		widget.wiki.deleteTiddler("$:/state/DisableRemoveAnimation");		
+		widget.wiki.deleteTiddler("$:/state/DisableRemoveAnimation");
 	}
 };
 

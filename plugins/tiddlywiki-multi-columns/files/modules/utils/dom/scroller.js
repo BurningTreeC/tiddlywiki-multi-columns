@@ -91,29 +91,7 @@ PageScroller.prototype.scrollIntoView = function(element,callback,options) {
 			offset = toolbar.offsetHeight;
 		}
 		// Get the client bounds of the element and adjust by the scroll position
-		var getBounds = function() {
-				var clientBounds = typeof callback === 'function' ? callback() : element.getBoundingClientRect(),
-					scrollPosition = $tw.utils.getScrollPosition(srcWindow);
-				return {
-					left: clientBounds.left + scrollPosition.x,
-					top: clientBounds.top + scrollPosition.y - offset,
-					width: clientBounds.width,
-					height: clientBounds.height
-				};
-			},
-			// We'll consider the horizontal and vertical scroll directions separately via this function
-			// targetPos/targetSize - position and size of the target element
-			// currentPos/currentSize - position and size of the current scroll viewport
-			// returns: new position of the scroll viewport
-			getEndPos = function(targetPos,targetSize,currentPos,currentSize) {
-				var newPos = targetPos;
-				// If we are scrolling within 50 pixels of the top/left then snap to zero
-				if(newPos < 50) {
-					newPos = 0;
-				}
-				return newPos;
-			},
-			drawFrame = function drawFrame() {
+		var drawFrame = function drawFrame() {
 				var t;
 				if(duration <= 0) {
 					t = 1;
@@ -125,11 +103,7 @@ PageScroller.prototype.scrollIntoView = function(element,callback,options) {
 					t = 1;
 				}
 				t = $tw.utils.slowInSlowOut(t);
-				var scrollPosition = $tw.utils.getScrollPosition(srcWindow),
-					bounds = getBounds(),
-					endX = getEndPos(bounds.left,bounds.width,scrollPosition.x,srcWindow.innerWidth),
-					endY = getEndPos(bounds.top,bounds.height,scrollPosition.y,srcWindow.innerHeight);
-				srcWindow.scrollTo(scrollPosition.x + (endX - scrollPosition.x) * t,scrollPosition.y + (endY - scrollPosition.y) * t);
+				scrollIntoView();
 				if(t < 1) {
 					self.idRequestFrame = self.requestAnimationFrame.call(srcWindow,drawFrame);
 				}
