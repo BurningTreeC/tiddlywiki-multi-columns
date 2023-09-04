@@ -78,7 +78,7 @@ PageScroller.prototype.scrollIntoView = function(element,callback,options) {
 		this.requestAnimationFrame.call(srcWindow,scrollIntoView);
 		setTimeout(function() {
 			self.requestAnimationFrame.call(srcWindow,scrollIntoView);
-		},100);
+		},duration);
 		setTimeout(function() {
 			$tw.utils.removeClass(element,"tc-navigating");
 		},$tw.utils.getAnimationDuration());
