@@ -59,8 +59,8 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 		$tw.utils.addClass(targetElement,"tc-inserting");
 		setTimeout(function() {
 			$tw.utils.setStyle(targetElement,[
-				{transition: "none"},
-				{transform: "translateX(0%)"},
+				{transition: ""},
+				{transform: ""},
 				{marginBottom: ""}
 			]);
 			widget.wiki.deleteTiddler("$:/state/inserting/to-story/" + targetElement.attributes["data-tiddler-title"].value);
