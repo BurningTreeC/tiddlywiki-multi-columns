@@ -73,7 +73,6 @@ PageScroller.prototype.scrollIntoView = function(element,callback,options) {
 	try {
 		$tw.utils.addClass(element,"tc-navigating");
 		var transitionString = window.getComputedStyle(element,null).getPropertyValue("transition");
-		console.log(transitionString);
 		var scrollIntoView = function() {
 			element.scrollIntoView({block: "start", inline: "start"});
 		};
