@@ -4,14 +4,6 @@ caption: MultiColumn
 
 <div>
 
-!!! ~ViewTemplate and ~EditTemplate to use
-<$link to="$:/config/story-river/templates"/><br>
-<$select tiddler="$:/config/story-river/templates" default="MultiColumn">
-<option value="MultiColumn">MultiColumn</option>
-<option value="Dynaview">Dynaview</option>
-</$select>
-<hr>
-
 !!! user-panel header title
 <$link to="$:/UserPanelTitle"/><br>
 <$edit-text tag="input" tiddler="$:/UserPanelTitle" default="" placeholder="user-panel title"/><br>
