@@ -16,7 +16,7 @@ title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Templates/RiverTemplate
 					</$set>
 				</section>
 				<div class="btc-river-inner">
-					<$list filter="[list<tv-story-list>search{$:/state/search-panel/search}]" template="$:/plugins/BTC/tiddlywiki-multi-columns/ui/ViewTemplate" editTemplate="$:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate" storyview={{$:/view}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-1]!match[$:/HistoryList-]] ~[[$:/HistoryList]] }}}/>
+					<$list filter="[list<tv-story-list>search{$:/state/search-panel/search}]" template={{{ [[$:/config/story-river/templates]get[text]match[MultiColumn]then[$:/plugins/BTC/tiddlywiki-multi-columns/ui/ViewTemplate]] [[$:/config/story-river/templates]get[text]match[Dynaview]then[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Dynaview-ViewTemplate]] ~$:/plugins/BTC/tiddlywiki-multi-columns/ui/ViewTemplate }}} editTemplate={{{ [[$:/config/story-river/templates]get[text]match[MultiColumn]then[$:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate]] [[$:/config/story-river/templates]get[text]match[Dynaview]then[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Dynaview-EditTemplate]] ~$:/plugins/BTC/tiddlywiki-multi-columns/ui/EditTemplate }}} storyview={{$:/view}} history={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-1]!match[$:/HistoryList-]] ~[[$:/HistoryList]] }}}/>
 					<$droppable actions="""<$action-setfield $tiddler="$:/state/drag-handled" text="yes"/><$action-listops $tiddler=<<tv-story-list>> $subfilter="[<actionTiddler>]"/>""" dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" target="" starting-next-tiddler="" copying=""/>""">
 					</$droppable>
 				</div>

@@ -1,0 +1,173 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Dynaview-EditTemplate
+code-body: yes
+
+\define delete-edittemplate-state-tiddlers() <$action-deletetiddler $filter="[<newFieldNameTiddler>] [prefix<newFieldValueTiddlerPrefix>] [<newFieldNameInputTiddler>] [<newFieldNameSelectionTiddler>] [<newTagNameTiddler>] [<newTagNameInputTiddler>] [<newTagNameSelectionTiddler>] [<typeInputTiddler>] [<typeSelectionTiddler>]"/>
+\define get-field-value-tiddler-filter() [subfilter<get-field-editor-filter>sha256[16]addprefix[/]addprefix<newFieldValueTiddlerPrefix>]
+\define get-field-editor-filter() [<newFieldNameTiddler>get[text]else[]] :cascade[all[shadows+tiddlers]tag[$:/tags/FieldEditorFilter]!is[draft]get[text]] :and[!is[blank]else{$:/core/ui/EditTemplate/fieldEditor/default}]
+\define save-tiddler-actions()
+<$list filter="[[$:/state/story-river/full-screen/]addsuffix<currentTiddler>!is[missing]]" variable="ignore" emptyMessage="""
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+""">
+<$set name="newTiddlerTitle" value={{{ [<currentTiddler>get[draft.title]] }}}>
+<$list filter="[<newTiddlerTitle>!is[blank]]" variable="ignore">
+<$action-setfield $tiddler="$:/state/DisableInsertAnimation" text="yes"/>
+<$action-setfield $tiddler="$:/state/DisableRemoveAnimation" text="yes"/>
+<$action-setfield $tiddler={{{ [[$:/state/story-river/full-screen/]addsuffix<newTiddlerTitle>] }}} text="yes" column=<<currentColumn>>/>
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] -[[$:/state/story-river/full-screen/]addsuffix<newTiddlerTitle>]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+</$list>
+</$set>
+</$list>
+<$action-sendmessage $message="tm-add-tag" $param={{{ [<newTagNameTiddler>get[text]] }}}/>
+<$action-sendmessage $message="tm-add-field" $name={{{ [<newFieldNameTiddler>get[text]] }}} $value={{{ [<newFieldNameTiddler>get[text]] :map[subfilter<get-field-value-tiddler-filter>get[text]] }}}/>
+<$list filter="[list[$:/columns]!match<currentColumn>]" variable="column">
+<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
+<$list filter="[<storyList>contains<currentTiddler>]" variable="ignore">
+<$set name="index" value={{{ [list<storyList>allbefore<currentTiddler>add[1]] }}}>
+<$let nextTiddler={{{ [list<storyList>zth<index>] }}} viewTiddler={{{ [<currentTiddler>get[draft.of]] }}}>
+<$action-listops $tiddler=<<storyList>> $subfilter="+[insertbefore<viewTiddler>,<nextTiddler>]"/>
+<$action-listops $tiddler=<<storyList>> $subfilter="-[<currentTiddler>]"/>
+</$let>
+</$set>
+</$list>
+</$set>
+</$list>
+<<delete-edittemplate-state-tiddlers>>
+<$action-sendmessage $message="tm-save-tiddler"/>
+\end
+\define cancel-tiddler-actions-draft-of-not-is-missing-I()
+<$list filter="[list[$:/columns]!match<currentColumn>]" variable="column">
+<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
+<$list filter="[<storyList>contains<currentTiddler>]" variable="ignore">
+<$set name="index" value={{{ [list<storyList>allbefore<currentTiddler>add[1]] }}}>
+<$let nextTiddler={{{ [list<storyList>zth<index>] }}} viewTiddler={{{ [<currentTiddler>get[draft.of]] }}}>
+<$action-listops $tiddler=<<storyList>> $subfilter="+[insertbefore<viewTiddler>,<nextTiddler>]"/>
+<$action-listops $tiddler=<<storyList>> $subfilter="-[<currentTiddler>]"/>
+</$let>
+</$set>
+</$list>
+</$set>
+</$list>
+\end
+\define cancel-tiddler-actions-draft-of-not-is-missing-II()
+<$action-setfield $tiddler=<<tv-history-list>> current-tiddler={{{ [<currentTiddler>get[draft.of]] }}}/>
+<<delete-edittemplate-state-tiddlers>>
+<$list filter="[[$:/state/story-river/full-screen/]addsuffix<currentTiddler>!is[missing]]" variable="ignore" emptyMessage="""
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+<$action-sendmessage $message="tm-cancel-tiddler"/>
+""">
+<$set name="cancelTiddler" value={{{ [<currentTiddler>get[draft.of]] }}}>
+<$action-setfield $tiddler="$:/state/DisableInsertAnimation" text="yes"/>
+<$action-setfield $tiddler="$:/state/DisableRemoveAnimation" text="yes"/>
+<$action-setfield $tiddler={{{ [[$:/state/story-river/full-screen/]addsuffix<cancelTiddler>] }}} text="yes" column=<<currentColumn>>/>
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] -[[$:/state/story-river/full-screen/]addsuffix<cancelTiddler>]" variable="fullScreenTiddler">
+	<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+<$action-sendmessage $message="tm-cancel-tiddler"/>
+</$list>
+\end
+\define cancel-delete-tiddler-actions(message)
+<$list filter="[[$message$]match[delete]]" variable="ignore">
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+<$let deleteTiddlerViewMode={{{ [<currentTiddler>get[draft.of]] }}} deleteTiddlerEditMode=<<currentTiddler>>>
+<$list filter="[list[$:/columns]!match<currentColumn>]" variable="column">
+<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
+<$list filter="[<storyList>contains<deleteTiddlerViewMode>]" variable="ignore">
+<$action-listops $tiddler=<<storyList>> $subfilter="-[<deleteTiddlerViewMode>]"/>
+</$list>
+<$list filter="[<storyList>contains<deleteTiddlerEditMode>]" variable="ignore">
+<$action-listops $tiddler=<<storyList>> $subfilter="-[<deleteTiddlerEditMode>]"/>
+</$list>
+</$set>
+</$list>
+</$let>
+<<delete-edittemplate-state-tiddlers>>
+<$let scrollTiddler={{{ [list<tv-story-list>after<currentTiddler>] ~[list<tv-story-list>before<currentTiddler>] }}}>
+	<$action-setfield $tiddler=<<tv-history-list>> current-tiddler=<<scrollTiddler>>/>
+	<$action-sendmessage $message="tm-delete-tiddler"/>
+</$let>
+</$list>
+<$list filter="[[$message$]match[cancel]]" variable="ignore">
+<$list filter="[<currentTiddler>get[draft.of]is[missing]]" variable="ignore" emptyMessage=<<cancel-tiddler-actions-draft-of-not-is-missing-I>>>
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+<$list filter="[list[$:/columns]!match<currentColumn>]" variable="column">
+<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
+<$list filter="[<storyList>contains<currentTiddler>]" variable="ignore">
+<$action-listops $tiddler=<<storyList>> $subfilter="-[<currentTiddler>]"/>
+</$list>
+</$set>
+</$list>
+</$list>
+<$list filter="[<currentTiddler>get[draft.of]is[missing]]" variable="ignore" emptyMessage=<<cancel-tiddler-actions-draft-of-not-is-missing-II>>>
+<<delete-edittemplate-state-tiddlers>>
+<$let scrollTiddler={{{ [list<tv-story-list>after<currentTiddler>] ~[list<tv-story-list>before<currentTiddler>] }}}>
+	<$action-setfield $tiddler=<<tv-history-list>> current-tiddler=<<scrollTiddler>>/>
+	<$action-sendmessage $message="tm-cancel-tiddler"/>
+</$let>
+</$list>
+</$list>
+\end
+\define navigate-actions-not-match-shift-message()
+<$navigator story=<<tv-story-list>> history=<<tv-history-list>> openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+<$action-navigate $to=<<event-navigateTo>>/>
+</$navigator>
+\end
+\define navigate-actions()
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+<$list filter="[<modifier>match[shift]]" variable="ignore" emptyMessage=<<navigate-actions-not-match-shift-message>>>
+<$set name="nextColumn" value={{{ [<currentColumn>add[1]] }}}>
+<$let storyList={{{ [[$:/StoryList-]addsuffix<nextColumn>] }}} historyList={{{ [[$:/HistoryList-]addsuffix<nextColumn>] }}}>
+<$list filter="[[$:/columns]!contains<nextColumn>]" variable="ignore">
+<$action-listops $tiddler="$:/columns" $subfilter="[<nextColumn>]"/>
+</$list>
+<$navigator story=<<storyList>> history=<<historyList>> openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+<$action-navigate $to=<<event-navigateTo>>/>
+</$navigator>
+</$let>
+</$set>
+</$list>
+\end
+<div data-tiddler-title=<<currentTiddler>> data-tags={{!!tags}} class={{{ [all[shadows+tiddlers]tag[$:/tags/ClassFilters/TiddlerTemplate]!is[draft]] :map:flat[subfilter{!!text}] tc-tiddler-edit-frame [<currentTiddler>is[tiddler]then[tc-tiddler-exists]] [<currentTiddler>is[missing]!is[shadow]then[tc-tiddler-missing]] [<currentTiddler>is[shadow]then[tc-tiddler-exists tc-tiddler-shadow]] [<currentTiddler>is[system]then[tc-tiddler-system]] [{!!class}] [<currentTiddler>tags[]encodeuricomponent[]addprefix[tc-tagged-]] +[join[ ]] }}} role="region" aria-label={{$:/language/EditTemplate/Caption}}>
+<$fieldmangler>
+<$draggable enable={{{ [{$:/config/story-river/dragging-enable}match[yes]addsuffix[$:/state/story-river/full-screen/]addsuffix<currentTiddler>removeprefix[yes]is[missing]then[yes]] ~[[no]] }}} tiddler=<<currentTiddler>> startactions=<<btc-drag-start-actions>> endactions=<<btc-drag-end-actions>> class="tc-tiddler-frame">
+<$set name="state" value={{{ [[$:/state/viewtemplate/visibility/]addsuffix<currentTiddler>] }}}>
+<$reveal stateTitle=<<state>> type="nomatch" text="" default="" tag="div">
+<div class="tc-dynaview-track-tiddler-when-visible" data-dynaview-track-tiddler=<<state>>>
+<$vars storyTiddler=<<currentTiddler>> newTagNameTiddler=<<qualify "$:/temp/NewTagName">> newFieldNameTiddler=<<qualify "$:/temp/NewFieldName">> newFieldValueTiddlerPrefix=<<qualify "$:/temp/NewFieldValue">> newFieldNameInputTiddler=<<qualify "$:/temp/NewFieldName/input">> newFieldNameSelectionTiddler=<<qualify "$:/temp/NewFieldName/selected-item">> newTagNameInputTiddler=<<qualify "$:/temp/NewTagName/input">> newTagNameSelectionTiddler=<<qualify "$:/temp/NewTagName/selected-item">> typeInputTiddler=<<qualify "$:/temp/Type/input">> typeSelectionTiddler=<<qualify "$:/temp/Type/selected-item">>>
+<$keyboard key="((cancel-edit-tiddler))" actions=<<cancel-delete-tiddler-actions "cancel">> tag="div">
+<$keyboard key="((save-tiddler))" actions=<<save-tiddler-actions>> tag="div">
+<$messagecatcher $tm-navigate=<<navigate-actions>>>
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/EditTemplate]!has[draft.of]]" variable="listItem">
+<$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [<listItem>encodeuricomponent[]addprefix[tc-btn-]]">
+<$transclude tiddler=<<listItem>>/>
+</$set>
+</$list>
+</$messagecatcher>
+</$keyboard>
+</$keyboard>
+</$vars>
+</div>
+</$reveal>
+<$reveal stateTitle=<<state>> type="match" text="" default="" tag="div">
+<div class="tc-dynaview-track-tiddler-when-visible" style="min-height: 5em;" data-dynaview-track-tiddler=<<state>>>
+</div>
+</$reveal>
+</$set>
+<$droppable class="btc-droppable-top-half" actions=<<btc-top-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" starting-next-tiddler="" copying="" target=<<currentTiddler>> margin="top" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} river=<<currentColumn>> next-tiddler="" from-index={{{ [list<tv-story-list>allbefore<currentTiddler>count[]] }}} from-story=<<tv-story-list>>/>""">
+</$droppable>
+<$droppable class="btc-droppable-bottom-half" actions=<<btc-bottom-drop-actions>> dragenteractions="""<$action-setfield $tiddler="$:/state/dragging" starting-next-tiddler="" copying="" target=<<currentTiddler>> margin="bottom" nth={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}} river=<<currentColumn>> next-tiddler="" from-index={{{ [list<tv-story-list>allbefore<currentTiddler>count[]add[1]] }}} from-story=<<tv-story-list>>/>""">
+</$droppable>
+</$draggable>
+</$fieldmangler>
+</div>
