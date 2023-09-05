@@ -72,13 +72,17 @@ PageScroller.prototype.scrollIntoView = function(element,callback,options) {
 		srcWindow = element ? element.ownerDocument.defaultView : window;
 	try {
 		$tw.utils.addClass(element,"tc-navigating");
+		var transitionString = window.getComputedStyle(element,null).getPropertyValue("transition");
+		console.log(transitionString);
 		var scrollIntoView = function() {
 			element.scrollIntoView({block: "start", inline: "start"});
 		};
 		this.requestAnimationFrame.call(srcWindow,scrollIntoView);
-		setTimeout(function() {
-			self.requestAnimationFrame.call(srcWindow,scrollIntoView);
-		},duration);
+		if(transitionString.indexOf("margin-bottom") !== -1) {
+			setTimeout(function() {
+				self.requestAnimationFrame.call(srcWindow,scrollIntoView);
+			},duration);
+		}
 		setTimeout(function() {
 			$tw.utils.removeClass(element,"tc-navigating");
 		},$tw.utils.getAnimationDuration());
