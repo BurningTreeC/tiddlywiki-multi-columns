@@ -58,10 +58,19 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 			percentage = -100;
 		}
 		$tw.utils.addClass(targetElement,"tc-inserting");
+		var clonedElement = targetElement.cloneNode(true);
+		$tw.utils.setStyle(clonedElement,[
+			{visibility: "hidden"}
+		]);
+		$tw.utils.addClass(clonedElement,"tc-scroll-target");
+		targetElement.parentNode.insertBefore(clonedElement,targetElement);
 		setTimeout(function() {
 			$tw.utils.setStyle(targetElement,[
 				{transition: ""},
 				{transform: ""},
+				{marginBottom: ""}
+			]);
+			$tw.utils.setStyle(clonedElement,[
 				{marginBottom: ""}
 			]);
 			widget.wiki.deleteTiddler("$:/state/inserting/to-story/" + targetElement.attributes["data-tiddler-title"].value);
@@ -72,12 +81,17 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 				focusedElement.focus({preventScroll: "true"}) && focusedElement.select();
 			}
 			$tw.utils.removeClass(targetElement,"tc-inserting");
+			clonedElement.remove();
 		},duration);
 		$tw.utils.setStyle(targetElement,[
 			{transition: "none"},
 			{transform: "translateX(" + percentage + "%)"},
 			{marginBottom: (-currHeight) + "px"}
 		]);
+		$tw.utils.setStyle(clonedElement,[
+			{marginBottom: (-currHeight) + "px"}
+		]);
+		$tw.utils.forceLayout(clonedElement);
 		$tw.utils.forceLayout(targetElement);
 		$tw.utils.setStyle(targetElement,[
 			{transition: $tw.utils.roundTripPropertyName("transform") + " " + duration + "ms " + easing + ", " + "margin-bottom " + duration + "ms " + easing},
