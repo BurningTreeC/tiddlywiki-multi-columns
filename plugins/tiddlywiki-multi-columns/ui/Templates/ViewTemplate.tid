@@ -24,13 +24,13 @@ $:/state/folded/$(currentTiddler)$
 <$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
 <$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
-<$list filter="[<modifier>match[shift]] [<modifier>match[ctrl-shift]]" variable="ignore" emptyMessage=<<navigate-actions-not-match-shift-message>>>
+<$list filter="[<modifier>match[shift]] [<modifier>match[alt-shift]]" variable="ignore" emptyMessage=<<navigate-actions-not-match-shift-message>>>
 <$list filter="[<modifier>match[shift]]" variable="ignore">
 <$set name="nextColumn" value={{{ [<currentColumn>add[1]] }}}>
 <<navigate-actions-inner>>
 </$set>
 </$list>
-<$list filter="[<modifier>match[ctrl-shift]]" variable="ignore">
+<$list filter="[<modifier>match[alt-shift]]" variable="ignore">
 <$set name="nextColumn" value={{{ [<currentColumn>subtract[1]!match[0]] ~1 }}}>
 <$action-setfield $tiddler={{{ [[$:/state/inserting/from-right/]addsuffix<event-navigateTo>] }}} text="yes"/>
 <<navigate-actions-inner>>
