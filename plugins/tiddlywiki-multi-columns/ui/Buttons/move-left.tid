@@ -22,7 +22,6 @@ description: move the tiddler to the previous column at the left
 \define move-left-actions-inner()
 <$let storyList=<<tv-story-list>> historyList=<<tv-history-list>> previousStoryCounter={{{ [<currentColumn>subtract[1]] }}} previousStoryList={{{ [<storyList>!match[$:/StoryList]!match[$:/StoryList-1]removesuffix<currentColumn>addsuffix<previousStoryCounter>!match[$:/StoryList-1]] ~[[$:/StoryList]] }}} previousHistoryList={{{ [<historyList>!match[$:/HistoryList]!match[$:/HistoryList-1]removesuffix<currentColumn>addsuffix<previousStoryCounter>!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} firstPreviousStoryTiddler={{{ [list<previousStoryList>first[]] }}}>
 <$list filter="[<storyList>!match[$:/StoryList]]" variable="ignore">
-<$action-setfield $tiddler={{{ [[$:/state/inserting/from-right/]addsuffix<currentTiddler>] }}} text="yes"/>
 <$action-setfield $tiddler=<<historyList>> current-tiddler={{{ [list<storyList>after<currentTiddler>] ~[list<storyList>before<currentTiddler>] }}}/>
 <$action-listops $tiddler=<<storyList>> $subfilter="-[<currentTiddler>]"/>
 <$list filter="[<previousHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
@@ -37,12 +36,12 @@ description: move the tiddler to the previous column at the left
 <$action-setfield $tiddler="$:/columns" active-column=<<previousStoryCounter>>/>
 <$list filter="[<currentTiddler>is[draft]]" variable="ignore">
 <$let currentColumn=<<previousStoryCounter>> cssEscapedTitle={{{ [<currentTiddler>escapecss[]] }}}>
-<<btc-focus-title-input-deferred "1.5">>
+<<btc-focus-title-input>>
 </$let>
 </$list>
 </$list>
 <$let currentColumn=<<previousStoryCounter>> cssEscapedTitle={{{ [<currentTiddler>escapecss[]] }}}>
-<<btc-scroll-to-tiddler-deferred "0.5">>
+<<btc-scroll-to-tiddler>>
 </$let>
 </$let>
 \end

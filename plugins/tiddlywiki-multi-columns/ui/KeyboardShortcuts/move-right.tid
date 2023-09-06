@@ -19,7 +19,6 @@ key: ((move-right))
 
 \define actions()
 <$list filter="[<focusedTiddler>!is[blank]]" variable="ignore">
-<$action-setfield $tiddler={{{ [[$:/state/removing/to-right/]addsuffix<focusedTiddler>] }}} text="yes"/>
 <$list filter="[[$:/columns]!contains<nextStoryCounter>]" variable="ignore">
 <$action-listops $tiddler="$:/columns" $subfilter="[<nextStoryCounter>]"/>
 </$list>
@@ -37,11 +36,11 @@ key: ((move-right))
 <$action-setfield $tiddler="$:/columns" active-column=<<nextStoryCounter>>/>
 <$list filter="[<focusedTiddler>is[draft]]" variable="ignore">
 <$let currentColumn=<<nextStoryCounter>> cssEscapedTitle={{{ [<focusedTiddler>escapecss[]] }}}>
-<<btc-focus-title-input-deferred>>
+<<btc-focus-title-input>>
 </$let>
 </$list>
 <$let currentColumn=<<nextStoryCounter>> cssEscapedTitle={{{ [<focusedTiddler>escapecss[]] }}}>
-<<btc-scroll-to-tiddler-deferred "0.5">>
+<<btc-scroll-to-tiddler>>
 </$let>
 </$list>
 </$list>

@@ -48,13 +48,10 @@ PageScroller.prototype.cancelScroll = function(srcWindow) {
 Handle an event
 */
 PageScroller.prototype.handleEvent = function(event) {
-	if(event.type === "tm-scroll" || event.type === "tm-scroll-deferred") {
+	if(event.type === "tm-scroll") {
 		var options = {};
 		if($tw.utils.hop(event.paramObject,"animationDuration")) {
 			options.animationDuration = event.paramObject.animationDuration;
-		}
-		if(event.type === "tm-scroll-deferred") {
-			options.deferred = true;
 		}
 		if(event.paramObject && event.paramObject.selector) {
 			this.scrollSelectorIntoView(null,event.paramObject.selector,null,options);
@@ -80,14 +77,9 @@ PageScroller.prototype.scrollIntoView = function(element,callback,options) {
 			element.scrollIntoView({block: "start", inline: "start"});
 		};
 		this.requestAnimationFrame.call(srcWindow,scrollIntoView);
-		if(options.deferred || (transitionString.indexOf("margin-bottom") !== -1)) {
-			setTimeout(function() {
-				self.requestAnimationFrame.call(srcWindow,scrollIntoView);
-			},duration);
-		}
 		setTimeout(function() {
 			$tw.utils.removeClass(element,"tc-navigating");
-		},$tw.utils.getAnimationDuration());
+		},duration);
 	} catch(e) {
 		console.log(e);
 	}

@@ -21,7 +21,6 @@ description: move the tiddler to the next column at the right
 \end
 \define move-right-actions-inner()
 <$let storyList=<<tv-story-list>> historyList=<<tv-history-list>> nextStoryCounter={{{ [<currentColumn>add[1]] }}} nextStoryList={{{ [<storyList>!match[$:/StoryList]removesuffix<currentColumn>addsuffix<nextStoryCounter>] ~[[$:/StoryList-2]] }}} nextHistoryList={{{ [<historyList>!match[$:/HistoryList]removesuffix<currentColumn>addsuffix<nextStoryCounter>] ~[[$:/HistoryList-2]] }}} firstNextStoryTiddler={{{ [list<nextStoryList>first[]] }}}>
-<$action-setfield $tiddler={{{ [[$:/state/removing/to-right/]addsuffix<currentTiddler>] }}} text="yes"/>
 <$list filter="[[$:/columns]!contains<nextStoryCounter>]" variable="ignore">
 <$action-listops $tiddler="$:/columns" $subfilter="[<nextStoryCounter>]"/>
 </$list>
@@ -39,12 +38,12 @@ description: move the tiddler to the next column at the right
 <$action-setfield $tiddler="$:/columns" active-column=<<nextStoryCounter>>/>
 <$list filter="[<currentTiddler>is[draft]]" variable="ignore">
 <$let currentColumn=<<nextStoryCounter>> cssEscapedTitle={{{ [<currentTiddler>escapecss[]] }}}>
-<<btc-focus-title-input-deferred>>
+<<btc-focus-title-input>>
 </$let>
 </$list>
 </$list>
 <$let currentColumn=<<nextStoryCounter>> cssEscapedTitle={{{ [<currentTiddler>escapecss[]] }}}>
-<<btc-scroll-to-tiddler-deferred "0.5">>
+<<btc-scroll-to-tiddler>>
 </$let>
 </$let>
 \end

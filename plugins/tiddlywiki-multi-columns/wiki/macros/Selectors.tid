@@ -17,25 +17,12 @@ tags: $:/tags/Macro
 
 \define btc-scroll-to-tiddler()
 <$wikify name="scrollSelector" text=<<btc-get-scroll-selector>>>
-<$action-log scroll-selector=<<scrollSelector>>/>
 <$action-sendmessage $message="tm-scroll" selector=<<scrollSelector>>/>
-</$wikify>
-\end
-
-\define btc-scroll-to-tiddler-deferred(param:1)
-<$wikify name="scrollSelector" text=<<btc-get-scroll-selector>>>
-<$action-sendmessage $message="tm-scroll-deferred" selector=<<scrollSelector>> delay={{{ [{$:/config/AnimationDuration}multiply[$param$]round[]] }}}/>
 </$wikify>
 \end
 
 \define btc-focus-title-input()
 <$wikify name="focusSelector" text=<<btc-get-focus-selector>>>
 <$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
-</$wikify>
-\end
-
-\define btc-focus-title-input-deferred(param:1)
-<$wikify name="focusSelector" text=<<btc-get-focus-selector>>>
-<$action-sendmessage $message="tm-focus-selector-deferred" $param=<<focusSelector>> delay={{{ [{$:/config/AnimationDuration}multiply[$param$]round[]] }}} preventScroll="true"/>
 </$wikify>
 \end

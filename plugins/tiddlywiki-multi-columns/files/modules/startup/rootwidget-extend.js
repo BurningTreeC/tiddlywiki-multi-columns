@@ -45,13 +45,6 @@ exports.startup = function() {
 			focusSelector(selector);
 		}
 	});
-
-	$tw.rootWidget.addEventListener("tm-scroll-deferred",function(event) {
-		var delay = event.paramObject.delay || 0;
-		setTimeout(function() {
-			$tw.pageScroller.handleEvent(event);
-		},delay);
-	});
 };
 
 })();

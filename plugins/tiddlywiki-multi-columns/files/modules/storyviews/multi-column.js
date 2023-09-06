@@ -40,123 +40,15 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 		if(!targetElement || targetElement.nodeType === Node.TEXT_NODE) {
 			return;
 		}
-		// Get the current height of the tiddler
-		var computedStyle = window.getComputedStyle(targetElement),
-			currMarginBottom = parseInt(computedStyle.marginBottom,10),
-			currMarginTop = parseInt(computedStyle.marginTop,10),
-			currMarginLeftRight = parseInt(computedStyle.marginLeft,10) + parseInt(computedStyle.marginRight,10),
-			currHeight = targetElement.offsetHeight + currMarginTop,
-			currWidth = targetElement.offsetWidth,
-			focusedElement,
-			percentage;
-		if(targetElement.attributes["data-tiddler-title"]) {
-			focusedElement = targetElement.ownerDocument.activeElement;
-		}
-		if($tw.wiki.getTiddlerText("$:/state/inserting/from-right/" + targetElement.attributes["data-tiddler-title"].value) === "yes") {
-			percentage = 100;
-		} else {
-			percentage = -100;
-		}
 		$tw.utils.addClass(targetElement,"tc-inserting");
-		var clonedElement = targetElement.cloneNode(true);
-		$tw.utils.setStyle(clonedElement,[
-			{visibility: "hidden"}
-		]);
-		$tw.utils.addClass(clonedElement,"tc-scroll-target");
-		targetElement.parentNode.insertBefore(clonedElement,targetElement);
 		setTimeout(function() {
-			$tw.utils.setStyle(targetElement,[
-				{transition: ""},
-				{transform: ""},
-				{marginBottom: ""}
-			]);
-			clonedElement.parentNode.removeChild(clonedElement);
-			widget.wiki.deleteTiddler("$:/state/inserting/to-story/" + targetElement.attributes["data-tiddler-title"].value);
-			widget.wiki.deleteTiddler("$:/state/inserting/from-right/" + targetElement.attributes["data-tiddler-title"].value);
-			widget.wiki.deleteTiddler("$:/state/inserting/from-left/" + targetElement.attributes["data-tiddler-title"].value);
-			widget.wiki.deleteTiddler("$:/state/inserting");
-			if(focusedElement.focus && focusedElement.select) {
-				focusedElement.focus({preventScroll: "true"}) && focusedElement.select();
-			}
 			$tw.utils.removeClass(targetElement,"tc-inserting");
 		},duration);
-		$tw.utils.setStyle(targetElement,[
-			{transition: "none"},
-			{transform: "translateX(" + percentage + "%)"},
-			{marginBottom: (-currHeight) + "px"}
-		]);
-		$tw.utils.setStyle(clonedElement,[
-			{marginBottom: (-(currHeight + currMarginBottom + parseInt(widget.wiki.getTiddlerText("$:/config/story-river/tiddler-margin")))) + "px"},
-			{visibility: "hidden"}
-		]);
-		$tw.utils.forceLayout(targetElement);
-		$tw.utils.forceLayout(clonedElement);
-		$tw.utils.setStyle(targetElement,[
-			{transition: $tw.utils.roundTripPropertyName("transform") + " " + duration + "ms " + easing + ", " + "margin-bottom " + duration + "ms " + easing},
-			{transform: "translateX(0%)"},
-			{marginBottom: currMarginBottom + "px"}
-		]);
-	}
-	if(duration && (widget.wiki.getTiddlerText("$:/state/DisableInsertAnimation") === "yes")) {
-		setTimeout(function() {
-			widget.wiki.deleteTiddler("$:/state/DisableInsertAnimation");
-			widget.wiki.deleteTiddler("$:/state/DisableRemoveAnimation");
-		},duration);
-	} else if(widget.wiki.getTiddlerText("$:/state/DisableInsertAnimation") === "yes") {
-		widget.wiki.deleteTiddler("$:/state/DisableInsertAnimation");
-		widget.wiki.deleteTiddler("$:/state/DisableRemoveAnimation");
 	}
 };
 
 MultiColumnStoryView.prototype.remove = function(widget) {
-	var duration = $tw.utils.getAnimationDuration();
-	if(duration && (widget.wiki.getTiddlerText("$:/state/DisableRemoveAnimation") !== "yes")) {
-		var targetElement = widget.findFirstDomNode(),
-			removeElement = function() {
-				widget.removeChildDomNodes();
-			};
-		// Abandon if the list entry isn't a DOM element (it might be a text node)
-		if(!targetElement || targetElement.nodeType === Node.TEXT_NODE) {
-			removeElement();
-			return;
-		}
-		// Get the current height of the tiddler
-		var currWidth = targetElement.offsetWidth,
-			computedStyle = window.getComputedStyle(targetElement),
-			currMarginBottom = parseInt(computedStyle.marginBottom,10),
-			currMarginTop = parseInt(computedStyle.marginTop,10),
-			currHeight = targetElement.offsetHeight + currMarginTop + parseInt(widget.wiki.getTiddlerText("$:/config/story-river/tiddler-margin")),
-			percentage;
-		/*if(targetElement.attributes["data-tiddler-title"]) {
-			widget.wiki.setText("$:/state/removing/from-story/" + targetElement.attributes["data-tiddler-title"].value,"height",undefined,currHeight);
-		}*/
-		if($tw.wiki.getTiddlerText("$:/state/removing/to-right/" + targetElement.attributes["data-tiddler-title"].value) === "yes") {
-			percentage = 100;
-		} else {
-			percentage = -100;
-		}
-		setTimeout(function() {
-			removeElement();
-			widget.wiki.deleteTiddler("$:/state/removing/from-story/" + targetElement.attributes["data-tiddler-title"].value);
-			widget.wiki.deleteTiddler("$:/state/removing/to-right/" + targetElement.attributes["data-tiddler-title"].value);
-			widget.wiki.deleteTiddler("$:/state/removing/to-left/" + targetElement.attributes["data-tiddler-title"].value);
-		},duration);
-		// Animate the closure
-		//$tw.utils.addClass(targetElement,"tc-removing");
-		$tw.utils.setStyle(targetElement,[
-			{transition: "none"},
-			{transform: "translateX(0%)"},
-			{marginBottom:  currMarginBottom + parseInt(widget.wiki.getTiddlerText("$:/config/story-river/tiddler-margin")) + "px"}
-		]);
-		$tw.utils.forceLayout(targetElement);
-		$tw.utils.setStyle(targetElement,[
-			{transition: $tw.utils.roundTripPropertyName("transform") + " " + duration + "ms " + easing + ", " + "margin-bottom " + duration + "ms " + easing},
-			{transform: "translateX(" + percentage + "%)"},
-			{marginBottom: (-currHeight) + "px"}
-		]);		
-	} else {
 		widget.removeChildDomNodes();
-	}
 };
 
 exports["multi-column"] = MultiColumnStoryView;

@@ -121,14 +121,6 @@ code-body: yes
 <$action-navigate $to=<<event-navigateTo>>/>
 </$navigator>
 \end
-\define current-tiddler-is-empty-message()
-<$list filter="[<firstNextStoryTiddler>!is[blank]]" variable="ignore" emptyMessage="""
-<$action-listops $tiddler=<<nextStoryList>> $subfilter="[<event-navigateTo>]"/>
-""">
-<$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<event-navigateTo>,<firstNextStoryTiddler>]"/>
-</$list>
-<$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<event-navigateTo>>/>
-\end
 \define navigate-actions-inner()
 <$let storyList={{{ [[$:/StoryList-]addsuffix<nextColumn>!match[$:/StoryList-1]] ~$:/StoryList }}} historyList={{{ [[$:/HistoryList-]addsuffix<nextColumn>!match[$:/HistoryList-1]] ~$:/HistoryList }}}>
 <$list filter="[[$:/columns]!contains<nextColumn>]" variable="ignore">
@@ -151,26 +143,9 @@ code-body: yes
 </$set>
 </$list>
 <$list filter="[<modifier>match[alt]]" variable="ignore">
-<$action-setfield $tiddler={{{ [[$:/state/inserting/from-right/]addsuffix<event-navigateTo>] }}} text="yes"/>
-<$let nextColumn={{{ [<currentColumn>subtract[1]!match[0]] ~1 }}} nextStoryList={{{ [[$:/StoryList-]addsuffix<nextColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} nextHistoryList={{{ [[$:/HistoryList-]addsuffix<nextColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} firstNextStoryTiddler={{{ [list<nextStoryList>first[]] }}}>>
-<$list filter="[<nextHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
-<$set name="nextStoryFocusedTiddler" value={{{ [<nextHistoryList>get[current-tiddler]] }}}>
-<$list filter="[<nextStoryList>contains<nextStoryFocusedTiddler>]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
-<$action-setfield $tiddler="$:/columns" active-column=<<nextColumn>>/>
-<$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<event-navigateTo>>/>
-<$list filter="[<nextStoryList>!contains<action-navigateTo>]" variable="ignore">
-<$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<event-navigateTo>,<nextStoryFocusedTiddler>]"/>
-</$list>
-</$list>
+<$set name="nextColumn" value={{{ [<currentColumn>subtract[1]!match[0]] ~1 }}}>
+<<navigate-actions-inner>>
 </$set>
-<$let currentColumn=<<nextColumn>> cssEscapedTitle={{{ [<event-navigateTo>escapecss[]] }}}>
-<<btc-scroll-to-tiddler-deferred "0.5">>
-<$list filter="[<event-navigateTo>is[draft]]" variable="ignore">
-<<btc-focus-title-input-deferred "1.5">>
-</$list>
-</$let>
-</$list>
-</$let>
 </$list>
 </$list>
 \end

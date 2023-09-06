@@ -20,7 +20,6 @@ key: ((move-left))
 \define actions()
 <$list filter="[<focusedTiddler>!is[blank]]" variable="ignore">
 <$list filter="[<storyList>!match[$:/StoryList]]" variable="ignore">
-<$action-setfield $tiddler={{{ [[$:/state/inserting/from-right/]addsuffix<focusedTiddler>] }}} text="yes"/>
 <$action-setfield $tiddler=<<historyList>> current-tiddler={{{ [list<storyList>after<focusedTiddler>] ~[list<storyList>before<focusedTiddler>] }}}/>
 <$action-listops $tiddler=<<storyList>> $subfilter="-[<focusedTiddler>]"/>
 <$list filter="[<previousHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
@@ -35,12 +34,12 @@ key: ((move-left))
 <$action-setfield $tiddler="$:/columns" active-column=<<previousStoryCounter>>/>
 <$list filter="[<focusedTiddler>is[draft]]" variable="ignore">
 <$let currentColumn=<<previousStoryCounter>> cssEscapedTitle={{{ [<focusedTiddler>escapecss[]] }}}>
-<<btc-focus-title-input-deferred "1.5">>
+<<btc-focus-title-input>>
 </$let>
 </$list>
 </$list>
 <$let currentColumn=<<previousStoryCounter>> cssEscapedTitle={{{ [<focusedTiddler>escapecss[]] }}}>
-<<btc-scroll-to-tiddler-deferred "0.5">>
+<<btc-scroll-to-tiddler>>
 </$let>
 </$list>
 </$list>
