@@ -10,13 +10,8 @@ $:/state/folded/$(currentTiddler)$
 <$action-navigate $to=<<event-navigateTo>>/>
 </$navigator>
 \end
-\define navigate-actions()
-<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
-<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
-</$list>
-<$list filter="[<modifier>match[shift]]" variable="ignore" emptyMessage=<<navigate-actions-not-match-shift-message>>>
-<$set name="nextColumn" value={{{ [<currentColumn>add[1]] }}}>
-<$let storyList={{{ [[$:/StoryList-]addsuffix<nextColumn>] }}} historyList={{{ [[$:/HistoryList-]addsuffix<nextColumn>] }}}>
+\define navigate-actions-inner()
+<$let storyList={{{ [[$:/StoryList-]addsuffix<nextColumn>!match[$:/StoryList-1]] ~$:/StoryList }}} historyList={{{ [[$:/HistoryList-]addsuffix<nextColumn>!match[$:/HistoryList-1]] ~$:/HistoryList }}}>
 <$list filter="[[$:/columns]!contains<nextColumn>]" variable="ignore">
 <$action-listops $tiddler="$:/columns" $subfilter="[<nextColumn>]"/>
 </$list>
@@ -24,7 +19,23 @@ $:/state/folded/$(currentTiddler)$
 <$action-navigate $to=<<event-navigateTo>>/>
 </$navigator>
 </$let>
+\end
+\define navigate-actions()
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+<$list filter="[<modifier>match[shift]] [<modifier>match[ctrl-shift]]" variable="ignore" emptyMessage=<<navigate-actions-not-match-shift-message>>>
+<$list filter="[<modifier>match[shift]]" variable="ignore">
+<$set name="nextColumn" value={{{ [<currentColumn>add[1]] }}}>
+<<navigate-actions-inner>>
 </$set>
+</$list>
+<$list filter="[<modifier>match[ctrl-shift]]" variable="ignore">
+<$set name="nextColumn" value={{{ [<currentColumn>subtract[1]!match[0]] ~1 }}}>
+<$action-setfield $tiddler={{{ [[$:/state/inserting/from-right/]addsuffix<event-navigateTo>] }}} text="yes"/>
+<<navigate-actions-inner>>
+</$set>
+</$list>
 </$list>
 \end
 \define cancel-delete-tiddler-actions(message)

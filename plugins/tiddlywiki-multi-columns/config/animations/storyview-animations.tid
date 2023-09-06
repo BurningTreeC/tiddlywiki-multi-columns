@@ -1,40 +1,5 @@
 title: $:/config/StoryViewAnimations
 
-\define insert-keyframes()
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
-
-@keyframes slide-in-$(insertTiddlerCSSEscaped)$ {
-	from {
-		/*transform: translateX($(percentage)$%);*/
-		/*margin-bottom: calc(-$(insertTiddlerHeight)$px - {{$:/config/story-river/tiddler-margin}}px);*/
-	} to {
-		/*transform: translateX(0%);*/
-		/*margin-bottom: 0px;*/
-	}
-}
-
-@keyframes slide-in-no-margin-bottom-$(insertTiddlerCSSEscaped)$ {
-	from {
-		transform: translateX($(percentage)$%);
-	} to {
-		transform: translateX(0%);
-	}
-}
-
-.tc-tiddler-view-frame:not(:last-of-type)[data-tiddler-title="$(insertTiddlerCSSEscaped)$"].tc-inserting, .tc-tiddler-edit-frame:not(:last-of-type)[data-tiddler-title="$(insertTiddlerCSSEscaped)$"].tc-inserting {
-	animation: slide-in-$(insertTiddlerCSSEscaped)$ {{$:/config/AnimationDuration}}ms;
-	animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-	visibility: visible;
-}
-
-.tc-tiddler-view-frame:last-of-type[data-tiddler-title="$(insertTiddlerCSSEscaped)$"].tc-inserting, .tc-tiddler-edit-frame:last-of-type[data-tiddler-title="$(insertTiddlerCSSEscaped)$"].tc-inserting {
-	animation: slide-in-no-margin-bottom-$(insertTiddlerCSSEscaped)$ {{$:/config/AnimationDuration}}ms;
-	animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-	visibility: visible;
-}
-
-\end
-
 \define remove-keyframes()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
@@ -55,32 +20,6 @@ title: $:/config/StoryViewAnimations
 }
 
 \end
-
-<!--[data-tiddler-title].tc-removing, [data-tiddler-title].tc-inserting {
-	visibility: hidden;
-}-->
-
-@keyframes fade-in {
-	from {
-		opacity: 0;
-	} to {
-		opacity: 1;
-	}
-}
-
-<!--.tc-inserting + .tc-tiddler-view-frame, .tc-inserting + .tc-tiddler-edit-frame {
-	animation: fade-in calc({{$:/config/AnimationDuration}}ms / 2);
-}-->
-
-<!--<$list filter="[all[tiddlers]prefix[$:/state/inserting/to-story/]]" variable="insertStateTiddler">
-
-<$let insertTiddler={{{ [<insertStateTiddler>removeprefix[$:/temp/inserting/to-story/]] }}} insertTiddlerCSSEscaped={{{ [<insertTiddler>escapecss[]] }}} insertTiddlerHeight={{{ [<insertStateTiddler>get[height]] }}} percentage={{{ [[$:/state/inserting/from-right/]addsuffix<insertTiddler>!is[missing]then[100]else[-100]] }}}>
-
-<<insert-keyframes>>
-
-</$let>
-
-</$list>-->
 
 <$list filter="[all[tiddlers]prefix[$:/state/removing/from-story/]]" variable="removeStateTiddler">
 
