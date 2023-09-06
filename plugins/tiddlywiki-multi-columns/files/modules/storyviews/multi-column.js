@@ -44,12 +44,13 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 		var computedStyle = window.getComputedStyle(targetElement),
 			currMarginBottom = parseInt(computedStyle.marginBottom,10),
 			currMarginTop = parseInt(computedStyle.marginTop,10),
+			currMarginLeftRight = parseInt(computedStyle.marginLeft,10) + parseInt(computedStyle.marginRight,10),
 			currHeight = targetElement.offsetHeight + currMarginTop,
+			currWidth = targetElement.offsetWidth,
 			focusedElement,
 			percentage;
 		if(targetElement.attributes["data-tiddler-title"]) {
 			focusedElement = targetElement.ownerDocument.activeElement;
-			//widget.wiki.setText("$:/state/inserting/to-story/" + targetElement.attributes["data-tiddler-title"].value,"height",undefined,currHeight);
 		}
 		if($tw.wiki.getTiddlerText("$:/state/inserting/from-right/" + targetElement.attributes["data-tiddler-title"].value) === "yes") {
 			percentage = 100;

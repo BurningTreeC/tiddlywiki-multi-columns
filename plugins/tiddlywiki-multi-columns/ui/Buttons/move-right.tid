@@ -37,13 +37,15 @@ description: move the tiddler to the next column at the right
 </$list>
 <$list filter="[{$:/config/story-river/follow-active-column}match[yes]]" variable="ignore" emptyMessage=<<not-follow-active-column-focus-selector>>>
 <$action-setfield $tiddler="$:/columns" active-column=<<nextStoryCounter>>/>
-<$let currentColumn=<<nextStoryCounter>> cssEscapedTitle={{{ [<currentTiddler>escapecss[]] }}}>
-<<btc-scroll-to-tiddler>>
 <$list filter="[<currentTiddler>is[draft]]" variable="ignore">
+<$let currentColumn=<<nextStoryCounter>> cssEscapedTitle={{{ [<currentTiddler>escapecss[]] }}}>
 <<btc-focus-title-input-deferred>>
-</$list>
 </$let>
 </$list>
+</$list>
+<$let currentColumn=<<nextStoryCounter>> cssEscapedTitle={{{ [<currentTiddler>escapecss[]] }}}>
+<<btc-scroll-to-tiddler-deferred "0.5">>
+</$let>
 </$let>
 \end
 \define move-right-actions()

@@ -33,13 +33,15 @@ key: ((move-left))
 </$list>
 <$list filter="[{$:/config/story-river/follow-active-column}match[yes]]" variable="ignore" emptyMessage=<<not-follow-active-column-focus-selector>>>
 <$action-setfield $tiddler="$:/columns" active-column=<<previousStoryCounter>>/>
-<$let currentColumn=<<previousStoryCounter>> cssEscapedTitle={{{ [<focusedTiddler>escapecss[]] }}}>
-<<btc-scroll-to-tiddler>>
 <$list filter="[<focusedTiddler>is[draft]]" variable="ignore">
+<$let currentColumn=<<previousStoryCounter>> cssEscapedTitle={{{ [<focusedTiddler>escapecss[]] }}}>
 <<btc-focus-title-input-deferred "1.5">>
-</$list>
 </$let>
 </$list>
+</$list>
+<$let currentColumn=<<previousStoryCounter>> cssEscapedTitle={{{ [<focusedTiddler>escapecss[]] }}}>
+<<btc-scroll-to-tiddler-deferred "0.5">>
+</$let>
 </$list>
 </$list>
 \end

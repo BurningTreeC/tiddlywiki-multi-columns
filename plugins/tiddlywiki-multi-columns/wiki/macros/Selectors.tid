@@ -17,7 +17,14 @@ tags: $:/tags/Macro
 
 \define btc-scroll-to-tiddler()
 <$wikify name="scrollSelector" text=<<btc-get-scroll-selector>>>
+<$action-log scroll-selector=<<scrollSelector>>/>
 <$action-sendmessage $message="tm-scroll" selector=<<scrollSelector>>/>
+</$wikify>
+\end
+
+\define btc-scroll-to-tiddler-deferred(param:1)
+<$wikify name="scrollSelector" text=<<btc-get-scroll-selector>>>
+<$action-sendmessage $message="tm-scroll-deferred" selector=<<scrollSelector>> delay={{{ [{$:/config/AnimationDuration}multiply[$param$]round[]] }}}/>
 </$wikify>
 \end
 

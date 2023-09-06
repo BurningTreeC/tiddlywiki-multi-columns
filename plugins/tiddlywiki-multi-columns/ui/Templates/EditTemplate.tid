@@ -121,21 +121,57 @@ code-body: yes
 <$action-navigate $to=<<event-navigateTo>>/>
 </$navigator>
 \end
-\define navigate-actions()
-<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
-<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+\define current-tiddler-is-empty-message()
+<$list filter="[<firstNextStoryTiddler>!is[blank]]" variable="ignore" emptyMessage="""
+<$action-listops $tiddler=<<nextStoryList>> $subfilter="[<event-navigateTo>]"/>
+""">
+<$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<event-navigateTo>,<firstNextStoryTiddler>]"/>
 </$list>
-<$list filter="[<modifier>match[shift]]" variable="ignore" emptyMessage=<<navigate-actions-not-match-shift-message>>>
-<$set name="nextColumn" value={{{ [<currentColumn>add[1]] }}}>
-<$let storyList={{{ [[$:/StoryList-]addsuffix<nextColumn>] }}} historyList={{{ [[$:/HistoryList-]addsuffix<nextColumn>] }}}>
+<$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<event-navigateTo>>/>
+\end
+\define navigate-actions-inner()
+<$let storyList={{{ [[$:/StoryList-]addsuffix<nextColumn>!match[$:/StoryList-1]] ~$:/StoryList }}} historyList={{{ [[$:/HistoryList-]addsuffix<nextColumn>!match[$:/HistoryList-1]] ~$:/HistoryList }}}>
 <$list filter="[[$:/columns]!contains<nextColumn>]" variable="ignore">
 <$action-listops $tiddler="$:/columns" $subfilter="[<nextColumn>]"/>
 </$list>
+<$action-setfield $tiddler="$:/columns" active-column=<<nextColumn>>/>
 <$navigator story=<<storyList>> history=<<historyList>> openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 <$action-navigate $to=<<event-navigateTo>>/>
 </$navigator>
 </$let>
+\end
+\define navigate-actions()
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+<$list filter="[<modifier>match[shift]] [<modifier>match[alt]]" variable="ignore" emptyMessage=<<navigate-actions-not-match-shift-message>>>
+<$list filter="[<modifier>match[shift]]" variable="ignore">
+<$set name="nextColumn" value={{{ [<currentColumn>add[1]] }}}>
+<<navigate-actions-inner>>
 </$set>
+</$list>
+<$list filter="[<modifier>match[alt]]" variable="ignore">
+<$action-setfield $tiddler={{{ [[$:/state/inserting/from-right/]addsuffix<event-navigateTo>] }}} text="yes"/>
+<$let nextColumn={{{ [<currentColumn>subtract[1]!match[0]] ~1 }}} nextStoryList={{{ [[$:/StoryList-]addsuffix<nextColumn>!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} nextHistoryList={{{ [[$:/HistoryList-]addsuffix<nextColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~$:/HistoryList }}} firstNextStoryTiddler={{{ [list<nextStoryList>first[]] }}}>>
+<$list filter="[<nextHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
+<$set name="nextStoryFocusedTiddler" value={{{ [<nextHistoryList>get[current-tiddler]] }}}>
+<$list filter="[<nextStoryList>contains<nextStoryFocusedTiddler>]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
+<$action-setfield $tiddler="$:/columns" active-column=<<nextColumn>>/>
+<$action-setfield $tiddler=<<nextHistoryList>> current-tiddler=<<event-navigateTo>>/>
+<$list filter="[<nextStoryList>!contains<action-navigateTo>]" variable="ignore">
+<$action-listops $tiddler=<<nextStoryList>> $subfilter="+[insertbefore<event-navigateTo>,<nextStoryFocusedTiddler>]"/>
+</$list>
+</$list>
+</$set>
+<$let currentColumn=<<nextColumn>> cssEscapedTitle={{{ [<event-navigateTo>escapecss[]] }}}>
+<<btc-scroll-to-tiddler-deferred "0.5">>
+<$list filter="[<event-navigateTo>is[draft]]" variable="ignore">
+<<btc-focus-title-input-deferred "1.5">>
+</$list>
+</$let>
+</$list>
+</$let>
+</$list>
 </$list>
 \end
 <div data-tiddler-title=<<currentTiddler>> data-tags={{!!tags}} class={{{ [all[shadows+tiddlers]tag[$:/tags/ClassFilters/TiddlerTemplate]!is[draft]] :map:flat[subfilter{!!text}] tc-tiddler-edit-frame [<currentTiddler>is[tiddler]then[tc-tiddler-exists]] [<currentTiddler>is[missing]!is[shadow]then[tc-tiddler-missing]] [<currentTiddler>is[shadow]then[tc-tiddler-exists tc-tiddler-shadow]] [<currentTiddler>is[system]then[tc-tiddler-system]] [{!!class}] [<currentTiddler>tags[]encodeuricomponent[]addprefix[tc-tagged-]] +[join[ ]] }}} role="region" aria-label={{$:/language/EditTemplate/Caption}}>
