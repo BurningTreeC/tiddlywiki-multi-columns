@@ -70,9 +70,7 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 				{transform: ""},
 				{marginBottom: ""}
 			]);
-			$tw.utils.setStyle(clonedElement,[
-				{marginBottom: ""}
-			]);
+			//clonedElement.parentNode.removeChild(clonedElement);
 			widget.wiki.deleteTiddler("$:/state/inserting/to-story/" + targetElement.attributes["data-tiddler-title"].value);
 			widget.wiki.deleteTiddler("$:/state/inserting/from-right/" + targetElement.attributes["data-tiddler-title"].value);
 			widget.wiki.deleteTiddler("$:/state/inserting/from-left/" + targetElement.attributes["data-tiddler-title"].value);
@@ -81,7 +79,6 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 				focusedElement.focus({preventScroll: "true"}) && focusedElement.select();
 			}
 			$tw.utils.removeClass(targetElement,"tc-inserting");
-			clonedElement.remove();
 		},duration);
 		$tw.utils.setStyle(targetElement,[
 			{transition: "none"},
@@ -89,10 +86,10 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 			{marginBottom: (-currHeight) + "px"}
 		]);
 		$tw.utils.setStyle(clonedElement,[
-			{marginBottom: (-currHeight) + "px"}
+			{marginBottom: (-(currHeight + currMarginBottom + parseInt($tw.wiki.getTiddlerText("$:/config/story-river/tiddler-margin")))) + "px"}
 		]);
-		$tw.utils.forceLayout(clonedElement);
 		$tw.utils.forceLayout(targetElement);
+		$tw.utils.forceLayout(clonedElement);
 		$tw.utils.setStyle(targetElement,[
 			{transition: $tw.utils.roundTripPropertyName("transform") + " " + duration + "ms " + easing + ", " + "margin-bottom " + duration + "ms " + easing},
 			{transform: "translateX(0%)"},
