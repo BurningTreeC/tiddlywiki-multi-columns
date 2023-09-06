@@ -116,8 +116,6 @@ hr.simple {
 	z-index: 10005;
 }
 
-{{$:/config/StoryViewAnimations}}
-
 </$list>
 
 <$list filter="[{$:/layout}!match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">

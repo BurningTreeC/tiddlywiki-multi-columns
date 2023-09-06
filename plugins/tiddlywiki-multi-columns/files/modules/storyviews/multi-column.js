@@ -86,7 +86,8 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 			{marginBottom: (-currHeight) + "px"}
 		]);
 		$tw.utils.setStyle(clonedElement,[
-			{marginBottom: (-(currHeight + currMarginBottom + parseInt($tw.wiki.getTiddlerText("$:/config/story-river/tiddler-margin")))) + "px"}
+			{marginBottom: (-(currHeight + currMarginBottom + parseInt(widget.wiki.getTiddlerText("$:/config/story-river/tiddler-margin")))) + "px"},
+			{visibility: "hidden"}
 		]);
 		$tw.utils.forceLayout(targetElement);
 		$tw.utils.forceLayout(clonedElement);
@@ -124,9 +125,15 @@ MultiColumnStoryView.prototype.remove = function(widget) {
 			computedStyle = window.getComputedStyle(targetElement),
 			currMarginBottom = parseInt(computedStyle.marginBottom,10),
 			currMarginTop = parseInt(computedStyle.marginTop,10),
-			currHeight = targetElement.offsetHeight + currMarginTop;
-		if(targetElement.attributes["data-tiddler-title"]) {
+			currHeight = targetElement.offsetHeight + currMarginTop + parseInt(widget.wiki.getTiddlerText("$:/config/story-river/tiddler-margin")),
+			percentage;
+		/*if(targetElement.attributes["data-tiddler-title"]) {
 			widget.wiki.setText("$:/state/removing/from-story/" + targetElement.attributes["data-tiddler-title"].value,"height",undefined,currHeight);
+		}*/
+		if($tw.wiki.getTiddlerText("$:/state/removing/to-right/" + targetElement.attributes["data-tiddler-title"].value) === "yes") {
+			percentage = 100;
+		} else {
+			percentage = -100;
 		}
 		setTimeout(function() {
 			removeElement();
@@ -135,7 +142,18 @@ MultiColumnStoryView.prototype.remove = function(widget) {
 			widget.wiki.deleteTiddler("$:/state/removing/to-left/" + targetElement.attributes["data-tiddler-title"].value);
 		},duration);
 		// Animate the closure
-		$tw.utils.addClass(targetElement,"tc-removing");
+		//$tw.utils.addClass(targetElement,"tc-removing");
+		$tw.utils.setStyle(targetElement,[
+			{transition: "none"},
+			{transform: "translateX(0%)"},
+			{marginBottom:  currMarginBottom + parseInt(widget.wiki.getTiddlerText("$:/config/story-river/tiddler-margin")) + "px"}
+		]);
+		$tw.utils.forceLayout(targetElement);
+		$tw.utils.setStyle(targetElement,[
+			{transition: $tw.utils.roundTripPropertyName("transform") + " " + duration + "ms " + easing + ", " + "margin-bottom " + duration + "ms " + easing},
+			{transform: "translateX(" + percentage + "%)"},
+			{marginBottom: (-currHeight) + "px"}
+		]);		
 	} else {
 		widget.removeChildDomNodes();
 	}
