@@ -70,7 +70,7 @@ MultiColumnStoryView.prototype.insert = function(widget) {
 				{transform: ""},
 				{marginBottom: ""}
 			]);
-			//clonedElement.parentNode.removeChild(clonedElement);
+			clonedElement.parentNode.removeChild(clonedElement);
 			widget.wiki.deleteTiddler("$:/state/inserting/to-story/" + targetElement.attributes["data-tiddler-title"].value);
 			widget.wiki.deleteTiddler("$:/state/inserting/from-right/" + targetElement.attributes["data-tiddler-title"].value);
 			widget.wiki.deleteTiddler("$:/state/inserting/from-left/" + targetElement.attributes["data-tiddler-title"].value);
