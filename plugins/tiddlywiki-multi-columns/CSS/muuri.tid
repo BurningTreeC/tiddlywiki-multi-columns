@@ -120,6 +120,10 @@ tags: $:/tags/Stylesheet
 				z-index: -1;
 			}
 
+			.btc-river-inner > .btc-river-inner-spacer.tc-muuri-river > .tc-tiddler-frame iframe {
+				z-index: -1;
+			}
+
 			.btc-river-inner > .btc-river-inner-spacer.tc-muuri-river > .tc-tiddler-frame .tc-unfold-banner, .btc-river-inner > .btc-river-inner-spacer.tc-muuri-river > .tc-tiddler-frame .tc-fold-banner {
 				z-index: -1;
 			}
