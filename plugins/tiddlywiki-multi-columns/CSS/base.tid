@@ -14,18 +14,33 @@ tags: $:/tags/Stylesheet
 }
 
 ``
-<$list filter="[range[100]]">
-`.btc-river-inner .btc-tiddler-zindex-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) {
-z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
+\end
+
+\define tiddler-z-indexes()
+
+<$list filter="[{$:/view}match[muuri]]" variable="ignore">
+
+<$list filter="[range<storyListCount>]">
+`.btc-river-inner .btc-river-inner-spacer > .tc-tiddler-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) {
+z-index: `<$text text={{{ [<storyListCount>add[200]subtract<currentTiddler>] }}}/>`;
 }
 `
 </$list>
-<$list filter="[range[100]]">
-`.btc-river-inner .btc-tiddler-zindex-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) .tc-tiddler-title {
-z-index: `<$text text={{{ [[200]subtract<currentTiddler>] }}}/>`;
+
+</$list>
+
+<$list filter="[{$:/view}!match[muuri]]" variable="ignore">
+
+<$list filter="[range<storyListCount>]">
+`.btc-river-inner > .tc-tiddler-view-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) {
+z-index: `<$text text={{{ [<storyListCount>add[501]subtract<currentTiddler>] }}}/>`;
+position: relative;
 }
 `
 </$list>
+
+</$list>
+
 \end
 
 .tc-greyed-out-button svg {
@@ -50,7 +65,7 @@ html {
 	}
 }
 
-.btc-river-inner .tc-tiddler-frame {
+.btc-river-inner > .tc-tiddler-view-frame > .tc-tiddler-frame, .btc-river-inner > .tc-tiddler-edit-frame > .tc-tiddler-frame, .btc-river-inner .btc-river-inner-spacer > .tc-tiddler-frame, .btc-river-inner .btc-river-inner-spacer > .tc-tiddler-frame {
 	border-top-width: {{$:/config/story-river/tiddler-border}}px;
 	border-bottom-width: {{$:/config/story-river/tiddler-border}}px;
 	border-left-width: {{$:/config/story-river/tiddler-border}}px;
@@ -79,6 +94,16 @@ html {
 }
 
 </$list>
+
+</$list>
+
+<$list filter="[list[$:/columns]]" variable="column">
+
+<$let storyList={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-]!match[$:/StoryList-1]] ~$:/StoryList }}} storyListCount={{{ [list<storyList>count[]] }}}>
+
+<<tiddler-z-indexes>>
+
+</$let>
 
 </$list>
 

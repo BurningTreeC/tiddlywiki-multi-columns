@@ -24,6 +24,13 @@
 				"module-type": "utils"
 			}
 		},{
+			"file": "modules/utils/dom/dom.js",
+			"fields": {
+				"type": "application/javascript",
+				"title": "$:/core/modules/utils/dom/dom.js",
+				"module-type": "utils"
+			}
+		},{
 			"file": "modules/widgets/subclasses/droppable.js",
 			"fields": {
 				"type": "application/javascript",
