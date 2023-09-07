@@ -156,10 +156,6 @@ tags: $:/tags/Stylesheet
 
 		</$list>
 
-		.tc-drag-container .tc-tiddler-frame {
-			padding: 28px 42px 42px 42px;
-		}
-
 		.btc-river-inner {
 			display: flex;
 			flex-direction: row;
