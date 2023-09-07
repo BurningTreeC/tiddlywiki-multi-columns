@@ -21,7 +21,7 @@ tags: $:/tags/Stylesheet
 
 \end
 
-<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]then{$:/view}!match[muuri]]" variable="ignore">
 
 <$list filter="[list[$:/columns]]" variable="column">
 

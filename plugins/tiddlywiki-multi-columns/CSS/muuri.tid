@@ -59,7 +59,7 @@ tags: $:/tags/Stylesheet
 \define scroll-margin-top-story-river-padding()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
-.btc-river-$(column)$ .btc-river-inner > .btc-river-inner-spacer > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-view-frame, .btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-edit-frame {
+.btc-river-$(column)$ .btc-river-inner > .btc-river-inner-spacer > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-view-frame, .btc-river-$(column)$ .btc-river-inner > .btc-river-inner-spacer > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-edit-frame {
 	scroll-margin-top: {{$:/config/story-river/padding}}px;
 	scroll-margin-left: {{$:/config/story-river/padding}}px;
 }
@@ -69,7 +69,7 @@ tags: $:/tags/Stylesheet
 \define scroll-margin-top()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
-.btc-river-$(column)$ .btc-river-inner > .btc-river-inner-spacer > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-view-frame, .btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-edit-frame {
+.btc-river-$(column)$ .btc-river-inner > .btc-river-inner-spacer > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-view-frame, .btc-river-$(column)$ .btc-river-inner > .btc-river-inner-spacer > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-edit-frame {
 	scroll-margin-top: {{{ [{$:/config/story-river/tiddler-margin}compare:number:lteq{$:/config/story-river/padding}] ~[{$:/config/story-river/padding}] }}}px;
 	scroll-margin-left: {{$:/config/story-river/padding}}px;
 }
