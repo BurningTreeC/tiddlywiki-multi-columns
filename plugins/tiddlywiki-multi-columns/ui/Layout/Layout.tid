@@ -70,6 +70,7 @@ tc-page-container tc-main-content tc-page-view-$(storyviewTitle)$ tc-language-$(
 	tv-show-missing-links={{$:/config/MissingLinks}}
 	storyviewTitle={{$:/view}}
 	languageTitle={{{ [{$:/language}get[name]] }}}>
+	<div class="tc-drag-container"/>
 	<main class=<<containerClasses>>>
 		<$list filter="[all[tiddlers+shadows]tag[$:/tags/MultiColumn/Overlay]]" variable="listItem">
 			<$transclude tiddler=<<listItem>>/>

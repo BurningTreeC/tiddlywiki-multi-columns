@@ -4,8 +4,10 @@ key: ((dragging-toggle))
 
 <$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 <$list filter="[[$:/config/story-river/dragging-enable]is[missing]] [{$:/config/story-river/dragging-enable}match[yes]]" emptyMessage="""
+	<$action-setfield $tiddler="$:/config/multi-column/muuri/drag-enabled" text="yes"/>
 	<$action-setfield $tiddler="$:/config/story-river/dragging-enable" text="yes"/>
 """>
+	<$action-setfield $tiddler="$:/config/multi-column/muuri/drag-enabled" text="no"/>
 	<$action-setfield $tiddler="$:/config/story-river/dragging-enable" text="no"/>
 </$list>
 </$list>

@@ -1,0 +1,246 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/CSS/muuri
+tags: $:/tags/Stylesheet
+
+\define view-tiddler-full-screen()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
+.btc-river-$(column)$ .btc-river-inner .btc-river-inner-spacer > [data-tiddler-title="$(tiddlerTitleCSSEscaped)$"] {
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9999;
+	transform: none !important;
+	touch-action: auto !important;
+	user-select: auto !important;
+	-ms-user-select: text !important;
+	-moz-user-select: text !important;
+	-webkit-user-select: text !important;
+}
+
+.btc-river-$(column)$ .btc-river-inner .btc-river-inner-spacer > [data-tiddler-title="$(tiddlerTitleCSSEscaped)$"].tc-tiddler-frame {
+	min-height: 100%;
+	height: 100%;
+	overflow-y: scroll;
+	scroll-behavior: {{$:/config/scroll-behavior}};
+}
+
+\end
+
+\define inherit-overflow-columns()
+
+@media (min-width: 800px) {
+
+	.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > *:nth-child(<<column>>) {
+		overflow-y: hidden;
+	}
+
+	.btc-flextemplate-container main.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) {
+		overflow-x: hidden;
+	}
+
+}
+
+@media (max-width: 800px) {
+
+	.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) > *:nth-child(<<column>>) {
+		overflow-y: hidden;
+	}
+
+	.btc-flextemplate-container main.btc-column-container:not(.btc-top-toolbar):not(.btc-bottom-toolbar) {
+		overflow-x: hidden;
+	}
+
+}
+
+\end
+
+\define scroll-margin-top-story-river-padding()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
+.btc-river-$(column)$ .btc-river-inner > .btc-river-inner-spacer > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-view-frame, .btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-edit-frame {
+	scroll-margin-top: {{$:/config/story-river/padding}}px;
+	scroll-margin-left: {{$:/config/story-river/padding}}px;
+}
+
+\end
+
+\define scroll-margin-top()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
+.btc-river-$(column)$ .btc-river-inner > .btc-river-inner-spacer > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-view-frame, .btc-river-$(column)$ .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-edit-frame {
+	scroll-margin-top: {{{ [{$:/config/story-river/tiddler-margin}compare:number:lteq{$:/config/story-river/padding}] ~[{$:/config/story-river/padding}] }}}px;
+	scroll-margin-left: {{$:/config/story-river/padding}}px;
+}
+
+\end
+
+\define style-focused-tiddler()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
+.btc-river-$(currentColumn)$ .btc-river-inner .btc-river-inner-spacer > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
+	border: {{$:/config/story-river/tiddler-border}}px solid <<colour focused-tiddler>>;
+}
+
+\end
+
+\define style-unfocused-tiddlers()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
+.btc-river-$(column)$ .btc-river-inner .btc-river-inner-spacer > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
+	border: {{$:/config/story-river/tiddler-border}}px solid <<colour muted-foreground>>;
+}
+
+\end
+
+<$list filter="[{$:/layout}match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
+
+	<$list filter="[{$:/view}match[muuri]]" variable="ignore">
+
+		.btc-river-inner .tc-tiddler-frame {
+			position: absolute;
+		}
+
+		<$list filter="[all[tiddlers]prefix[$:/state/popup/more-]limit[1]]">
+
+			.btc-river-inner > .btc-river-inner-spacer.tc-muuri-river > .tc-tiddler-frame .tc-tag-list-item {
+				z-index: -1;
+			}
+
+			.btc-river-inner > .btc-river-inner-spacer.tc-muuri-river > .tc-tiddler-frame [data-grid="muuri"] {
+				z-index: -1 !important;
+			}
+
+			.btc-river-inner > .btc-river-inner-spacer.tc-muuri-river > .tc-tiddler-frame video::-webkit-media-controls {
+				z-index: -1;
+			}
+
+		</$list>
+
+		<$list filter="[list[$:/columns]]" variable="column">
+
+			.btc-river-<<column>> {
+				display: flex;
+				flex-direction: column;
+				align-items: stretch;
+			}
+
+			.btc-dropzone-<<column>> {
+				display: flex;
+			}
+
+			<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
+
+				<$list filter="[list<storyList>nth[1]]" variable="tiddler">
+
+					<$set name="cssEscapedTitle" value={{{ [<tiddler>escapecss[]] }}}>
+
+						<<scroll-margin-top-story-river-padding>>
+
+					</$set>
+
+				</$list>
+
+				<$list filter="[list<storyList>] -[list<storyList>nth[1]]" variable="tiddler">
+
+					<$set name="cssEscapedTitle" value={{{ [<tiddler>escapecss[]] }}}>
+
+						<<scroll-margin-top>>
+
+					</$set>
+
+				</$list>
+
+			</$set>
+
+		</$list>
+
+		.tc-drag-container .tc-tiddler-frame {
+			padding: 28px 42px 42px 42px;
+		}
+
+		.btc-river-inner {
+			display: flex;
+			flex-direction: row;
+			align-items: stretch;
+			flex-grow: 1;
+			flex-shrink: 0;
+		}
+
+		.btc-river-inner-spacer {
+			position: relative;
+			display: flex;
+			flex-grow: 1;
+			flex-shrink: 0;
+			min-height: 100%;
+			flex-basis: 0;
+		}
+
+		<$list filter="[{$:/config/multi-column/muuri/drag-enabled}match[no]]" variable="ignore">
+
+			.btc-river-inner .btc-river-inner-spacer.tc-muuri-river > .tc-tiddler-frame {
+				touch-action: auto !important;
+				user-select: auto !important;
+				-ms-user-select: text !important;
+				-moz-user-select: text !important;
+				-webkit-user-select: text !important;
+			}
+
+		</$list>
+
+		.tc-page-controls .btc-muuri-columns-button, .tc-page-controls .btc-muuri-dragging-toggle-button {
+			display: none;
+		}
+
+		<$list filter="[{$:/config/story-river/style-focused-tiddlers}!match[no]]" variable="ignore">
+
+			<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
+
+				<$let currentColumn={{$:/columns!!active-column}} currentHistoryList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}}>
+
+					<$set name="cssEscapedTitle" value={{{ [<currentHistoryList>get[current-tiddler]escapecss[]] }}}>
+
+						<<style-focused-tiddler>>
+
+					</$set>
+
+					<$list filter="[list[$:/columns]!match<currentColumn>]" variable="column">
+
+						<$let currentHistoryList={{{ [[$:/HistoryList-]addsuffix<column>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} cssEscapedTitle={{{ [<currentHistoryList>get[current-tiddler]escapecss[]] }}}>
+
+							<<style-unfocused-tiddlers>>
+
+						</$let>
+
+					</$list>
+
+				</$let>
+
+			"""><$text text=""/></$list>
+
+		</$list>
+
+		<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+
+			<$vars column={{{ [<fullScreenTiddler>get[column]] }}} fullScreenTiddler={{{ [<fullScreenTiddler>removeprefix[$:/state/story-river/full-screen/]] }}}>
+
+				<$let tiddlerTitle=<<fullScreenTiddler>> tiddlerTitleCSSEscaped={{{ [<tiddlerTitle>escapecss[]] }}}>
+
+					<<view-tiddler-full-screen>>
+
+				</$let>
+
+			</$vars>
+
+			<$list filter="[list[$:/columns]]" variable="column">
+
+				<<inherit-overflow-columns>>
+
+			</$list>
+
+		</$list>
+
+	</$list>
+
+</$list>

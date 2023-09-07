@@ -14,6 +14,7 @@ dragging $onoff$ - [$(draggingShortcut)$]
 <$vars draggingShortcut=<<displayshortcuts ((dragging-toggle))>> state="$:/config/story-river/dragging-enable">
 <$reveal state=<<state>> type="nomatch" text="no">
 <$button class=<<get-button-class "tc-selected">> tooltip=<<get-dragging-tooltip "off">>>
+<$action-setfield $tiddler="$:/config/multi-column/muuri/drag-enabled" text="no"/>
 <$action-setfield $tiddler=<<state>> text="no"/>
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
 {{$:/plugins/BTC/tiddlywiki-multi-columns/icons/dragging-toggle}}
@@ -25,6 +26,7 @@ dragging $onoff$ - [$(draggingShortcut)$]
 </$reveal>
 <$reveal state=<<state>> type="match" text="no">
 <$button class=<<get-button-class>> tooltip=<<get-dragging-tooltip "on">>>
+<$action-deletetiddler $tiddler="$:/config/multi-column/muuri/drag-enabled"/>
 <$action-deletetiddler $tiddler=<<state>>/>
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
 {{$:/plugins/BTC/tiddlywiki-multi-columns/icons/dragging-toggle}}

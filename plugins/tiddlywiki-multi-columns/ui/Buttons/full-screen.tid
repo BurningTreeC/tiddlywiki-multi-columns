@@ -14,6 +14,7 @@ fullscreen $onoff$ - [$(fullScreenShortcut)$]
 <$vars fullScreenShortcut=<<displayshortcuts ((full-screen))>> state={{{ [[$:/state/story-river/full-screen/]addsuffix<currentTiddler>] }}}>
 <$reveal state=<<state>> type="nomatch" text="yes">
 <$button class=<<get-button-class>> tooltip=<<get-fullscreen-tooltip "on">>>
+<$action-setfield $tiddler="$:/config/multi-column/muuri/drag-enabled" text="no"/>
 <$action-setfield $tiddler=<<state>> text="yes" column=<<currentColumn>>/>
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
 {{$:/core/images/full-screen-button}}
@@ -26,6 +27,7 @@ fullscreen $onoff$ - [$(fullScreenShortcut)$]
 <$reveal state=<<state>> type="match" text="yes">
 <$button class=<<get-button-class "tc-selected">> tooltip=<<get-fullscreen-tooltip "off">>>
 <$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-setfield $tiddler="$:/config/multi-column/muuri/drag-enabled" text={{$:/config/story-river/dragging-enable}}/>
 <$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">

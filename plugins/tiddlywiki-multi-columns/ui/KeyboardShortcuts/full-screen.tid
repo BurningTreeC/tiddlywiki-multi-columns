@@ -3,12 +3,14 @@ tags: $:/tags/KeyboardShortcut
 key: ((full-screen))
 
 \define state-tiddler-is-missing-message()
+<$action-setfield $tiddler="$:/config/multi-column/muuri/drag-enabled" text="no"/>
 <$action-setfield $tiddler=<<state>> text="yes" column=<<currentColumn>>/>
 \end
 
 <$let currentColumn={{$:/columns!!active-column}} historyList={{{ [[$:/HistoryList-]addsuffix<currentColumn>!match[$:/HistoryList-]!match[$:/HistoryList-1]] ~[[$:/HistoryList]] }}} currentTiddler={{{ [<historyList>get[current-tiddler]] }}} state={{{ [[$:/state/story-river/full-screen/]addsuffix<currentTiddler>] }}}>
 <$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage=<<state-tiddler-is-missing-message>>>
 <$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-setfield $tiddler="$:/config/multi-column/muuri/drag-enabled" text={{$:/config/story-river/dragging-enable}}/>
 <$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
 </$list>
 </$list>
