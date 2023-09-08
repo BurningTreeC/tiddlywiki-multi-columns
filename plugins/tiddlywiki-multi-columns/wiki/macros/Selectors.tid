@@ -10,19 +10,43 @@ tags: $:/tags/Macro
 .btc-river-<<currentColumn>> .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"] input.tc-titlebar.tc-edit-texteditor
 \end
 
+\define btc-get-focus-selector-muuri()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+.btc-river-<<currentColumn>> .btc-river-inner > .btc-river-inner-spacer > [data-tiddler-title="$(cssEscapedTitle)$"] input.tc-titlebar.tc-edit-texteditor
+\end
+
 \define btc-get-scroll-selector()
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 .btc-river-<<currentColumn>> .btc-river-inner > [data-tiddler-title="$(cssEscapedTitle)$"]
 \end
 
+\define btc-get-scroll-selector-muuri()
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+.btc-river-<<currentColumn>> .btc-river-inner > .btc-river-inner-spacer > [data-tiddler-title="$(cssEscapedTitle)$"]
+\end
+
 \define btc-scroll-to-tiddler()
+<$list filter="[{$:/view}!match[muuri]]" variable="ignore">
 <$wikify name="scrollSelector" text=<<btc-get-scroll-selector>>>
 <$action-sendmessage $message="tm-scroll" selector=<<scrollSelector>>/>
 </$wikify>
+</$list>
+<$list filter="[{$:/view}match[muuri]]" variable="ignore">
+<$wikify name="scrollSelector" text=<<btc-get-scroll-selector-muuri>>>
+<$action-sendmessage $message="tm-scroll" selector=<<scrollSelector>>/>
+</$wikify>
+</$list>
 \end
 
 \define btc-focus-title-input()
+<$list filter="[{$:/view}!match[muuri]]" variable="ignore">
 <$wikify name="focusSelector" text=<<btc-get-focus-selector>>>
 <$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
 </$wikify>
+</$list>
+<$list filter="[{$:/view}match[muuri]]" variable="ignore">
+<$wikify name="focusSelector" text=<<btc-get-focus-selector-muuri>>>
+<$action-sendmessage $message="tm-focus-selector" $param=<<focusSelector>> preventScroll="true"/>
+</$wikify>
+</$list>
 \end

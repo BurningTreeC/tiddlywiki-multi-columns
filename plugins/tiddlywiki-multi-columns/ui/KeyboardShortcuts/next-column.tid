@@ -4,6 +4,7 @@ key: ((next-column))
 
 \import $:/plugins/BTC/tiddlywiki-multi-columns/macros/Selectors
 \define scroll-to-river()
+<$action-log scroll-river={{{ [[.btc-river-]addsuffix<currentColumn>] }}}/>
 <$action-sendmessage $message="tm-scroll" selector={{{ [[.btc-river-]addsuffix<currentColumn>] }}}/>
 \end
 
