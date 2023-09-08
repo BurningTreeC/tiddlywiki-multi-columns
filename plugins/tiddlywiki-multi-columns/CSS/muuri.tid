@@ -138,9 +138,9 @@ tags: $:/tags/Stylesheet
 				align-items: stretch;
 			}
 
-			.btc-dropzone-<<column>> {
+			<!--.btc-dropzone-<<column>> {
 				display: flex;
-			}
+			}-->
 
 			<$set name="storyList" value={{{ [[$:/StoryList-]addsuffix<column>!match[$:/StoryList-]!match[$:/StoryList-1]] ~[[$:/StoryList]] }}}>
 
