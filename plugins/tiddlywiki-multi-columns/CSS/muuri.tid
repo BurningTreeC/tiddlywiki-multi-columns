@@ -170,7 +170,7 @@ tags: $:/tags/Stylesheet
 			pointer-events: auto;
 		}
 
-		<$list filter="[{$:/config/multi-column/muuri/drag-enabled}match[no]]" variable="ignore">
+		<$list filter="[{$:/config/story-river/dragging-enable}match[no]] +[limit[1]]" variable="ignore">
 
 			.btc-river-inner .btc-river-inner-spacer.tc-muuri-river > .tc-tiddler-frame {
 				touch-action: auto !important;
