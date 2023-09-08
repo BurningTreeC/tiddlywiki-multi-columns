@@ -106,30 +106,6 @@ tags: $:/tags/Stylesheet
 			position: absolute;
 		}
 
-		<$list filter="[all[tiddlers]prefix[$:/state/popup/more-]limit[1]]">
-
-			.btc-river-inner > .btc-river-inner-spacer.tc-muuri-river > .tc-tiddler-frame .tc-tag-list-item {
-				z-index: -1;
-			}
-
-			.btc-river-inner > .btc-river-inner-spacer.tc-muuri-river > .tc-tiddler-frame [data-grid="muuri"] {
-				z-index: -1 !important;
-			}
-
-			.btc-river-inner > .btc-river-inner-spacer.tc-muuri-river > .tc-tiddler-frame video::-webkit-media-controls {
-				z-index: -1;
-			}
-
-			.btc-river-inner > .btc-river-inner-spacer.tc-muuri-river > .tc-tiddler-frame iframe {
-				z-index: -1;
-			}
-
-			.btc-river-inner > .btc-river-inner-spacer.tc-muuri-river > .tc-tiddler-frame .tc-unfold-banner, .btc-river-inner > .btc-river-inner-spacer.tc-muuri-river > .tc-tiddler-frame .tc-fold-banner {
-				z-index: -1;
-			}
-
-		</$list>
-
 		<$list filter="[list[$:/columns]]" variable="column">
 
 			.btc-river-<<column>> {
