@@ -1,0 +1,7 @@
+title: $:/config/panel/top-river-panel
+tags: $:/tags/MultiColumn/Config
+caption: Top River Panels
+description: Show a top panel above each single story river
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input-switch
+
+no

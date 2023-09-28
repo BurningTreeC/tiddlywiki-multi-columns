@@ -1,0 +1,7 @@
+title: $:/config/panel/top-panels
+tags: $:/tags/MultiColumn/Config
+caption: Top River activation Panels
+description: Show the small panels above story rivers, used to activate the current column and to drag all tiddlers from one column to another wiki
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input-switch
+
+no
