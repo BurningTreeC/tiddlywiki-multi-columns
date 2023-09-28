@@ -25,7 +25,6 @@ key: ((move-right))
 </$list>
 <$action-setfield $tiddler=<<historyList>> current-tiddler={{{ [list<storyList>after<focusedTiddler>] ~[list<storyList>before<focusedTiddler>] }}}/>
 <$action-listops $tiddler=<<storyList>> $subfilter="-[<focusedTiddler>]"/>
-<<close-story-river-messages>>
 <$list filter="[<nextHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
 <$set name="nextStoryFocusedTiddler" value={{{ [<nextHistoryList>get[current-tiddler]] }}}>
 <$list filter="[<nextStoryList>contains<nextStoryFocusedTiddler>]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
@@ -46,6 +45,7 @@ key: ((move-right))
 </$let>
 </$list>
 </$list>
+<<close-story-river-messages>>
 </$let>
 \end
 <$macrocall $name="btc-multi-column-keyboard-navigation" actions=<<actions>>/>
