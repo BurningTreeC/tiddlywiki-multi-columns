@@ -45,6 +45,21 @@ $:/state/folded/$(currentTiddler)$
 <$let scrollTiddler={{{ [list<tv-story-list>after<currentTiddler>] ~[list<tv-story-list>before<currentTiddler>] }}} scrollTiddlerCSSEscaped={{{ [<scrollTiddler>escapecss[]] }}}>
 	<$action-setfield $tiddler=<<tv-history-list>> current-tiddler=<<scrollTiddler>>/>
 	<$action-sendmessage $message="tm-$message$-tiddler"/>
+<$list filter="[{$:/config/story-river/close-when-empty}match[yes]]" variable="ignore">
+<$list filter="[<scrollTiddler>match[]]" variable="ignore">
+<$set name="lastColumn" value={{{ [list[$:/columns]count[]] }}}>
+<$list filter="[list[$:/columns]allafter<currentColumn>]" variable="column">
+<$set name="previousColumn" value={{{ [<column>subtract[1]] }}}>
+<$action-sendmessage $message="tm-rename-tiddler" from={{{ [[$:/StoryList-]addsuffix<column>] }}} to={{{ [[$:/StoryList-]addsuffix<previousColumn>] }}}/>
+<$action-sendmessage $message="tm-rename-tiddler" from={{{ [[$:/HistoryList-]addsuffix<column>] }}} to={{{ [[$:/HistoryList-]addsuffix<previousColumn>] }}}/>
+</$set>
+</$list>
+<$list filter="[[$:/columns]get[list]!match[1]]">
+<$action-listops $tiddler="$:/columns" $subfilter="-[<lastColumn>]"/>
+</$list>
+</$set>
+</$list>
+</$list>
 </$let>
 \end
 \define edit-tiddler-actions()
