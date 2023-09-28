@@ -71,3 +71,21 @@ tags: $:/tags/Macro
 </$list>
 <$action-navigate $to=<<event-navigateTo>>/>
 \end
+
+\define close-story-river-messages()
+<$list filter="[{$:/config/story-river/close-when-empty}match[yes]]" variable="ignore">
+<$list filter="[<scrollTiddler>match[]]" variable="ignore">
+<$set name="lastColumn" value={{{ [list[$:/columns]count[]] }}}>
+<$list filter="[list[$:/columns]allafter<currentColumn>]" variable="column">
+<$set name="previousColumn" value={{{ [<column>subtract[1]] }}}>
+<$action-sendmessage $message="tm-rename-tiddler" from={{{ [[$:/StoryList-]addsuffix<column>] }}} to={{{ [[$:/StoryList-]addsuffix<previousColumn>] }}}/>
+<$action-sendmessage $message="tm-rename-tiddler" from={{{ [[$:/HistoryList-]addsuffix<column>] }}} to={{{ [[$:/HistoryList-]addsuffix<previousColumn>] }}}/>
+</$set>
+</$list>
+<$list filter="[[$:/columns]get[list]!match[1]]">
+<$action-listops $tiddler="$:/columns" $subfilter="-[<lastColumn>]"/>
+</$list>
+</$set>
+</$list>
+</$list>
+\end
