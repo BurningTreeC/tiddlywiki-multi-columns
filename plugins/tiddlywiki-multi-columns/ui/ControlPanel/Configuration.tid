@@ -9,7 +9,7 @@ caption: MultiColumn
 <$edit-text tiddler="$:/state/multi-columns/settings/search" class="btc-search-input" default="" tag="input" type="search" placeholder="search..."/>
 
 <div class="btc-list-group btc-list-group-box-shadow btc-list-stream-settings">
-<$list filter="[all[shadows+tiddlers]tag[$:/tags/MultiColumn/Config]has[settings-template]]  +[search:title,caption,description{$:/state/multi-column/settings/search}] +[sortsub<sortBySettingsGroupFilter>]">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/MultiColumn/Config]has[settings-template]]  +[search:title,caption,description{$:/state/multi-columns/settings/search}] +[sortsub<sortBySettingsGroupFilter>]">
 <$list filter={{{[{!!condition}!is[blank]] :else[{!!title}]}}} variable="list-condition">
 <div class="btc-list-group-item">
 <$transclude tiddler={{!!settings-template}}/>
