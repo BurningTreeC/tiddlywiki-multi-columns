@@ -10,8 +10,10 @@ key: ((remove-column))
 </$list>
 <$list filter="[<columnCount>!match[1]]">
 <$action-listops $tiddler="$:/columns" $subfilter="-[<columnCount>]"/>
+<$list filter="[{$:/config/story-river/delete-column-when-closing}match[yes]]" variable="ignore">
 <$action-deletetiddler $tiddler={{{ [[$:/StoryList-]addsuffix<columnCount>] }}}/>
 <$action-deletetiddler $tiddler={{{ [[$:/HistoryList-]addsuffix<columnCount>] }}}/>
+</$list>
 </$list>
 </$set>
 """></$list>

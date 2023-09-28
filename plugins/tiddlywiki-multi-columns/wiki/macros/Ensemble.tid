@@ -16,6 +16,7 @@ Do you want to overwrite?
 	hide-scrollbars={{{ [{$:/config/story-river/hide-scrollbars}match[yes]] ~no }}}
 	bottom-right-panel={{{ [{$:/config/story-river/bottom-right-panel}match[yes]] ~no }}}
 	dragging-enable={{{ [{$:/config/story-river/dragging-enable}match[yes]] ~no }}}
+	close-when-empty={{{ [{$:/config/story-river/close-when-empty}match[yes]] ~no }}}
 	follow-active-column={{{ [{$:/config/story-river/follow-active-column}match[yes]] ~no }}}
 	horizontal-columns={{{ [[$:/config/story-river/horizontal/columns]get[text]] ~3 }}}
 	no-tiddler-box-shadows={{{ [{$:/config/story-river/no-tiddler-box-shadows}match[yes]] ~no }}}
@@ -123,6 +124,7 @@ Do you want to overwrite?
 <$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/padding" value={{{ [<storyTiddler>get[story-river-padding]] }}}/>
 <$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/tiddler-border" value={{{ [<storyTiddler>get[tiddler-border]] }}}/>
 <$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/tiddler-margin" value={{{ [<storyTiddler>get[tiddler-margin]] }}}/>
+<$macrocall $name="btc-set-configuration" tiddler="$:/config/story-river/close-when-empty" value={{{ [<storyTiddler>get[close-when-empty]] }}}/>
 <$macrocall $name="btc-set-configuration" tiddler="$:/config/panel/top-river-panel" value={{{ [<storyTiddler>get[top-river-panel]match[yes]then[yes]else[no]] }}}/>
 <$macrocall $name="btc-set-configuration" tiddler="$:/config/panel/top-panels" value={{{ [<storyTiddler>get[top-panels]match[yes]then[yes]else[no]] }}}/>
 <$macrocall $name="btc-set-configuration" tiddler="$:/palette" value={{{ [<storyTiddler>get[palette]] }}}/>

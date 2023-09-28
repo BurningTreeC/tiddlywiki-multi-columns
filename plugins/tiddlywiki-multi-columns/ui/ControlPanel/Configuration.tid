@@ -54,6 +54,14 @@ caption: MultiColumn
 </$select>
 <hr>
 
+!!! delete the story lists of closed columns
+<$link to="$:/config/story-river/delete-column-when-closing"/><br>
+<$select tiddler="$:/config/story-river/delete-column-when-closing" default="no">
+<option value="no">no</option>
+<option value="yes">yes</option>
+</$select>
+<hr>
+
 !!! ''scroll-snap-type'' in wide view (is "x mandatory" in narrow view)
 <$link to="$:/config/story-river/scroll-snap-type"/><br>
 <$edit-text tag="input" tiddler="$:/config/story-river/scroll-snap-type" default="" placeholder="scroll-snap-type"/><br>
