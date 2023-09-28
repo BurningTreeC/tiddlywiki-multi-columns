@@ -46,6 +46,14 @@ caption: MultiColumn
 </$select>
 <hr>
 
+!!! close columns when empty
+<$link to="$:/config/story-river/close-when-empty"/><br>
+<$select tiddler="$:/config/story-river/close-when-empty" default="no">
+<option value="no">no</option>
+<option value="yes">yes</option>
+</$select>
+<hr>
+
 !!! ''scroll-snap-type'' in wide view (is "x mandatory" in narrow view)
 <$link to="$:/config/story-river/scroll-snap-type"/><br>
 <$edit-text tag="input" tiddler="$:/config/story-river/scroll-snap-type" default="" placeholder="scroll-snap-type"/><br>
