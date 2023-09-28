@@ -1,3 +1,9 @@
 title: $:/config/story-river/column-modifier
+tags: $:/tags/MultiColumn/Config
+caption: Modifier key to lower the column width
+description: The modifier key held when double clicking a column to lower its width
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/select
+option-names: ctrl shift alt mod
+option-values: ctrl shift alt mod
 
 ctrl

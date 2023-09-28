@@ -1,0 +1,4 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input
+
+<label class="btcui-form-label"><$link tooltip={{!!description}}>{{!!caption}}</$link></label>
+<$edit-text tag="input" class="btcui-form-input"/>

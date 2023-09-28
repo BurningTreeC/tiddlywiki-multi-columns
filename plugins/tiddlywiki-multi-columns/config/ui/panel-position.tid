@@ -1,3 +1,9 @@
 title: $:/config/panel/position
+tags: $:/tags/MultiColumn/Config
+caption: Sidebar position
+description: The position left/right of the main system-sidebar
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/select
+option-names: left right
+option-values: left right
 
 right

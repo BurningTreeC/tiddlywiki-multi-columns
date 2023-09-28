@@ -1,0 +1,3 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input-switch
+
+<label class="btcui-form-label"><$link tooltip={{!!description}}>{{!!caption}}</$link></label><$checkbox field="text" checked="yes" unchecked="no" class="btcui-form-switch"/>

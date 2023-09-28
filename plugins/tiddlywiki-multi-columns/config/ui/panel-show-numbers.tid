@@ -1,3 +1,7 @@
 title: $:/config/panel/show-numbers
+tags: $:/tags/MultiColumn/Config
+caption: Show numbers in sidebar column-indicator
+description: Whether or not the corresponding column-numbers should be shown in the sidebar's column-indicators
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input-switch
 
 no

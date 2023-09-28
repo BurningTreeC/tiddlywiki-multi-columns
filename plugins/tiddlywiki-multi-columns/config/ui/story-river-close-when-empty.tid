@@ -1,3 +1,7 @@
 title: $:/config/story-river/close-when-empty
+tags: $:/tags/MultiColumn/Config
+caption: Close story-river column when empty
+description: Whether or not a column should be removed when it's last tiddler is removed
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input-switch
 
 no

@@ -1,3 +1,7 @@
 title: $:/config/story-river/hide-scrollbars
+tags: $:/tags/MultiColumn/Config
+caption: Hide scrollbars
+description: Whether or not scrollbars should be hidden
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input-switch
 
 no

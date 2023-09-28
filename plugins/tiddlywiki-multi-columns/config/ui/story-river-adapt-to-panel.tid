@@ -1,3 +1,7 @@
 title: $:/config/story-river/adapt-to-panel
+tags: $:/tags/MultiColumn/Config
+caption: Adapt story river to panel
+description: Wheter or not the main story-river area should adapt to the sidebar-panel's width
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input-switch
 
 yes

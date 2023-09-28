@@ -1,3 +1,7 @@
 title: $:/config/story-river/tiddler-border
+tags: $:/tags/MultiColumn/Config
+caption: Border width of tiddlers
+description: The border width in pixel of tiddlers in the story rivers
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input
 
 1

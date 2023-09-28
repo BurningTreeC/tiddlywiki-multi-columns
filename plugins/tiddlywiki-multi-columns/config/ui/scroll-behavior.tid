@@ -1,3 +1,9 @@
 title: $:/config/scroll-behavior
+tags: $:/tags/MultiColumn/Config
+caption: Scroll behaviour
+description: The scroll behaviour smooth/auto when scrolling to tiddlers
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/select
+option-names: auto smooth
+option-values: auto smooth
 
 smooth

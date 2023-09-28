@@ -1,3 +1,7 @@
 title: $:/config/story-river/delete-column-when-closing
+tags: $:/tags/MultiColumn/Config
+caption: Delete columns when removing
+description: Whether or not the content of columns should be removed when a column is removed from the view
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input-switch
 
 yes

@@ -1,3 +1,7 @@
 title: $:/config/story-river/dragging-enable
+tags: $:/tags/MultiColumn/Config
+caption: Enable dragging
+description: Whether or not dragging of tiddlers should be enabled
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input-switch
 
 yes

@@ -1,3 +1,7 @@
 title: $:/config/story-river/follow-active-column
+tags: $:/tags/MultiColumn/Config
+caption: Active column should follow moved tiddlers
+description: Whether or not the active column moves to the column a tiddler is moved to by keyboard shortcut
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input-switch
 
 no

@@ -1,3 +1,7 @@
 title: $:/config/story-river/padding
+tags: $:/tags/MultiColumn/Config
+caption: Story-river padding
+description: The top / left / bottom / right padding of the story rivers
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input
 
 15

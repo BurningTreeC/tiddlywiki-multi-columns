@@ -1,3 +1,7 @@
 title: $:/config/story-river/no-tiddler-box-shadows
+tags: $:/tags/MultiColumn/Config
+caption: No box shadows for tiddlers
+description: Whether or not the box shadows of tiddlers in the story rivers should be hidden
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input-switch
 
 no

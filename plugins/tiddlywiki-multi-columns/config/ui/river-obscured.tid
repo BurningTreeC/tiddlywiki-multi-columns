@@ -1,3 +1,7 @@
 title: $:/config/panel/river-obscured
+tags: $:/tags/MultiColumn/Config
+caption: Dark overlay over content when sidebar is shown
+description: Whether or not the dark overlay above the story-rivers - clickable to close the sidebar - should be shown when the sidebar is shown
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input-switch
 
 no

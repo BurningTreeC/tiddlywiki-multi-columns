@@ -1,3 +1,7 @@
 title: $:/config/panel/panel-width-below-1170px
+tags: $:/tags/MultiColumn/Config
+caption: Panel width below 1170px
+description: The width of the sidebar panel(s) when the width of the viewport is below 1170px
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input
 
 50%

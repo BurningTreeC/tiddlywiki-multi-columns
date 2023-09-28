@@ -1,3 +1,7 @@
 title: $:/config/story-river/bottom-right-panel
+tags: $:/tags/MultiColumn/Config
+caption: Show bottom right buttons
+description: Whether or not the bottom right panel with the search- dragging- and horizontal-vertical-switcher buttons should be shown
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input-switch
 
 yes

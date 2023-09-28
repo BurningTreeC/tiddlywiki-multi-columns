@@ -1,3 +1,7 @@
 title: $:/config/story-river/tiddler-margin
+tags: $:/tags/MultiColumn/Config
+caption: Bottom margin of tiddlers
+description: The bottom margin in pixel of tiddlers in the story rivers
+settings-template: $:/plugins/BTC/tiddlywiki-multi-columns/ui/templates/settings/input
 
 10

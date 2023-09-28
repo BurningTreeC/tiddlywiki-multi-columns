@@ -1,3 +1,9 @@
 title: $:/config/story-river/scroll-snap-type
+tags: $:/tags/MultiColumn/Config
+caption: Scroll snap type
+description: The CSS scroll-snap-type of the horizontal scroll container (is x mandatory by default on narrow screens)
+settings-template: $:/plugins/BTC/tiddlywiki-codemirror-6/ui/templates/settings/select
+option-names: none [[x mandatory]] [[x proximity]]
+option-values: none [[x mandatory]] [[x proximity]]
 
 none
