@@ -18,10 +18,12 @@ key: ((move-left))
 \end
 
 \define actions()
+<$let scrollTiddler={{{ [list<storyList>after<focusedTiddler>] ~[list<storyList>before<focusedTiddler>] }}}>
 <$list filter="[<focusedTiddler>!is[blank]]" variable="ignore">
 <$list filter="[<storyList>!match[$:/StoryList]]" variable="ignore">
 <$action-setfield $tiddler=<<historyList>> current-tiddler={{{ [list<storyList>after<focusedTiddler>] ~[list<storyList>before<focusedTiddler>] }}}/>
 <$action-listops $tiddler=<<storyList>> $subfilter="-[<focusedTiddler>]"/>
+<<close-story-river-messages>>
 <$list filter="[<previousHistoryList>get[current-tiddler]!match[]]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
 <$set name="previousStoryFocusedTiddler" value={{{ [<previousHistoryList>get[current-tiddler]] }}}>
 <$list filter="[<previousStoryList>contains<previousStoryFocusedTiddler>]" variable="ignore" emptyMessage=<<current-tiddler-is-empty-message>>>
@@ -43,6 +45,6 @@ key: ((move-left))
 </$let>
 </$list>
 </$list>
+</$let>
 \end
-
 <$macrocall $name="btc-multi-column-keyboard-navigation" actions=<<actions>>/>
