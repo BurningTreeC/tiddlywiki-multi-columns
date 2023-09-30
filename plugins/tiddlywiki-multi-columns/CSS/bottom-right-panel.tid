@@ -65,6 +65,10 @@ tags: $:/tags/Stylesheet
 	fill: <<colour tiddler-controls-foreground-selected>>;
 }
 
+.btc-bottom-right-panel .btc-save-wiki-button {
+	font-size: 0.75em;
+}
+
 <$wikify name="dropshadowColour" text="""<<colour selected-dropshadow-light>>""">
 
 	.btc-bottom-right-panel .tc-btn-invisible.tc-selected {

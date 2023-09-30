@@ -1,0 +1,23 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/save-button
+tags: $:/tags/BottomRightPanel
+list-before: $:/plugins/BTC/tiddlywiki-multi-columns/ui/Buttons/search-panel
+
+\define get-button-class(class)
+btc-dragging-button $(tv-config-toolbar-class)$ tc-toolbar-icon $class$
+\end
+\define get-save-button-tooltip(onoff)
+{{$:/language/Buttons/SaveWiki/Hint}} - [$(saveShortcut)$]
+\end
+\whitespace trim
+<$vars saveShortcut=<<displayshortcuts ((save-wiki))>>>
+<$wikify name="tooltip" text=<<get-save-button-tooltip>>>
+<$button tooltip=<<tooltip>> aria-label={{$:/language/Buttons/SaveWiki/Caption}} class="btc-save-wiki-button tc-btn-invisible tc-toolbar-icon">
+<$wikify name="site-title" text={{$:/config/SaveWikiButton/Filename}}>
+<$action-sendmessage $message="tm-save-wiki" $param={{$:/config/SaveWikiButton/Template}} filename=<<site-title>>/>
+</$wikify>
+<span class="tc-dirty-indicator">
+{{$:/core/images/save-button-dynamic}}
+</span>
+</$button>
+</$wikify>
+</$vars>
